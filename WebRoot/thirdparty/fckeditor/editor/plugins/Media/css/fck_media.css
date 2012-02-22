@@ -1,0 +1,32 @@
+.FCK__Media_0, .FCK__Media_1, .FCK__Media_2, .FCK__Media_3, .FCK__Media_4 {
+	border: #a9a9a9 1px solid;
+	background-position: center center;
+	background-repeat: no-repeat;
+	width: 80px;
+	height: 80px;
+}
+
+.FCK__Media_0
+{
+	background-image: url(../images/media_logo.jpg);
+}
+
+.FCK__Media_1
+{
+	background-image: url(../images/realone.lg.gif);
+}
+
+.FCK__Media_2
+{
+	background-image: url(../images/quicktime.lg.gif);
+}
+
+.FCK__Media_3
+{
+	background-image: url(../images/flash6.lg.gif);
+}
+
+.FCK__Media_4
+{
+	background-image: url(../images/shockwave.gif);
+}

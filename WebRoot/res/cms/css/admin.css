@@ -1,0 +1,70 @@
+body{margin:0;padding:0;font-size:12px;color:#364f56;background-color:#FFFFFF;}
+img{border:0;}
+form{margin:0; padding:0;}
+input[type=text],input[type=password],textarea{border-top:1px solid #404040;border-left:1px solid #404040;border-right:1px solid #D4D0C8;border-bottom:1px solid #D4D0C8;}
+input[type=text][disabled=disabled],.disabled{background:#D4D0C8;}
+input[type=text],input[type=password]{height:17px;}
+input[type=text]:focus,input[type=password]:focus,textarea:focus{border:1px solid #000000;}
+ul{list-style:none;}
+
+/*链接总的css定义*/
+a{text-decoration:none;}
+a:link{color:#364f56;}
+a:visited{color:#333333;}
+a:hover{color: #ae0927;}
+a:active {color: #0000ff;}
+/*菜单链接*/
+a.channel:link {color:#ffffff;}
+a.channel:visited {color:#ffffff;}
+a.channel:hover{color:#ffff00;}
+a.channel:active {color:#ffffff;}
+/*菜单链接*/
+a.normal{text-decoration:underline;}
+.clear{clear:both;}
+/*后台管理界面body体*/
+.body-box{width:99%;margin:0px auto;margin-right:auto;}
+/*后台左页body*/
+.lbody{background:url(../img/admin/lbg.jpg) right repeat-y #f6fafb;color:#666666;margin-right:6px;}
+/*后台左页菜单*/
+.lmenu{margin:6px 0 0 0;padding:0;list-style-type:none;}
+.lmenu li{padding:7px 0 7px 30px;background-image:url(../img/admin/circle.gif);background-repeat:no-repeat;background-position:15px -1px;}
+.lmenu-focus{background-color:#DDECEF;}
+/*后台左页树*/
+.lttop{padding:10px 0px 2px 0px;text-align:center;}
+/*后台右页头部*/
+.rhead{border-bottom:#dddddd 1px solid;padding:5px 15px;margin-top:5px;}
+/*后台右页当前位置*/
+.rpos{float:left;line-height:34px; font-weight:normal; background:url(../img/admin/icon.png) no-repeat 24px -257px; text-indent:50px;color:#000;}
+/*后台右页操作*/
+.ropt{float:right;padding-top:5px;}
+
+/*----------------left-----------------*/
+.left{width:226px;background-color:#f6fafb;}
+.date{background:url(../img/admin/bg.png) repeat-x 0px -115px; width:226px; height:34px; line-height:34px; }
+.date span{background:url(../img/admin/icon.png) no-repeat 6px -106px; text-indent:25px; display:block; color:#6a5c5c;}
+.fresh{background:url(../img/admin/bg.png) repeat-x 0px -78px; height:35px; text-align:center;}
+.fresh a{color:#326ba2; text-indent:25px; height:35px; width:55px; line-height:35px;font-size:12px;}
+
+.w-lful{width:170px; margin:0 auto; margin-top:13px;padding:0px;}
+.w-lful li{background:url(../img/admin/jeecms.png) no-repeat; width:170px; height:25px; margin-top:13px; color:#404040; line-height:25px; text-align:center;}
+.w-lful li a{color:#404040; }
+
+/*----------------right-----------------*/
+.box-positon{background:url(../img/admin/bg.png) repeat-x 0px -42px; height:34px;}
+.box-positon h1{color:#000; font-size:12px; line-height:34px; font-weight:normal; background:url(../img/admin/icon.png) no-repeat 24px -257px; text-indent:50px;margin:0;}
+.welcom-con{ margin:0 auto; width:98%;}
+.we-txt{background:url(../img/admin/jeecms.png) no-repeat 0px -80px;}
+.we-txt a{color:#ff0000;}
+.we-txt p{line-height:24px; padding-left:158px; margin-top:17px;}
+.ms{height:27px; border-bottom:1px solid #c0d5e6; border-top:1px solid #c0d5e6; margin-top:25px;padding-left:0px;}
+.ms li{color:#094f97; font-weight:bold; float:left; line-height:27px;}
+
+.wxx{width:30%;}
+.attribute{width:50%; text-indent:25px;}
+.ms-xx{height:200px;border-bottom:1px solid #c0d5e6; }
+.xx-xx{float:left; width:25%;}
+.green{color:#048e05;}
+.black{color:#1c1c1c;}
+.yy{width:15%; float:left;}
+
+.attribute-xx{width:60%;}

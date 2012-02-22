@@ -1,0 +1,65 @@
+<script type="text/javascript">
+//上传图片
+function upload(n) {
+	var of = $("#uploadFile"+n);
+	//检查是否选择了图片
+	if(of.val()=="") {
+		alert("<@s.m "imageupload.error.noFileToUpload"/>");
+		return;
+	}
+	//将file移动至上传表单
+	$("#fileContent").empty();
+	$("#fileContent").append(of);
+	//复制一个file放至原处
+	$("#ufc"+n).append(of.clone().attr("value",""));
+	//修改属性
+	$("#uploadFileText"+n).attr("value","");
+	of.attr("id","");
+	of.attr("name","uploadFile");
+	//其他表单
+	$("#ufFileName").val($("#fileName"+n).val());
+	$("#ufWidth").val($("#zoomWidth"+n).val());
+	$("#ufHeight").val($("#zoomHeight"+n).val());
+	//先清除
+	$("#ufMark").val("");
+	$("#ufMark").val($("#mark"+n).val());
+	$("#uploadNum").val(n);
+	$("#uploadForm").submit();
+}
+//剪裁图片
+function imgCut(n) {
+	if($("#uploadImgPath"+n).val()=="") {
+		alert("<@s.m "imageupload.error.noFileToCut"/>");
+		return;
+	}
+	var url = "../common/v_image_area_select.do?uploadNum="+n+"&imgSrcPath="
+		+$("#uploadImgPath"+n).val()+"&zoomWidth="+$("#zoomWidth"+n).val()+"&zoomHeight="+$("#zoomHeight"+n).val();
+	window.open(url,"imgcut","height=550, width=1000, top=0, left=0, toolbar=no, menubar=no, scrollbars=auto, resizable=yes,location=no, status=no");
+}
+//预览图片
+function previewImg(n) {
+	var img = $("#uploadImgPath"+n).val();
+	if(img!="") {
+		if(img.indexOf("?")==-1) {
+			$("#preImg"+n).attr("src",img+"?d="+new Date()*1);
+		} else {
+			$("#preImg"+n).attr("src",img+"&d="+new Date()*1);
+		}
+		if(!$("#preImg"+n).attr("noResize")) {
+			$("#preImg"+n).css("width","auto");
+			$("#preImg"+n).css("height","auto");
+		}
+	} else {
+		$("#preImg"+n).removeAttr("src");		
+	}
+}
+</script>
+<form id="uploadForm" action="../common/o_upload_image.do" method="post" enctype="multipart/form-data" target="hiddenIframe" style="display:none;width:0px;height:0px;">
+<span id="fileContent"></span>
+<input id="ufWidth" type="hidden" name="zoomWidth"/>
+<input id="ufHeight" type="hidden" name="zoomHeight"/>
+<input id="ufFileName" type="hidden" name="fileName"/>
+<input id="ufMark" type="hidden" name="mark"/>
+<input id="uploadNum" type="hidden" name="uploadNum"/>
+</form>
+<iframe name="hiddenIframe" frameborder="0" border="0" style="display:none;width:0px;height:0px;"></iframe>

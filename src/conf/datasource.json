@@ -1,0 +1,27 @@
+var ioc = {
+	dataSource:{
+		type:"com.mchange.v2.c3p0.ComboPooledDataSource",
+		events:{
+			depose:"close"
+		},
+		fields:{
+			driverClass:"com.mysql.jdbc.Driver",
+			jdbcUrl:"jdbc:mysql://127.0.0.1:3306/nutz_cms?useUnicode=true&characterEncoding=utf-8",
+			user:"root",
+			password:"root",
+			autoCommitOnClose:"true",
+			checkoutTimeout:5000,
+			initialPoolSize:20,
+			minPoolSize:20,
+			maxPoolSize:20,
+			maxIdleTime:50,
+			acquireIncrement:10,
+			maxIdleTimeExcessConnections:1800
+		}
+	},
+	dao : {
+		type : "org.nutz.dao.impl.NutDao",
+		args : [{refer:'dataSource'}]
+	}
+	
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title></title>
+<#include "/cms_sys/head.html"/>
+<script type="text/javascript">
+function getTableForm() {
+	return document.getElementById('tableForm');
+}
+function optDelete() {
+	if(Pn.checkedCount('ids')<=0) {
+		alert("<@s.m 'error.checkRecord'/>");
+		return;
+	}
+	if(!confirm("<@s.m 'global.confirm.delete'/>")) {
+		return;
+	}
+	var f = getTableForm();
+	f.action="delete";
+	f.submit();
+}
+</script>
+</head>
+<body>
+<div class="box-positon">
+	<div class="rpos"><@s.m "global.position"/>: <@s.m "cmsRole.function"/> - <@s.m "global.list"/></div>
+	<@cms_perm resource=17 action=1>
+	<form class="ropt">
+		<input class="add" type="submit" value="<@s.m "global.add"/>" onclick="this.form.action='add';"/>
+	</form>
+	</@cms_perm>
+	<div class="clear"></div>
+</div>
+<div class="body-box">
+<@cms_perm resource=17 action=2>
+<form id="tableForm" method="post">
+<@p.table value=list;cmsRole,i,has_next><#rt/>
+	<@cms_perm resource=17 action=2>
+	<@p.column title="<input type='checkbox' onclick='Pn.checkbox(\"ids\",this.checked)'/>" width="20">
+		<input type='checkbox' name='ids' value='${cmsRole.id}'/><#t/>
+	</@p.column><#t/>
+	</@cms_perm>
+	<@p.column title="ID">${cmsRole.id}</@p.column><#t/>
+	<@p.column title="角色名称">${cmsRole.name}</@p.column><#t/>
+	<@p.column title="角色优先级">${cmsRole.rule}</@p.column><#t/>
+	<@p.column title="操作" align="center">
+		<@cms_perm resource=17 action=8>
+		<a href="edit_permis?id=${cmsRole.id}" class="pn-opt"><@s.m "global.edit.role.permission"/></a> | <#rt/>
+		</@cms_perm>
+		<@cms_perm resource=17 action=2><a href="delete?ids=${cmsRole.id}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" class="pn-opt"><@s.m "global.delete"/></a> | <#t/></@cms_perm>
+		<@cms_perm resource=17 action=8>
+		<a href="edit?id=${cmsRole.id}" class="pn-opt"><@s.m "global.edit.role"/></a><#rt/>
+		</@cms_perm>
+	</@p.column><#t/>
+</@p.table>
+<@cms_perm resource=17 action=2><div style="margin-top:15px;"><input class="del-button" type="button" value="<@s.m "global.delete"/>" onclick="optDelete();"/></div></@cms_perm>
+</form>
+</@cms_perm>
+</div>
+<#include "/common/alert_message.html"/>
+</body>
+</html>

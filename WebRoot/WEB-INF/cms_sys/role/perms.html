@@ -1,0 +1,48 @@
+<div class="perm-container">
+<#--图片处理权限-->
+<#assign imgPerms="/common/v_image_area_select.do,/common/o_image_cut.do,/common/o_upload_image.do"/>
+<#--默认有的权限，比如后台首页-->
+<input type="hidden" name="perms" value="/index.do,/top.do,/main.do,/left.do,/right.do"/>
+
+<div class="perm-layout-1">
+<label><input value="/personal/" type="checkbox" name="perms"/><@s.m "cmsPersonal.function"/></label>
+</div>
+
+<div class="perm-layout-1">
+<label><input value="/frame/user" type="checkbox" name="perms"/><@s.m "cms.function.user"/></label>
+<div>
+	<div class="perm-layout-2">
+	<label><input value="/member/" type="checkbox" name="perms"/><@s.m "cmsMember.function"/></label>
+	</div>
+	<div class="perm-layout-2">
+	<label><input value="/group/" type="checkbox" name="perms"/><@s.m "cmsGroup.function"/></label>
+	</div>
+	<div class="perm-layout-2">
+	<label><input value="/admin_global/" type="checkbox" name="perms"/><@s.m "cmsAdminGlobal.function"/></label>
+	</div>
+	<div class="perm-layout-2">
+	<label><input value="/role/" type="checkbox" name="perms"/><@s.m "cmsRole.function"/></label>
+	</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+$(function() {
+	$(".perm-container input[type=checkbox]").bind("click",function() {
+		parentCheck(this);
+		childCheck(this);
+	});
+});
+function parentCheck(chk) {
+	var obj = $(chk).parent().parent().parent();
+	while(obj && obj.attr("class").indexOf("perm-container")==-1) {
+		if(chk.checked) {
+			$(obj.children()[0]).children().attr("checked",true);
+		}
+		obj = obj.parent();
+	}
+}
+function childCheck(chk) {
+	$(chk).parent().next().children().find("input[type=checkbox]").each(function(){this.checked=chk.checked});
+}
+</script>

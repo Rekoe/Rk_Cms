@@ -1,0 +1,5 @@
+<#if message??>
+<script type="text/javascript">
+alert("<@s.mt code=message text=message/>");
+</script>
+</#if>

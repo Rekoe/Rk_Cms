@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<script src="${base}/res/common/js/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+<#if error??>
+alert('${error}');
+<#else>
+parent.document.getElementById("uploadImgPath${uploadNum}").value="${uploadPath}";
+var imgSrc = parent.document.getElementById("preImg${uploadNum}");
+if(!$(imgSrc).attr("noResize")) {
+	$(imgSrc).css("width","auto");
+	$(imgSrc).css("height","auto");
+}
+if("${uploadPath}".indexOf("?")==-1) {
+	$(imgSrc).attr("src","${uploadPath}?d="+new Date()*1);
+} else {
+	$(imgSrc).attr("src","${uploadPath}&d="+new Date()*1);
+}
+</#if>
+</script>
+</head>
+<body>
+</body>
+</html>
