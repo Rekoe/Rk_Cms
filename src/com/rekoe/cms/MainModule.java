@@ -7,6 +7,7 @@ package com.rekoe.cms;
 
 git@github.com:Rekoe/rkCms.git
  */
+import org.nutz.extras.mvc.JSONPViewMaker;
 import org.nutz.extras.mvc.init.MyUrlMappingImpl;
 import org.nutz.mvc.annotation.By;
 import org.nutz.mvc.annotation.Encoding;
@@ -26,20 +27,20 @@ import org.nutz.mvc.view.JPEGViewMaker;
 
 import com.rekoe.cms.filter.AuthorityFilter;
 
+@Modules(scanPackage=true)
 @UrlMappingBy(MyUrlMappingImpl.class)
 @LoadingBy(NutLoading.class)
 @Fail("json")
 @IocBy(type=ComboIocProvider.class,args={
-	"*org.nutz.ioc.loader.json.JsonLoader","/conf/datasource.json",
+	"*org.nutz.ioc.loader.json.JsonLoader","ioc/datasource.json",
 	"*org.nutz.ioc.loader.annotation.AnnotationIocLoader","com.rekoe.cms"})
-@Modules(scanPackage=true)
 @Filters({
 	@By(type=AuthorityFilter.class)
 })
 @Localization("msg")
 @Encoding(input="UTF-8",output="UTF-8")
 @SetupBy(StartSetup.class)
-@Views({FreemarkerViewMaker.class,JPEGViewMaker.class})
+@Views({FreemarkerViewMaker.class,JPEGViewMaker.class,JSONPViewMaker.class})
 public class MainModule {
 	
 }

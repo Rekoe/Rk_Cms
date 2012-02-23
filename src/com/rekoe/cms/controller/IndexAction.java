@@ -20,7 +20,6 @@ import org.nutz.mvc.View;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Fail;
 import org.nutz.mvc.annotation.Ok;
-import org.nutz.mvc.view.JPEGView;
 import org.nutz.mvc.view.JspView;
 
 import com.rekoe.cms.dao.MessageTypeDao;
@@ -51,13 +50,6 @@ public class IndexAction extends BaseAction {
 			model = messageTypeDao.findLink(model, "parent");
 		}
 		request.setAttribute("models", models);
-	}
-	
-	@At("/captcha")
-	@Fail("jsp:error.404")
-	public View captcha()
-	{
-		return new JPEGView();
 	}
 	/**
 	 * 查询首页数据

@@ -25,6 +25,7 @@ import org.nutz.mvc.Mvcs;
 import org.nutz.mvc.View;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
+import org.nutz.mvc.annotation.Param;
 import org.nutz.mvc.view.ServerRedirectView;
 import org.nutz.trans.Atom;
 import org.nutz.trans.Trans;
@@ -37,6 +38,8 @@ import com.rekoe.cms.model.CmsUser;
 @At("/user")
 public class LoginAct extends BaseAction{
 
+	//jsonp1329961249803
+	//http://www.rekoe.com/user/test?callback=jsonp1329961249803
 	/*提供社会化登录*/
 	@At("/login/?")
 	@Ok("void")
@@ -110,5 +113,16 @@ public class LoginAct extends BaseAction{
 			config.load(new FileInputStream(devConfig));
 		this.config = config;
 	}
-
+	@At("/test")
+	@Ok("jsonp")
+	public Object test(@Param("callback")String callback)
+	{
+		CmsUser cmsUser = new CmsUser();
+		cmsUser.setId(1);
+    	cmsUser.setLastLoginDate(new Date());
+    	cmsUser.setoAuthProvider("qq");
+    	cmsUser.setOpenid("1");
+    	cmsUser.setUsername("张三");
+		return cmsUser;
+	}
 }

@@ -18,7 +18,7 @@ public class JPEGView implements View {
 	@Override
 	public void render(HttpServletRequest request, HttpServletResponse response, Object obj)
 			throws Throwable {
-		log.info("aaa");
+		log.info("");
 		response.setHeader("Cache-Control", "no-store");
 		response.setHeader("Pragma", "no-cache");
 		response.setDateHeader("Expires", 0);
