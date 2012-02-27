@@ -1,4 +1,4 @@
-package com.rekoe.cms.controller;
+package com.rk.cms.controller;
 
 import javax.servlet.http.HttpServletRequest;
 

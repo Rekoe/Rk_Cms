@@ -1,4 +1,4 @@
-package com.rekoe.cms.controller;
+package com.rk.cms.controller;
 
 import org.nutz.dao.Cnd;
 import org.nutz.ioc.annotation.InjectName;

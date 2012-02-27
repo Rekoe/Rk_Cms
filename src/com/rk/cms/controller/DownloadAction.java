@@ -1,4 +1,4 @@
-package com.rekoe.cms.controller;
+package com.rk.cms.controller;
 
 import java.io.File;
 import java.io.FileInputStream;

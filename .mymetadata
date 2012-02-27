@@ -3,7 +3,7 @@
   type="WEB"
   name="rk_cms"
   id="myeclipse.1329720882125"
-  context-root="/rk_cms"
+  context-root="/"
   j2ee-spec="5.0"
   archive="rk_cms.war">
   <attributes>
