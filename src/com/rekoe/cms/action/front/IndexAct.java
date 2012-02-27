@@ -13,9 +13,9 @@ import org.nutz.mvc.view.JPEGView;
 @IocBean
 @InjectName
 public class IndexAct {
-	@At("/index/")
+	@At("/")
 	@Ok("fm:front.index")
-	public void logout(HttpSession session) {
+	public void usersIndex(HttpSession session) {
 		
 	}
 	/**

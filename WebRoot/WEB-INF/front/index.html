@@ -2,589 +2,98 @@
 <html>
     <head xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="zh-CN">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>心动游戏 - 精品网页游戏平台</title>
-        <meta name="keywords" content="心动游戏, 网页游戏, WebGame, 网络游戏, 天地英雄，盛世三国, 神仙道" />
-        <meta name="description" content="心动游戏(XD.com)是国内领先的游戏平台，旗下有盛世三国、天地英雄、神仙道等超热门精品游戏。" />
+        <title>游戏 - 精品网页游戏平台</title>
+        <meta name="keywords" content="游戏, 网页游戏, WebGame, 网络游戏, 天地英雄，盛世三国, 神仙道" />
+        <meta name="description" content="游戏(XD.com)是国内领先的游戏平台，旗下有盛世三国、天地英雄、神仙道等超热门精品游戏。" />
         <link href="/imgs/v2/favicon.ico" type="image/x-icon" rel="icon" />
         <link href="/imgs/v2/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+		<script type="text/javascript" src="http://web.xdcdn.net/xd/js/jquery.js?1328754550"></script>
+		<script type="text/javascript" src="${base}/res/cms/js/rk.js"></script>
         <link rel="stylesheet" type="text/css" href="http://web.xdcdn.net/xd/css/v2/main.css?1329191522" /><link rel="stylesheet" type="text/css" href="http://web.xdcdn.net/xd/css/v2/index.css?1328754393" /><link rel="stylesheet" type="text/css" href="http://web.xdcdn.net/xd/css/v2/banner.css?1328754393" />        <script type="text/javascript">
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-16408836-1']);
-            _gaq.push(['_setDomainName', 'xd.com']);
-            _gaq.push(['_trackPageview']);
-            _gaq.push(['_trackPageLoadTime']);
-            (function() {
-                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-            })();
+         $(document).ready(function(){
+		 	rk.bindLoginForm();
+		});
         </script>
     </head>
-
     <body>
 		<ul class="nav">
-			<li><a title="首页" href="/">心动游戏首页</a></li>
-			<li><a title="个人中心" href="/users/">心动游戏个人中心</a></li>
-			<li><a title="游戏大厅" href="/games/center/">心动游戏游戏大厅</a></li>
-			<li><a title="客服中心" href="/service/">心动游戏客服中心</a></li>
-			<li><a title="游戏论坛" target="_blank">心动游戏论坛</a></li>
+			<li><a title="首页" href="/">游戏首页</a></li>
+			<li><a title="个人中心" href="/users/">游戏个人中心</a></li>
+			<li><a title="游戏大厅" href="/games/center/">游戏游戏大厅</a></li>
+			<li><a title="客服中心" href="/service/">游戏客服中心</a></li>
+			<li><a title="游戏论坛" target="_blank">游戏论坛</a></li>
 		</ul>
     	<!--头部-->
     	<div class="head"><div class="head_wrapper">
     		<div class="head_upper">
-
     			<div class="head_upper_inner">
     				<a id="head_logo" title="" href="/"></a>
-					<div class="head_link">
-					                      <a href="/users/login">登录</a>
-					  <span class="pipe">|</span>
-                      <a href="/users/register">注册</a>
-                    					</div>
-
+					<div class="head_link"><a href="/users/login">登录</a>
+					  <span class="pipe">|</span><a href="/users/register">注册</a></div>
 					<div class="head_nav">
-												<a title="首页" id="nav_1" class="chosen" href="/"></a>
+						<a title="首页" id="nav_1" class="chosen" href="/"></a>
 						<a title="个人中心" id="nav_2" class="" href="/users/"></a>
 						<a title="游戏大厅" id="nav_3" class="" href="/games/center/"></a>
 						<a title="客服中心" id="nav_4" class="" href="/service/"></a>
 						<a title="游戏论坛" id="nav_5" href="http://bbs.xd.com/"></a>
 					</div>
-
     			</div>
-
     		</div>
     	</div></div>
-		
-		<!--main-content-->
-            <script type="text/javascript">
-var indexImg = [
-	['http://web.xdcdn.net/xd/imgs/v2/ad_img4.gif','/change_password_ad'],
-	['http://web.xdcdn.net/xd/imgs/v2/ad_img3.jpg','/liquan/shouji/'],
-	['http://web.xdcdn.net/xd/imgs/v2/ad_img0.jpg','http://sxd.xd.com'],
-	['http://web.xdcdn.net/xd/imgs/v2/ad_img1.jpg','http://sg.xd.com'],
-	['http://web.xdcdn.net/xd/imgs/v2/ad_img2.jpg','http://td.xd.com']
-]
-</script>
-
-
-<!--首页中间横条-->
-<div class="index_orange_head">
-	<div class="head_lower">
-		<div id="login_box">
-
-							<form action="" method="POST" id="loginForm">
-					<input type="hidden" name="continue" value="/" />
-					
-					<div class="input_box">
-						<input id="username" type="text" name="data[User][username]" class="login_input word_on usernameInput" tabindex="1"/>
-						<input id="password" type="password" name="data[User][password]" id="password" class="login_input word_on passwordInput" tabindex="2"/>
-						<div class="auto_line">
-							<input type="hidden" id="site" name="data[User][site]" value="xd">
-							<input id="auto" type="checkbox" name="data[User][remember_me]" class="checkbox" checked="checked" tabindex="4"/>
-							<span class="after_checkbox">
-
-							<label for="auto">自动登录</label>
-							<a href="/security/forget_pass/" tabindex="6">找回密码</a>
-							</span>
-						</div>
-					</div>
-					
-					<div class="button_box_banner">
-						<input class="login_button submitInput" type="submit" value=""/>
-						<a href="#" class="openid" id="qq_log" tabindex="5">
-
-							<img src="http://web.xdcdn.net/xd/imgs/Connect_logo_1.png?1326878733" alt="" />							<span>QQ登录</span>
-						</a>
-					</div>
-					
-					
-					<div class="reg_box">
-						<span class="loginbox_info">还没有心动帐号?</span>
-						<a class="reg_button" href="/users/register" tabindex="7"></a>
-					</div>
-
-					<div class="info_box ">
-						<div class="info_box_inner ">
-						<div class="captcha_box captchaField">
-							<div id="loginerror2" class="login_error">请输入验证码再登录：</div>
-							<div class="cap_box_new">	
-								<input name="captcha" id="captcha" type="text" class="verify_input captchaInput word_on" autocomplete="off" disableautocomplete value="" tabindex="3"/>
-								<img title="点击刷新" alt="验证码" src="http://web.xdcdn.net/xd/imgs/0.gif" class="verify_img captchaImg" />
-								<a class="verify_click">看不清？</a>
-
-								<div style="clear:both;"></div>
+		<!--首页中间横条-->
+		<div class="index_orange_head">
+			<div class="head_lower">
+				<div id="login_box">
+						<form action="" method="POST" id="loginForm">
+							<input type="hidden" name="continue" value="/" />
+							<div class="input_box">
+								<input id="username" type="text" name="user.username" class="login_input word_on usernameInput" tabindex="1"/>
+								<input id="password" type="password" name="user.password" id="password" class="login_input word_on passwordInput" tabindex="2"/>
+								<div class="auto_line">
+									<input type="hidden" id="site" name="user.site" value="xd">
+									<input id="auto" type="checkbox" name="user.remember_me" class="checkbox" checked="checked" tabindex="4"/>
+									<span class="after_checkbox">
+									<label for="auto">自动登录</label>
+									<a href="/security/forget_pass/" tabindex="6">找回密码</a>
+									</span>
+								</div>
 							</div>
-						</div>
-						<div id="loginerror" class="login_error error submitInfo"></div>
-						</div>
-						
-						<div class="info_box_bt"></div>
-					</div>
-										
-				</form>
-								
-				<div class="qiuck">
-
-					<div id="qiuck_title"></div>
-					<a href="/security/forget_pass/" class="a"><span class="icon"></span><span class="label">找回密码</span></a>
-					<a href="/security/" class="b"><span class="icon"></span><span class="label">帐号安全</span></a>
-					<a href="/users/change_password/" class="c"><span class="icon"></span><span class="label">修改密码</span></a>
-					<a href="/orders/create/" class="d"><span class="icon"></span><span class="label">游戏充值</span></a>
-				</div>
-				
-		</div>
-
-		<div id="index_img">
-			
-			<a href="/liquan/shouji/" id="stage_link" target="_blank"><span  id="index_stage" target="_blank"><img src="http://web.xdcdn.net/xd/imgs/v2/img_loading.gif" class="img_loading" /></span></a>
-		    <!--div id="listbox1"><a href="http://sxd.xd.com/html/sxd/entry1.html?ads" onclick="return false"  class="big_banner"><p class="preload"></p></a></div>
-			<div id="listbox2"><a href="http://td.xd.com" onclick="return false"  class="big_banner"><p class="preload"></p></a></div>
-			<div id="listbox3"><a href="/users/register" onclick="return false"  class="big_banner"><p class="preload"></p></a></div-->
-		</div>
-		<div id="img_thumb">
-			<span class="on">1</span>
-			<span>2</span>
-			<span>3</span>
-
-			<span>4</span>
-			<span>5</span>
-		</div>
-		
-	</div>
-</div>
-		<div class="content">
-			<!--首页左边-->
-			<div class="index_left">
-
-	<!--最新开服-->
-<div class="index_block">
-	<div class="index_block_inner">
-		<div title="最新开服" id="kaifu_title" class="index_title"></div>
-		<div class="index_block_content">
-			<table class="server_list">
-				
-			    <tr class="server_list_head">
-			        <td class="sl_time">时间</td>
-			        <td class="sl_name">游戏名称</td>
-
-			        <td class="sl_server">服务器</td>
-			    </tr>
-					            	                    <tr class="server_list_body">
-	                        <td class="sl_time orange_bg">02-23</td>
-	                        <td class="sl_name"><a class="colorR" href="http://sxd.xd.com" target="_blank">神仙道</a></td>
-                                <td class="sl_server"><a href="http://www.xd.com/games/play?app=sxd&server=S224" target="_blank"><span class="gray">[</span>224<span class="gray">]</span>&nbsp;醉月武风</a>
-
-	                            <span class="server_list_new"></span>
-	                        </td>
-	                    </tr>
-                        	            	                    <tr class="server_list_body">
-	                        <td class="sl_time orange_bg">02-22</td>
-	                        <td class="sl_name"><a class="colorR" href="http://sxd.xd.com" target="_blank">神仙道</a></td>
-                                <td class="sl_server"><a href="http://www.xd.com/games/play?app=sxd&server=S223" target="_blank"><span class="gray">[</span>223<span class="gray">]</span>&nbsp;凤林武剑</a>
-
-	                            <span class="server_list_hot"></span>
-	                        </td>
-	                    </tr>
-                        	            	                    <tr class="server_list_body">
-	                        <td class="sl_time ">02-17</td>
-	                        <td class="sl_name"><a  href="http://sg.xd.com" target="_blank">盛世三国</a></td>
-                                <td class="sl_server"><a href="http://www.xd.com/games/play?app=sssg&server=S36&client=web" target="_blank"><span class="gray">[</span>36<span class="gray">]</span>&nbsp;气贯沙场</a>
-
-	                            <span class="server_list_blank"></span>
-	                        </td>
-	                    </tr>
-                        	            	                    <tr class="server_list_body">
-	                        <td class="sl_time ">02-17</td>
-	                        <td class="sl_name"><a  href="http://td.xd.com" target="_blank">天地英雄</a></td>
-                                <td class="sl_server"><a href="http://www.xd.com/games/play?app=tdyx&server=S129" target="_blank"><span class="gray">[</span>129<span class="gray">]</span>&nbsp;幻海神殿</a>
-
-	                            <span class="server_list_blank"></span>
-	                        </td>
-	                    </tr>
-                        	
-						   
-			</table>
-		</div>						
-	</div>
-</div>
-			
-				<!--玩家排行榜-->
-				<div class="index_block">
-					<div class="index_block_inner">
-
-						<div title="玩家排行榜" id="rank_title" class="index_title"></div>
-                            <div class="index_block_content player_rank_block">
-								<div class="rank_choose">
-									<div class="rank_icon_wrapper rank_chosen" id="sssg"><div class="rank_icon"></div></div>
-									<div class="rank_icon_wrapper" id="sxd"><div class="rank_icon"></div></div>
-									<div class="rank_icon_wrapper" id="tdyx"><div class="rank_icon"></div></div>
-								</div>	
-																<div class="rank_content">
-	                            									 <div class="sssg">
-
-                                     										<div class="player_rank">
-											<div class="rank_content" id="sg_list_ability">
-												<p><span class="rank_username">万箭穿心</span><span class="rank_lv">等级：68</span></p>
-												<span>双线36区 气贯沙场</span>
-											</div>
-										</div>
-	                                 										<div class="player_rank">
-
-											<div class="rank_content" id="sg_list_ability">
-												<p><span class="rank_username">万箭归宗</span><span class="rank_lv">等级：68</span></p>
-												<span>双线36区 气贯沙场</span>
-											</div>
-										</div>
-	                                 										<div class="player_rank">
-											<div class="rank_content" id="sg_list_ability">
-
-												<p><span class="rank_username">圣耀丨小柒</span><span class="rank_lv">等级：66</span></p>
-												<span>双线36区 气贯沙场</span>
-											</div>
-										</div>
-	                                 									 </div>
-	                            
-	                            									 <div class="sxd">
-                                     										<div class="player_rank">
-
-											<div class="rank_content" id="sg_list_ability">
-												<p><span class="rank_username">种田的</span><span class="rank_lv">等级：27</span></p>
-												<span>双线224区 醉月武风</span>
-											</div>
-										</div>
-	                                 										<div class="player_rank">
-											<div class="rank_content" id="sg_list_ability">
-
-												<p><span class="rank_username">尼古拉斯</span><span class="rank_lv">等级：27</span></p>
-												<span>双线224区 醉月武风</span>
-											</div>
-										</div>
-	                                 										<div class="player_rank">
-											<div class="rank_content" id="sg_list_ability">
-												<p><span class="rank_username">章来声</span><span class="rank_lv">等级：26</span></p>
-
-												<span>双线224区 醉月武风</span>
-											</div>
-										</div>
-	                                 									 </div>
-	                            
-	                            									 <div class="tdyx">
-                                     										<div class="player_rank">
-											<div class="rank_content" id="sg_list_ability">
-												<p><span class="rank_username">终极の萧萧</span><span class="rank_lv">等级：70</span></p>
-
-												<span>双线129区 幻海神殿</span>
-											</div>
-										</div>
-	                                 										<div class="player_rank">
-											<div class="rank_content" id="sg_list_ability">
-												<p><span class="rank_username">Chris</span><span class="rank_lv">等级：69</span></p>
-												<span>双线129区 幻海神殿</span>
-
-											</div>
-										</div>
-	                                 										<div class="player_rank">
-											<div class="rank_content" id="sg_list_ability">
-												<p><span class="rank_username">豪门の雪儿</span><span class="rank_lv">等级：68</span></p>
-												<span>双线129区 幻海神殿</span>
-											</div>
-
-										</div>
-	                                 									 </div>
-	                            
-	                            								</div>
-	                            							</div>
-					</div>
-				</div>
-				<!--玩家社区-->
-				<div class="index_block">
-					<div class="index_block_inner">
-
-						<div title="玩家社区" id="bbs_title" class="index_title"></div>
-						<a class="index_block_more" href="http://bbs.xd.com" target="_blank">更多</a>
-						<div class="index_block_content">
-							<a class="bbs_banner" href="http://bbs.xd.com" target="_blank"><span>详情点击</span></a>
-							<ul class="bbs_list">
-	                            	                                                                                <li><a href="http://bbs.xd.com/thread-95565-1-1.html" target="_blank"><span>盛世三国</span>《盛世三国》赤壁之战之玩法大征集</a></li>
-	                                                                                <li><a href="http://bbs.xd.com/thread-92626-1-1.html" target="_blank"><span>盛世三国</span>盛世三国小技巧攻略（申精）</a></li>
-
-	                                                                                <li><a href="http://bbs.xd.com/thread-91365-1-1.html" target="_blank"><span>神仙道</span>完整版更新后紫装,丹药和葫芦所需材料和出处@！</a></li>
-	                                                                                <li><a href="http://bbs.xd.com/thread-35492-1-1.html" target="_blank"><span>天地英雄</span>高端玩家pk心得。打字那么辛苦，是否给个精华？</a></li>
-	                                    	
-	                                                        </ul>
-
-
-						</div>	
-					</div>
-				</div>
-
-			</div>
-			<!--首页中间-->
-			<div class="index_middle">
-				<div class="index_middle_inner">
-					<!--首页中间三个banner-->
-					<div class="index_three_banner">
-						<a href="http://sxd.xd.com/2609" style="margin:0;" target="_blank"><img alt="" src="http://web.xdcdn.net/xd/imgs/v2/banner5.jpg"/></a>
-						<a href="http://sg.xd.com/event" target="_blank"><img alt="" src="http://web.xdcdn.net/xd/imgs/v2/banner6.jpg"/></a>
-						<a href="http://td.xd.com/ny" target="_blank"><img alt="" src="http://web.xdcdn.net/xd/imgs/v2/banner7.jpg"/></a>
-
-					</div>
-					<!--游戏推荐-->
-					<div class="index_block">
-					<div class="index_block_inner">
-						<div title="游戏推荐" id="tuijian_title" class="index_title"></div>
-						<a class="index_block_more" href="/games/center/">更多</a>
-						<div class="index_block_content">
-							<!--盛世三国-->
-
-							<div class="index_tuijian">
-								<div class="index_tuijian_left">
-									<a class="sg_banner" href="http://sg.xd.com/" target="_blank"></a>
-									<div class="index_tuijian_left_bottom">
-										<span class="index_tuijian_left_bottom_left">
-											<a href="http://sg.xd.com/" target="_blank">官网</a>
-											<span class="pipe">|</span>
-											<a href="http://sg.xd.com/card/" target="_blank">新手卡</a>
-
-											<span class="pipe">|</span>
-											<a href="/orders/create?app=sssg">充值</a>
-										</span>
-										<span class="index_tuijian_enter"><span class="little_arrow">&gt;&gt;</span><a href="http://sg.xd.com/html/sg/entry.html" target="_blank">进入游戏</a></span>
+							<div class="button_box_banner">
+								<input class="login_button submitInput" type="submit" value=""/>
+								<a href="#" class="openid" id="qq_log" tabindex="5">
+									<img src="http://web.xdcdn.net/xd/imgs/Connect_logo_1.png?1326878733" alt="" /><span>QQ登录</span>
+								</a>
+							</div>
+							<div class="reg_box">
+								<span class="loginbox_info">还没有帐号?</span>
+								<a class="reg_button" href="/users/register" tabindex="7"></a>
+							</div>
+							<div class="info_box ">
+								<div class="info_box_inner ">
+								<div class="captcha_box captchaField">
+									<div id="loginerror2" class="login_error">请输入验证码再登录：</div>
+									<div class="cap_box_new">	
+										<input name="captcha" id="captcha" type="text" class="verify_input captchaInput word_on" autocomplete="off" disableautocomplete value="" tabindex="3"/>
+										<img title="点击刷新" alt="验证码" src="http://web.xdcdn.net/xd/imgs/0.gif" class="verify_img captchaImg" />
+										<a class="verify_click">看不清？</a>
+										<div style="clear:both;"></div>
 									</div>
 								</div>
-								<div class="index_tuijian_right">
-
-									<ul class="tuijian_list">
-																					<li><span class="little_arrow">&gt;</span><a href="http://sg.xd.com/3656" target="_blank">2月23日服务器更新维护公告</a></li>
-                            														<li><span class="little_arrow">&gt;</span><a href="http://sg.xd.com/3650" target="_blank">2月22日S7-S10服务器更新维护公告</a></li>
-                            														<li><span class="little_arrow">&gt;</span><a href="http://sg.xd.com/3641" target="_blank">2月21日S1、S2服务器更新维护公告</a></li>
-                            														<li><span class="little_arrow">&gt;</span><a href="http://sg.xd.com/3591" target="_blank">2月17日服务器更新维护公告</a></li>
-                            														<li><span class="little_arrow">&gt;</span><a href="http://sg.xd.com/3577" target="_blank">2月16日服务器临时维护公告</a></li>
-
-                            												</ul>
+								<div id="loginerror" class="login_error error submitInfo"></div>
 								</div>
+								<div class="info_box_bt"></div>
 							</div>
-							<!--神仙道-->
-							<div class="index_tuijian">
-								<div class="index_tuijian_left">
-									<a class="sxd_banner" href="http://sxd.xd.com/" target="_blank"></a>
-									<div class="index_tuijian_left_bottom">
-										<span class="index_tuijian_left_bottom_left">
-
-											<a href="http://sxd.xd.com/" target="_blank">官网</a>
-											<span class="pipe">|</span>
-											<a href="http://sxd.xd.com/newbie" target="_blank">新手卡</a>
-											<span class="pipe">|</span>
-											<a href="/orders/create?app=sxd">充值</a>
-										</span>
-
-										<span class="index_tuijian_enter"><span class="little_arrow">&gt;&gt;</span><a  target="_blank" href="http://sxd.xd.com/html/sxd/entry.html">进入游戏</a></span>
-									</div>
-								</div>
-								<div class="index_tuijian_right">
-									<ul class="tuijian_list">
-																					<li><span class="little_arrow">&gt;</span><a href="http://sxd.xd.com/2936" target="_blank">双线223区玩家：漫天飞雪获奖</a></li>
-                            														<li><span class="little_arrow">&gt;</span><a href="http://sxd.xd.com/2931" target="_blank">双线224区02月23日10:00开启</a></li>
-
-                            														<li><span class="little_arrow">&gt;</span><a href="http://sxd.xd.com/2928" target="_blank">双线222区玩家：虎哥获奖</a></li>
-                            														<li><span class="little_arrow">&gt;</span><a href="http://sxd.xd.com/2926" target="_blank">双线221区玩家：真逢龙遇虎获奖</a></li>
-                            														<li><span class="little_arrow">&gt;</span><a href="http://sxd.xd.com/2913" target="_blank">02月23日更新公告</a></li>
-                            												</ul>
-								</div>
-							</div>
-							<!--天地英雄-->
-
-							<div class="index_tuijian" style="border:none;">
-								<div class="index_tuijian_left">
-									<a class="td_banner" href="http://td.xd.com/" target="_blank"></a>
-									<div class="index_tuijian_left_bottom">
-										<span class="index_tuijian_left_bottom_left">
-											<a href="http://td.xd.com/" target="_blank">官网</a>
-											<span class="pipe">|</span>
-											<a href="/orders/create?app=tdyx">充值</a>
-
-										</span>
-										<span class="index_tuijian_enter"><span class="little_arrow">&gt;&gt;</span><a href="http://td.xd.com/html/tdyx/xd/entry_add.html" target="_blank">进入游戏</a></span>
-									</div>
-								</div>
-								<div class="index_tuijian_right">
-									<ul class="tuijian_list">
-																					<li><span class="little_arrow">&gt;</span><a href="http://td.xd.com/archives/3626" target="_blank">双线129区2月17日开启</a></li>
-                            														<li><span class="little_arrow">&gt;</span><a href="http://td.xd.com/archives/3667" target="_blank">2月8日 S91~93、S94~96、S97~S99大区混战功能开启</a></li>
-
-                            														<li><span class="little_arrow">&gt;</span><a href="http://td.xd.com/archives/3665" target="_blank">元宵节活动</a></li>
-                            														<li><span class="little_arrow">&gt;</span><a href="http://td.xd.com/archives/3656" target="_blank">收集古玉活动延长公告</a></li>
-                            														<li><span class="little_arrow">&gt;</span><a href="http://td.xd.com/archives/3649" target="_blank">天地英雄多重活动疯狂献礼</a></li>
-                            												</ul>
-								</div>
-							</div>
-						</div>						
-
-					</div>
-
-					</div>
+						</form>
+						<div class="qiuck">
+							<div id="qiuck_title"></div>
+							<a href="/security/forget_pass/" class="a"><span class="icon"></span><span class="label">找回密码</span></a>
+							<a href="/security/" class="b"><span class="icon"></span><span class="label">帐号安全</span></a>
+							<a href="/users/change_password/" class="c"><span class="icon"></span><span class="label">修改密码</span></a>
+							<a href="/orders/create/" class="d"><span class="icon"></span><span class="label">游戏充值</span></a>
+						</div>
+						<div id="indexImg"></div>
 				</div>
 			</div>
-			<!--首页右侧-->
-			<div class="index_right">
-				<!--右侧手写体
-				<a class="hand_writing" title="体验精品！创高品质游戏；一个帐号！玩遍所有游戏；畅玩游戏！让好友遍天下；随时分享！玩游戏不寂寞；心动游戏" href="/users/register/"></a>
-				-->
-				<a class="index_weibo_banner" title="心动官方微博" href="http://weibo.com/xdcom" target="_blank"></a>
-				<!--在线客服-->
-				<a class="index_kefu_banner" title="在线客服" href="/service/"></a>
-
-				<!--未成年人家长监护-->
-				<a class="index_jianhu_banner" title="未成年人家长监护工程" href="/fcm/" target="_blank"></a>
-				<!--新闻中心-->
-				<div class="index_block index_right_block">
-					<div class="index_block_inner">
-						<div title="新闻中心" id="news_title" class="index_title"></div>
-						<ul class="news_center_ul">
-							<li><span class="little_arrow">&gt;</span><a href="http://www.265g.com/chanye/fy/170546.html" target="_blank">网页游戏风云人物－黄一孟</a><span>..265G</span></li>
-
-							<li><span class="little_arrow">&gt;</span><a href="http://news.cwebgame.com/guonei/201202/104562.shtml" target="_blank">《神仙道》十二生肖大战</a><span>..cweb</span></li>
-							<li><span class="little_arrow">&gt;</span><a href="http://web.17173.com/content/2012-02-03/20120203111628562.shtml" target="_blank">英雄最恨十大BOSS盘点</a><span>..17173</span></li>
-							<li><span class="little_arrow">&gt;</span><a href="http://article.pchome.net/content-1460704.html" target="_blank">喜乐闹元宵 英雄争夺汤圆</a><span>..pchome</span></li>
-							<li><span class="little_arrow">&gt;</span><a href="http://zt.265g.com/zts/xrw/45-xindong/" target="_blank">心动游戏电眼美女 </a><span>..265G</span></li>
-							<li><span class="little_arrow">&gt;</span><a href="http://game.163.com/11/1031/13/7HMQN55C00314J6M.html" target="_blank">直击《神仙道》地铁广告上线</a><span>..163</span></li>
-
-							<li><span class="little_arrow">&gt;</span><a href="http://web.17173.com/content/2011-11-04/20111104114855010.shtml" target="_blank">《盛世三国》全新神装登场</a><span>..17173</span></li>
-						</ul>
-					</div>				
-				</div>
-				<!--友情链接-->
-				<div class="index_block index_right_block friend_link">
-<div class="index_block_inner">
-	
-	<div title="友情链接" id="friendlink_title" class="index_title"></div>
-	<a title="向左" id="fl_left"></a>
-
-	<a title="向右" id="fl_right"></a>
-	<div class="foo_outer">
-	<div id="foo2">
-		<div>
-			<a href="http://web.17173.com/"  target="_blank"><img alt="17173" src="http://web.xdcdn.net/xd/imgs/fl/17173.jpg"/></a>
-			<a href="http://www.265g.com"  target="_blank"><img alt="265G" src="http://web.xdcdn.net/xd/imgs/fl/265G.jpg"/></a>
-			<a href="http://www.duowan.com"  target="_blank"><img alt="多玩游戏" src="http://web.xdcdn.net/xd/imgs/fl/duowan.jpg"/></a>
-			<a href="http://www.07073.com" target="_blank"><img alt="07073游戏网" src="http://web.xdcdn.net/xd/imgs/fl/07073.jpg"/></a>
-			<a href="http://game.qq.com"  target="_blank"><img alt="腾讯游戏" src="http://web.xdcdn.net/xd/imgs/fl/qq.jpg"/></a>
-
-			<a href="http://games.sina.com.cn"  target="_blank"><img alt="新浪游戏" src="http://web.xdcdn.net/xd/imgs/fl/sina.jpg"/></a>
 		</div>
-		<div>
-			<a href="http://www.969g.com/" target="_blank"><img alt="969G网页游戏" src="http://web.xdcdn.net/xd/imgs/fl/yzz.jpg?123"/></a>
-			<a href="http://www.52pk.com/" target="_blank"><img alt="52pk" src="http://web.xdcdn.net/xd/imgs/fl/52pk.jpg"/></a>
-			<a href="http://www.2366.com/" target="_blank"><img alt="2366网页游戏" src="http://web.xdcdn.net/xd/imgs/fl/2366.jpg"/></a>
-			<a href="http://www.86wan.com/" target="_blank"><img alt="86wan网页游戏" src="http://web.xdcdn.net/xd/imgs/fl/86wan.jpg"/></a>
-			<a href="http://webgames.china.com/" target="_blank"><img alt="中华网游戏" src="http://web.xdcdn.net/xd/imgs/fl/china.jpg"/></a>
-			<a href="http://webgame.5617.com/" target="_blank"><img alt="网游网" src="http://web.xdcdn.net/xd/imgs/fl/5617.jpg"/></a>
-
-		</div>
-		<div>
-			<a href="http://www.766.com/" target="_blank"><img alt="766" src="http://web.xdcdn.net/xd/imgs/fl/766.jpg"/></a>
-			<a href="http://www.maituan.com/" target="_blank"><img alt="麦团网" src="http://web.xdcdn.net/xd/imgs/fl/maituan.jpg"/></a>
-			<a href="http://www.7yx.com.cn/" target="_blank"><img alt="7yx" src="http://web.xdcdn.net/xd/imgs/fl/7yx.jpg"/></a>
-			<a href="http://www.178.com/" target="_blank"><img alt="178.com" src="http://web.xdcdn.net/xd/imgs/fl/178.jpg"/></a>
-			<a href="http://www.popwan.com/" target="_blank"><img alt="泡泡玩" src="http://web.xdcdn.net/xd/imgs/fl/popwan.jpg"/></a>
-			<a href="http://www.pcgames.com.cn/webgames/" target="_blank"><img alt="太平洋游戏网" src="http://web.xdcdn.net/xd/imgs/fl/pcgames.jpg"/></a>
-		</div>
-
-		<div>
-			<a href="http://www.966.com" target="_blank"><img alt="966网页游戏" src="http://web.xdcdn.net/xd/imgs/fl/966.jpg"/></a>
-			<a href="http://www.cnwebgame.com" target="_blank"><img alt="cnwebgame" src="http://web.xdcdn.net/xd/imgs/fl/cn.jpg"/></a>
-			<a href="http://www.92pk.com/" target="_blank"><img alt="92pk" src="http://web.xdcdn.net/xd/imgs/fl/92pk.jpg"/></a>
-			<a href="http://www.xskhome.com/" target="_blank"><img alt="新手卡之家" src="http://web.xdcdn.net/xd/imgs/fl/xinshouka.jpg"/></a>
-			<a href="http://www.sogame.com/" target="_blank"><img alt="搜游网" src="http://web.xdcdn.net/xd/imgs/fl/soyo.jpg"/></a>
-			<a href="http://g.pps.tv/" target="_blank"><img alt="pps游戏" src="http://web.xdcdn.net/xd/imgs/fl/PPS.jpg"/></a>
-		</div>
-		<div>
-
-			<!--a href="http://www.5y173.com/" target="_blank"><img alt="5y173" src="http://web.xdcdn.net/xd/imgs/fl/5y173.jpg"/></a-->
-			<a href="http://www.9u8u.com/" target="_blank"><img alt="9u8u" src="http://web.xdcdn.net/xd/imgs/fl/9u8u.jpg"/></a>
-			<a href="http://www.52kl.net/" target="_blank"><img alt="52kl" src="http://web.xdcdn.net/xd/imgs/fl/52kl.jpg"/></a>
-			<!--a href="http://www.ghjie.com/" target="_blank"><img alt="公会界" src="http://web.xdcdn.net/xd/imgs/fl/gonghuijie.jpg"/></a-->
-			<a href="http://www.6dan.com" target="_blank"><img alt="6担网" src="http://web.xdcdn.net/xd/imgs/fl/6dan.jpg"/></a>
-			<a href="http://www.reyoo.net/" target="_blank"><img alt="热游网" src="http://web.xdcdn.net/xd/imgs/fl/reyoo.jpg"/></a>
-			<a href="http://kf.265g.com/"  target="_blank"><img alt="最新网页游戏开服表" src="http://web.xdcdn.net/xd/imgs/fl/265G.jpg"/></a>
-			<a href="http://www.cwebgame.com/"  target="_blank"><img alt="cwebgame" src="http://web.xdcdn.net/xd/imgs/fl/cweb.gif"/></a>
-		</div>
-
-		<div>
-			<a href="http://www.128zh.com/" target="_blank"><img alt="128中华游戏网" src="http://web.xdcdn.net/xd/imgs/fl/128.jpg"/></a>
-			<a href="http://www.web515.com/" target="_blank"><img alt="515游戏网" src="http://web.xdcdn.net/xd/imgs/fl/515.jpg"/></a>
-			<a href="http://www.game141.com" target="_blank"><img alt="娱乐地带" src="http://web.xdcdn.net/xd/imgs/fl/game141.jpg"/></a>
-			<a href="http://www.yunquezhai.com"  target="_blank"><img alt="yunquezhai" src="http://web.xdcdn.net/xd/imgs/fl/yuequezhai.jpg"/></a>
-			<a href="http://web.npcka.com/"  target="_blank"><img alt="网页游戏新服导航" src="http://web.xdcdn.net/xd/imgs/fl/npcka.jpg"/></a>
-			<a href="http://www.86g.com"  target="_blank"><img alt="网页游戏86g" src="http://web.xdcdn.net/xd/imgs/fl/86g.gif"/></a>	
-		</div>
-	</div>
-
-	</div>
-</div>
-</div>
-	
-			</div>
-		</div>
-		
-        <!--end-main-content--> 
-		<div class="foot">
-			<div class="foot_inner">
-			<div class="foot_left">
-				<a href="/about">关于我们</a> 
-				<span class="pipe">|</span>
-
-				<a href="/shengming">免责声明</a>
-				<span class="pipe">|</span>
-				<a href="/service">客服中心</a>
-				<span class="pipe">|</span>
-				<!--a href="">商务合作</a> 
-				<span class="pipe">|</span-->
-				<a href="/hr/">诚聘英才</a>
-
-				<span class="pipe">|</span>
-				<a href="http://td.xd.com" target="_blank">天地英雄</a>
-				<span class="pipe">|</span>
-				<a href="http://sg.xd.com" target="_blank">盛世三国</a>
-				<span class="pipe">|</span>
-				<a href="http://sxd.xd.com" target="_blank">神仙道</a>
-
-	            <!--p style="text-align:center;">
-	                <a href="http://sh.cyberpolice.cn/" target="_blank"><img src="http://web.xdcdn.net/xd/imgs/police.png?1326878734" alt="" /></a>
-	                <a href="http://www.shcois.net/" target="_blank"><img src="http://web.xdcdn.net/xd/imgs/thumb.jpg?1326878734" alt="" /></a>
-	         	</p-->
-	            <br/>
-	            <a href="http://www.miibeian.gov.cn/" target="_blank">沪ICP备05001009号</a>
-				<span class="pipe">|</span>
-				<a href="/license/icp.html"  target="_blank">增值电信业务经营许可证 沪B2-20100067</a>
-				<br/>
-				<a href="/license/www.html" target="_blank"> 网络文化经营许可证：文网文[2010]150号 </a>
-
-				<span class="pipe">|</span>
-				<a href="/license/xcw.html" target="_blank"> 新出网证（沪）字39号 </a>
-            </div>
-			<div class="foot_right">
-				<div class="foot_right_left">
-	            	<p>Copyright&nbsp;&nbsp;©2011&nbsp;All&nbsp;Rights&nbsp;Reserved&nbsp;xd.com</p>
-
-					<p>上海隐志网络科技有限公司</p>
-				</div>
-				<div class="foot_right_right">
-					<a href="" title="www.xd.com 心动游戏" class="foot_logo"></a>
-				</div>
-			</div>
-			</div>
-		</div>		
-		 <script type="text/javascript" src="http://web.xdcdn.net/xd/js/jquery.js?1328754550"></script><script type="text/javascript" src="http://web.xdcdn.net/xd/js/xd.js?1329897121"></script><script type="text/javascript" src="http://web.xdcdn.net/xd/js/login.js?1328754550"></script><script type="text/javascript" src="http://web.xdcdn.net/xd/js/rank.js?1328754550"></script><script type="text/javascript" src="http://web.xdcdn.net/xd/js/pictures.js?1328754550"></script><script type="text/javascript" src="http://web.xdcdn.net/xd/js/friend_link.js?1328754550"></script><script type="text/javascript" src="http://web.xdcdn.net/xd/js/jquery.carouFredSel-5.0.7-packed.js?1328754550"></script><script type="text/javascript" src="http://web.xdcdn.net/xd/js/twoauth/twoauth_dialog.js?1328754553"></script>		<script  type="text/javascript">
-			var _bdhm_top = 0;
-			var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-			var _bdhm_tim = new Image(1,1);
-			_bdhm_tim.id = "bdhmPerimg";
-			_bdhm_tim.src = _bdhmProtocol + "hm.baidu.com/_tt.gif?si=2cea1d1768ed187727e19f3f7abf013a&rnd=" + Math.round(Math.random()*2147483647);
-			_bdhm_tim.onload=function(){_bdhm_top = 1;}
-		</script>
-		 <script type="text/javascript">
-			var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-			document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F2cea1d1768ed187727e19f3f7abf013a' type='text/javascript'%3E%3C/script%3E"));
-		</script>
     </body>
 </html>

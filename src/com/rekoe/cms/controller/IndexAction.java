@@ -13,13 +13,9 @@ import org.nutz.castor.Castors;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.util.cri.SqlExpression;
 import org.nutz.dao.util.cri.SqlExpressionGroup;
-import org.nutz.ioc.annotation.InjectName;
 import org.nutz.ioc.loader.annotation.Inject;
-import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.View;
 import org.nutz.mvc.annotation.At;
-import org.nutz.mvc.annotation.Fail;
-import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.view.JspView;
 
 import com.rekoe.cms.dao.MessageTypeDao;
@@ -29,15 +25,14 @@ import com.rekoe.cms.model.IndexPic;
 import com.rekoe.cms.model.Link;
 import com.rekoe.cms.model.NavModel;
 
-@IocBean
-@InjectName
+
 public class IndexAction extends BaseAction {
 	
 	@Inject
 	private MessageTypeDao messageTypeDao;
-	@At("/")
-	@Fail("jsp:error.404")
-	@Ok(">>:/admin") 
+//	@At("/")
+//	@Fail("jsp:error.404")
+//	@Ok(">>:/admin") 
 	public void defaule(HttpServletRequest request)
 	{
 		SqlExpression e = Cnd.exp("pid", "=", 0);
@@ -58,8 +53,8 @@ public class IndexAction extends BaseAction {
 	 * @param req
 	 * @return
 	 */
-	@At("/index")
-	@Fail("jsp:error.404")
+//	@At("/index")
+//	@Fail("jsp:error.404")
 	public View index(HttpServletRequest req) {
 
 		// 新闻
