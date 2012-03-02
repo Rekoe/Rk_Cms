@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.nutz.ioc.annotation.InjectName;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
+import org.nutz.mvc.Mvcs;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.Param;
+import org.nutz.web.ajax.Ajax;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,10 +30,17 @@ public class CmsLoginAct {
 	
 	@Inject
 	private ManagerDao managerDao;
+	@At("/msg")
+	@Ok("ajax")
+	public Object map(HttpServletRequest request)
+	{
+		return Ajax.ok().setData(Mvcs.getMessages(request));
+	}
 	@At("/admin")
-	@Ok("fm:/cms_sys/login.html")
+	@Ok("fm:cms_sys.login")
 	public void input(HttpServletRequest request)
 	{
+		System.out.println(Mvcs.getMessages(request));
 		log.info("admin input");
 	}
 	@At("/admin/index")

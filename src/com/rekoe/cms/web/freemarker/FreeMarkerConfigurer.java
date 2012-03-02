@@ -16,7 +16,6 @@ import freemarker.template.Configuration;
 import freemarker.template.TemplateException;
 
 @IocBean(create = "init")
-
 public class FreeMarkerConfigurer {
 
 	Configuration configuration;
@@ -48,9 +47,15 @@ public class FreeMarkerConfigurer {
 		loadSettings(configuration);
 		LabelDirective label = ioc.get(LabelDirective.class);
 		PermistionDirective cmsPerm = ioc.get(PermistionDirective.class);
+		configuration.setDirectoryForTemplateLoading(new File(path));
+		HtmlCutDirective html_cut = ioc.get(HtmlCutDirective.class);
+		TextCutDirective text_cut = ioc.get(TextCutDirective.class);
+		ProcessTimeDirective process_time = ioc.get(ProcessTimeDirective.class); 
 		configuration.setSharedVariable("label", label);
 		configuration.setSharedVariable("cms_perm", cmsPerm);
-		configuration.setDirectoryForTemplateLoading(new File(path));
+		configuration.setSharedVariable("html_cut", html_cut);
+		configuration.setSharedVariable("text_cut", text_cut);
+		configuration.setSharedVariable("process_time", process_time);
 	}
 	
 	protected void loadSettings(Configuration config){		

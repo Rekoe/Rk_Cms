@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.servlet.GenericServlet;
 import javax.servlet.ServletContext;
@@ -18,12 +19,8 @@ import org.nutz.lang.Files;
 import org.nutz.lang.Strings;
 import org.nutz.mvc.Mvcs;
 
+import com.rekoe.cms.StartSetup;
 import com.rekoe.cms.web.freemarker.FreeMarkerConfigurer;
-import com.rekoe.cms.web.freemarker.HtmlCutDirective;
-import com.rekoe.cms.web.freemarker.LabelDirective;
-import com.rekoe.cms.web.freemarker.PermistionDirective;
-import com.rekoe.cms.web.freemarker.ProcessTimeDirective;
-import com.rekoe.cms.web.freemarker.TextCutDirective;
 
 import freemarker.ext.jsp.TaglibFactory;
 import freemarker.ext.servlet.HttpRequestHashModel;
@@ -76,25 +73,16 @@ public class FreemarkerView extends AbstractPathView{
 		root.put(APPLICATION, sc);
 		root.put("props", System.getProperties());
 		root.put("appBase","admin");
-		Map<String, String> msgs = Mvcs.getDefaultLocaleMessage(sc);//Mvcs.getMessages(request);
+		//Map<String, String> msgs = Mvcs.getDefaultLocaleMessage(sc);//Mvcs.getMessages(request);
+		Properties msgs = StartSetup.p;//new HashMap<String,String>();
+		//msgs.put("login.username", "用户名");
+		//msgs.put("login.password", "密码");
 		root.put("mvcs", msgs);
 		Enumeration<?> reqs=request.getAttributeNames();
 		while(reqs.hasMoreElements()){
 			String strKey=(String)reqs.nextElement();
 			root.put(strKey, request.getAttribute(strKey));
 		}
-		LabelDirective label = ioc.get(LabelDirective.class);
-		PermistionDirective cmsPerm = ioc.get(PermistionDirective.class);
-		HtmlCutDirective html_cut = ioc.get(HtmlCutDirective.class);
-		TextCutDirective text_cut = ioc.get(TextCutDirective.class);
-		ProcessTimeDirective process_time = ioc.get(ProcessTimeDirective.class); 
-		///<entry key="text_cut" value-ref="text_cut"/>
-		//<entry key="html_cut" value-ref="html_cut"/>
-		cfg.setSharedVariable("label", label);
-		cfg.setSharedVariable("cms_perm", cmsPerm);
-		cfg.setSharedVariable("html_cut", html_cut);
-		cfg.setSharedVariable("text_cut", text_cut);
-		cfg.setSharedVariable("process_time", process_time);
 		//让freemarker支持jsp 标签
 		//jspTaglibs(sc,request,response,root,cfg.getObjectWrapper());
 		//模版路径

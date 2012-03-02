@@ -24,6 +24,7 @@ import org.nutz.mvc.impl.NutLoading;
 import org.nutz.mvc.ioc.provider.ComboIocProvider;
 import org.nutz.mvc.view.FreemarkerViewMaker;
 import org.nutz.mvc.view.JPEGViewMaker;
+import org.nutz.web.ajax.AjaxViewMaker;
 
 import com.rekoe.cms.filter.AuthorityFilter;
 
@@ -40,7 +41,7 @@ import com.rekoe.cms.filter.AuthorityFilter;
 @Localization("msg")
 @Encoding(input="UTF-8",output="UTF-8")
 @SetupBy(StartSetup.class)
-@Views({FreemarkerViewMaker.class,JPEGViewMaker.class,JSONPViewMaker.class})
+@Views({FreemarkerViewMaker.class,JPEGViewMaker.class,JSONPViewMaker.class,AjaxViewMaker.class})
 public class MainModule {
 	
 }
