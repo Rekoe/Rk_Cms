@@ -15,12 +15,8 @@ $(function(){
 <#include "/cms_sys/date.html"/>
      <ul class="w-lful">
 		<li><a href="user_right.do" target="rightFrame"><@s.m "global.admin.index"/></a></li>
-		<@cms_perm module=1 action=1>	
 		<li><a href="../admin/list" target="rightFrame"><@s.m "cmsAdminGlobal.function"/></a></li>
-		</@cms_perm>
-		<@cms_perm module=17 action=15>	
 		<li><a href="../role/list" target="rightFrame"><@s.m "cmsRole.function"/></a></li>
-		</@cms_perm>
      </ul>
 </div>
 </body>
