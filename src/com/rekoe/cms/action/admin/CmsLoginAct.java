@@ -34,6 +34,7 @@ public class CmsLoginAct {
 	@Ok("ajax")
 	public Object map(HttpServletRequest request)
 	{
+		System.out.println("msg = "+Mvcs.getMessage(request, "cmsUser.username"));
 		return Ajax.ok().setData(Mvcs.getMessages(request));
 	}
 	@At("/admin")

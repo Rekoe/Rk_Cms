@@ -23,6 +23,5 @@
 	<classpathentry kind="lib" path="lib/commons-collections-3.2.1.jar"/>
 	<classpathentry kind="lib" path="lib/nutz-1.b.43_x.jar"/>
 	<classpathentry kind="lib" path="lib/nutz-web-1.a.1.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/nutz"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

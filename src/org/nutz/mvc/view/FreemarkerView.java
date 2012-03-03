@@ -73,10 +73,7 @@ public class FreemarkerView extends AbstractPathView{
 		root.put(APPLICATION, sc);
 		root.put("props", System.getProperties());
 		root.put("appBase","admin");
-		//Map<String, String> msgs = Mvcs.getDefaultLocaleMessage(sc);//Mvcs.getMessages(request);
-		Properties msgs = StartSetup.p;//new HashMap<String,String>();
-		//msgs.put("login.username", "用户名");
-		//msgs.put("login.password", "密码");
+		Map<String, String> msgs = Mvcs.getMessages(request);
 		root.put("mvcs", msgs);
 		Enumeration<?> reqs=request.getAttributeNames();
 		while(reqs.hasMoreElements()){
