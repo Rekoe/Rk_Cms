@@ -19,6 +19,13 @@ public class StartSetup implements Setup {
 	}
 	@Override
 	public void init(NutConfig nConfig) {
+//		try {
+//			NutDao dao = DynamicDao.getNutzDao("114.113.152.25");
+//			List<UserInfo> list = dao.query(UserInfo.class, null);
+//			System.out.println(list);
+//		} catch (PropertyVetoException e1) {
+//			e1.printStackTrace();
+//		}
 		InputStream in = null;
         try {        	
         	in=new BufferedInputStream(new FileInputStream(Files.findFile("MessageResources.properties")));         	
