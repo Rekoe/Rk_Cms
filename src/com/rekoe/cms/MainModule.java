@@ -17,6 +17,7 @@ import org.nutz.mvc.annotation.IocBy;
 import org.nutz.mvc.annotation.LoadingBy;
 import org.nutz.mvc.annotation.Localization;
 import org.nutz.mvc.annotation.Modules;
+import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.SetupBy;
 import org.nutz.mvc.annotation.UrlMappingBy;
 import org.nutz.mvc.annotation.Views;
@@ -31,9 +32,10 @@ import com.rekoe.cms.filter.AuthorityFilter;
 @Modules(scanPackage=true)
 @UrlMappingBy(MyUrlMappingImpl.class)
 @LoadingBy(NutLoading.class)
-@Fail("json")
+@Ok("ioc:json")
+@Fail("ioc:json")
 @IocBy(type=ComboIocProvider.class,args={
-	"*org.nutz.ioc.loader.json.JsonLoader","ioc/datasource.json",
+	"*org.nutz.ioc.loader.json.JsonLoader","ioc/",
 	"*org.nutz.ioc.loader.annotation.AnnotationIocLoader","com.rekoe.cms"})
 @Filters({
 	@By(type=AuthorityFilter.class)

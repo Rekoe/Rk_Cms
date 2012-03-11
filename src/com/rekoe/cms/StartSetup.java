@@ -28,7 +28,7 @@ public class StartSetup implements Setup {
 //		}
 		InputStream in = null;
         try {        	
-        	in=new BufferedInputStream(new FileInputStream(Files.findFile("MessageResources.properties")));         	
+        	in=new BufferedInputStream(new FileInputStream(Files.findFile("msg/MessageResources.properties")));         	
             if (in != null) {
                 p.load(in);
             }
