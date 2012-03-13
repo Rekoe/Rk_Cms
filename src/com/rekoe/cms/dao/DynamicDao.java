@@ -19,6 +19,8 @@ public class DynamicDao {
 		ds.setUser("xxxx");
 		ds.setPassword("xxxx");
 		ds.setAutoCommitOnClose(true);
+		//ds.setPreferredTestQuery(preferredTestQuery)
+		//ds.setAutomaticTestTable("");
 		ds.setForceIgnoreUnresolvedTransactions(false);
 		ds.setTestConnectionOnCheckin(true);
 		ds.setIdleConnectionTestPeriod(60);
