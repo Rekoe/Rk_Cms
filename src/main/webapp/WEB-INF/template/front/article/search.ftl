@@ -49,14 +49,14 @@ $().ready(function() {
 					<#list articleCategories as category>
 						<dl<#if !category_has_next> class="last"</#if>>
 							<dt>
-								<a href="${base}">${category.name}</a>
+								<a href="${base}/article/list/${category.id}">${category.name}</a>
 							</dt>
 							<#list category.children as articleCategory>
 								<#if articleCategory_index == 6>
 									<#break />
 								</#if>
 								<dd>
-									<a href="${base}">${articleCategory.name}</a>
+									<a href="${base}/article/list/${category.id}">${articleCategory.name}</a>
 								</dd>
 							</#list>
 						</dl>
