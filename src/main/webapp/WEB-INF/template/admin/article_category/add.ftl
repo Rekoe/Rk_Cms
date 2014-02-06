@@ -54,28 +54,9 @@ $().ready(function() {
 					</td>
 				</tr>
 				<tr>
-					<th>标识: </th>
-					<td>
-						<input type="text" name="ac.sign" class="text" value="" title="该分类的唯一标识，用于分类路径和模板标识" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
 					<th><@s.m "admin.common.order" />: </th>
 					<td>
 						<input type="text" name="order" class="text" value="" title="只允许输入零或正整数" />
-					</td>
-				</tr>
-				<tr>
-					<th><@s.m "ArticleCategory.seoKeywords" />: </th>
-					<td>
-						<input type="text" class="text" name="ac.metaKeywords" value="" />
-					</td>
-				</tr>
-				<tr>
-					<th><@s.m "ArticleCategory.seoDescription" />: </th>
-					<td>
-						<textarea name="ac.metaDescription" class="text"></textarea>
 					</td>
 				</tr>
 				<tr>

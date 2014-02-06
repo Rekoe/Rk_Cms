@@ -38,9 +38,17 @@ public class ArticleCategoryAct {
 	}
 
 	@At
+	@Ok("fm:template.admin.article_category.edit")
+	public ArticleCategory edit(@Param("id") String id,HttpServletRequest req) {
+		ArticleCategory articleCategory = articleCategoryService.fetch(id);
+		req.setAttribute("articleCategoryTree", list());
+		req.setAttribute("children", articleCategoryService.findChildren(articleCategory));
+		return articleCategory;
+	}
+
+	@At
 	@Ok(">>:/admin/article_category/list")
-	public void save(@Param("name") String name, @Param("order") int order,
-			@Param("::ac.") ArticleCategory ac) {
+	public void save(@Param("name") String name, @Param("order") int order, @Param("::ac.") ArticleCategory ac) {
 		ac.setCreateDate(Times.now());
 		ac.setModifyDate(Times.now());
 		ac.setName(name);
@@ -50,15 +58,15 @@ public class ArticleCategoryAct {
 
 	@At
 	@Ok("json")
-	public Message delete(@Param("id") String id,HttpServletRequest req) {
+	public Message delete(@Param("id") String id, HttpServletRequest req) {
 		ArticleCategory ac = articleCategoryService.fetch(id);
 		if (!Lang.isEmpty(ac.getArticleSet())) {
-			return Message.error("admin.articleCategory.deleteExistArticleNotAllowed",req);
+			return Message.error("admin.articleCategory.deleteExistArticleNotAllowed", req);
 		}
 		if (!Lang.isEmpty(ac.getChildren())) {
-			return Message.error("admin.articleCategory.deleteExistChildrenNotAllowed",req);
+			return Message.error("admin.articleCategory.deleteExistChildrenNotAllowed", req);
 		}
 		articleCategoryService.delete(id);
-		return Message.success("admin.common.success",req);
+		return Message.success("admin.common.success", req);
 	}
 }

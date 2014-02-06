@@ -37,21 +37,11 @@ public class ArticleCategory {
 
 	@Column
 	private int grade;
-	@Column("meta_description")
-	@ColDefine(type = ColType.VARCHAR, width = 225)
-	private String metaDescription;
-	@Column("meta_keywords")
-	@ColDefine(type = ColType.VARCHAR, width = 225)
-	private String metaKeywords;
 	@Column
 	@ColDefine(type = ColType.VARCHAR, width = 225)
 	private String name;
 	@Column("order_id")
 	private int order;
-	@Column
-	@ColDefine(type = ColType.VARCHAR, width = 225)
-	@Default("")
-	private String sign;
 
 	@Column("parent_id")
 	@Default("")
@@ -128,22 +118,6 @@ public class ArticleCategory {
 		this.grade = grade;
 	}
 
-	public String getMetaDescription() {
-		return metaDescription;
-	}
-
-	public void setMetaDescription(String metaDescription) {
-		this.metaDescription = metaDescription;
-	}
-
-	public String getMetaKeywords() {
-		return metaKeywords;
-	}
-
-	public void setMetaKeywords(String metaKeywords) {
-		this.metaKeywords = metaKeywords;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -158,14 +132,6 @@ public class ArticleCategory {
 
 	public void setOrder(int order) {
 		this.order = order;
-	}
-
-	public String getSign() {
-		return sign;
-	}
-
-	public void setSign(String sign) {
-		this.sign = sign;
 	}
 
 	public String getParentId() {

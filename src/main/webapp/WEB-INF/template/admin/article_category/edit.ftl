@@ -27,14 +27,14 @@ $().ready(function() {
 		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "admin.articleCategory.edit" />
 	</div>
 	<form id="inputForm" action="update.rk" method="post">
-		<input type="hidden" name="id" value="${articleCategory.id}" />
+		<input type="hidden" name="id" value="${obj.id}" />
 		<table class="input">
 			<tr>
 				<th>
 					<span class="requiredField">*</span><@s.m "ArticleCategory.name" />:
 				</th>
 				<td>
-					<input type="text" id="name" name="name" class="text" value="${articleCategory.name}" maxlength="200" />
+					<input type="text" id="name" name="name" class="text" value="${obj.name}" maxlength="200" />
 				</td>
 			</tr>
 			<tr>
@@ -45,8 +45,8 @@ $().ready(function() {
 					<select name="parentId">
 						<option value=""><@s.m "admin.articleCategory.root" /></option>
 						<#list articleCategoryTree as category>
-							<#if category != articleCategory && !children?seq_contains(category)>
-								<option value="${category.id}"<#if category == articleCategory.parent> selected="selected"</#if>>
+							<#if category != obj && !children?seq_contains(category)>
+								<option value="${category.id}" <#if category == obj> selected="selected"</#if>>
 									<#if category.grade != 0>
 										<#list 1..category.grade as i>
 											&nbsp;&nbsp;
@@ -61,34 +61,10 @@ $().ready(function() {
 			</tr>
 			<tr>
 				<th>
-					<@s.m "ArticleCategory.seoTitle" />:
-				</th>
-				<td>
-					<input type="text" name="seoTitle" class="text" value="${articleCategory.seoTitle}" maxlength="200" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					<@s.m "ArticleCategory.seoKeywords" />:
-				</th>
-				<td>
-					<input type="text" name="seoKeywords" class="text" value="${articleCategory.seoKeywords}" maxlength="200" />
-				</td>
-			</tr>
-			<tr>
-				<th>
-					<@s.m "ArticleCategory.seoDescription" />:
-				</th>
-				<td>
-					<input type="text" name="seoDescription" class="text" value="${articleCategory.seoDescription}" maxlength="200" />
-				</td>
-			</tr>
-			<tr>
-				<th>
 					<@s.m "admin.common.order" />:
 				</th>
 				<td>
-					<input type="text" name="order" class="text" value="${articleCategory.order}" maxlength="9" />
+					<input type="text" name="order" class="text" value="${obj.order}" maxlength="9" />
 				</td>
 			</tr>
 			<tr>
