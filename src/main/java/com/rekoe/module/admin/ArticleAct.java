@@ -70,7 +70,7 @@ public class ArticleAct {
 
 	@At
 	@Ok(">>:/admin/article/list")
-	public boolean update(@Param("::article.") Article article) {
+	public boolean update(@Param("::art.") Article article) {
 		articleService.update(article);
 		return true;
 	}
