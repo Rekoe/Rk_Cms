@@ -59,7 +59,7 @@ $().ready(function() {
 					<#list articleCategories as category>
 						<dl<#if !category_has_next> class="last"</#if>>
 							<dt>
-								<a href="${base}/article/list/${category.id}">${category.name}</a>
+								<a href="${base}/article/list/${category.id}.rk">${category.name}</a>
 							</dt>
 							<#list category.children as articleCategory>
 								<#if articleCategory_index == 6>
@@ -67,7 +67,7 @@ $().ready(function() {
 								</#if>
 								<#if articleCategory.id != category.id>
 								<dd>
-									&nbsp;&nbsp;<a href="${base}/article/list/${articleCategory.id}">${articleCategory.name}</a>
+									&nbsp;&nbsp;<a href="${base}/article/list/${articleCategory.id}.rk">${articleCategory.name}</a>
 								</dd>
 								</#if>
 							</#list>
@@ -81,7 +81,7 @@ $().ready(function() {
 					<@article_list articleCategoryId = articleCategory.id count = 10 desc="hits">
 						<#list articles as article>
 							<li>
-								<a href="${base}/article/view/${article.id}" title="${article.title}"><@htmlCut s=article.title len=17 append="..."/></a>
+								<a href="${base}/article/view/${article.id}" title="${article.title}.rk"><@htmlCut s=article.title len=17 append="..."/></a>
 							</li>
 						</#list>
 					</@article_list>

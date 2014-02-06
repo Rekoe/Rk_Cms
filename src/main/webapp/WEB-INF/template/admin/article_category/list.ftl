@@ -73,7 +73,7 @@ $().ready(function() {
 				<td>
 					<a href="edit.rk?id=${articleCategory.id}">[<@s.m "admin.common.edit" />]</a>
 					<a href="javascript:;" class="delete" val="${articleCategory.id}">[<@s.m "admin.common.delete" />]</a>
-					<a href="${base}/article/list/${articleCategory.id}" target="_blank">[<@s.m "admin.common.view" />]</a>
+					<a href="${base}/article/list/${articleCategory.id}.rk" target="_blank">[<@s.m "admin.common.view" />]</a>
 				</td>
 			</tr>
 		</#list>

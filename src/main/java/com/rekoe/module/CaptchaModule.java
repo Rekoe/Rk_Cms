@@ -6,7 +6,7 @@ import org.nutz.mvc.annotation.Filters;
 import org.nutz.mvc.annotation.Ok;
 
 @IocBean
-public class SystemModule {
+public class CaptchaModule {
 
 	@At
 	@Ok("captcha:captcha")

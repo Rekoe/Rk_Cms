@@ -55,7 +55,7 @@
 				<tr>
 					<td><input type="checkbox" name="ids" value="${article.id}" /></td>
 					<td><span title="${article.title}"><@htmlCut s=article.title len=50 append='...' /></span></td>
-					<td><a href="${base}/article/list/${article.articleCategory.id}" target="_blank">${article.articleCategory.name}</a></td>
+					<td><a href="${base}/article/list/${article.articleCategory.id}.rk" target="_blank">${article.articleCategory.name}</a></td>
 					<td><span class="${article.publication?string("true", "false")}Icon">&nbsp;</span></td>
 					<td><span title="${article.createDate?string("yyyy-MM-dd HH:mm:ss")}">${article.createDate?string("yyyy-MM-dd HH:mm:ss")}</span></td>
 					<td>

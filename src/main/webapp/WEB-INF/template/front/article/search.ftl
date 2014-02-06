@@ -49,14 +49,14 @@ $().ready(function() {
 					<#list articleCategories as category>
 						<dl<#if !category_has_next> class="last"</#if>>
 							<dt>
-								<a href="${base}/article/list/${category.id}">${category.name}</a>
+								<a href="${base}/article/list/${category.id}.rk">${category.name}</a>
 							</dt>
 							<#list category.children as articleCategory>
 								<#if articleCategory_index == 6>
 									<#break />
 								</#if>
 								<dd>
-									<a href="${base}/article/list/${category.id}">${articleCategory.name}</a>
+									<a href="${base}/article/list/${category.id}.rk">${articleCategory.name}</a>
 								</dd>
 							</#list>
 						</dl>
@@ -69,7 +69,7 @@ $().ready(function() {
 					<@article_list count = 10 desc="hits">
 						<#list articles as article>
 							<li>
-								<a href="${base}/article/view/${article.id}" title="${article.title}"><@htmlCut s=article.title len=30 append="..."/></a>
+								<a href="${base}/article/view/${article.id}.rk" title="${article.title}"><@htmlCut s=article.title len=30 append="..."/></a>
 							</li>
 						</#list>
 					</@article_list>
@@ -99,7 +99,7 @@ $().ready(function() {
 					<ul>
 						<#list page.list as article>
 							<li<#if !article_has_next> class="last"</#if>>
-								<a href="${base}/article/view/${article.id}" title="${article.title}"><@htmlCut s=article.title len=80 append="..."/></a>
+								<a href="${base}/article/view/${article.id}.rk" title="${article.title}"><@htmlCut s=article.title len=80 append="..."/></a>
 								${article.author}
 								<span title="${article.createDate?string("yyyy-MM-dd HH:mm:ss")}">${article.createDate?string("yyyy-MM-dd HH:mm:ss")}</span>
 								<p><@htmlCut s=article.content len=122 append="..."/></p>
