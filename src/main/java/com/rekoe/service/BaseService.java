@@ -2,7 +2,6 @@ package com.rekoe.service;
 
 import java.util.List;
 
-import org.nutz.dao.Cnd;
 import org.nutz.dao.Condition;
 import org.nutz.dao.Dao;
 import org.nutz.dao.pager.Pager;
