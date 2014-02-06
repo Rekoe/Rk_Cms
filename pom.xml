@@ -4,9 +4,9 @@
 	<groupId>com.rekoe</groupId>
 	<artifactId>rk_cms</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0-SNAPSHOT</version>
 	<name>rk_cms</name>
-	<description>Rekoe Com Cms</description>
+	<url>http://www.rekoe.com</url>
 	<dependencies>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -41,8 +41,8 @@
 		</dependency>
 		<dependency>
 		    <groupId>com.octo.captcha</groupId>
-		    <artifactId>jcaptcha</artifactId>
-		    <version>1.0</version>
+		    <artifactId>jcaptcha-all</artifactId>
+		    <version>1.0-RC6</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.apache.shiro</groupId>
@@ -69,11 +69,6 @@
 		    <groupId>org.apache.poi</groupId>
 		    <artifactId>poi</artifactId>
 		    <version>3.10-beta2</version>
-		</dependency>
-		<dependency>
-		    <groupId>bsf</groupId>
-		    <artifactId>bsf</artifactId>
-		    <version>2.4.0</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.apache.commons</groupId>
