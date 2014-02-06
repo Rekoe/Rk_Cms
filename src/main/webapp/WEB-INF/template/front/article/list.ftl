@@ -90,7 +90,7 @@ $().ready(function() {
 			<div class="articleSearch">
 				<div class="title"><@s.m "front.article.search" /></div>
 				<div class="content">
-					<form id="articleSearchForm" action="${base}/article/search.rk" method="get">
+					<form id="articleSearchForm" action="${base}/article/search.rk" method="post">
 						<input type="text" name="keyword" value="<@s.m "front.article.keyword" />" maxlength="30" />
 						<button type="submit"><@s.m "front.article.searchSubmit" /></button>
 					</form>

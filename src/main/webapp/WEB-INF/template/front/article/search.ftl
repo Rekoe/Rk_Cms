@@ -1,3 +1,4 @@
+<#assign page=obj>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -48,14 +49,14 @@ $().ready(function() {
 					<#list articleCategories as category>
 						<dl<#if !category_has_next> class="last"</#if>>
 							<dt>
-								<a href="${base}${category.path}">${category.name}</a>
+								<a href="${base}">${category.name}</a>
 							</dt>
 							<#list category.children as articleCategory>
 								<#if articleCategory_index == 6>
 									<#break />
 								</#if>
 								<dd>
-									<a href="${base}${articleCategory.path}">${articleCategory.name}</a>
+									<a href="${base}">${articleCategory.name}</a>
 								</dd>
 							</#list>
 						</dl>
@@ -77,7 +78,7 @@ $().ready(function() {
 			<div class="articleSearch">
 				<div class="title"><@s.m "front.article.search" /></div>
 				<div class="content">
-					<form id="articleSearchForm" action="${base}/article/search.rk" method="get">
+					<form id="articleSearchForm" action="${base}/article/search.rk" method="post">
 						<input type="text" name="keyword" value="${articleKeyword}" maxlength="30" />
 						<button type="submit"><@s.m "front.article.searchSubmit" /></button>
 					</form>
@@ -94,14 +95,14 @@ $().ready(function() {
 				</ul>
 			</div>
 			<div class="result">
-				<#if page.content?has_content>
+				<#if page.list?has_content>
 					<ul>
-						<#list page.content as article>
+						<#list page.list as article>
 							<li<#if !article_has_next> class="last"</#if>>
-								<a href="${base}${article.path}" title="${article.title}"><@htmlCut s=article.title len=80 append="..."/></a>
+								<a href="${base}/article/view/${article.id}" title="${article.title}"><@htmlCut s=article.title len=80 append="..."/></a>
 								${article.author}
 								<span title="${article.createDate?string("yyyy-MM-dd HH:mm:ss")}">${article.createDate?string("yyyy-MM-dd HH:mm:ss")}</span>
-								<p><@htmlCut s=article.context len=22 append="..."/></p>
+								<p><@htmlCut s=article.content len=122 append="..."/></p>
 							</li>
 						</#list>
 					</ul>

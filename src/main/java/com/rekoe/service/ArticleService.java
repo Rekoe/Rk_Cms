@@ -42,16 +42,26 @@ public class ArticleService extends BaseService<Article> {
 		dao().fetchLinks(art, "articleCategory");
 		return art;
 	}
-	
-	public Pagination getArticleListByPager(Integer pageNumber, int pageSize,String articleCategoryId) {
+
+	public Pagination getArticleListByPager(Integer pageNumber, int pageSize, String articleCategoryId) {
 		pageNumber = getPageNumber(pageNumber);
 		Pager pager = dao().createPager(pageNumber, pageSize);
-		Cnd cnd = Cnd.where("articleCategoryId", "=",articleCategoryId);
-		List<Article> list = dao().query(Article.class, StringUtils.isBlank(articleCategoryId)?null:cnd, pager);
+		Cnd cnd = Cnd.where("articleCategoryId", "=", articleCategoryId);
+		List<Article> list = dao().query(Article.class, StringUtils.isBlank(articleCategoryId) ? null : cnd, pager);
 		for (Article atricle : list) {
 			atricle = dao().fetchLinks(atricle, "articleCategory");
 		}
-		pager.setRecordCount(dao().count(Article.class, StringUtils.isBlank(articleCategoryId)?null:cnd));
+		pager.setRecordCount(dao().count(Article.class, StringUtils.isBlank(articleCategoryId) ? null : cnd));
 		return new Pagination(pageNumber, pageSize, pager.getRecordCount(), list);
+	}
+
+	public Pagination getObjListByPager(Integer pageNumber, String keyWorld) {
+		pageNumber = getPageNumber(pageNumber);
+		Pager pager = dao().createPager(pageNumber, 20);
+		Cnd cnd = Cnd.where("title", "like", "%" + keyWorld + "%");
+		List<Article> list = dao().query(getEntityClass(), cnd, pager);
+		pager.setRecordCount(dao().count(getEntityClass(), cnd));
+		Pagination pagination = new Pagination(pageNumber, 20, pager.getRecordCount(), list);
+		return pagination;
 	}
 }

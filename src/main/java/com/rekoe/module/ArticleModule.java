@@ -28,15 +28,17 @@ public class ArticleModule {
 
 	@At("/list/?")
 	@Ok("fm:template.front.article.list")
-	public Pagination list(String id,@Param("pageNumber") Integer pageNumber,HttpServletRequest req) {
+	public Pagination list(String id, @Param("pageNumber") Integer pageNumber, HttpServletRequest req) {
 		req.setAttribute("articleCategory", articleCategoryService.fetch(id));
-		return articleService.getArticleListByPager(pageNumber, 20,id);
+		return articleService.getArticleListByPager(pageNumber, 20, id);
 	}
+
 	@At("/view/?")
 	@Ok("fm:template.front.article.content")
 	public Article view(String id) {
 		return articleService.fetchByID(id);
 	}
+
 	@At("/hits/?")
 	@Ok("raw")
 	public int hits(String id) {
@@ -44,4 +46,12 @@ public class ArticleModule {
 		Article art = view(id);
 		return art.getHits();
 	}
+
+	@At
+	@Ok("fm:template.front.article.search")
+	public Pagination search(HttpServletRequest req, @Param("keyword") String keyword, @Param("pageNumber") Integer pageNumber) {
+		req.setAttribute("articleKeyword", keyword);
+		return articleService.getObjListByPager(pageNumber, keyword);
+	}
+
 }
