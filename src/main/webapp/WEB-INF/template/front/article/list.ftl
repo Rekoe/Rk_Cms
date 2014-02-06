@@ -17,7 +17,7 @@ $().ready(function() {
 	var $keyword = $("#articleSearchForm input");
 	var $articleForm = $("#articleForm");
 	var $pageNumber = $("#pageNumber");
-	var defaultKeyword = "<@s.m "shop.article.keyword" />";
+	var defaultKeyword = "<@s.m "front.article.keyword" />";
 	$keyword.focus(function() {
 		if ($keyword.val() == defaultKeyword) {
 			$keyword.val("");

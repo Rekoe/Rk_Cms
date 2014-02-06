@@ -2,27 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-[@seo type = "articleSearch"]
-	<title>[#if seo.title??][@seo.title?interpret /][/#if][#if systemShowPowered] - Powered By SHOP++[/#if]</title>
-	<meta name="author" content="SHOP++ Team" />
-	<meta name="copyright" content="SHOP++" />
-	[#if seo.keywords??]
-		<meta name="keywords" content="[@seo.keywords?interpret /]" />
-	[/#if]
-	[#if seo.description??]
-		<meta name="description" content="[@seo.description?interpret /]" />
-	[/#if]
-[/@seo]
-<link href="${base}/resources/shop/css/common.css" rel="stylesheet" type="text/css" />
-<link href="${base}/resources/shop/css/article.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="${base}/resources/shop/js/jquery.js"></script>
-<script type="text/javascript" src="${base}/resources/shop/js/common.js"></script>
+<title>Rekoe Cms - Powered By Rekoe Cms</title>
+<meta name="author" content="Rekoe Cms Team" />
+<meta name="copyright" content="Rekoe Cms" />
+<meta name="keywords" content="Rekoe Cms" />
+<meta name="description" content="Rekoe Cms" />
+<link href="${base}/resources/front/css/common.css" rel="stylesheet" type="text/css" />
+<link href="${base}/resources/front/css/article.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${base}/resources/admin/js/jquery.js"></script>
+<script type="text/javascript" src="${base}/resources/admin/js/common.js"></script>
 <script type="text/javascript">
 $().ready(function() {
-
 	var $articleSearchForm = $("#articleSearchForm");
 	var $keyword = $("#articleSearchForm input");
-	var defaultKeyword = "${message("shop.article.keyword")}";
+	var defaultKeyword = "<@s.m "front.article.keyword" />";
 	
 	$keyword.focus(function() {
 		if ($keyword.val() == defaultKeyword) {
@@ -46,47 +39,47 @@ $().ready(function() {
 </script>
 </head>
 <body>
-	[#include "/shop/include/header.ftl" /]
+	<#include "/template/front/include/header.ftl" />
 	<div class="container articleList">
 		<div class="span6">
 			<div class="hotArticleCategory">
-				<div class="title">${message("shop.article.articleCategory")}</div>
-				[@article_category_root_list count = 10]
-					[#list articleCategories as category]
-						<dl[#if !category_has_next] class="last"[/#if]>
+				<div class="title"><@s.m "front.article.articleCategory" /></div>
+				<@article_category_root_list count = 10>
+					<#list articleCategories as category>
+						<dl<#if !category_has_next> class="last"</#if>>
 							<dt>
 								<a href="${base}${category.path}">${category.name}</a>
 							</dt>
-							[#list category.children as articleCategory]
-								[#if articleCategory_index == 6]
-									[#break /]
-								[/#if]
+							<#list category.children as articleCategory>
+								<#if articleCategory_index == 6>
+									<#break />
+								</#if>
 								<dd>
 									<a href="${base}${articleCategory.path}">${articleCategory.name}</a>
 								</dd>
-							[/#list]
+							</#list>
 						</dl>
-					[/#list]
-				[/@article_category_root_list]
+					</#list>
+				</@article_category_root_list>
 			</div>
 			<div class="hotArticle">
-				<div class="title">${message("shop.article.hotArticle")}</div>
+				<div class="title"><@s.m "front.article.hotArticle" /></div>
 				<ul>
-					[@article_list count = 10 orderBy="hits desc"]
-						[#list articles as article]
+					<@article_list count = 10 desc="hits">
+						<#list articles as article>
 							<li>
-								<a href="${base}${article.path}" title="${article.title}">${abbreviate(article.title, 30)}</a>
+								<a href="${base}/article/view/${article.id}" title="${article.title}"><@htmlCut s=article.title len=30 append="..."/></a>
 							</li>
-						[/#list]
-					[/@article_list]
+						</#list>
+					</@article_list>
 				</ul>
 			</div>
 			<div class="articleSearch">
-				<div class="title">${message("shop.article.search")}</div>
+				<div class="title"><@s.m "front.article.search" /></div>
 				<div class="content">
-					<form id="articleSearchForm" action="${base}/article/search.jhtml" method="get">
+					<form id="articleSearchForm" action="${base}/article/search.rk" method="get">
 						<input type="text" name="keyword" value="${articleKeyword}" maxlength="30" />
-						<button type="submit">${message("shop.article.searchSubmit")}</button>
+						<button type="submit"><@s.m "front.article.searchSubmit" /></button>
 					</form>
 				</div>
 			</div>
@@ -95,32 +88,32 @@ $().ready(function() {
 			<div class="path">
 				<ul>
 					<li>
-						<a href="${base}/">${message("shop.path.home")}</a>
+						<a href="${base}/"><@s.m "path.home" /></a>
 					</li>
-					<li class="last">${message("shop.article.path", articleKeyword)}</li>
+					<li class="last"><@s.ma "front.article.path", "${articleKeyword}" /></li>
 				</ul>
 			</div>
 			<div class="result">
-				[#if page.content?has_content]
+				<#if page.content?has_content>
 					<ul>
-						[#list page.content as article]
-							<li[#if !article_has_next] class="last"[/#if]>
-								<a href="${base}${article.path}" title="${article.title}">${abbreviate(article.title, 80, "...")}</a>
+						<#list page.content as article>
+							<li<#if !article_has_next> class="last"</#if>>
+								<a href="${base}${article.path}" title="${article.title}"><@htmlCut s=article.title len=80 append="..."/></a>
 								${article.author}
-								<span title="${article.createDate?string("yyyy-MM-dd HH:mm:ss")}">${article.createDate}</span>
-								<p>${abbreviate(article.text, 220, "...")}</p>
+								<span title="${article.createDate?string("yyyy-MM-dd HH:mm:ss")}">${article.createDate?string("yyyy-MM-dd HH:mm:ss")}</span>
+								<p><@htmlCut s=article.context len=22 append="..."/></p>
 							</li>
-						[/#list]
+						</#list>
 					</ul>
-				[#else]
-					${message("shop.article.noSearchResult", articleKeyword)}
-				[/#if]
+				<#else>
+					<@s.ma "front.article.noSearchResult", "${articleKeyword}"/>
+				</#if>
 			</div>
-			[@pagination pageNumber = page.pageNumber totalPages = page.totalPages pattern = "search.jhtml?keyword=${articleKeyword}&pageNumber={pageNumber}"]
-				[#include "/shop/include/pagination.ftl"]
-			[/@pagination]
+			<@pagination pageNumber = page.pageNumber totalPages = page.totalPages pattern = "search.rk?keyword=${articleKeyword}&pageNumber={pageNumber}">
+				<#include "/template/front/include/pagination.ftl">
+			</@pagination>
 		</div>
 	</div>
-	[#include "/shop/include/footer.ftl" /]
+	<#include "/template/front/include/footer.ftl" />
 </body>
 </html>
