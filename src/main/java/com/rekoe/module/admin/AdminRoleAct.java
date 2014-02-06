@@ -88,7 +88,7 @@ public class AdminRoleAct {
 	}
 
 	@At
-	@Ok("raw")
+	@Ok("json")
 	@RequiresPermissions("admin:delete")
 	public Message delete(@Param("ids") Long[] uids,HttpServletRequest req) {
 		for (Long id : uids) {
