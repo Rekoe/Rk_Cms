@@ -73,7 +73,7 @@ public class OauthLoginAct {
 	// 没登录就不要登出了
 	@RequiresAuthentication
 	@At("/logout")
-	@Ok(">>:/")
+	@Ok(">>:/admin/index.rk")
 	public void logout(HttpSession session) {
 		// session.invalidate(); //销毁会话,啥都米有了
 		SecurityUtils.getSubject().logout();

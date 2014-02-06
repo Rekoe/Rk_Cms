@@ -29,21 +29,21 @@ public class UserModule {
 	}
 
 	@At
-	@Ok(">>:/user/all")
+	@Ok(">>:/user/all.rk")
 	@RequiresPermissions("user:delete:*")
 	public void delete(@Param("id") Long id) {
 		userService.delete(id);
 	}
 
 	@At
-	@Ok(">>:/user/all")
+	@Ok(">>:/user/all.rk")
 	@RequiresPermissions("user:update:*")
 	public void edit(@Param("..") User user) {
 		userService.update(user);
 	}
 
 	@At
-	@Ok(">>:/user/all")
+	@Ok(">>:/user/all.rk")
 	@RequiresPermissions("user:create:*")
 	public void add(@Param("..") User user) {
 		userService.insert(user);
@@ -64,14 +64,14 @@ public class UserModule {
 	}
 
 	@At
-	@Ok(">>:/user/view?id=${p.userId}")
+	@Ok(">>:/user/view.rk?id=${p.userId}")
 	@RequiresPermissions("user:roleAssign:*")
 	public void addRole(@Param("userId") Long userId, @Param("roleId") Long roleId) {
 		userService.addRole(userId, roleId);
 	}
 
 	@At
-	@Ok(">>:/user/view?id=${p.userId}")
+	@Ok(">>:/user/view.rk?id=${p.userId}")
 	@RequiresPermissions("user:roleAssign:*")
 	public void removeRole(@Param("userId") Long userId, @Param("roleId") Long roleId) {
 		userService.removeRole(userId, roleId);

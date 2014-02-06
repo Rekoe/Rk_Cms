@@ -49,7 +49,7 @@ public class AdminRoleAct {
 	}
 
 	@At
-	@Ok(">>:/role/list")
+	@Ok(">>:/role/list.rk")
 	// @AdaptBy(type = PairIgnoreAdaptor.class)
 	public void update(@Param("::role.") Role tempRole, @Param("name") String name, @Param("authorities") int[] permIds) {
 		Role $role = roleService.view(tempRole.getId());
@@ -73,7 +73,7 @@ public class AdminRoleAct {
 	}
 
 	@At
-	@Ok(">>:${obj==true?'/role/list':'/admin/common/unauthorized'}")
+	@Ok(">>:${obj==true?'/role/list.rk':'/admin/common/unauthorized.rk'}")
 	public boolean save(@Param("name") String name, @Param("description") String desc, @Param("authorities") int[] ids) {
 		Role role = roleService.fetchByName(name);
 		if (Lang.isEmpty(role)) {

@@ -25,7 +25,7 @@ public class SettingAct {
 	}
 
 	@At
-	@Ok("forward:/setting/edit")
+	@Ok("forward:/setting/edit.rk")
 	public boolean update(@Param("siteName") String siteName,
 			@Param("certtext") String certtext,
 			@Param("siteEnabled") boolean isSiteEnabled,

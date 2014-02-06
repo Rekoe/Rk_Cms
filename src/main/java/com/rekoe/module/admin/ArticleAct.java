@@ -46,7 +46,7 @@ public class ArticleAct {
 	}
 
 	@At
-	@Ok(">>:/admin/article/list")
+	@Ok(">>:/admin/article/list.rk")
 	@RequiresAuthentication
 	public boolean save(@Param("articleCategoryId") String articleCategoryId,
 			@Param("title") String title, @Param("content") String content,
@@ -61,7 +61,7 @@ public class ArticleAct {
 	}
 
 	@At
-	@Ok("fm:template.admin.article.edit")
+	@Ok("fm:template.admin.article.edit.rk")
 	public List<ArticleCategory> edit(String id, HttpServletRequest req) {
 		Article art = articleService.fetchByID(id);
 		art = articleService.dao().fetchLinks(art, "articleCategory");
@@ -71,7 +71,7 @@ public class ArticleAct {
 	}
 
 	@At
-	@Ok(">>:/admin/article/list")
+	@Ok(">>:/admin/article/list.rk")
 	public boolean update(@Param("content")String content,@Param("::article.") Article article,@Param("title")String title,@Param("articleCategoryId")String articleCategoryId) {
 		articleService.update(Chain.make("title", title).add("articleCategoryId", articleCategoryId).add("content", content).add("modifyDate", Times.now()), Cnd.where("id", "=", article.getId()));
 		return true;

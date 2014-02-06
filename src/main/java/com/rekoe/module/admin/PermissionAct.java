@@ -33,7 +33,7 @@ public class PermissionAct {
 	}
 
 	@At
-	@Ok(">>:/permission/all")
+	@Ok(">>:/permission/all.rk")
 	@RequiresPermissions("permission:delete:*")
 	public void delete(@Param("id") Long id) {
 		permissionService.delete(id);
@@ -47,7 +47,7 @@ public class PermissionAct {
 	}
 
 	@At
-	@Ok(">>:/permission/all")
+	@Ok(">>:/permission/all.rk")
 	@RequiresPermissions("permission:create:*")
 	public void add(@Param("..") Permission permission) {
 		permissionService.insert(permission);
@@ -61,7 +61,7 @@ public class PermissionAct {
 	}
 
 	@At
-	@Ok(">>:/permission/all")
+	@Ok(">>:/permission/all.rk")
 	@RequiresPermissions("permission:update:*")
 	public void edit(@Param("..") Permission permission) {
 		permissionService.update(permission);

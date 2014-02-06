@@ -48,7 +48,7 @@
 </head>
 <body>
 	<div class="login">
-		<form id="loginForm" action="${base}/login.rk" method="post">
+		<form id="loginForm" action="${base}/admin/login.rk" method="post">
 			<input type="hidden" id="enPassword" name="enPassword" />
 			<table>
 				<tr>

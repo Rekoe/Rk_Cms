@@ -41,7 +41,7 @@ public class AdminUserAct {
 
 	@At
 	@Ok("fm:template.admin.common.main")
-	public void index() {
+	public void main() {
 	}
 
 	@At
@@ -68,7 +68,7 @@ public class AdminUserAct {
 	}
 
 	@At
-	@Ok(">>:${obj==true?'/admin/list':'/admin/common/unauthorized'}")
+	@Ok(">>:${obj==true?'/admin/list.rk':'/admin/common/unauthorized.rk'}")
 	public boolean save(HttpServletRequest req, @Param("username") String username, @Param("password") String password, @Param("isEnabled") boolean isEnabled, @Param("roleIds") int[] roleIds) {
 		return userService.save(username, password, isEnabled, req.getRemoteAddr(), roleIds);
 	}
@@ -100,7 +100,7 @@ public class AdminUserAct {
 	}
 
 	@At
-	@Ok(">>:/admin/list")
+	@Ok(">>:/admin/list.rk")
 	public boolean update(@Param("id") long id, @Param("password") String password, @Param("isEnabled") boolean isEnabled, @Param("roleIds") Integer[] roleIds) {
 		userService.update(id, password, isEnabled, roleIds);
 		return true;

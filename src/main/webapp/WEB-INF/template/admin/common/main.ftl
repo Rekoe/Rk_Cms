@@ -71,8 +71,8 @@ $().ready(function() {
 				<div class="link">
 					<strong><@shiro.principal property="name"/></strong>
 					<@s.m "admin.main.hello" />!
-					<a href="../admin/profile/edit.rk" target="iframe">[<@s.m "admin.main.profile" />]</a>
-					<a href="../logout" target="_top">[<@s.m "admin.main.logout" />]</a>
+					<a href="${base}/admin/profile/edit.rk" target="iframe">[<@s.m "admin.main.profile" />]</a>
+					<a href="${base}/admin/logout.rk" target="_top">[<@s.m "admin.main.logout" />]</a>
 				</div>
 			</th>
 		</tr>
@@ -81,26 +81,26 @@ $().ready(function() {
 				<dl id="content">
 					<dt><@s.m "admin.main.contentGroup" /></dt>
 					<@shiro.hasPermission name="admin:article">
-						<dd><a href="../admin/article/list.rk" target="iframe"><@s.m "admin.main.article" /></a></dd>
+						<dd><a href="${base}/admin/article/list.rk" target="iframe"><@s.m "admin.main.article" /></a></dd>
 					</@shiro.hasPermission>
 					<@shiro.hasPermission name="admin:articleCategory">
-						<dd><a href="../admin/article_category/list.rk" target="iframe"><@s.m "admin.main.articleCategory" /></a></dd>
+						<dd><a href="${base}/admin/article_category/list.rk" target="iframe"><@s.m "admin.main.articleCategory" /></a></dd>
 					</@shiro.hasPermission>
 				</dl>
 				<dl id="system">
 					<dt><@s.m "admin.main.systemGroup" /></dt>
 					<@shiro.hasPermission name="admin:setting">
-						<dd><a href="../setting/edit.rk" target="iframe"><@s.m "admin.main.setting" /></a></dd>
+						<dd><a href="${base}/setting/edit.rk" target="iframe"><@s.m "admin.main.setting" /></a></dd>
 					</@shiro.hasPermission>
 					<@shiro.hasPermission name="admin:admin">
-						<dd><a href="../admin/list.rk" target="iframe"><@s.m "admin.main.admin" /></a></dd>
+						<dd><a href="${base}/admin/list.rk" target="iframe"><@s.m "admin.main.admin" /></a></dd>
 					</@shiro.hasPermission>
 					<@shiro.hasPermission name="admin:role">
-						<dd><a href="../role/list.rk" target="iframe"><@s.m "admin.main.role" /></a></dd>
+						<dd><a href="${base}/role/list.rk" target="iframe"><@s.m "admin.main.role" /></a></dd>
 					</@shiro.hasPermission>
 				</dl>
 			</td>
-			<td><iframe id="iframe" name="iframe" src="index.rk" frameborder="0"></iframe></td>
+			<td><iframe id="iframe" name="iframe" src="${base}/admin/common/index.rk" frameborder="0"></iframe></td>
 		</tr>
 	</table>
 </body>

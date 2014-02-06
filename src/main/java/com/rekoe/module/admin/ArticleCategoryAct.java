@@ -47,7 +47,7 @@ public class ArticleCategoryAct {
 	}
 
 	@At
-	@Ok(">>:/admin/article_category/list")
+	@Ok(">>:/admin/article_category/list.rk")
 	public void save(@Param("name") String name, @Param("order") int order, @Param("::ac.") ArticleCategory ac) {
 		ac.setCreateDate(Times.now());
 		ac.setModifyDate(Times.now());
