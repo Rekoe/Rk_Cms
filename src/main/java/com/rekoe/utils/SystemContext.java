@@ -23,11 +23,14 @@ public class SystemContext {
 			@Override
 			public void invoke(String str) {
 				String code = decodeUnicode(str);
+				
 				sb.append(code);
 				sb.append("\n");
 			}
 		});
 		//Files.write("e:/abc", sb);*/
+		String code = decodeUnicode("\u9605\u8BFB\u5168\u6587");
+		System.out.println(code);
 	}
 
 	/**

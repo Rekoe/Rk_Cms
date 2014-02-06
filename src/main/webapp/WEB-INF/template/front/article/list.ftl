@@ -81,7 +81,7 @@ $().ready(function() {
 					<@article_list articleCategoryId = articleCategory.id count = 10 desc="hits">
 						<#list articles as article>
 							<li>
-								<a href="${base}/article/view/${article.id}" title="${article.title}.rk"><@htmlCut s=article.title len=17 append="..."/></a>
+								<a href="${base}/article/view/${article.id}.rk" title="${article.title}.rk"><@htmlCut s=article.title len=17 append="..."/></a>
 							</li>
 						</#list>
 					</@article_list>
@@ -106,24 +106,24 @@ $().ready(function() {
 					<@article_category_parent_list articleCategoryId = articleCategory.id>
 						<#list articleCategories as articleCategory>
 							<li>
-								<a href="${base}/article/list/${articleCategory.id}">${articleCategory.name}</a>
+								<a href="${base}/article/list/${articleCategory.id}.rk">${articleCategory.name}</a>
 							</li>
 						</#list>
 					</@article_category_parent_list>
 					<li class="last">${articleCategory.name}</li>
 				</ul>
 			</div>
-			<form id="articleForm" action="${base}/article/list/${articleCategory.id}" method="post">
+			<form id="articleForm" action="${base}/article/list/${articleCategory.id}.rk" method="post">
 				<input type="hidden" id="pageNumber" name="pageNumber" value="${obj.pageNo}" />
 				<div class="result">
 					<#if obj.list?has_content>
 						<ul>
 							<#list obj.list as article>
 								<li<#if !article_has_next> class="last"</#if>>
-									<a href="${base}/article/view/${article.id}" title="${article.title}">${article.title}</a>
+									<a href="${base}/article/view/${article.id}.rk" title="${article.title}">${article.title}</a>
 									<@s.m "front.article.author" /> : ${article.author}
 									<span title="${article.createDate?string("yyyy-MM-dd")}">${article.createDate?string("yyyy-MM-dd ")}</span>
-									<p><@htmlCut s=article.content len=110 append="..."/><a href="${base}/article/view/${article.id}">[<@s.m "front.article.view" />]</a></p>
+									<p><@htmlCut s=article.content len=110 append="..."/><a href="${base}/article/view/${article.id}.rk">[<@s.m "front.article.view" />]</a></p>
 								</li>
 							</#list>
 						</ul>

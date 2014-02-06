@@ -15,7 +15,7 @@
 $().ready(function() {
 	var $hits = $("#hits");
 	$.ajax({
-		url: "${base}/article/hits/${obj.id}",
+		url: "${base}/article/hits/${obj.id}.rk",
 		type: "GET",
 		success: function(data) {
 			$hits.text(data);

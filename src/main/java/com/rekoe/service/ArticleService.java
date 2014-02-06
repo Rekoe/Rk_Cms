@@ -29,6 +29,9 @@ public class ArticleService extends BaseService<Article> {
 		return query(null, null);
 	}
 
+	public List<Article> getIndexNewList(){
+		return dao().query(getEntityClass(), Cnd.NEW().limit(10).desc("id"));
+	}
 	public void insert(Article art) {
 		dao().insert(art);
 	}
