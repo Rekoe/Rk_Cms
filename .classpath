@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry including="**/*.java" kind="src" path="src"/>
-	<classpathentry kind="src" path="conf"/>
-	<classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/3.0-alpha-1/servlet-api-3.0-alpha-1.jar"/>
+	<classpathentry including="**/*.java" kind="src" path="src/main/java"/>
+	<classpathentry excluding="**/*.java" kind="src" path="src/main/resources"/>
+	<classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javax/inject/javax.inject/1/javax.inject-1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="var" path="M2_REPO/mysql/mysql-connector-java/5.1.28/mysql-connector-java-5.1.28.jar"/>
 	<classpathentry kind="var" path="M2_REPO/com/alibaba/druid/1.0.2/druid-1.0.2.jar"/>
-	<classpathentry kind="var" path="M2_REPO/org/nutz/nutz/1.b.49/nutz-1.b.49.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/nutz/nutz-web/1.b.49/nutz-web-1.b.49.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/freemarker/freemarker/2.3.20/freemarker-2.3.20.jar" sourcepath="M2_REPO/org/freemarker/freemarker/2.3.20/freemarker-2.3.20-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/com/octo/captcha/jcaptcha/1.0/jcaptcha-1.0.jar"/>
@@ -57,5 +56,6 @@
 	<classpathentry kind="var" path="M2_REPO/net/sourceforge/nekohtml/nekohtml/1.9.7/nekohtml-1.9.7.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/htmlparser/htmlparser/2.1/htmlparser-2.1.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/htmlparser/htmllexer/2.1/htmllexer-2.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/nutz"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

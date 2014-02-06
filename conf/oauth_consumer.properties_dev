@@ -1,6 +1,0 @@
-socialauth.qq = com.rekoe.cms.socialauth.qq.QQAuthProvider
-qq.consumer_key = xxxxx
-qq.consumer_secret = xxxxxx
-#facebook
-graph.facebook.com.consumer_key = xxxxxxx
-graph.facebook.com.consumer_secret = xxxxxxxxxxxxxx
