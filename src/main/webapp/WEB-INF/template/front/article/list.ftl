@@ -121,9 +121,9 @@ $().ready(function() {
 							<#list obj.list as article>
 								<li<#if !article_has_next> class="last"</#if>>
 									<a href="${base}/article/view/${article.id}" title="${article.title}">${article.title}</a>
-									${article.author}
-									<span title="${article.createDate?string("yyyy-MM-dd HH:mm:ss")}">${article.createDate?string("yyyy-MM-dd HH:mm:ss")}</span>
-									<p><@htmlCut s=article.content len=120 append="..."/></p>
+									<@s.m "front.article.author" /> : ${article.author}
+									<span title="${article.createDate?string("yyyy-MM-dd")}">${article.createDate?string("yyyy-MM-dd ")}</span>
+									<p><@htmlCut s=article.content len=110 append="..."/><a href="${base}/article/view/${article.id}">[<@s.m "front.article.view" />]</a></p>
 								</li>
 							</#list>
 						</ul>
