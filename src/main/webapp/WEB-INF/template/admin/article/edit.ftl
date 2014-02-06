@@ -28,7 +28,7 @@ $().ready(function() {
 		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "admin.article.edit" />
 	</div>
 	<form id="inputForm" action="update.rk" method="post">
-		<input type="hidden" name="id" value="${article.id}" />
+		<input type="hidden" name="article.id" value="${article.id}" />
 		<table class="input">
 			<tr>
 				<th>
@@ -62,7 +62,7 @@ $().ready(function() {
 					<@s.m "Article.author" />:
 				</th>
 				<td>
-					<input type="text" name="art.author" class="text" value="${article.author}" maxlength="200" />
+					<input type="text" name="article.author" class="text" value="${article.author}" maxlength="200" />
 				</td>
 			</tr>
 			<tr>
@@ -71,12 +71,12 @@ $().ready(function() {
 				</th>
 				<td>
 					<label>
-						<input type="checkbox" name="art.publication" value="true"<#if article.publication> checked="checked"</#if> /><@s.m "Article.isPublication" />
-						<input type="hidden" name="_art.publication" value="false" />
+						<input type="checkbox" name="article.publication" value="true"<#if article.publication> checked="checked"</#if> /><@s.m "Article.isPublication" />
+						<input type="hidden" name="_article.publication" value="false" />
 					</label>
 					<label>
-						<input type="checkbox" name="art.top" value="true"<#if article.top> checked="checked"</#if> /><@s.m "Article.isTop" />
-						<input type="hidden" name="_art.top" value="false" />
+						<input type="checkbox" name="article.top" value="true"<#if article.top> checked="checked"</#if> /><@s.m "Article.isTop" />
+						<input type="hidden" name="_article.top" value="false" />
 					</label>
 				</td>
 			</tr>
