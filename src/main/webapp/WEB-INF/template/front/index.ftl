@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Rekoe.com - Powered By Rekoe Cms</title>
+<title>${setting.siteName} - Powered By Rekoe Cms</title>
 <meta name="author" content="Rekoe Cms Team" />
 <meta name="copyright" content="Rekoe Cms" />
 <meta name="keywords" content="Rekoe Cms Game" />
