@@ -1,5 +1,7 @@
 package com.rekoe.mvc.view;
 
+import static com.rekoe.mvc.ProcessTimeProcessor.START_TIME;
+
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -69,6 +71,7 @@ public class FreemarkerView extends AbstractPathView {
 		HttpSession session = request.getSession();
 		root.put(SESSION, session);
 		root.put(APPLICATION, sc);
+		root.put(START_TIME, request.getAttribute(START_TIME));
 		root.put(Webs.ME, session.getAttribute(Webs.ME));
 		root.put("props", System.getProperties());// .get("java.version")
 		Map<String, String> msgs = Mvcs.getMessages(request);

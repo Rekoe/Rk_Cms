@@ -9,6 +9,8 @@ import org.nutz.mvc.NutConfigException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static com.rekoe.mvc.ProcessTimeProcessor.START_TIME;
+
 import freemarker.core.Environment;
 import freemarker.template.TemplateDirectiveBody;
 import freemarker.template.TemplateDirectiveModel;
@@ -36,7 +38,7 @@ public class ProcessTimeDirective implements TemplateDirectiveModel {
 	}
 
 	private long getStartTime(Environment env) throws TemplateModelException {
-		TemplateModel startTime = env.getGlobalVariable("START_TIME");
+		TemplateModel startTime = env.getGlobalVariable(START_TIME);
 		if (startTime == null) {
 			log.warn("Variable '{}' not found in GlobalVariable", "START_TIME");
 			return -1;
@@ -44,7 +46,7 @@ public class ProcessTimeDirective implements TemplateDirectiveModel {
 		if (startTime instanceof TemplateNumberModel) {
 			return ((TemplateNumberModel) startTime).getAsNumber().longValue();
 		} else {
-			throw new NutConfigException("START_TIME");
+			throw new NutConfigException(START_TIME);
 		}
 	}
 

@@ -6,5 +6,6 @@
 	</div>
 	<div class="span24">
 		<div class="copyright"><@s.ma "footer.copyright", "REKOE.COM" /></div>
+		<div class="copyright"><@process_time /></div>
 	</div>
 </div>
