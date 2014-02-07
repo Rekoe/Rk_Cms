@@ -29,8 +29,33 @@ public class SystemContext {
 			}
 		});
 		//Files.write("e:/abc", sb);*/
-		String code = decodeUnicode("\u9605\u8BFB\u5168\u6587");
+		/*String code = decodeUnicode("\u9605\u8BFB\u5168\u6587");
 		System.out.println(code);
+		Response req = Http.get("http://www.jtbc.cn/common/images/icon.2.jpg");
+		Files.write("e:/common/images/icon.2.jpg", req.getReader());*/
+		/*final Map<String,String> imgMap = new HashMap<String,String>();
+		File file = Files.findFile("template/jtbc.ftl");
+		Files.readLine(file, new Callback<String>() {
+			@Override
+			public void invoke(String str) {
+				String img = StringUtils.substringBetween(str, "<img src=\"", "\"");
+				String name = StringUtils.substringAfter(img, "common/images/");
+				if(StringUtils.isNotBlank(img))
+				{
+					imgMap.put(img, name);
+				}
+			}
+		});
+		for(Entry<String, String> entry:imgMap.entrySet())
+		{
+			String key = entry.getKey();
+			String value = entry.getValue();
+			if(StringUtils.isNotBlank(key))
+			{
+				Response req = Http.get("http://www.jtbc.cn/"+key);
+				Files.write("e:/common/images/"+value, req.getStream());
+			}
+		}*/
 	}
 
 	/**

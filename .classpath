@@ -62,5 +62,5 @@
 	<classpathentry kind="var" path="M2_REPO/org/htmlparser/htmlparser/2.1/htmlparser-2.1.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/htmlparser/htmllexer/2.1/htmllexer-2.1.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/nutz"/>
-	<classpathentry kind="output" path="target/classes"/>
+	<classpathentry kind="output" path="src/main/webapp/WEB-INF/classes"/>
 </classpath>
