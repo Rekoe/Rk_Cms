@@ -29,6 +29,19 @@ public class SystemContext {
 			}
 		});
 		//Files.write("e:/abc", sb);*/
+		System.out.println(decodeUnicode("admin.sales.view=\u67e5\u770b\u9500\u552e\u7edf\u8ba1"));
+		System.out.println(decodeUnicode("admin.sales.amount=\u9500\u552e\u989d\u7edf\u8ba1"));
+		System.out.println(decodeUnicode("admin.sales.volume=\u9500\u552e\u91cf\u7edf\u8ba1"));
+		System.out.println(decodeUnicode("admin.sales.type=\u7edf\u8ba1\u7c7b\u578b"));
+		System.out.println(decodeUnicode("admin.sales.year=\u5e74\u5ea6\u7edf\u8ba1"));
+		System.out.println(decodeUnicode("admin.sales.month=\u6708\u5ea6\u7edf\u8ba1"));
+		System.out.println(decodeUnicode("admin.sales.beginDate=\u8d77\u59cb\u65e5\u671f"));
+		System.out.println(decodeUnicode("footer.copyright=Copyright \u00A9 2005-2014 {0} \u7248\u6743\u6240\u6709"));
+		/*String code = decodeUnicode("\u9605\u8BFB\u5168\u6587");
+		/*String code = decodeUnicode("\u9605\u8BFB\u5168\u6587");
+		/*String code = decodeUnicode("\u9605\u8BFB\u5168\u6587");
+		/*String code = decodeUnicode("\u9605\u8BFB\u5168\u6587");
+		/*String code = decodeUnicode("\u9605\u8BFB\u5168\u6587");
 		/*String code = decodeUnicode("\u9605\u8BFB\u5168\u6587");
 		System.out.println(code);
 		Response req = Http.get("http://www.jtbc.cn/common/images/icon.2.jpg");

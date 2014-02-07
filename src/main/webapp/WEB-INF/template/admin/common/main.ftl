@@ -60,6 +60,11 @@ $().ready(function() {
 					<@shiro.hasAnyPermission name = "admin:setting,admin:admin,admin:role">
 						<li><a href="#system"><@s.m "admin.main.systemNav" /></a></li>
 					</@shiro.hasAnyPermission>
+					<@shiro.hasAnyPermission name = "admin:statistics">
+						<li>
+							<a href="#statistics"><@s.m "admin.main.statisticsNav" /></a>
+						</li>
+					</@shiro.hasAnyPermission>
 						<li><a href="${base}/" target="_blank"><@s.m "admin.main.home" /></a></li>
 					</ul>
 				</div>
@@ -97,6 +102,22 @@ $().ready(function() {
 					</@shiro.hasPermission>
 					<@shiro.hasPermission name="admin:role">
 						<dd><a href="${base}/role/list.rk" target="iframe"><@s.m "admin.main.role" /></a></dd>
+					</@shiro.hasPermission>
+				</dl>
+				<dl id="statistics">
+					<dt><@s.m "admin.main.statisticsGroup" /></dt>
+					<@shiro.hasPermission name="admin:statistics">
+						<dd>
+							<a href="${base}/admin/statistics/view.rk" target="iframe"><@s.m "admin.main.statistics" /></a>
+						</dd>
+						<dd>
+							<a href="${base}/admin/statistics/setting.rk" target="iframe"><@s.m "admin.main.statisticsSetting" /></a>
+						</dd>
+					</@shiro.hasPermission>
+					<@shiro.hasPermission name="admin:sales">
+						<dd>
+							<a href="${base}/admin/sales/view.rk" target="iframe"><@s.m "admin.main.sales" /></a>
+						</dd>
 					</@shiro.hasPermission>
 				</dl>
 			</td>

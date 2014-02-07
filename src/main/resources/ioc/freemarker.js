@@ -26,24 +26,27 @@ var ioc = {
 	},
 	articleCategoryParentList : {
 		type : "com.rekoe.web.freemarker.ArticleCategoryParentListDirective",
-		args : [{
+		args : [ {
 			refer : "articleCategoryService"
 		} ]
 	},
 	articleCategoryRootList : {
 		type : "com.rekoe.web.freemarker.ArticleCategoryRootListDirective",
-		args : [{
+		args : [ {
 			refer : "articleCategoryService"
 		} ]
 	},
 	articleList : {
 		type : "com.rekoe.web.freemarker.ArticleListDirective",
-		args : [{
+		args : [ {
 			refer : "articleService"
 		} ]
 	},
 	pagination : {
 		type : "com.rekoe.web.freemarker.PaginationDirective"
+	},
+	timeFormat : {
+		type : "com.rekoe.web.freemarker.TimeFormatDirective"
 	},
 	permissionDirective : {
 		type : "com.rekoe.web.freemarker.FreemarkerDirective",
@@ -87,6 +90,12 @@ var ioc = {
 			refer : "articleList"
 		} ]
 	},
+	timeFormatDirective : {
+		type : "com.rekoe.web.freemarker.FreemarkerDirective",
+		args : [ "timeFormat", {
+			refer : "timeFormat"
+		} ]
+	},
 	freemarkerDirectiveFactory : {
 		type : "com.rekoe.web.freemarker.FreemarkerDirectiveFactory",
 		events : {
@@ -109,6 +118,8 @@ var ioc = {
 			refer : "articleCategoryParentListDirective"
 		}, {
 			refer : "articleListDirective"
+		}, {
+			refer : "timeFormatDirective"
 		} ]
 	}
 };
