@@ -21,7 +21,7 @@
 					<@s.m "admin.statistics.isEnabled" />:
 				</th>
 				<td>
-					<input type="checkbox" name="isEnabled" value="true"<#if setting.cnzzEnabled> checked="checked"</#if> />
+					<input type="checkbox" name="isEnabled" value="true"<#if obj> checked="checked"</#if> />
 				</td>
 			</tr>
 			<tr>

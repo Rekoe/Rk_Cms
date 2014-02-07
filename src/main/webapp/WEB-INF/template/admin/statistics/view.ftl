@@ -21,11 +21,7 @@ html, body {
 </style>
 <script type="text/javascript">
 $().ready(function() {
-
-	<#if !setting.cnzzSiteId?has_content || !setting.cnzzPassword?has_content>
-		$.message("warn", "<@s.m "admin.statistics.disabled" />");
-	</#if>
-
+	$.message("warn", "<@s.m "admin.statistics.disabled" />");
 });
 </script>
 </head>
@@ -33,8 +29,5 @@ $().ready(function() {
 	<div class="path">
 		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "admin.statistics.view" />
 	</div>
-	<#if setting.cnzzSiteId?has_content && setting.cnzzPassword?has_content>
-		
-	</#if>
 </body>
 </html>
