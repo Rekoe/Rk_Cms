@@ -2,6 +2,7 @@ package com.rekoe.mvc.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Locale;
 
 import com.octo.captcha.component.image.backgroundgenerator.BackgroundGenerator;
 import com.octo.captcha.component.image.backgroundgenerator.FileReaderRandomBackgroundGenerator;
@@ -15,7 +16,7 @@ import com.octo.captcha.component.image.wordtoimage.ComposedWordToImage;
 import com.octo.captcha.component.image.wordtoimage.WordToImage;
 import com.octo.captcha.component.word.wordgenerator.RandomWordGenerator;
 import com.octo.captcha.component.word.wordgenerator.WordGenerator;
-import com.octo.captcha.engine.image.ListImageCaptchaEngine;
+import com.octo.captcha.image.ImageCaptcha;
 import com.octo.captcha.image.gimpy.GimpyFactory;
 
 /**
@@ -23,7 +24,7 @@ import com.octo.captcha.image.gimpy.GimpyFactory;
  * 
  * @author calvin
  */
-public class GMailEngine extends ListImageCaptchaEngine {
+public class GMailEngine extends AbstractCaptchaEngine {
 	public static final String IMAGE_CAPTCHA_KEY = "imageCaptcha";// ImageCaptcha对象存放在Session中的key
 	public static final String CAPTCHA_INPUT_NAME = "j_captcha";// 验证码输入表单名称
 	public static final String CAPTCHA_IMAGE_URL = "/captcha";// 验证码图片URL
@@ -41,10 +42,14 @@ public class GMailEngine extends ListImageCaptchaEngine {
 	// 验证码随机字体
 	private static final Font[] RANDOM_FONT = new Font[] { new Font("nyala", Font.BOLD, MIN_FONT_SIZE), new Font("Arial", Font.BOLD, MIN_FONT_SIZE), new Font("Bell MT", Font.BOLD, MIN_FONT_SIZE), new Font("Credit valley", Font.BOLD, MIN_FONT_SIZE), new Font("Impact", Font.BOLD, MIN_FONT_SIZE) };
 
+	public GMailEngine(String path) {
+		super(path);
+	}
+
 	@Override
-	protected void buildInitialFactories() {
+	protected void buildInitialFactories(String path) {
 		RandomListColorGenerator randomListColorGenerator = new RandomListColorGenerator(RANDOM_COLOR);
-		BackgroundGenerator backgroundGenerator = new FileReaderRandomBackgroundGenerator(IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_PATH);
+		BackgroundGenerator backgroundGenerator = new FileReaderRandomBackgroundGenerator(IMAGE_WIDTH, IMAGE_HEIGHT, path);
 		WordGenerator wordGenerator = new RandomWordGenerator(RANDOM_WORD);
 		FontGenerator fontGenerator = new RandomFontGenerator(MIN_FONT_SIZE, MAX_FONT_SIZE, RANDOM_FONT);
 		TextDecorator[] textDecorator = new TextDecorator[] {};
@@ -52,4 +57,5 @@ public class GMailEngine extends ListImageCaptchaEngine {
 		WordToImage wordToImage = new ComposedWordToImage(fontGenerator, backgroundGenerator, textPaster);
 		addFactory(new GimpyFactory(wordGenerator, wordToImage));
 	}
+	
 }

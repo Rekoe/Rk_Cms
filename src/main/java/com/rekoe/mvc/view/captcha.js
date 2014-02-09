@@ -3,7 +3,8 @@ var ioc = {
 		type : "com.octo.captcha.service.captchastore.FastHashMapCaptchaStore"
 	},
 	mailEngine : {
-		type : "com.rekoe.mvc.view.GMailEngine"
+		type : "com.rekoe.mvc.view.GMailEngine",
+		args : [ "com/rekoe/cms/captcha/" ]
 	},
 	imageCaptchaService : {
 		type : "com.octo.captcha.service.image.DefaultManageableImageCaptchaService",
