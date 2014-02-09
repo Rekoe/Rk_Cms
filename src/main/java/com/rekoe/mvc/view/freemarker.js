@@ -102,7 +102,7 @@ var ioc = {
 			create : 'init'
 		},
 		fields : {
-			freemarker : 'freemarker.properties',
+			freemarker : 'com/rekoe/web/freemarker/freemarker.properties',
 		},
 		args : [ {
 			refer : "permissionDirective"

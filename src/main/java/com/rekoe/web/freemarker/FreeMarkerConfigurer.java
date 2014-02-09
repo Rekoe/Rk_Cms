@@ -48,7 +48,7 @@ public class FreeMarkerConfigurer {
 
 	private void initFreeMarkerConfigurer() throws IOException, TemplateException {
 		Properties p = new Properties();
-		p.load(Streams.fileIn("freemarker.properties"));
+		p.load(Streams.fileIn(freemarkerDirectiveFactory.getFreemarker()));
 		configuration.setSettings(p);
 		configuration.setDirectoryForTemplateLoading(Files.findFile(path));
 	}
