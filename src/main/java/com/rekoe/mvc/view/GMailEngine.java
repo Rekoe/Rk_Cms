@@ -34,7 +34,7 @@ public class GMailEngine extends ListImageCaptchaEngine {
 	private static final Integer MIN_FONT_SIZE = 15;// 验证码最小字体
 	private static final Integer MAX_FONT_SIZE = 15;// 验证码最大字体
 	private static final String RANDOM_WORD = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";// 随机字符
-	private static final String IMAGE_PATH = "./com/rekoe/cms/captcha/";// 随机背景图片路径
+	private static final String IMAGE_PATH = "com/rekoe/cms/captcha/";// 随机背景图片路径
 
 	// 验证码随机颜色
 	private static final Color[] RANDOM_COLOR = new Color[] { new Color(255, 255, 255), new Color(255, 220, 220), new Color(220, 255, 255), new Color(220, 220, 255), new Color(255, 255, 220), new Color(220, 255, 220) };
