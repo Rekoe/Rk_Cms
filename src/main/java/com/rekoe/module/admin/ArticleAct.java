@@ -61,7 +61,7 @@ public class ArticleAct {
 	}
 
 	@At
-	@Ok("fm:template.admin.article.edit.rk")
+	@Ok("fm:template.admin.article.edit")
 	public List<ArticleCategory> edit(String id, HttpServletRequest req) {
 		Article art = articleService.fetchByID(id);
 		art = articleService.dao().fetchLinks(art, "articleCategory");
