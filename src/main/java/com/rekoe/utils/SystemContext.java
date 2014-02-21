@@ -29,9 +29,12 @@ public class SystemContext {
 			}
 		});
 		//Files.write("e:/abc", sb);*/
-		System.out.println(decodeUnicode("admin.main.statistics=\u8bbf\u95ee\u7edf\u8ba1"));
-		System.out.println(decodeUnicode("admin.main.statisticsSetting=\u7edf\u8ba1\u8bbe\u7f6e"));
-		System.out.println(decodeUnicode("admin.main.sales=\u9500\u552e\u7edf\u8ba1"));
+		//System.out.println(decodeUnicode("admin.main.statistics=\u8bbf\u95ee\u7edf\u8ba1"));
+		//System.out.println(decodeUnicode("admin.main.statisticsSetting=\u7edf\u8ba1\u8bbe\u7f6e"));
+		//System.out.println(decodeUnicode("admin.main.sales=\u9500\u552e\u7edf\u8ba1"));
+		System.out.println(decodeUnicode("shop.member.index.orderHasExpired=\u5df2\u8fc7\u671f"));
+		System.out.println(decodeUnicode("shop.member.submit=\u63d0&nbsp;&nbsp;\u4ea4"));
+		System.out.println(decodeUnicode("shop.member.back=\u8fd4&nbsp;&nbsp;\u56de"));
 		/*String code = decodeUnicode("\u9605\u8BFB\u5168\u6587");
 		/*String code = decodeUnicode("\u9605\u8BFB\u5168\u6587");
 		/*String code = decodeUnicode("\u9605\u8BFB\u5168\u6587");

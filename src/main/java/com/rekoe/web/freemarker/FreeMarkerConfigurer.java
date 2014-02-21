@@ -15,12 +15,14 @@ import freemarker.template.TemplateException;
 
 public class FreeMarkerConfigurer {
 	private Configuration configuration;
-	private String path;
+	private String prefix;
+	private String suffix;
 	private FreemarkerDirectiveFactory freemarkerDirectiveFactory;
 
-	public FreeMarkerConfigurer(Configuration configuration, ServletContext sc, String path, FreemarkerDirectiveFactory freemarkerDirectiveFactory) {
+	public FreeMarkerConfigurer(Configuration configuration, ServletContext sc, String prefix, String suffix, FreemarkerDirectiveFactory freemarkerDirectiveFactory) {
 		this.configuration = configuration;
-		this.path = sc.getRealPath(path);
+		this.prefix = sc.getRealPath(prefix);
+		this.suffix = suffix;
 		this.freemarkerDirectiveFactory = freemarkerDirectiveFactory;
 	}
 
@@ -46,10 +48,18 @@ public class FreeMarkerConfigurer {
 		}
 	}
 
+	public String getSuffix() {
+		return suffix;
+	}
+
+	public String getPrefix() {
+		return prefix;
+	}
+
 	private void initFreeMarkerConfigurer() throws IOException, TemplateException {
 		Properties p = new Properties();
 		p.load(Streams.fileIn(freemarkerDirectiveFactory.getFreemarker()));
 		configuration.setSettings(p);
-		configuration.setDirectoryForTemplateLoading(Files.findFile(path));
+		configuration.setDirectoryForTemplateLoading(Files.findFile(prefix));
 	}
 }

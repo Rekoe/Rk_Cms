@@ -52,7 +52,7 @@ public class FreemarkerView extends AbstractPathView {
 	private static final String KEY_JSP_TAGLIBS = "JspTaglibs";
 	public static final String PATH_BASE = "base";
 
-	public FreemarkerView(FreeMarkerConfigurer freeMarkerConfigurer,String path) {
+	public FreemarkerView(FreeMarkerConfigurer freeMarkerConfigurer, String path) {
 		super(path);
 		this.freeMarkerConfigurer = freeMarkerConfigurer;
 	}
@@ -61,8 +61,6 @@ public class FreemarkerView extends AbstractPathView {
 		String $temp = evalPath(request, value);
 		String path = getPath($temp);
 		ServletContext sc = request.getSession().getServletContext();
-		//Ioc ioc = Mvcs.getIoc();
-		//FreeMarkerConfigurer freeMarkerConfigurer = ioc.get(FreeMarkerConfigurer.class);
 		Configuration cfg = freeMarkerConfigurer.getConfiguration();
 		Map<String, Object> root = new HashMap<String, Object>();
 		root.put(OBJ, value);
@@ -95,33 +93,20 @@ public class FreemarkerView extends AbstractPathView {
 		}
 	}
 
-	public String getWebRealPath(HttpServletRequest request) {
-		StringBuffer sb = new StringBuffer();
-		sb.append("http://");
-		sb.append(request.getServerName());
-		if (request.getServerPort() != 80) {
-			sb.append(":");
-			sb.append(request.getServerPort());
-		}
-		sb.append(request.getContextPath());
-		sb.append("/");
-		return sb.toString();
-	}
-
 	/**
 	 * 子类可以覆盖这个方法，给出自己特殊的后缀
 	 * 
 	 * @return 后缀
 	 */
-	protected static String getExt() {
-		return ".ftl";
+	protected String getExt() {
+		return freeMarkerConfigurer.getSuffix();
 	}
 
 	private String getPath(String path) {
 		StringBuffer sb = new StringBuffer();
 		// 空路径，采用默认规则
 		if (Strings.isBlank(path)) {
-			sb.append(Mvcs.getServletContext().getRealPath("WEB-INF"));
+			sb.append(Mvcs.getServletContext().getRealPath(freeMarkerConfigurer.getPrefix()));
 			sb.append((path.startsWith("/") ? "" : "/"));
 			sb.append(Files.renameSuffix(path, getExt()));
 		}
