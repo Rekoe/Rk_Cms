@@ -14,6 +14,8 @@
 <script type="text/javascript">
 $().ready(function() {
 	var $inputForm = $("#inputForm");
+	var $browserButton = $("input.browserButton");
+	$browserButton.browser();
 	$inputForm.validate({
 		rules: {
 			siteName: "required",
@@ -49,6 +51,18 @@ $().ready(function() {
 				</th>
 				<td>
 					<input type="text" name="certtext" class="text" value="${obj.certtext}" maxlength="200" />
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<span class="requiredField">*</span><@s.m "Setting.logo" />:
+				</th>
+				<td>
+					<span class="fieldSet">
+						<input type="text" name="logo" class="text" value="" maxlength="200" />
+						<input type="button" class="button browserButton" value="<@s.m "admin.browser.select" />" />
+						<a href="/" target="_blank"><@s.m "admin.common.view" /></a>
+					</span>
 				</td>
 			</tr>
 			<tr>

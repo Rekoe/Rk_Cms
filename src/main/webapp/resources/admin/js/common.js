@@ -66,7 +66,183 @@ function message(code) {
 		}
 	}
 }
-
+//文件浏览
+$.fn.extend({
+	browser: function(options) {
+		var settings = {
+			type: "image",
+			title: message("admin.browser.title"),
+			isUpload: true,
+			browserUrl: rkcms.base + "/admin/file/browser.rk",
+			uploadUrl: rkcms.base + "/admin/file/upload.rk",
+			callback: null
+		};
+		$.extend(settings, options);
+		var cache = {};
+		return this.each(function() {
+			var browserFrameId = "browserFrame" + (new Date()).valueOf() + Math.floor(Math.random() * 1000000);
+			var $browserButton = $(this);
+			$browserButton.click(function() {
+				var $browser = $('<div class="xxBrowser"><\/div>');
+				var $browserBar = $('<div class="browserBar"><\/div>').appendTo($browser);
+				var $browserFrame;
+				var $browserForm;
+				var $browserUploadButton;
+				var $browserUploadInput;
+				var $browserParentButton;
+				var $browserOrderType;
+				var $browserLoadingIcon;
+				var $browserList;
+				if (settings.isUpload) {
+					$browserFrame = $('<iframe id="' + browserFrameId + '" name="' + browserFrameId + '" style="display: none;"><\/iframe>').appendTo($browserBar);
+					$browserForm = $('<form action="' + settings.uploadUrl + '" method="post" encType="multipart/form-data" target="' + browserFrameId + '"><input type="hidden" name="fileType" value="' + settings.type + '" \/><\/form>').appendTo($browserBar);
+					$browserUploadButton = $('<a href="javascript:;" class="browserUploadButton button">' + message("admin.browser.upload") + '<\/a>').appendTo($browserForm);
+					$browserUploadInput = $('<input type="file" name="file" \/>').appendTo($browserUploadButton);
+				}
+				$browserParentButton = $('<a href="javascript:;" class="button">' + message("admin.browser.parent") + '<\/a>').appendTo($browserBar);
+				$browserBar.append(message("admin.browser.orderType") + ": ");
+				$browserOrderType = $('<select name="orderType" class="browserOrderType"><option value="name">' + message("admin.browser.name") + '<\/option><option value="size">' + message("admin.browser.size") + '<\/option><option value="type">' + message("admin.browser.type") + '<\/option><\/select>').appendTo($browserBar);
+				$browserLoadingIcon = $('<span class="loadingIcon" style="display: none;">&nbsp;<\/span>').appendTo($browserBar);
+				$browserList = $('<div class="browserList"><\/div>').appendTo($browser);
+				var $dialog = $.dialog({
+					title: settings.title,
+					content: $browser,
+					width: 470,
+					modal: true,
+					ok: null,
+					cancel: null
+				});
+				
+				browserList("/");
+				
+				function browserList(path) {
+					var key = settings.type + "_" + path + "_" + $browserOrderType.val();
+					if (cache[key] == null) {
+						$.ajax({
+							url: settings.browserUrl,
+							type: "GET",
+							data: {fileType: settings.type, orderType: $browserOrderType.val(), path: path},
+							dataType: "json",
+							cache: false,
+							beforeSend: function() {
+								$browserLoadingIcon.show();
+							},
+							success: function(data) {
+								createBrowserList(path, data);
+								cache[key] = data;
+							},
+							complete: function() {
+								$browserLoadingIcon.hide();
+							}
+						});
+					} else {
+						createBrowserList(path, cache[key]);
+					}
+				}
+				
+				function createBrowserList(path, data) {
+					var browserListHtml = "";
+					$.each(data, function(i, fileInfo) {
+						var iconUrl;
+						var title;
+						if (fileInfo.isDirectory) {
+							iconUrl = shopxx.base + "/resources/admin/images/folder_icon.gif";
+							title = fileInfo.name;
+						} else if (new RegExp("^\\S.*\\.(jpg|jpeg|bmp|gif|png)$", "i").test(fileInfo.name)) {
+							iconUrl = fileInfo.url;
+							title = fileInfo.name + " (" + Math.ceil(fileInfo.size / 1024) + "KB, " + new Date(fileInfo.lastModified).toLocaleString() + ")";
+						} else {
+							iconUrl = shopxx.base + "/resources/admin/images/file_icon.gif";
+							title = fileInfo.name + " (" + Math.ceil(fileInfo.size / 1024) + "KB, " + new Date(fileInfo.lastModified).toLocaleString() + ")";
+						}
+						browserListHtml += '<div class="browserItem"><img src="' + iconUrl + '" title="' + title + '" url="' + fileInfo.url + '" isDirectory="' + fileInfo.isDirectory + '" \/><div>' + fileInfo.name + '<\/div><\/div>';
+					});
+					$browserList.html(browserListHtml);
+					
+					$browserList.find("img").bind("click", function() {
+						var $this = $(this);
+						var isDirectory = $this.attr("isDirectory");
+						if (isDirectory == "true") {
+							var name = $this.next().text();
+							browserList(path + name + "/");
+						} else {
+							var url = $this.attr("url");
+							if (settings.input != null) {
+								settings.input.val(url);
+							} else {
+								$browserButton.prev(":text").val(url);
+							}
+							if (settings.callback != null && typeof settings.callback == "function") {
+								settings.callback(url);
+							}
+							$dialog.next(".dialogOverlay").andSelf().remove();
+						}
+					});
+					
+					if (path == "/") {
+						$browserParentButton.unbind("click");
+					} else {
+						var parentPath = path.substr(0, path.replace(/\/$/, "").lastIndexOf("/") + 1);
+						$browserParentButton.unbind("click").bind("click", function() {
+							browserList(parentPath);
+						});
+					}
+					$browserOrderType.unbind("change").bind("change", function() {
+						browserList(path);
+					});
+				}
+				
+				$browserUploadInput.change(function() {
+					var allowedUploadExtensions;
+					if (settings.type == "flash") {
+						allowedUploadExtensions = setting.uploadFlashExtension;
+					} else if (settings.type == "media") {
+						allowedUploadExtensions = setting.uploadMediaExtension;
+					} else if (settings.type == "file") {
+						allowedUploadExtensions = setting.uploadFileExtension;
+					} else {
+						allowedUploadExtensions = setting.uploadImageExtension;
+					}
+					if ($.trim(allowedUploadExtensions) == "" || !new RegExp("^\\S.*\\.(" + allowedUploadExtensions.replace(/,/g, "|") + ")$", "i").test($browserUploadInput.val())) {
+						$.message("warn", message("admin.upload.typeInvalid"));
+						return false;
+					}
+					$browserLoadingIcon.show();
+					$browserForm.submit();
+				});
+				
+				$browserFrame.load(function() {
+					var text;
+					var io = document.getElementById(browserFrameId);
+					if(io.contentWindow) {
+						text = io.contentWindow.document.body ? io.contentWindow.document.body.innerHTML : null;
+					} else if(io.contentDocument) {
+						text = io.contentDocument.document.body ? io.contentDocument.document.body.innerHTML : null;
+					}
+					if ($.trim(text) != "") {
+						$browserLoadingIcon.hide();
+						var data = $.parseJSON(text);
+						if (data.message.type == "success") {
+							if (settings.input != null) {
+								settings.input.val(data.url);
+							} else {
+								$browserButton.prev(":text").val(data.url);
+							}
+							if (settings.callback != null && typeof settings.callback == "function") {
+								settings.callback(data.url);
+							}
+							cache = {};
+							$dialog.next(".dialogOverlay").andSelf().remove();
+						} else {
+							$.message(data.message);
+						}
+					}
+				});
+				
+			});
+		});
+	}
+});
 (function($) {
 
 	var zIndex = 100;
