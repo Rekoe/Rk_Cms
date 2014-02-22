@@ -2,6 +2,12 @@ var rkcms = {
 	base: "",
 	locale: "zh_CN"
 };
+var setting = {
+		uploadImageExtension: "",
+		uploadFlashExtension: "",
+		uploadMediaExtension: "",
+		uploadFileExtension: ""
+	};
 var messages = {
 	"admin.message.success": "操作成功",
 	"admin.message.error": "操作错误",
@@ -193,17 +199,7 @@ $.fn.extend({
 				}
 				
 				$browserUploadInput.change(function() {
-					var allowedUploadExtensions;
-					if (settings.type == "flash") {
-						allowedUploadExtensions = setting.uploadFlashExtension;
-					} else if (settings.type == "media") {
-						allowedUploadExtensions = setting.uploadMediaExtension;
-					} else if (settings.type == "file") {
-						allowedUploadExtensions = setting.uploadFileExtension;
-					} else {
-						allowedUploadExtensions = setting.uploadImageExtension;
-					}
-					if ($.trim(allowedUploadExtensions) == "" || !new RegExp("^\\S.*\\.(" + allowedUploadExtensions.replace(/,/g, "|") + ")$", "i").test($browserUploadInput.val())) {
+					if (!new RegExp("^\\S.*\\.(" + "gif".replace(/,/g, "|") + ")$", "i").test($browserUploadInput.val())) {
 						$.message("warn", message("admin.upload.typeInvalid"));
 						return false;
 					}
@@ -221,8 +217,9 @@ $.fn.extend({
 					}
 					if ($.trim(text) != "") {
 						$browserLoadingIcon.hide();
+						text = text.replace("<pre>", "").replace("</pre>","");
 						var data = $.parseJSON(text);
-						if (data.message.type == "success") {
+						if (data.type == "success") {
 							if (settings.input != null) {
 								settings.input.val(data.url);
 							} else {
@@ -234,7 +231,8 @@ $.fn.extend({
 							cache = {};
 							$dialog.next(".dialogOverlay").andSelf().remove();
 						} else {
-							$.message(data.message);
+							//$.message(data.content);
+							$.message("error", data.content);
 						}
 					}
 				});

@@ -3,6 +3,8 @@ package com.rekoe.module.admin;
 import java.io.IOException;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.lang.Files;
@@ -15,6 +17,7 @@ import org.nutz.mvc.impl.AdaptorErrorContext;
 import org.nutz.mvc.upload.TempFile;
 import org.nutz.mvc.upload.UploadAdaptor;
 
+import com.rekoe.common.Message;
 import com.rekoe.service.FileService;
 
 @IocBean
@@ -32,17 +35,17 @@ public class FileAct {
 
 	@At
 	@AdaptBy(type = UploadAdaptor.class, args = { "ioc:myPicUpload" })
-	@Ok("raw")
-	public Object upload(@Param("fileType") FileInfo.FileType fileType, @Param("file") TempFile tempFile, AdaptorErrorContext errCtx) throws IOException {
+	@Ok("json")
+	public Message upload(@Param("fileType") FileInfo.FileType fileType, @Param("file") TempFile tempFile, HttpServletRequest req, AdaptorErrorContext errCtx) throws IOException {
 		if (Lang.isEmpty(tempFile)) {
 			if (Lang.isEmpty(errCtx)) {
-				// req.setAttribute("err","文件不可以为空");
+				return Message.warn("admin.error.message", req);
 			} else {
-				// req.setAttribute("err",errCtx.getAdaptorErr().getMessage());
+				return Message.warn(errCtx.getAdaptorErr().getMessage(), req);
 			}
-			return null;
 		}
-		return fileService.upload(fileType, tempFile, true);
+		fileService.upload(fileType, tempFile, true);
+		return Message.success("Message.Type.success", req);
 	}
 
 	public static class FileInfo {
