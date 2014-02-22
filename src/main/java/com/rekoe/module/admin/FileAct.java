@@ -1,9 +1,9 @@
 package com.rekoe.module.admin;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
+import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.lang.Files;
 import org.nutz.lang.Lang;
@@ -15,9 +15,14 @@ import org.nutz.mvc.impl.AdaptorErrorContext;
 import org.nutz.mvc.upload.TempFile;
 import org.nutz.mvc.upload.UploadAdaptor;
 
+import com.rekoe.service.FileService;
+
 @IocBean
 @At("/admin/file")
 public class FileAct {
+
+	@Inject
+	private FileService fileService;
 
 	@At
 	@Ok("raw")
@@ -37,10 +42,7 @@ public class FileAct {
 			}
 			return null;
 		}
-		final String oldFileName = tempFile.getMeta().getFileLocalName();
-		final File uploadFile = tempFile.getFile();
-		Files.move(uploadFile, new File("/"));
-		return oldFileName;
+		return fileService.upload(fileType, tempFile, true);
 	}
 
 	public static class FileInfo {
