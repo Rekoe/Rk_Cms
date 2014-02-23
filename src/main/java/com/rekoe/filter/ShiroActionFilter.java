@@ -61,7 +61,7 @@ public class ShiroActionFilter implements ActionFilter {
 	}
 
 	private View view = new ServerRedirectView("/");
-	private View NOT_PERMISSION = new ServerRedirectView("/admin/common/forbit");
+	private View NOT_PERMISSION = new ServerRedirectView("/admin/common/forbit.rk");
 
 	public ShiroActionFilter() {
 
