@@ -14,7 +14,7 @@ public class PostTest {
 
 	public static void main(String[] args) throws OAuthSystemException, OAuthProblemException {
 		//DirectTokenSampleClientOAuth();
-		 AuthCodeSampleClientOauth();
+		AuthCodeSampleClientOauth();
 	}
 
 	public static void DirectTokenSampleClientOAuth() throws OAuthSystemException, OAuthProblemException {
@@ -27,7 +27,7 @@ public class PostTest {
 	}
 
 	public static void AuthCodeSampleClientOauth() throws OAuthSystemException, OAuthProblemException {
-		OAuthClientRequest request = OAuthClientRequest.authorizationLocation(ClientParams.OAUTH_SERVER_URL + "authorize.rk").setClientId(ClientParams.CLIENT_ID).setRedirectURI(ClientParams.OAUTH_SERVER_URL + "redirect").setResponseType(ResponseType.CODE.toString()).setState("state").buildQueryMessage();
+		OAuthClientRequest request = OAuthClientRequest.authorizationLocation(ClientParams.OAUTH_SERVER_URL + "authorize.rk").setClientId(ClientParams.CLIENT_ID).setRedirectURI(ClientParams.OAUTH_SERVER_URL + "redirect.rk").setResponseType(ResponseType.CODE.toString()).setState("state").buildQueryMessage();
 		OAuthClient oAuthClient = new OAuthClient(new URLConnectionClient());
 		OAuthAccessTokenResponse oauthResponse = oAuthClient.accessToken(request);
 		System.out.println("access token: " + oauthResponse.getAccessToken());

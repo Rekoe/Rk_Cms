@@ -20,7 +20,7 @@ import org.nutz.mvc.view.ServerRedirectView;
 import org.nutz.mvc.view.ViewWrapper;
 
 import com.rekoe.exception.IncorrectCaptchaException;
-import com.rekoe.filter.CaptchaFormAuthenticationFilter;
+import com.rekoe.filter.AuthenticationFilter;
 
 @IocBean
 public class LoginModule {
@@ -30,8 +30,8 @@ public class LoginModule {
 	 * 
 	 * @param token
 	 */
-	@At
-	@Filters(@By(type = CaptchaFormAuthenticationFilter.class))
+	@At("/oauth2login")
+	@Filters(@By(type = AuthenticationFilter.class))
 	public View localLogin(@Attr("loginToken") AuthenticationToken token) {
 		try {
 			Subject subject = SecurityUtils.getSubject();
