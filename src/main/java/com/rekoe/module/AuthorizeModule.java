@@ -20,13 +20,12 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
-import org.nutz.log.Log;
-import org.nutz.log.Logs;
 import org.nutz.mvc.View;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Filters;
 import org.nutz.mvc.view.ForwardView;
 import org.nutz.mvc.view.RawView;
+import org.nutz.mvc.view.ServerRedirectView;
 import org.nutz.mvc.view.UTF8JsonView;
 import org.nutz.mvc.view.ViewWrapper;
 
@@ -38,7 +37,6 @@ import com.rekoe.service.OAuthService;
 @Filters
 public class AuthorizeModule {
 
-	private final static Log log = Logs.get();
 	@Inject
 	private OAuthService oAuthService;
 	@Inject
@@ -78,10 +76,9 @@ public class AuthorizeModule {
 			String redirectURI = oauthRequest.getParam(OAuth.OAUTH_REDIRECT_URI);
 			// 构建响应
 			OAuthResponse response = builder.location(redirectURI).buildQueryMessage();
-			resp.setHeader("Location", response.getLocationUri());
-			resp.setStatus(response.getResponseStatus());
-			log.debug(response.getBody());
-			return new ViewWrapper(UTF8JsonView.COMPACT, response.getBody());
+			//resp.setHeader("Location", response.getLocationUri());
+			//resp.setStatus(response.getResponseStatus());
+			return new ServerRedirectView(response.getLocationUri());
 		} catch (OAuthProblemException e) {
 			// 出错处理
 			String redirectUri = e.getRedirectUri();
