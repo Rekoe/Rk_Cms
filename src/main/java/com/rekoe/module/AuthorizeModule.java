@@ -22,17 +22,18 @@ import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.View;
 import org.nutz.mvc.annotation.At;
+import org.nutz.mvc.annotation.Filters;
 import org.nutz.mvc.view.ForwardView;
 import org.nutz.mvc.view.RawView;
 import org.nutz.mvc.view.UTF8JsonView;
 import org.nutz.mvc.view.ViewWrapper;
-import org.nutz.mvc.view.VoidView;
 
 import com.rekoe.domain.User;
 import com.rekoe.service.ClientService;
 import com.rekoe.service.OAuthService;
 
 @IocBean
+@Filters
 public class AuthorizeModule {
 
 	@Inject
@@ -76,6 +77,7 @@ public class AuthorizeModule {
 			OAuthResponse response = builder.location(redirectURI).buildQueryMessage();
 			resp.setHeader("Location", response.getLocationUri());
 			resp.setStatus(response.getResponseStatus());
+			return new ViewWrapper(UTF8JsonView.COMPACT, response.getBody());
 		} catch (OAuthProblemException e) {
 			// 出错处理
 			String redirectUri = e.getRedirectUri();
@@ -87,7 +89,7 @@ public class AuthorizeModule {
 			OAuthResponse response = OAuthASResponse.errorResponse(HttpServletResponse.SC_FOUND).error(e).location(redirectUri).buildQueryMessage();
 			resp.setHeader("Location", response.getLocationUri());
 			resp.setStatus(response.getResponseStatus());
+			return new ViewWrapper(UTF8JsonView.COMPACT, response.getBody());
 		}
-		return new VoidView();
 	}
 }
