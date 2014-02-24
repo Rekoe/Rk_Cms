@@ -22,13 +22,13 @@ import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.View;
 import org.nutz.mvc.annotation.At;
-import org.nutz.mvc.annotation.POST;
 import org.nutz.mvc.view.ForwardView;
 import org.nutz.mvc.view.RawView;
 import org.nutz.mvc.view.UTF8JsonView;
 import org.nutz.mvc.view.ViewWrapper;
 import org.nutz.mvc.view.VoidView;
 
+import com.rekoe.domain.User;
 import com.rekoe.service.ClientService;
 import com.rekoe.service.OAuthService;
 
@@ -41,7 +41,6 @@ public class AuthorizeModule {
 	private ClientService clientService;
 
 	@At
-	@POST
 	public View authorize(HttpServletRequest req, HttpServletResponse resp) throws URISyntaxException, OAuthSystemException {
 		try {
 			// 构建OAuth 授权请求
@@ -57,7 +56,7 @@ public class AuthorizeModule {
 			if (!subject.isAuthenticated()) {
 				return new ViewWrapper(new ForwardView("oauth2login.rk"), clientService.findByClientId(oauthRequest.getClientId()));
 			}
-			String username = (String) subject.getPrincipal();
+			User user = (User) subject.getPrincipal();
 			// 生成授权码
 			String authorizationCode = null;
 			// responseType目前仅支持CODE，另外还有TOKEN
@@ -65,7 +64,7 @@ public class AuthorizeModule {
 			if (responseType.equals(ResponseType.CODE.toString())) {
 				OAuthIssuerImpl oauthIssuerImpl = new OAuthIssuerImpl(new MD5Generator());
 				authorizationCode = oauthIssuerImpl.authorizationCode();
-				oAuthService.addAuthCode(authorizationCode, username);
+				oAuthService.addAuthCode(authorizationCode, user.getName());
 			}
 			// 进行OAuth响应构建
 			OAuthASResponse.OAuthAuthorizationResponseBuilder builder = OAuthASResponse.authorizationResponse(req, HttpServletResponse.SC_FOUND);
