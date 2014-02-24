@@ -9,11 +9,13 @@ import org.nutz.dao.Dao;
 import org.nutz.dao.impl.FileSqlManager;
 import org.nutz.dao.sql.Sql;
 import org.nutz.ioc.Ioc;
+import org.nutz.lang.random.R;
 import org.nutz.mvc.NutConfig;
 import org.nutz.mvc.Setup;
 
 import com.rekoe.domain.Article;
 import com.rekoe.domain.ArticleCategory;
+import com.rekoe.domain.Client;
 import com.rekoe.domain.Permission;
 import com.rekoe.domain.Role;
 import com.rekoe.domain.Setting;
@@ -27,6 +29,7 @@ public class MvcSetup implements Setup {
 		Dao dao = ioc.get(Dao.class);
 		//若必要的数据表不存在，则初始化数据库
 		if (!dao.exists(User.class)) {
+			dao.create(Client.class, true);
 			dao.create(User.class, true);
 			dao.create(Role.class, true);
 			dao.create(Permission.class, true);
@@ -55,11 +58,7 @@ public class MvcSetup implements Setup {
 	}
 
 	public static void main(String[] args) {
-		FileSqlManager fm = new FileSqlManager("init_system_h2.sql");
-		List<Sql> sqlList = fm.createCombo(fm.keys());
-		for(Sql sql:sqlList)
-		{
-			System.out.println(sql.getSourceSql());
-		}
+		System.out.println(R.UU16());
+		System.out.println(R.UU16());
 	}
 }

@@ -17,15 +17,15 @@ import org.apache.oltu.oauth2.common.message.OAuthResponse;
 import org.apache.oltu.oauth2.common.message.types.ResponseType;
 import org.apache.oltu.oauth2.common.utils.OAuthUtils;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.View;
 import org.nutz.mvc.annotation.At;
-import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.POST;
 import org.nutz.mvc.view.ForwardView;
+import org.nutz.mvc.view.RawView;
+import org.nutz.mvc.view.UTF8JsonView;
 import org.nutz.mvc.view.ViewWrapper;
 import org.nutz.mvc.view.VoidView;
 
@@ -41,7 +41,6 @@ public class AuthorizeModule {
 	private ClientService clientService;
 
 	@At
-	@Ok("void")
 	@POST
 	public View authorize(HttpServletRequest req, HttpServletResponse resp) throws URISyntaxException, OAuthSystemException {
 		try {
@@ -50,15 +49,13 @@ public class AuthorizeModule {
 			// 检查传入的客户端id是否正确
 			if (!oAuthService.checkClientId(oauthRequest.getClientId())) {
 				OAuthResponse response = OAuthASResponse.errorResponse(HttpServletResponse.SC_BAD_REQUEST).setError(OAuthError.TokenResponse.INVALID_CLIENT).setErrorDescription(com.rekoe.utils.Constants.INVALID_CLIENT_DESCRIPTION).buildJSONMessage();
-				resp.setHeader("Location", response.getLocationUri());
 				resp.setStatus(response.getResponseStatus());
+				return new ViewWrapper(UTF8JsonView.COMPACT, response.getBody());
 			}
 			Subject subject = SecurityUtils.getSubject();
 			// 如果用户没有登录，跳转到登陆页面
 			if (!subject.isAuthenticated()) {
-				if (!login(subject, req)) {// 登录失败时跳转到登陆页面
-					return new ViewWrapper(new ForwardView("oauth2login.rk"), clientService.findByClientId(oauthRequest.getClientId()));
-				}
+				return new ViewWrapper(new ForwardView("oauth2login.rk"), clientService.findByClientId(oauthRequest.getClientId()));
 			}
 			String username = (String) subject.getPrincipal();
 			// 生成授权码
@@ -85,7 +82,7 @@ public class AuthorizeModule {
 			String redirectUri = e.getRedirectUri();
 			if (OAuthUtils.isEmpty(redirectUri)) {
 				// 告诉客户端没有传入redirectUri直接报错
-				resp.setStatus(404);
+				return new ViewWrapper(new RawView("text/plain"), "OAuth callback url needs to be provided by client!!!");
 			}
 			// 返回错误消息（如?error=）
 			OAuthResponse response = OAuthASResponse.errorResponse(HttpServletResponse.SC_FOUND).error(e).location(redirectUri).buildQueryMessage();
@@ -93,21 +90,5 @@ public class AuthorizeModule {
 			resp.setStatus(response.getResponseStatus());
 		}
 		return new VoidView();
-	}
-
-	private boolean login(Subject subject, HttpServletRequest request) {
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		if (org.apache.commons.lang3.StringUtils.isEmpty(username) || org.apache.commons.lang3.StringUtils.isEmpty(password)) {
-			return false;
-		}
-		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
-		try {
-			subject.login(token);
-			return true;
-		} catch (Exception e) {
-			request.setAttribute("error", "登录失败:" + e.getClass().getName());
-			return false;
-		}
 	}
 }

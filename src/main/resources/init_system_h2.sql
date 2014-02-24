@@ -29,3 +29,5 @@ INSERT INTO system_role_permission(ROLEID,PERMISSIONID) VALUES
 (1,6);
 /*  .system_setting  		*/
 INSERT INTO system_setting(id,site_name,certtext,site_enabled,site_close_message) VALUES (1,'瑞克科技','Cms Game',1,'测试阶段<a herf="#">查看更多.....</a>');
+/* .clinet */
+INSERT INTO client(id,client_name,client_id,client_secret) VALUES (1,'Rekoe','b05a8e0bd4024006bb8cc7aa1a173575','f64ecac0aec6498980ba9d6c5adab4be');
