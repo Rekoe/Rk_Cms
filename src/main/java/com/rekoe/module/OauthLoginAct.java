@@ -36,7 +36,7 @@ import org.nutz.mvc.view.ForwardView;
 import org.nutz.mvc.view.ServerRedirectView;
 import org.nutz.mvc.view.ViewWrapper;
 
-import com.rekoe.cms.socialauth.OAuthToken;
+import com.rekoe.shiro.OAuthToken;
 
 @IocBean(create = "init")
 @At("/user")
