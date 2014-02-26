@@ -147,24 +147,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-	<sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
-	<scriptSourceDirectory>${project.basedir}/src/main/java/com/rekoe/mvc</scriptSourceDirectory> 
-		<resources>
-			<resource>
-				<directory>${project.basedir}/src/main/java</directory>
-				<filtering>true</filtering>
-				<excludes>
-					<exclude>**/*.java</exclude>
-				</excludes>
-			</resource>
-			<resource> 
-      			<directory>${project.basedir}/src/main/java/com/rekoe/mvc</directory> 
-      			<filtering>true</filtering>
-				<excludes>
-					<exclude>**/*.js</exclude>
-				</excludes>
-    		</resource> 
-		</resources>
+	<sourceDirectory>src/main/java</sourceDirectory>
 		<finalName>rk_cms</finalName>
 		<plugins>
 			<plugin>
