@@ -7,8 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
+import org.nutz.json.Json;
 import org.nutz.lang.Lang;
 import org.nutz.lang.Times;
+import org.nutz.log.Log;
+import org.nutz.log.Logs;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.Param;
@@ -22,6 +25,7 @@ import com.rekoe.service.ArticleCategoryService;
 @RequiresAuthentication
 public class ArticleCategoryAct {
 
+	private final static Log log = Logs.get();
 	@Inject
 	private ArticleCategoryService articleCategoryService;
 
@@ -53,6 +57,7 @@ public class ArticleCategoryAct {
 		ac.setModifyDate(Times.now());
 		ac.setName(name);
 		ac.setOrder(order);
+		log.info(Json.toJson(ac));
 		articleCategoryService.insert(ac);
 	}
 

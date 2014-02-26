@@ -18,13 +18,14 @@ import org.nutz.dao.entity.annotation.Prev;
 import org.nutz.dao.entity.annotation.Readonly;
 import org.nutz.dao.entity.annotation.Table;
 import org.nutz.lang.Lang;
+import org.nutz.lang.random.R;
 
 @Table("article_category")
 public class ArticleCategory {
 
 	@Name
-	@Prev(els = { @EL("uuid()") })
-	// @Prev(els = {@EL("$me.uuid()")})
+	// @Prev(els = { @EL("uuid()") })
+	@Prev(els = { @EL("$me.uuid()") })
 	private String id;
 
 	@Column("create_date")
@@ -140,6 +141,10 @@ public class ArticleCategory {
 
 	public void setParentId(String parentId) {
 		this.parentId = parentId;
+	}
+
+	public String uuid() {
+		return R.UU16();
 	}
 
 	@Override

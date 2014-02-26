@@ -10,12 +10,14 @@ import org.nutz.dao.entity.annotation.Name;
 import org.nutz.dao.entity.annotation.One;
 import org.nutz.dao.entity.annotation.Prev;
 import org.nutz.dao.entity.annotation.Table;
+import org.nutz.lang.random.R;
 
 @Table("article")
 public class Article {
 
 	@Name
-	@Prev(els = { @EL("uuid()") })
+	//@Prev(els = { @EL("uuid()") })
+	@Prev(els = { @EL("$me.uuid()") })
 	private String id;
 	@Column("create_date")
 	@ColDefine(type = ColType.TIMESTAMP)
@@ -52,7 +54,9 @@ public class Article {
 	public ArticleCategory getArticleCategory() {
 		return articleCategory;
 	}
-
+	public String uuid() {
+		return R.UU16();
+	}
 	public void setArticleCategory(ArticleCategory articleCategory) {
 		this.articleCategory = articleCategory;
 	}
