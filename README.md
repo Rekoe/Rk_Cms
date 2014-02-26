@@ -6,3 +6,4 @@ version - nutz.b.50<br>
 2)mvn clean<br>
 3)mvn eclipse:eclipse<br>
 4)Build path[Use (conf) as  Source Folder]<br>
+mvn dependency:tree 可以查看依赖树
