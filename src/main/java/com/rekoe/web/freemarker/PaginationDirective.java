@@ -37,7 +37,7 @@ public class PaginationDirective implements TemplateDirectiveModel {
 		int maxPage = pageNumber + (int) Math.ceil((segmentCount - 1) / 2.0D);
 		minPage = minPage < 1 ? 1 : minPage;
 		maxPage = maxPage > totalPages ? totalPages : maxPage;
-		List<Integer> localArrayList = new ArrayList<>();
+		List<Integer> localArrayList = new ArrayList<Integer>();
 		for (int i = minPage; i <= maxPage; i++) {
 			localArrayList.add(i);
 		}

@@ -258,7 +258,7 @@ public abstract class DirectiveUtils {
 	}
 	
 	public static void setVariables(Map<String, Object> paramMap, Environment paramEnvironment, TemplateDirectiveBody paramTemplateDirectiveBody) throws TemplateException, IOException {
-		Map<String, Object> localHashMap = new HashMap<>();
+		Map<String, Object> localHashMap = new HashMap<String, Object>();
 		Iterator<String> localIterator = paramMap.keySet().iterator();
 		while (localIterator.hasNext()) {
 			String str = localIterator.next();

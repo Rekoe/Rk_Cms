@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FreemarkerDirectiveFactory {
-	private List<FreemarkerDirective> list = new ArrayList<>();
+	private List<FreemarkerDirective> list = new ArrayList<FreemarkerDirective>();
 	private String freemarker;
 	private FreemarkerDirective[] objs;
 

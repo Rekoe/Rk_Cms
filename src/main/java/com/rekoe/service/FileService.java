@@ -48,7 +48,7 @@ public class FileService extends BaseService<Object> {
 
 	public String upload(FileInfo.FileType fileType, TempFile tempFile, boolean async) throws IOException {
 		String str1 = "/";
-		Map<String, String> localHashMap = new HashMap<>();
+		Map<String, String> localHashMap = new HashMap<String, String>();
 		localHashMap.put("uuid", R.UU16());
 		String str2 = process(str1, localHashMap);
 		String oldFileName = tempFile.getMeta().getFileLocalName();

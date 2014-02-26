@@ -9,7 +9,7 @@ import org.nutz.ioc.loader.annotation.IocBean;
 @IocBean
 public class OAuthService extends BaseService<String> {
 
-	private Map<String, String> cache = new HashMap<>();
+	private Map<String, String> cache = new HashMap<String, String>();
 
 	@Inject
 	private ClientService clientService;
