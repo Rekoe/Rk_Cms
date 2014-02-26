@@ -274,6 +274,7 @@
 	<build>
 	<sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
 	<testSourceDirectory>${project.basedir}/test</testSourceDirectory>
+	<outputDirectory>${project.basedir}/src/main/webapp/WEB-INF/classes</outputDirectory>
 		<resources>
 			<resource>
 				<directory>${project.basedir}/src/main/java</directory>
