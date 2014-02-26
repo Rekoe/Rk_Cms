@@ -53,6 +53,48 @@
 			<artifactId>jcaptcha-all</artifactId>
 			<version>1.0-RC6</version>
 			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+            		<artifactId>spring</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>net.sf.ehcache</groupId>
+            		<artifactId>ehcache</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>hsqldb</groupId>
+            		<artifactId>hsqldb</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-dbcp</groupId>
+            		<artifactId>commons-dbcp</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-pool</groupId>
+            		<artifactId>commons-pool</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>quartz</groupId>
+            		<artifactId>quartz</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>concurrent</groupId>
+            		<artifactId>concurrent</artifactId>
+				</exclusion>
+				<exclusion>
+					 <groupId>xerces</groupId>
+            		<artifactId>xmlParserAPIs</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-collections</groupId>
+            		<artifactId>commons-collections</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>xerces</groupId>
+            		<artifactId>xercesImpl</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.oltu.oauth2</groupId>
@@ -94,6 +136,12 @@
 			<artifactId>shiro-all</artifactId>
 			<version>1.2.2</version>
 			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.shiro</groupId>
+      				<artifactId>shiro-guice</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>poi</groupId>
@@ -104,20 +152,31 @@
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
-			<version>3.10-beta2</version>
+			<version>3.10-FINAL</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml-schemas</artifactId>
-			<version>3.10-beta2</version>
+			<version>3.10-FINAL</version>
 			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.xmlbeans</groupId>
+      				<artifactId>xmlbeans</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
 			<version>3.10-beta2</version>
 			<scope>compile</scope>
+		</dependency>
+		<dependency>
+		    <groupId>commons-beanutils</groupId>
+		    <artifactId>commons-beanutils-core</artifactId>
+		    <version>1.8.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -136,6 +195,40 @@
 			<artifactId>dom4j</artifactId>
 			<version>1.7-20060614</version>
 			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>jaxen</groupId>
+      				<artifactId>jaxen</artifactId>
+				</exclusion>
+				<exclusion>
+					 <groupId>jaxme</groupId>
+      				<artifactId>jaxme-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>xpp3</groupId>
+      				<artifactId>xpp3</artifactId>
+				</exclusion>
+				<exclusion>
+			      <groupId>msv</groupId>
+			      <artifactId>xsdlib</artifactId>
+			   </exclusion>
+			    <exclusion>
+			      <groupId>msv</groupId>
+			      <artifactId>relaxngDatatype</artifactId>
+			   </exclusion>
+			  <exclusion>
+			      <groupId>pull-parser</groupId>
+			      <artifactId>pull-parser</artifactId>
+			    </exclusion>
+			   <exclusion>
+			      <groupId>stax</groupId>
+			      <artifactId>stax-api</artifactId>
+			    </exclusion>
+			  <exclusion>
+			      <groupId>junitperf</groupId>
+			      <artifactId>junitperf</artifactId>
+			  </exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
@@ -158,8 +251,18 @@
 		<dependency>
 			<groupId>org.brickred</groupId>
 			<artifactId>socialauth</artifactId>
-			<version>4.3</version>
+			<version>4.4</version>
 			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.json</groupId>
+            		<artifactId>json</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.openid4java</groupId>
+            		<artifactId>openid4java-consumer</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.htmlparser</groupId>
