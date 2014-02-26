@@ -75,6 +75,21 @@
 		    <version>0.31</version>
 		</dependency>
 		<dependency>
+		    <groupId>org.apache.oltu.oauth2</groupId>
+		    <artifactId>org.apache.oltu.oauth2.client</artifactId>
+		    <version>0.31</version>
+		</dependency>
+		<dependency>
+	      <groupId>org.apache.oltu.oauth2</groupId>
+	      <artifactId>org.apache.oltu.oauth2.dynamicreg.server</artifactId>
+	      <version>0.31</version>
+	    </dependency>	
+	        <dependency>
+	      <groupId>org.apache.oltu.oauth2</groupId>
+	      <artifactId>org.apache.oltu.oauth2.dynamicreg.client</artifactId>
+	      <version>0.31</version>
+	    </dependency>  
+		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-all</artifactId>
 			<version>1.2.2</version>
@@ -155,6 +170,7 @@
 	</dependencies>
 	<build>
 	<sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+	<testSourceDirectory>${project.basedir}/test</testSourceDirectory>
 		<resources>
 			<resource>
 				<directory>${project.basedir}/src/main/java</directory>
@@ -163,7 +179,19 @@
 					<exclude>**/*.java</exclude>
 				</excludes>
 			</resource>
+			<resource> 
+		      <directory>src/main/resources</directory> 
+		    </resource> 
 		</resources>
+		<testResources>
+			<testResource>
+				<directory>${project.basedir}/test</directory>
+				<filtering>false</filtering>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</testResource>
+		</testResources>
 		<finalName>rk_cms</finalName>
 		<plugins>
 			<plugin>
