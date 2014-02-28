@@ -73,7 +73,6 @@ public class AccessTokenModule {
 			OAuthResponse response = OAuthASResponse.tokenResponse(HttpServletResponse.SC_OK).setAccessToken(accessToken).setExpiresIn(String.valueOf(oAuthService.getExpireIn())).buildJSONMessage();
 			resp.setHeader("Location", response.getLocationUri());
 			resp.setStatus(response.getResponseStatus());
-			System.out.println(response.getBody());
 			return new ViewWrapper(new RawView("application/json"), response.getBody());
 
 		} catch (OAuthProblemException e) {

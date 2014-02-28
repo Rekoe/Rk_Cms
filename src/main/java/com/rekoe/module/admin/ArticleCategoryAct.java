@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
@@ -32,6 +33,7 @@ public class ArticleCategoryAct {
 	@At
 	@Ok("fm:template.admin.article_category.list")
 	public List<ArticleCategory> list() {
+		log.debugf(">>>>>>>>>>>>>> [%s]", SecurityUtils.getSubject().getSession().getAttribute("sid"));
 		return articleCategoryService.getList();
 	}
 
@@ -43,7 +45,7 @@ public class ArticleCategoryAct {
 
 	@At
 	@Ok("fm:template.admin.article_category.edit")
-	public ArticleCategory edit(@Param("id") String id,HttpServletRequest req) {
+	public ArticleCategory edit(@Param("id") String id, HttpServletRequest req) {
 		ArticleCategory articleCategory = articleCategoryService.fetch(id);
 		req.setAttribute("articleCategoryTree", list());
 		req.setAttribute("children", articleCategoryService.findChildren(articleCategory));

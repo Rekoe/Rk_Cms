@@ -23,6 +23,7 @@ package cms.rekoe;
 
 import org.apache.oltu.oauth2.client.URLConnectionClient;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
+import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.apache.oltu.oauth2.ext.dynamicreg.client.OAuthRegistrationClient;
 import org.apache.oltu.oauth2.ext.dynamicreg.client.request.OAuthClientRegistrationRequest;
@@ -44,7 +45,7 @@ public class ClientRegistrationTest {
 
 	public static void main(String[] args) throws Exception {
 		ClientRegistrationTest test = new ClientRegistrationTest();
-		test.testInvalidType();
+		test.testPushMetadataRegistration();
 	}
 	public void testPushMetadataRegistration() throws Exception {
 		OAuthClientRequest request = OAuthClientRegistrationRequest.location(ClientContent.REGISTRATION_ENDPOINT, OAuthRegistration.Type.PUSH).setName(ClientContent.APP_NAME).setUrl(ClientContent.APP_URL).setDescription(ClientContent.APP_DESCRIPTION).setIcon(ClientContent.APP_ICON).setRedirectURL(ClientContent.APP_REDIRECT_URI).buildJSONMessage();

@@ -20,13 +20,12 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
-import org.nutz.mvc.View;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Filters;
+import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.view.ForwardView;
 import org.nutz.mvc.view.RawView;
 import org.nutz.mvc.view.ServerRedirectView;
-import org.nutz.mvc.view.UTF8JsonView;
 import org.nutz.mvc.view.ViewWrapper;
 
 import com.rekoe.domain.User;
@@ -43,7 +42,8 @@ public class AuthorizeModule {
 	private ClientService clientService;
 
 	@At
-	public View authorize(HttpServletRequest req, HttpServletResponse resp) throws URISyntaxException, OAuthSystemException {
+	@Ok("oauth")
+	public Object authorize(HttpServletRequest req, HttpServletResponse resp) throws URISyntaxException, OAuthSystemException {
 		try {
 			// 构建OAuth 授权请求
 			OAuthAuthzRequest oauthRequest = new OAuthAuthzRequest(req);
@@ -51,7 +51,7 @@ public class AuthorizeModule {
 			if (!oAuthService.checkClientId(oauthRequest.getClientId())) {
 				OAuthResponse response = OAuthASResponse.errorResponse(HttpServletResponse.SC_BAD_REQUEST).setError(OAuthError.TokenResponse.INVALID_CLIENT).setErrorDescription(com.rekoe.utils.Constants.INVALID_CLIENT_DESCRIPTION).buildJSONMessage();
 				resp.setStatus(response.getResponseStatus());
-				return new ViewWrapper(UTF8JsonView.COMPACT, response.getBody());
+				return response.getBody();
 			}
 			Subject subject = SecurityUtils.getSubject();
 			// 如果用户没有登录，跳转到登陆页面
@@ -90,7 +90,7 @@ public class AuthorizeModule {
 			OAuthResponse response = OAuthASResponse.errorResponse(HttpServletResponse.SC_FOUND).error(e).location(redirectUri).buildQueryMessage();
 			resp.setHeader("Location", response.getLocationUri());
 			resp.setStatus(response.getResponseStatus());
-			return new ViewWrapper(UTF8JsonView.COMPACT, response.getBody());
+			return response.getBody();
 		}
 	}
 }
