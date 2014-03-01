@@ -278,6 +278,15 @@
 	<sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
 	<testSourceDirectory>${project.basedir}/test</testSourceDirectory>
 	<outputDirectory>${project.basedir}/src/main/webapp/WEB-INF/classes</outputDirectory>
+	<resources>
+		<resource>
+			<directory>${project.basedir}/src/main/java</directory>
+			<filtering>true</filtering> 
+			<excludes>
+				<exclude>**/*.sql</exclude>
+			</excludes>
+		</resource>
+	</resources>
 	<testResources>
 		<testResource>
 			<directory>${project.basedir}/test</directory>
