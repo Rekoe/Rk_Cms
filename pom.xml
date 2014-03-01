@@ -23,36 +23,37 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.28</version>
-			<scope>compile</scope>
+			<scope>compiler</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
 			<version>1.0.2</version>
-			<scope>compile</scope>
+			<scope>compiler</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.nutz</groupId>
 			<artifactId>nutz</artifactId>
 			<version>1.b.49</version>
-			<scope>compile</scope>
+			<scope>compiler</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.nutz</groupId>
 			<artifactId>nutz-web</artifactId>
 			<version>1.b.49</version>
-			<scope>compile</scope>
+			<scope>compiler</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
 			<version>2.3.20</version>
+			<scope>compiler</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.octo.captcha</groupId>
 			<artifactId>jcaptcha-all</artifactId>
 			<version>1.0-RC6</version>
-			<scope>compile</scope>
+			<scope>compiler</scope>
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework</groupId>
@@ -100,42 +101,43 @@
 			<groupId>org.apache.oltu.oauth2</groupId>
 			<artifactId>org.apache.oltu.oauth2.authzserver</artifactId>
 			<version>0.31</version>
+			<scope>compiler</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.oltu.oauth2</groupId>
 			<artifactId>org.apache.oltu.oauth2.resourceserver</artifactId>
 			<version>0.31</version>
+			<scope>compiler</scope>
 		</dependency>
 		<dependency>
 		    <groupId>org.apache.oltu.oauth2</groupId>
 		    <artifactId>org.apache.oltu.oauth2.client</artifactId>
 		    <version>0.31</version>
+		    <scope>compiler</scope>
 		</dependency>
 		<dependency>
 		    <groupId>org.apache.oltu.oauth2</groupId>
 		    <artifactId>org.apache.oltu.oauth2.common</artifactId>
 		    <version>0.31</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.apache.oltu.oauth2</groupId>
-		    <artifactId>org.apache.oltu.oauth2.client</artifactId>
-		    <version>0.31</version>
+		    <scope>compiler</scope>
 		</dependency>
 		<dependency>
 	      <groupId>org.apache.oltu.oauth2</groupId>
 	      <artifactId>org.apache.oltu.oauth2.dynamicreg.server</artifactId>
 	      <version>0.31</version>
+	      <scope>provided</scope>
 	    </dependency>	
 	        <dependency>
 	      <groupId>org.apache.oltu.oauth2</groupId>
 	      <artifactId>org.apache.oltu.oauth2.dynamicreg.client</artifactId>
 	      <version>0.31</version>
+	      <scope>provided</scope>
 	    </dependency>  
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-all</artifactId>
 			<version>1.2.2</version>
-			<scope>compile</scope>
+			<scope>compiler</scope>
 			<exclusions>
 				<exclusion>
 					<groupId>org.apache.shiro</groupId>
@@ -147,19 +149,19 @@
 			<groupId>poi</groupId>
 			<artifactId>poi</artifactId>
 			<version>3.1-FINAL</version>
-			<scope>compile</scope>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
 			<version>3.10-FINAL</version>
-			<scope>compile</scope>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml-schemas</artifactId>
 			<version>3.10-FINAL</version>
-			<scope>compile</scope>
+			<scope>provided</scope>
 			<exclusions>
 				<exclusion>
 					<groupId>org.apache.xmlbeans</groupId>
@@ -171,30 +173,31 @@
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
 			<version>3.10-beta2</version>
-			<scope>compile</scope>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 		    <groupId>commons-beanutils</groupId>
 		    <artifactId>commons-beanutils-core</artifactId>
 		    <version>1.8.3</version>
+		    <scope>compiler</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.1</version>
-			<scope>compile</scope>
+			<scope>compiler</scope>
 		</dependency>
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
 			<version>1.1.3</version>
-			<scope>compile</scope>
+			<scope>compiler</scope>
 		</dependency>
 		<dependency>
 			<groupId>maven</groupId>
 			<artifactId>dom4j</artifactId>
 			<version>1.7-20060614</version>
-			<scope>compile</scope>
+			<scope>compiler</scope>
 			<exclusions>
 				<exclusion>
 					<groupId>jaxen</groupId>
@@ -234,25 +237,25 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
-			<scope>compile</scope>
+			<scope>compiler</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.5</version>
-			<scope>compile</scope>
+			<scope>compiler</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.7.5</version>
-			<scope>compile</scope>
+			<scope>compiler</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.brickred</groupId>
 			<artifactId>socialauth</artifactId>
 			<version>4.4</version>
-			<scope>compile</scope>
+			<scope>compiler</scope>
 			<exclusions>
 				<exclusion>
 					<groupId>org.json</groupId>
@@ -268,37 +271,26 @@
 			<groupId>org.htmlparser</groupId>
 			<artifactId>htmlparser</artifactId>
 			<version>2.1</version>
-			<scope>compile</scope>
+			<scope>compiler</scope>
 		</dependency>
 	</dependencies>
 	<build>
 	<sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
 	<testSourceDirectory>${project.basedir}/test</testSourceDirectory>
 	<outputDirectory>${project.basedir}/src/main/webapp/WEB-INF/classes</outputDirectory>
-		<resources>
-			<resource>
-				<directory>${project.basedir}/src/main/java</directory>
-				<filtering>false</filtering>
-				<excludes>
-					<exclude>**/*.java</exclude>
-				</excludes>
-			</resource>
-			<resource> 
-		      <directory>src/main/resources</directory> 
-		    </resource> 
-		</resources>
-		<testResources>
-			<testResource>
-				<directory>${project.basedir}/test</directory>
-				<filtering>false</filtering>
-				<excludes>
-					<exclude>**/*.java</exclude>
-				</excludes>
-			</testResource>
-		</testResources>
+	<testResources>
+		<testResource>
+			<directory>${project.basedir}/test</directory>
+			<filtering>true</filtering>
+			<excludes>
+				<exclude>**/*.java</exclude>
+			</excludes>
+		</testResource>
+	</testResources>
 		<finalName>rk_cms</finalName>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId> 
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.5.1</version>
 				<configuration>
@@ -308,12 +300,46 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.3</version>
 				<configuration>
-					<packagingExcludes>WEB-INF/web.xml</packagingExcludes>
+				<archiveClasses>false</archiveClasses>
+					<archive>
+			          <addMavenDescriptor>false</addMavenDescriptor>
+			        </archive>
+			        <webResources>
+				      <resource>
+				        <directory>src/main/resources</directory>  
+				        <targetPath>WEB-INF/classes</targetPath>  
+				        <filtering>true</filtering> 
+						<excludes>
+							<exclude>**/*.sql</exclude>
+						</excludes> 
+				      </resource>  
+				  </webResources> 
 				</configuration>
 			</plugin>
+			<plugin>  
+                <groupId>org.apache.maven.plugins</groupId>  
+                <artifactId>maven-jar-plugin</artifactId>  
+                <executions>  
+                    <execution>  
+                        <phase>package</phase>  
+                        <goals>  
+                            <goal>jar</goal>  
+                        </goals>  
+                        <configuration>  
+	                        <archive>
+				          		<addMavenDescriptor>false</addMavenDescriptor>
+				        	</archive>
+                            <classesDirectory>${project.basedir}/src/main/webapp/WEB-INF/classes</classesDirectory>  
+                            <finalName>${project.basedir}</finalName>  
+                            <outputDirectory>target</outputDirectory>  
+                        </configuration>  
+                    </execution>  
+                </executions>  
+            </plugin>
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
