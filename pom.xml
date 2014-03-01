@@ -278,15 +278,6 @@
 	<sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
 	<testSourceDirectory>${project.basedir}/test</testSourceDirectory>
 	<outputDirectory>${project.basedir}/src/main/webapp/WEB-INF/classes</outputDirectory>
-	<resources>
-		<resource>
-			<directory>${project.basedir}/src/main/java</directory>
-			<filtering>true</filtering> 
-			<excludes>
-				<exclude>**/*.sql</exclude>
-			</excludes>
-		</resource>
-	</resources>
 	<testResources>
 		<testResource>
 			<directory>${project.basedir}/test</directory>
@@ -313,7 +304,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.3</version>
 				<configuration>
-				<archiveClasses>false</archiveClasses>
+					<archiveClasses>false</archiveClasses>
 					<archive>
 			          <addMavenDescriptor>false</addMavenDescriptor>
 			        </archive>
@@ -321,10 +312,6 @@
 				      <resource>
 				        <directory>src/main/resources</directory>  
 				        <targetPath>WEB-INF/classes</targetPath>  
-				        <filtering>true</filtering> 
-						<excludes>
-							<exclude>**/*.sql</exclude>
-						</excludes> 
 				      </resource>  
 				  </webResources> 
 				</configuration>
@@ -338,7 +325,7 @@
                         <goals>  
                             <goal>jar</goal>  
                         </goals>  
-                        <configuration>  
+                        <configuration> 
 	                        <archive>
 				          		<addMavenDescriptor>false</addMavenDescriptor>
 				        	</archive>
