@@ -32,6 +32,11 @@
 			<scope>compiler</scope>
 		</dependency>
 		<dependency>
+		    <groupId>org.codehaus.jettison</groupId>
+		    <artifactId>jettison</artifactId>
+		    <version>1.3.5</version>
+		</dependency>
+		<dependency>
 			<groupId>org.nutz</groupId>
 			<artifactId>nutz</artifactId>
 			<version>1.b.49</version>
@@ -252,6 +257,12 @@
 			<scope>compiler</scope>
 		</dependency>
 		<dependency>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-resources-plugin</artifactId>
+		    <version>2.5</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.brickred</groupId>
 			<artifactId>socialauth</artifactId>
 			<version>4.4</version>
@@ -316,26 +327,7 @@
 				  </webResources> 
 				</configuration>
 			</plugin>
-			<plugin>  
-                <groupId>org.apache.maven.plugins</groupId>  
-                <artifactId>maven-jar-plugin</artifactId>  
-                <executions>  
-                    <execution>  
-                        <phase>package</phase>  
-                        <goals>  
-                            <goal>jar</goal>  
-                        </goals>  
-                        <configuration> 
-	                        <archive>
-				          		<addMavenDescriptor>false</addMavenDescriptor>
-				        	</archive>
-                            <classesDirectory>${project.basedir}/src/main/webapp/WEB-INF/classes</classesDirectory>  
-                            <finalName>${project.basedir}</finalName>  
-                            <outputDirectory>target</outputDirectory>  
-                        </configuration>  
-                    </execution>  
-                </executions>  
-            </plugin>
+			
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
