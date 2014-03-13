@@ -31,6 +31,7 @@ import org.nutz.lang.Files;
 import org.nutz.lang.stream.NullInputStream;
 import org.nutz.mvc.View;
 import org.nutz.mvc.annotation.At;
+import org.nutz.mvc.annotation.Filters;
 import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.view.ForwardView;
 import org.nutz.mvc.view.ServerRedirectView;
@@ -40,6 +41,7 @@ import com.rekoe.shiro.OAuthToken;
 
 @IocBean(create = "init")
 @At("/user")
+@Filters
 public class OauthLoginAct {
 
 	// 需要登录之后才能访问,否则跳转到首页
@@ -50,7 +52,6 @@ public class OauthLoginAct {
 	}
 
 	/* 提供社会化登录 */
-	@RequiresGuest
 	@At("/login/?")
 	@Ok("void")
 	public void login(String provider, HttpSession session, HttpServletRequest req, HttpServletResponse res) throws Exception {

@@ -103,6 +103,11 @@
 			</exclusions>
 		</dependency>
 		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20131018</version>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.oltu.oauth2</groupId>
 			<artifactId>org.apache.oltu.oauth2.authzserver</artifactId>
 			<version>0.31</version>

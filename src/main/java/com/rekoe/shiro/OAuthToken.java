@@ -18,7 +18,7 @@
  */
 package com.rekoe.shiro;
 
-import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.brickred.socialauth.Profile;
 
 /**
@@ -28,7 +28,7 @@ import org.brickred.socialauth.Profile;
  * @author Jerome Leleu
  * @since 1.0.0
  */
-public final class OAuthToken implements AuthenticationToken {
+public final class OAuthToken extends UsernamePasswordToken  {
 
 	private static final long serialVersionUID = 3376624432421737333L;
 	private Profile credential;
@@ -54,4 +54,20 @@ public final class OAuthToken implements AuthenticationToken {
 	public Profile getCredentials() {
 		return credential;
 	}
+
+	@Override
+	public boolean isRememberMe() {
+		return false;
+	}
+
+	@Override
+	public String getHost() {
+		return addr;
+	}
+
+	@Override
+	public String getUsername() {
+		return credential.getDisplayName();
+	}
+	
 }
