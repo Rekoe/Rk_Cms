@@ -41,7 +41,7 @@
   </servlet>
 	<filter-mapping>
 		<filter-name>nutz</filter-name>
-		<url-pattern>*.rk</url-pattern>
+		<url-pattern>/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
