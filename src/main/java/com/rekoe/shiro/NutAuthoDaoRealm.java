@@ -15,6 +15,10 @@ import com.rekoe.domain.User;
 
 public class NutAuthoDaoRealm extends AbstractNutAuthoRealm {
 
+	
+	public NutAuthoDaoRealm() {
+		setAuthenticationTokenClass(OAuthToken.class);
+	}
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws DisabledAccountException {
 		OAuthToken oauthToken = (OAuthToken) token;
 		Profile credential = oauthToken.getCredentials();
