@@ -197,6 +197,12 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>3.10-FINAL</version>
 			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>dom4j</groupId>
+        			<artifactId>dom4j</artifactId>
+				</exclusion>
+				</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
