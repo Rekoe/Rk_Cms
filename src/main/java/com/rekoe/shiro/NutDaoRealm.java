@@ -17,6 +17,10 @@ import com.rekoe.exception.IncorrectCaptchaException;
 
 public class NutDaoRealm extends AbstractNutAuthoRealm {
 
+	public NutDaoRealm() {
+		setAuthenticationTokenClass(CaptchaUsernamePasswordToken.class);
+	}
+
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws DisabledAccountException {
 		CaptchaUsernamePasswordToken authcToken = (CaptchaUsernamePasswordToken) token;
 		String accountName = authcToken.getUsername();
@@ -36,7 +40,7 @@ public class NutDaoRealm extends AbstractNutAuthoRealm {
 		if (Lang.isEmpty(user)) {
 			throw Lang.makeThrow(UnknownAccountException.class, "Account [ %s ] not found", authcToken.getUsername());
 		}
-		if (user.isLocked()) {
+		if (!user.isLocked()) {
 			throw Lang.makeThrow(LockedAccountException.class, "Account [ %s ] is locked.", authcToken.getUsername());
 		}
 		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getPassword(), getName());

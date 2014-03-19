@@ -97,15 +97,15 @@ public class OauthLoginAct {
 		try {
 			currentUser.login(token);
 		} catch (UnknownAccountException uae) {
-			return new ViewWrapper(new ForwardView("/login/index"), "帐号不存在");
+			return new ViewWrapper(new ForwardView("/admin/index"), "帐号不存在");
 		} catch (IncorrectCredentialsException ice) {
-			return new ViewWrapper(new ForwardView("/login/index"), "证书验证失败");
+			return new ViewWrapper(new ForwardView("/admin/index"), "证书验证失败");
 		} catch (LockedAccountException lae) {
-			return new ViewWrapper(new ForwardView("/login/index"), "帐号已被锁定");
+			return new ViewWrapper(new ForwardView("/admin/index"), "帐号已被锁定");
 		} catch (ExcessiveAttemptsException eae) {
-			return new ViewWrapper(new ForwardView("/login/index"), "尝试的次数太多");
+			return new ViewWrapper(new ForwardView("/admin/index"), "尝试的次数太多");
 		} catch (AuthenticationException ae) {
-			return new ViewWrapper(new ForwardView("/login/index"), "密码错误或用户不存在");
+			return new ViewWrapper(new ForwardView("/admin/index"), "密码错误或用户不存在");
 		}
 		return new ViewWrapper(new ServerRedirectView("/admin/main.rk"), null);
 	}
