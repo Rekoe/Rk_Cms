@@ -116,6 +116,7 @@ public class UserService extends BaseService<User> {
 		user.setOpenid(openid);
 		user.setProviderid(providerid);
 		user.setRegisterIp(addr);
+		user.setLocked(true);
 		return dao().insert(user);
 	}
 

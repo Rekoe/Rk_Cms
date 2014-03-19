@@ -93,20 +93,21 @@ public class OauthLoginAct {
 		Profile p = provider.getUserProfile();
 		Subject currentUser = SecurityUtils.getSubject();
 		ThreadContext.bind(currentUser);
-		OAuthToken token = new OAuthToken(p,request.getRemoteAddr());
+		OAuthToken token = new OAuthToken(p, request.getRemoteAddr());
 		try {
-			currentUser.login(token); // 这里的授权,请查看shiro.ini中的nutRealm
+			currentUser.login(token);
 		} catch (UnknownAccountException uae) {
 			return new ViewWrapper(new ForwardView("/login/index"), "帐号不存在");
 		} catch (IncorrectCredentialsException ice) {
+			return new ViewWrapper(new ForwardView("/login/index"), "证书验证失败");
 		} catch (LockedAccountException lae) {
 			return new ViewWrapper(new ForwardView("/login/index"), "帐号已被锁定");
 		} catch (ExcessiveAttemptsException eae) {
-			return new ViewWrapper(new ForwardView("/"), eae.getMessage());
+			return new ViewWrapper(new ForwardView("/login/index"), "尝试的次数太多");
 		} catch (AuthenticationException ae) {
-			return new ViewWrapper(new ForwardView("/"), ae.getMessage());
+			return new ViewWrapper(new ForwardView("/login/index"), "密码错误或用户不存在");
 		}
-		return new ViewWrapper(new ServerRedirectView("/admin/index"), null);
+		return new ViewWrapper(new ServerRedirectView("/admin/main.rk"), null);
 	}
 
 	private SocialAuthConfig config;

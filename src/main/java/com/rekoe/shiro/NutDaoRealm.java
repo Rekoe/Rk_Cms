@@ -17,10 +17,6 @@ import com.rekoe.exception.IncorrectCaptchaException;
 
 public class NutDaoRealm extends AbstractNutAuthoRealm {
 
-	public NutDaoRealm() {
-		setAuthenticationTokenClass(CaptchaUsernamePasswordToken.class);
-	}
-
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws DisabledAccountException {
 		CaptchaUsernamePasswordToken authcToken = (CaptchaUsernamePasswordToken) token;
 		String accountName = authcToken.getUsername();
