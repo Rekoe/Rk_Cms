@@ -23,6 +23,10 @@ import java.util.Collection;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.ExcessiveAttemptsException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.LockedAccountException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.pam.AbstractAuthenticationStrategy;
 import org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy;
 import org.apache.shiro.authc.pam.AuthenticationStrategy;
@@ -71,6 +75,15 @@ public class AnySuccessfulStrategy extends AbstractAuthenticationStrategy {
 	@Override
 	public AuthenticationInfo afterAttempt(Realm realm, AuthenticationToken token, AuthenticationInfo singleRealmInfo, AuthenticationInfo aggregateInfo, Throwable t) throws AuthenticationException {
 		if (singleRealmInfo == null) {
+			if (t.getClass().isAssignableFrom(LockedAccountException.class)) {
+				throw Lang.makeThrow(LockedAccountException.class, t.getMessage());
+			} else if (t.getClass().isAssignableFrom(UnknownAccountException.class)) {
+				throw Lang.makeThrow(UnknownAccountException.class, t.getMessage());
+			} else if (t.getClass().isAssignableFrom(IncorrectCredentialsException.class)) {
+				throw Lang.makeThrow(IncorrectCredentialsException.class, t.getMessage());
+			} else if (t.getClass().isAssignableFrom(ExcessiveAttemptsException.class)) {
+				throw Lang.makeThrow(ExcessiveAttemptsException.class, t.getMessage());
+			}
 			throw Lang.makeThrow(AuthenticationException.class, t.getMessage());
 		}
 		return super.afterAttempt(realm, token, singleRealmInfo, aggregateInfo, t);
