@@ -1,7 +1,8 @@
 <div class="container footer">
 	<div class="span24">
 		<ul class="bottomNav">
-			<a href="${base}/login.jsp" target="_blank">管理入口</a>
+		<div class="copyright"></div>
+			源码托管地址:<a href="https://github.com/Rekoe/Rk_Cms" target="_blank">https://github.com/Rekoe/Rk_Cms</a>
 		</ul>
 	</div>
 	<div class="span24">
