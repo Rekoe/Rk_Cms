@@ -37,7 +37,7 @@ import org.nutz.mvc.view.ForwardView;
 import org.nutz.mvc.view.ServerRedirectView;
 import org.nutz.mvc.view.ViewWrapper;
 
-import com.rekoe.shiro.OAuthToken;
+import com.rekoe.shiro.realm.OAuthToken;
 
 @IocBean(create = "init")
 @At("/user")
@@ -105,7 +105,7 @@ public class OauthLoginAct {
 		} catch (ExcessiveAttemptsException eae) {
 			return new ViewWrapper(new ForwardView("/admin/index"), "尝试的次数太多");
 		} catch (AuthenticationException ae) {
-			return new ViewWrapper(new ForwardView("/admin/index"), "密码错误或用户不存在");
+			return new ViewWrapper(new ForwardView("/admin/index"), ae.getMessage());
 		}
 		return new ViewWrapper(new ServerRedirectView("/admin/main.rk"), null);
 	}

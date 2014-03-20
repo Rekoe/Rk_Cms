@@ -1,4 +1,4 @@
-package com.rekoe.shiro;
+package com.rekoe.shiro.realm;
 
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;

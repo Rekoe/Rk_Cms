@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.rekoe.shiro;
+package com.rekoe.shiro.realm;
 
 import org.apache.shiro.authc.AuthenticationToken;
 import org.brickred.socialauth.Profile;

@@ -1,4 +1,4 @@
-package com.rekoe.shiro;
+package com.rekoe.shiro.realm;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -40,7 +40,7 @@ public class NutDaoRealm extends AbstractNutAuthoRealm {
 		if (Lang.isEmpty(user)) {
 			throw Lang.makeThrow(UnknownAccountException.class, "Account [ %s ] not found", authcToken.getUsername());
 		}
-		if (!user.isLocked()) {
+		if (user.isLocked()) {
 			throw Lang.makeThrow(LockedAccountException.class, "Account [ %s ] is locked.", authcToken.getUsername());
 		}
 		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getPassword(), getName());
