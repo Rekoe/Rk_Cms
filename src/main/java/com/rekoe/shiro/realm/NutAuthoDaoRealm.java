@@ -28,10 +28,10 @@ public class NutAuthoDaoRealm extends AbstractNutAuthoRealm {
 			String nickName = credential.getDisplayName();
 			String providerid = credential.getProviderId();
 			user = getUserService().initUser(nickName, openid, providerid, oauthToken.getAddr());
-			throw Lang.makeThrow(UnknownAccountException.class, "Account [ %s ] not found", openid);
+			throw Lang.makeThrow(UnknownAccountException.class, "Account [ %s ] not found", user.getName());
 		}
 		if (user.isLocked()) {
-			throw Lang.makeThrow(LockedAccountException.class, "Account [ %s ] is locked.", openid);
+			throw Lang.makeThrow(LockedAccountException.class, "Account [ %s ] is locked.", user.getName());
 		}
 		oauthToken.setUserId(openid);
 		SimpleAuthenticationInfo account = new SimpleAuthenticationInfo(user, credential, getName());// (principalCollection,
