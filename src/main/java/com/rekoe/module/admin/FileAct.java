@@ -1,16 +1,22 @@
 package com.rekoe.module.admin;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
+import org.nutz.lang.Encoding;
 import org.nutz.lang.Files;
 import org.nutz.lang.Lang;
+import org.nutz.lang.Streams;
 import org.nutz.mvc.annotation.AdaptBy;
 import org.nutz.mvc.annotation.At;
+import org.nutz.mvc.annotation.Fail;
 import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.Param;
 import org.nutz.mvc.impl.AdaptorErrorContext;
@@ -46,6 +52,17 @@ public class FileAct {
 		}
 		fileService.upload(fileType, tempFile, true);
 		return Message.success("Message.Type.success", req);
+	}
+
+	@At
+	@Ok("void")
+	@Fail("json")
+	public void down(HttpServletResponse resp) throws IOException {
+		File f = Files.findFile("file:path");
+		String filename = URLEncoder.encode(f.getName(), Encoding.UTF8);
+		resp.setHeader("Content-Length", "" + f.length());
+		resp.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+		Streams.writeAndClose(resp.getOutputStream(), Streams.fileIn(f));
 	}
 
 	public static class FileInfo {
