@@ -50,6 +50,7 @@
 	<div class="login">
 		<form id="loginForm" action="${base}/admin/login.rk" method="post">
 			<input type="hidden" id="enPassword" name="enPassword" />
+			<input type="hidden" id="rememberMe" name="rememberMe" value="true" />
 			<table>
 				<tr>
 					<td width="190" rowspan="2" align="center" valign="bottom"><img src="${base}/resources/admin/images/login_logo.gif" alt="Rekoe" /></td>
@@ -68,7 +69,7 @@
 				<tr>
 					<td>&nbsp;</td>
 					<th>&nbsp;</th>
-					<td><label><input type="checkbox" id="rememberMe" name="rememberMe" value="true" /><@s.m "login_remember_me"/>:</label></td>
+					<td></td>
 				</tr>
 				<tr>
 					<td>&nbsp;</td>

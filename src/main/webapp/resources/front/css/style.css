@@ -1,0 +1,170 @@
+/*reset*/
+html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,select,p,blockquote,th,td{margin:0;padding:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}address,button,caption,cite,code,dfn,em,input,optgroup,option,select,strong,textarea,th,var{font:inherit}del,ins{text-decoration:none}li{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}q:before,q:after{content:''}abbr,acronym{border:0;font-variant:normal}sup{vertical-align:baseline}sub{vertical-align:baseline}legend{color:#000}em{font-style:normal;}a{text-decoration:none;}a:hover{text-decoration:underline;}:focus{outline:none;}
+/*commen*/
+.f12{font-size:12px;}.f14{font-size:14px;}.fb{font-weight:bold;}.fn{font-weight:normal;}.f_msyh{font-family:'\5FAE\8F6F\96C5\9ED1'}
+.fl{float:left;}.fr{float:right;}.c:after{clear:both;height:0;display:block;visibility:hidden;content:".";}.c{display:inline-block;}/* Hide from IE Mac \*/.c{display:block;}/* End hide from IE Mac */
+.offscreen{position:absolute;left:-1000em;}.to{text-indent:-999em;overflow:hidden;}.pr{position:relative;}.pa{position:absolute;}.tr{text-align:right;}.tl{text-align:left;}.tc{text-align:center;}.none{display:none;}.tshadow{filter:DropShadow(Color=#484848, OffX=1, OffY=1, Positive=true);}.stroke{filter:DropShadow(Color=#484848, OffX=1, OffY=0) DropShadow(Color=#484848, OffX=0, OffY=1) DropShadow(Color=#484848, OffX=-1, OffY=0) DropShadow(Color=#484848, OffX=0, OffY=-1);text-shadow:#484848 1px 0 0,#484848 0 1px 0,#484848 -1px 0 0,#484848 0 -1px 0; }.fo{font-size:0;overflow:hidden;}.db{display:block;*zoom:1;}di{display:inline;}
+.w717{width:717px; margin:0 auto;}
+.plr5{padding-left:5px;padding-right:5px;}
+.mt6{margin-top:6px;}.mb10{margin-bottom:10px;}
+
+.bge{background:#eee;}
+.txt_a1{color:#193c52;}.wy_wb{font-weight:bold;color:#302518;}
+
+.wy_notice{float:left;width:430px;overflow:hidden;}.wy_notice li{float:left;line-height:14px;padding-top:3px;padding-bottom:3px;color:#687269;}.wy_notice a{display:inline-block;color:#e85a16;font-weight:bold;padding-right:25px;padding-left:5px;}
+.wy_like{width:120px;padding-left:20px;overflow:hidden;}
+
+body{font:normal 12px/1.8 Tahoma,"宋体",sans-serif;background:#fff;color:#333;cursor:default;}
+.wy_name{width:703px;height:30px;line-height:30px;background-position:0 0;padding:0 7px;}
+.wy_name h3{color:#fff;font-weight:bold;font-size:12px;padding-left:5px;}
+.wy_favicon{width:16px;height:16px;display:block;}
+.wy_box{padding:10px;}
+.wy_navbox{height:27px;border-bottom-width:1px; border-bottom-style:solid;position:relative;}
+.wy_navbox ul{height:26px;border-bottom-width:1px; border-bottom-style:solid;}.wy_navbox li{float:left;display:inline;width:80px;height:26px;line-height:26px;margin-right:4px;text-align:center;}
+.wy_navbox .wyNav{height:26px;display:block;background-position:-720px -30px;}.wy_navbox .wycur{height:28px;line-height:28px;font-weight:bold;background-position:-720px 0;}.wy_navbox a:hover{text-decoration:none;margin-bottom:-2px;}
+.wy_banner{width:690px;height:172px;overflow:hidden;padding:1px; background-repeat:no-repeat;}.wy_banner_pic{width:690px;height:172px;display:block;}
+/*=背景�?? 设置=*/
+.wy_banner_pic{background-image:url();}/*banner背景�?? 设置*/
+.wy_favicon{background-image:url();}/*左侧top图标16X16背景 设置*/
+.wy_banner{display:none;}
+/*==wy server list==*/
+/*server icons*/
+.wy_ico{background-image:url(../img/wy_ico.png); background-repeat:no-repeat;}
+.wyico1{width:14px;height:14px;display:inline-block;background-position:0 0;}
+.wyico2{width:20px;height:18px;display:inline-block;background-position:0 -14px;}
+.wy_ico_o,.wy_ico_c,.wy_ico_b,.wy_ico_m{width:11px;height:11px;display:inline-block;}
+.wy_ico_o{background-position:-20px 0;}.wy_ico_c{background-position:-40px 0;}.wy_ico_b{background-position:-60px 0;}.wy_ico_m{background-position:-80px 0;}
+.wy_ico_new,.wy_ico_j{ width:18px;height:18px;display:inline-block;}
+.wy_ico_new{ background-position:-97px 0;}
+.wy_ico_j{ background-position:-116px 0;}
+/*===server tab  服务器tab大区样式===*/
+.tabbox_x,.tabbox_y{margin-bottom:10px;}
+.tabMenu li{float:left;display:inline;text-align:center;cursor:pointer;}
+/*=默认tab 设置=*/
+.tabMenu li{width:px;}/*tab 宽度*/
+.tabMenu li{height:px;line-height:px;}/*tab 高度 行高  行高与高度需要保持一�??*/
+.tabMenu li{font-size:px;}/*tab 字体大小*/
+.tabMenu li{font-weight:;}/*tab 字体粗细*/
+.tabMenu li{color:;}/*tab 字体颜色*/
+.tabMenu li{background:;}/*背景颜色*/
+.tabMenu li{border:px solid ;}/*边框大小 颜色*/
+/*=已��择的大区tab 设置=*/
+.tabMenu li.hover{background:;}/*背景颜色*/
+.tabMenu li.hover{border:px solid ;}/*边框大小 颜色*/
+.tabMenu li.hover{font-size:px;}/*tab 字体大小*/
+.tabMenu li.hover{font-weight:;}/*tab 字体粗细*/
+.tabMenu li.hover{color:;}/*tab 字体颜色*/
+.tabCnt{border:1px solid #dce1e6;padding:5px 10px;}
+
+
+/*===server list 服务器列表样�??===*/
+.wy_serverT{height:28px;margin-bottom:8px;/*position:relative;*/}
+.wy_serverT h4{float:left; width:300px;font-weight:bold;font-size:18px;}
+.wy_serverT .wy_lastLogin{ float:right; text-decoration:underline;}
+.wy_serList .wy_ico_o,.wy_serList .wy_ico_c,.wy_serList .wy_ico_b,.wy_serList .wy_ico_m{float:right;margin-top:4px;margin-right:2px;}
+.wy_serList .wy_ico_j,.wy_serList .wy_ico_new{float:right;margin-top:1px;margin-right:3px;}
+.wy_serList{width:100%;padding-left:5px;}
+.wy_serList li{/*position:relative;*/display:inline;margin-right:2px;margin-left:2px;margin-top:3px;margin-bottom:3px;float:left;width:129px;}
+.wy_serList a{display:block;padding-left:5px;padding-right:3px;border-style:solid;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px; background-repeat:no-repeat;}
+/*=服务器列表样式设�??=*/
+.wy_serList li{width:px;}/*按钮宽度*/
+.wy_serList li{margin-right:2px;margin-left:px;}/*按钮左右间距*/
+.wy_serList li{margin-top:3px;margin-bottom:px;}/*按钮上下间距*/
+.wy_serList a{height:px;line-height:px;}/*按钮高度*/
+.wy_serList a{color:;}/*字体颜色*/
+.wy_serList a{font-size:px;}/*字体大小*/
+.wy_serList a{font-weight:;}/*字体粗细*/
+.wy_serList a{background-color:;}/*背景颜色*/
+.wy_serList a{border-color:;}/*边框颜色*/
+.wy_serList a{border-width:px;}/*边框大小*/
+.wy_serList a{background-image:url();}/*按钮背景�??*/
+.wy_serList a{cursor: pointer;}
+.wy_serList em{cursor: pointer;}
+/*推荐图标样式设置=*/
+/*.wy_ico_j{width:px;}图标宽度*/
+/*.wy_ico_j{height:px;}图标高度*/
+/*.wy_ico_j{background:url() no-repeat;}图标上传图片*/
+/*.wy_ico_j{margin-right:px;}图标位置—向右偏�??*/
+/*.wy_ico_j{margin-top:px;}图标位置—向上偏�??*/
+
+/*=朢�近服务器列表样式设置=*/
+.zjtj_server{ margin-bottom:8px;}
+.zltj_server{ padding:0 10px 5px 0; margin-bottom:5px}
+.zjdl_list li a{ width:133px; float:left}
+.zjdl_list li .time{ float:left; margin-left:10px; color:#999;}
+.zjdl_list li{ width:300px}
+
+/*=服务器列表样式设置完�??=*/
+.wy_serList a:hover{text-decoration:none;background:#f9f0ce;border:1px solid #e5c57f;}
+.wy_serStatus{height:20px;padding-top:4px;line-height:18px;margin-bottom:5px;text-align:right;color:#666;border-bottom:1px solid #ebdcb9;background:#fdf7e5;}
+.wy_serStatus b{font-weight:400;padding-right:10px;padding-left:3px;}
+
+
+/*横排tab样式弢��??*/
+/*布局方式 0:横向 1:纵向*/
+/*add by yihuiliu 2012-10-25*/
+.wy_name{width:703px;}
+.s_sp{background-image:none;}
+.wy_serverT{border:0 none;}
+.wy_serverT div{padding:0 4px;border:0 none;background:none;}
+.wy_serverT h4{font-size:18px;font-family:"Microsoft Yahei";}
+.wy_navbox,.wy_fastinfo{display:none;}
+.tabMenu{position:relative;border-bottom:1px solid #cfcfcf;}
+.tabMenu li{width:100px;margin-right:5px;border-style:solid;border-width:1px;position:relative;top:1px;height:25px;line-height:25px;}
+.tabMenu li b{font-weight:normal;}
+.tabbox_x .tabMenu li.hover{background:#fff;font-size:12px;border-bottom-color:#fff;}
+.tabbox_x .tabMenu li.hover,.tabbox_x .tabMenu li.hover b{font-weight:bold;}
+.tabCnt{border:0 none;padding:8px 0;}
+.wy_recommend{width:684px;height:113px;margin:0 auto;border:1px solid #d3d3d3;}
+.wy_recommend_btn{float:left;width:290px;height:113px;border-right:1px solid #d3d3d3;}
+.wy_recommend_btn a{color:#fff;}
+.wy_recommend_btn a,.wy_serList a,.wy_serList a:hover,.wy_ico_j,.wy_ico_new{display:block;background:url(../img/spr.png) no-repeat 0 0;}
+.wy_recommend_btn a{width:198px;height:68px;margin:24px auto 0;text-align:center;color:#fff;font-weight:bold;font-family:"Microsoft Yahei";text-decoration:none;}
+.wy_recommend_btn a em,.wy_recommend_btn a span{display:block;}
+.wy_recommend_btn a em{font-size:16px;padding-top:8px;}
+.wy_recommend_btn a span{font-size:12px;}
+.wy_serStatus{float:left;width:303px;height:65px;padding:24px 45px;background:#f1f1f1;text-align:left;border-bottom:0 none;font-size:14px;}
+.wy_serStatus p{padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid #cdcdcd;}
+.wy_ico_o, .wy_ico_c, .wy_ico_b, .wy_ico_m{background-image:url(../img/status.jpg);width:7px;height:13px;position:absolute;left:6px;top:2px}
+.wy_ico_new,.wy_ico_j,.wy_serStatus .wy_ico_o,.wy_serStatus .wy_ico_c,.wy_serStatus .wy_ico_b,.wy_serStatus .wy_ico_m{width:16px;height:16px;vertical-align:-4px;position:static;}
+.wy_serStatus .wy_ico_o{background-position:0 0;}/*ct*/
+.wy_serStatus .wy_ico_c{background-position:-16px 0;}/*yj*/
+.wy_serStatus .wy_ico_b{background-position:-32px 0;}/*fm*/
+.wy_serStatus .wy_ico_m{background-position:-48px 0;}/*wh*/
+.wy_serList .wy_ico_o{background-position:0 -16px;}/*ct*/
+.wy_serList .wy_ico_c{background-position:-7px -16px;}/*yj*/
+.wy_serList .wy_ico_b{background-position:-14px -16px;}/*fm*/
+.wy_serList .wy_ico_m{background-position:-21px -16px;}/*wh*/
+.wy_ico_new{background-position:-183px -272px;}
+.wy_ico_j{background-position:-166px -272px;}
+#zjdl .zjtj_server{border:0 none;}
+.wy_serList li{width:auto;_display:inline;margin:5px 5px 5px 1px;}
+.wy_serList a,.wy_serList a:hover{font-size:12px;width:143px;padding-left:20px;height:24px;line-height:24px;background-position:0 -272px;border:0 none;position:relative;}
+.wy_serList a:hover{border:0 none;}
+.wy_serList .wy_ico_j, .wy_serList .wy_ico_new{margin-top:4px;}
+.zjdl_list li a{width:143px;}
+#sevlist .wy_serverT{margin-bottom:15px;padding-bottom:10px;}
+.wy_box{border:1px solid #dbdbdb;}
+.tabMenu li{background:url(../img/tabbg.jpg) repeat-x 0 0;border-color:#cfcfcf;}
+.tabbox_x .tabMenu li.hover{height:25px;}
+#sevlist .wy_serverT{border-bottom:1px solid #cfcfcf;}
+
+/*风格设置 0:高雅�??  1:清新�?? 2:古典�?? 3:梦幻�??*/
+/*==========样式风格===========*/
+/*--不同颜色风格请换下面的css文件，高雅灰：wy_hui.css;清新�??:wy_lan.css;古典�??:wy_lan.css;梦幻�??:wy_zi.css�??*/
+/*====古典�??====*/
+/*.s_sp{background:url(../img/wy_sp_zong.png) no-repeat;}
+.s_bd{border:1px solid #e9e1d6;border-top:0;}
+.bd_b{border:1px solid #d5ba94;}
+.wy_navbox{border-bottom-color:#d2c2ac;}.wy_navbox ul{border-bottom-color:#f2e8d5;}
+.wy_navbox .wyNav{color:#6d4c27;}
+.wy_navbox .wycur{color:#70502c;}
+.wy_serverT{border:1px solid #d5ba94;}
+.wy_serverT div{line-height:26px;height:26px;font-weight:bold; color:#70502c;background:#eedbad;border:1px solid #f9f2e1; padding:0 10px}
+.wy_serverT .wy_lastLogin{color:#70502c;}
+.tabMenu li{background:#F5F0D6;border:1px solid #DCE1E6;}*/
+/*template css yellow*/
+.s_sp{background:#e0aa75 url(../img/title_y.jpg) no-repeat right top;}
+.wy_serverT div,.wy_serList a,.wy_serList a:hover,.tabMenu li,.tabbox_x .tabMenu li.hover{color:#c18953;}
+.wy_recommend_btn a{background-position:0 -68px;}
+/*  |xGv00|b48797c50b60c25835a0e9a50b16dd1d */

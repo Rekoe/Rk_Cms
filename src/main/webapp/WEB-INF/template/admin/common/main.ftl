@@ -65,6 +65,9 @@ $().ready(function() {
 							<a href="#statistics"><@s.m "admin.main.statisticsNav" /></a>
 						</li>
 					</@shiro.hasAnyPermission>
+						<li>
+							<a href="#zones"><@s.m "admin.main.zoneNav" /></a>
+						</li>
 						<li><a href="${base}/" target="_blank"><@s.m "admin.main.home" /></a></li>
 					</ul>
 				</div>
@@ -119,6 +122,10 @@ $().ready(function() {
 							<a href="${base}/admin/sales/view.rk" target="iframe"><@s.m "admin.main.sales" /></a>
 						</dd>
 					</@shiro.hasPermission>
+				</dl>
+				<dl id="zones">
+					<dt><@s.m "admin.main.zoneGroup" /></dt>
+					<dd><a href="${base}/admin/zone/list.rk" target="iframe"><@s.m "admin.main.zone" /></a></dd>
 				</dl>
 			</td>
 			<td><iframe id="iframe" name="iframe" src="${base}/admin/common/index.rk" frameborder="0"></iframe></td>
