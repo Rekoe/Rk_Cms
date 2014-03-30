@@ -1,6 +1,8 @@
 package com.rekoe.service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.lang3.math.NumberUtils;
 import org.nutz.dao.Cnd;
@@ -12,9 +14,13 @@ import org.nutz.trans.Molecule;
 
 import com.rekoe.common.page.Pagination;
 import com.rekoe.domain.Account;
+import com.rekoe.domain.FacebookAccount;
 
 @IocBean(fields = { "dao" })
 public class AccountService extends BaseService<Account> {
+
+	private Map<String, FacebookAccount> cache = new ConcurrentHashMap<String, FacebookAccount>();
+
 	public AccountService() {
 		super();
 	}
@@ -84,5 +90,17 @@ public class AccountService extends BaseService<Account> {
 		};
 		TableName.run(num(index + ""), m);
 		return m.getObj();
+	}
+
+	public void addCache(String uid, FacebookAccount account) {
+		cache.put(uid, account);
+	}
+
+	public void removeCache(String uid) {
+		cache.remove(uid);
+	}
+
+	public FacebookAccount getFacebookAccount(String uid) {
+		return cache.get(uid);
 	}
 }
