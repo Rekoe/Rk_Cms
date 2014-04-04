@@ -4,9 +4,7 @@ var ioc = {
 	},
 	mailEngine : {
 		type : "com.rekoe.mvc.view.GMailEngine",
-		args : [ {
-			java : '$utils.getPath("/WEB-INF/classes/com/rekoe/cms/captcha")'
-		} ]
+		args : [ "com/rekoe/cms/captcha" ]
 	},
 	imageCaptchaService : {
 		type : "com.octo.captcha.service.image.DefaultManageableImageCaptchaService",

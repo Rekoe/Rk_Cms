@@ -4,6 +4,7 @@ import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.Mvcs;
 import org.nutz.mvc.annotation.At;
+import org.nutz.mvc.annotation.Filters;
 import org.nutz.mvc.annotation.Ok;
 
 import com.rekoe.common.Message;
@@ -40,6 +41,12 @@ public class CommonAct {
 	@At
 	@Ok("fm:template.admin.common.index")
 	public void index() {
+
+	}
+	@At
+	@Ok("fm:template.admin.common.maintain")
+	@Filters
+	public void maintain() {
 
 	}
 }

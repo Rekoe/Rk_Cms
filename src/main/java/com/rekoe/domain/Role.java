@@ -1,5 +1,6 @@
 package com.rekoe.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.nutz.dao.entity.annotation.ColDefine;
@@ -13,7 +14,8 @@ import org.nutz.dao.entity.annotation.TableIndexes;
 
 @Table("system_role")
 @TableIndexes({ @Index(name = "role_name", fields = { "name" }, unique = true) })
-public class Role {
+public class Role implements Serializable{
+	private static final long serialVersionUID = 7928270441533321123L;
 	@Id
 	private Long id;
 	@Column

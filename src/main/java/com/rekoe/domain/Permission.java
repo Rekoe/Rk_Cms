@@ -1,5 +1,6 @@
 package com.rekoe.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.nutz.dao.entity.annotation.ColDefine;
@@ -13,7 +14,8 @@ import org.nutz.dao.entity.annotation.TableIndexes;
 
 @Table("system_permission")
 @TableIndexes({ @Index(name = "permission_name_id", fields = { "name" }, unique = true) })
-public class Permission {
+public class Permission implements Serializable{
+	private static final long serialVersionUID = -8140799124476746216L;
 	@Id
 	private Long id;
 	@Column
