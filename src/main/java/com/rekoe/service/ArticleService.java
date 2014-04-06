@@ -30,7 +30,7 @@ public class ArticleService extends BaseService<Article> {
 	}
 
 	public List<Article> getIndexNewList(){
-		return dao().query(getEntityClass(), Cnd.limit().limit(10).desc("id"));
+		return dao().query(getEntityClass(), Cnd.NEW().limit(10).desc("id"));
 	}
 	public void insert(Article art) {
 		dao().insert(art);

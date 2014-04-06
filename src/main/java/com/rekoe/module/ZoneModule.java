@@ -2,6 +2,7 @@ package com.rekoe.module;
 
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +27,6 @@ import org.nutz.mvc.view.ForwardView;
 import org.nutz.mvc.view.ViewWrapper;
 import org.nutz.mvc.view.VoidView;
 
-import com.rekoe.domain.Account;
 import com.rekoe.domain.FacebookAccount;
 import com.rekoe.domain.Zone;
 import com.rekoe.service.AccountService;
@@ -58,7 +58,7 @@ public class ZoneModule {
 		com.rekoe.socialauth.OAuthConfig oAuthConfig = socialAuthConfig.getProviderConfig(OAUTH_ID);
 		String appId = oAuthConfig.get_consumerKey();
 		try {
-			if (StringUtils.isNotBlank(code)) {
+			if (StringUtils.isBlank(code)) {
 				throw Lang.makeThrow(AccountException.class, "code null");
 			}
 			FacebookSignedRequest facebookSR = FacebookSignedRequest.getFacebookSignedRequest(code, FacebookSignedRequest.class);
@@ -69,34 +69,34 @@ public class ZoneModule {
 			DefaultFacebookClient facebookClient = new DefaultFacebookClient(accessToken);
 			Zone topZone = zoneService.getTopZone();
 			if (Lang.isEmpty(topZone)) {
+				log.error("topZone is null");
 				throw Lang.makeThrow(Exception.class, "not find server");
 			}
 			User user = facebookClient.fetchObject(FB_TYPE_USER, User.class);
-			Account account = accountService.fetch(user.getId());
+			com.rekoe.domain.Account account = accountService.fetch(user.getId());
 			Date now = Times.now();
 			if (Lang.isEmpty(account)) {
-				account = new Account();
+				account = new com.rekoe.domain.Account();
 				account.setCreateTime(now);
 				account.setLock(false);
 				account.setModifyTime(now);
 				account.setPassportid(user.getId());
 				account.setRegisterIp(req.getRemoteAddr());
-				account.setZoneLog(topZone.getId());
-				account.setLastZoneid("[" + topZone.getId() + "]");
+				account.setLastZoneid(topZone.getId());
+				account.setZoneLog("[\"" + account.getLastZoneid() + "\"]");
 				accountService.insert(account);
 			} else {
 				account.setModifyTime(now);
 				accountService.update(account);
 			}
 			accountService.addCache(user.getId(), new FacebookAccount(code, requestIds, user, account));
-			req.setAttribute("id", user.getId());
 			res.addHeader("P3P", "CP=CAO PSA OUR IDC DSP COR ADM DEVi TAIi PSD IVAi IVDi CONi HIS IND CNT");
 			session.setAttribute("accountID", user.getId());
 			return new ForwardView("/app/" + user.getId() + "/myhome.rk");
 		} catch (AccountException e) {
 			log.error(e.getMessage());
 		} catch (Exception e) {
-			return new ViewWrapper(new ForwardView("/common/error.rk"), e.getMessage());
+			return new ViewWrapper(new ForwardView("/admin/common/unauthorized.rk"), e.getMessage());
 		}
 		String namespace = oAuthConfig.get_consumerNameSpace();
 		String url = "http://www.facebook.com/dialog/oauth?client_id=" + appId + "&scope=email,publish_actions,publish_stream&redirect_uri=" + FB_URL + namespace;
@@ -105,12 +105,11 @@ public class ZoneModule {
 		writer.print("<script> top.location.href='" + url + "'</script>");
 		writer.close();
 		return new VoidView();
-
 	}
 
 	@At("/?/myhome")
 	@Ok("fm:template.front.zone.login")
-	public Object myhome(String passportid, @Param("id") String id, HttpServletResponse res, HttpServletRequest req) throws Exception {
+	public Object myhome(String passportid, @Attr("accountID") String id, HttpServletResponse res) throws Exception {
 		if (StringUtils.isBlank(id) || !Lang.equals(id, passportid)) {
 			com.rekoe.socialauth.OAuthConfig oAuthConfig = socialAuthConfig.getProviderConfig(OAUTH_ID);
 			String appId = oAuthConfig.get_consumerKey();
@@ -123,22 +122,55 @@ public class ZoneModule {
 			return new VoidView();
 		}
 		FacebookAccount account = accountService.getFacebookAccount(passportid);
-		return account.getAccount();
+		Zone zone = zoneService.fetch(account.getAccount().getLastZoneid());
+		return zone;
 	}
 
-	// http://app100615799.openwebgame.qq.com/SelectServer/qzone?appid=100615799&sFrom=qzone&qz_height=1200&openid=AD71DFFC753C720D348F19F67798BCE5&openkey=12D22ADD6465039F89BEE50275B4B7D04DBB055B86402322183F7B2AF03B3853D0D6A0C697A80AE69F75FFF6310FE4D44ED1B8E7921A06BE6C294F369382D87A9A291562B55C41062050CCEF243330429F671DF4A9D0E1C8&pf=qzone&pfkey=46d4119c4b0b20b72c36e14fced4454e&qz_ver=8&appcanvas=1&qz_style=35&params=
 	@At("/SelectServer")
 	@Ok("fm:template.front.zone.list")
-	public Object zoneList(@Attr("accountID") String passportid, HttpServletRequest req) {
+	public Zone zoneList(@Attr("accountID") String passportid, HttpServletRequest req) {
 		FacebookAccount account = accountService.getFacebookAccount(passportid);
-		req.setAttribute("list", zoneService.getZoneList());
-		req.setAttribute("freshList", zoneService.getTopZone());
-		return account.getAccount();
+		req.setAttribute("zones", zoneService.getZoneList());
+		req.setAttribute("top", zoneService.getTopZone());
+		req.setAttribute("accountID", passportid);
+		return zoneService.fetch(account.getAccount().getLastZoneid());
 	}
 
 	@At
 	@Ok("fm:template.front.zone.test")
-	public FacebookAccount redrict(@Attr("accountID") String passportid) {
-		return accountService.getFacebookAccount(passportid);
+	public Zone redirect(@Param("id") String id, @Attr("accountID") String accountID, HttpServletRequest req, HttpServletResponse res) {
+		res.addHeader("P3P", "CP=CAO PSA OUR IDC DSP COR ADM DEVi TAIi PSD IVAi IVDi CONi HIS IND CNT");
+		FacebookAccount account = accountService.getFacebookAccount(accountID);
+		req.setAttribute("account", account);
+		if (StringUtils.isBlank(account.getAccount().getZoneLog())) {
+			account.getAccount().setZoneLog("[]");
+		}
+		List<String> zoneHistory = Json.fromJsonAsList(String.class, account.getAccount().getZoneLog());
+		int len = zoneHistory.size();
+		if (len >= 5) {
+			zoneHistory.remove(len - 1);
+		}
+		if (zoneHistory.contains(id)) {
+			zoneHistory.remove(id);
+		}
+		if (Lang.isEmpty(zoneHistory)) {
+			zoneHistory.add(id);
+		} else {
+			zoneHistory.set(0, id);
+		}
+		account.getAccount().setLastZoneid(id);
+		account.getAccount().setZoneLog(Json.toJson(zoneHistory, JsonFormat.compact()));
+		accountService.update(account.getAccount());
+		accountService.removeCache(accountID);
+		return zoneService.fetch(id);
+	}
+
+	@At
+	@Ok("fm:template.front.zone.local")
+	public String local(HttpServletRequest req) {
+		String url = "https://s1koruyucu.oasgames.com/facebook/login";
+		req.setAttribute("url", url);
+		String code = "uzU3BhI9PYgjsOEbPeaS8wBiJ1MMyYMqVnBzp63DR8s.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImV4cGlyZXMiOjEzOTYzMzU2MDAsImlzc3VlZF9hdCI6MTM5NjMzMTA3NSwib2F1dGhfdG9rZW4iOiJDQUFLVjBpRGZFRWdCQUJXVHI2MTNaQmxFSnRsRVlZbGRuNmtpanlEVlhROUQ1YW4zNUoyN2VxYTdJZENlZm5NQm1pajRmRnF3Y1ROVmpUOGx6VFpBOHdzemp1TGJqRFpBM29JWXg1VEFWWkNXdTdVQkZBMzhPYU1WaGVuV1pDWkFmVW5hYnQ0Y1d6RlVwZ1pCcExpdThEcFcxamlvd3BDbUQ2RjA4cTZjcG5kZjByeGJNS2s5UFNhWkFJd3c3enZaQVpBQ3AzYjFibTFyMnFYd1pEWkQiLCJ1c2VyIjp7ImNvdW50cnkiOiJ1cyIsImxvY2FsZSI6InpoX0NOIiwiYWdlIjp7Im1pbiI6MjF9fSwidXNlcl9pZCI6IjEwMDAwMTcyODU3OTg1OCJ9";
+		return code;
 	}
 }

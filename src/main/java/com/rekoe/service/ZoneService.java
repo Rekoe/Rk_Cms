@@ -44,7 +44,11 @@ public class ZoneService extends BaseService<Zone> {
 					String id = iterator.next();
 					return cache.get(id);
 				}
+			}else{
+				return cache.get(topList.get(0));
 			}
+		}else{
+			return cache.get(topList.get(0));
 		}
 		return null;
 	}
@@ -90,12 +94,13 @@ public class ZoneService extends BaseService<Zone> {
 		Zone zone = cache.get(id);
 		if (Lang.isEmpty(zone)) {
 			zone = dao().fetch(getEntityClass(), Cnd.where("id", "=", id));
-			if (Lang.isEmpty(zone)) {
+			if (!Lang.isEmpty(zone)) {
 				if (zone.isFresh()) {
 					if (!topList.contains(zone.getId())) {
 						topList.add(zone.getId());
 					}
 				}
+				cache.put(id, zone);
 			}
 		}
 		return zone;
@@ -131,4 +136,6 @@ public class ZoneService extends BaseService<Zone> {
 	public Collection<Zone> getZoneList() {
 		return cache.values();
 	}
+	
+	
 }

@@ -62,7 +62,7 @@ public class ArticleCategoryService extends IdEntityService<ArticleCategory> {
 			return dao().query(getEntityClass(), Cnd.where("treePath", "like", "%," + articleCategory.getId() + "," + "%").limit(10).asc("order"));
 		} else {
 			// "select articleCategory from ArticleCategory articleCategory order by articleCategory.order asc";
-			return dao().query(getEntityClass(), Cnd.limit().limit(10).asc("order"));
+			return dao().query(getEntityClass(), Cnd.NEW().limit(10).asc("order"));
 		}
 	}
 }

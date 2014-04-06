@@ -11,22 +11,22 @@ body{ margin:0; padding:0}
 .strong{ font-weight:bold}
 
 /*icon*/
-.icon-level1-up{background-image:url(../img/area_up1.png); width:20px; height:20px; background-repeat:no-repeat;  position:relative;top:2px;display:inline-block; margin-right:1px;}
-.icon-level1-down{ background-image:url(../img/area_down1.png); width:20px; height:20px; background-repeat:no-repeat;position:relative;top:2px;display:inline-block; margin-right:15px;}
-.icon-level2-top{ background-image:url(../img/area_top2.png); width:20px; height:20px;background-repeat:no-repeat; position:relative;top:0px;display:inline-block; margin-right:1px;}
-.icon-level2-up{ background-image:url(../img/area_up2.png); width:20px; height:20px;background-repeat:no-repeat; position:relative;top:0px;display:inline-block;}
-.icon-level2-down{ background-image:url(../img/area_down2.png); width:20px; height:20px;background-repeat:no-repeat;position:relative;top:0px;display:inline-block;}
-.icon-level2-bottom{ background-image:url(../img/area_bottom2.png); width:20px; height:20px;background-repeat:no-repeat;position:relative;top:0px;display:inline-block;}
-.icon-add-server{ background-image:url(../img/area_add.png); width:20px; height:17px; background-repeat:no-repeat;position:relative;top:5px;*top:2px;display:inline-block;}
-.icon-isrun{ background-image:url(../img/area_play.png); width:20px; height:20px; background-repeat:no-repeat; position:relative;top:4px;display:inline-block; margin-right:5px;}
-.icon-isstop{ background-image:url(../img/area_stop.png); width:20px; height:20px; background-repeat:no-repeat; position:relative;top:4px;display:inline-block; margin-right:5px;}
-.icon-setdel{ background-image:url(../img/area_del.png); width:20px; height:20px; background-repeat:no-repeat; position:relative;top:4px;display:inline-block; margin-right:5px;}
-.icon-setop{ background-image:url(../img/area_set.png); width:20px; height:20px; background-repeat:no-repeat;position:relative;top:4px;display:inline-block; margin-right:5px;}
-.icon-treeopen{ background-image:url(../img/area_open.png); width:20px; height:20px;position:relative;background-repeat:no-repeat;top:2px; left:8px;display:inline-block; margin-right:10px;}
-.icon-treeclose{ background-image:url(../img/area_close.png); width:20px; height:20px;position:relative;background-repeat:no-repeat;top:2px;left:8px;display:inline-block; margin-right:10px;}
-.icon-level1-tree{ background-image:url(../img/area_level1.png); width:40px; height:30px; background-repeat:no-repeat; position:relative;top:-6px;left:12px;display:inline-block;*top:21px; *left:-18px;}
-.icon-level2-tree{ background-image:url(../img/area_level2.png); width:40px; height:30px; background-repeat:no-repeat; position:relative;top:2px;display:inline-block;}
-.icon-jian{ background-image:url(../img/jian.png); width:20px; height:20px;background-repeat:no-repeat;}
+.icon-level1-up{background-image:url(../images/area_up1.png); width:20px; height:20px; background-repeat:no-repeat;  position:relative;top:2px;display:inline-block; margin-right:1px;}
+.icon-level1-down{ background-image:url(../images/area_down1.png); width:20px; height:20px; background-repeat:no-repeat;position:relative;top:2px;display:inline-block; margin-right:15px;}
+.icon-level2-top{ background-image:url(../images/area_top2.png); width:20px; height:20px;background-repeat:no-repeat; position:relative;top:0px;display:inline-block; margin-right:1px;}
+.icon-level2-up{ background-image:url(../images/area_up2.png); width:20px; height:20px;background-repeat:no-repeat; position:relative;top:0px;display:inline-block;}
+.icon-level2-down{ background-image:url(../images/area_down2.png); width:20px; height:20px;background-repeat:no-repeat;position:relative;top:0px;display:inline-block;}
+.icon-level2-bottom{ background-image:url(../images/area_bottom2.png); width:20px; height:20px;background-repeat:no-repeat;position:relative;top:0px;display:inline-block;}
+.icon-add-server{ background-image:url(../images/area_add.png); width:20px; height:17px; background-repeat:no-repeat;position:relative;top:5px;*top:2px;display:inline-block;}
+.icon-isrun{ background-image:url(../images/area_play.png); width:20px; height:20px; background-repeat:no-repeat; position:relative;top:4px;display:inline-block; margin-right:5px;}
+.icon-isstop{ background-image:url(../images/area_stop.png); width:20px; height:20px; background-repeat:no-repeat; position:relative;top:4px;display:inline-block; margin-right:5px;}
+.icon-setdel{ background-image:url(../images/area_del.png); width:20px; height:20px; background-repeat:no-repeat; position:relative;top:4px;display:inline-block; margin-right:5px;}
+.icon-setop{ background-image:url(../images/area_set.png); width:20px; height:20px; background-repeat:no-repeat;position:relative;top:4px;display:inline-block; margin-right:5px;}
+.icon-treeopen{ background-image:url(../images/area_open.png); width:20px; height:20px;position:relative;background-repeat:no-repeat;top:2px; left:8px;display:inline-block; margin-right:10px;}
+.icon-treeclose{ background-image:url(../images/area_close.png); width:20px; height:20px;position:relative;background-repeat:no-repeat;top:2px;left:8px;display:inline-block; margin-right:10px;}
+.icon-level1-tree{ background-image:url(../images/area_level1.png); width:40px; height:30px; background-repeat:no-repeat; position:relative;top:-6px;left:12px;display:inline-block;*top:21px; *left:-18px;}
+.icon-level2-tree{ background-image:url(../images/area_level2.png); width:40px; height:30px; background-repeat:no-repeat; position:relative;top:2px;display:inline-block;}
+.icon-jian{ background-image:url(../images/jian.png); width:20px; height:20px;background-repeat:no-repeat;}
 
 
 /*wrap*/
@@ -76,7 +76,7 @@ body{ margin:0; padding:0}
 
 
 .area-pre-list {width:700px;}
-.area-pre-list a{ position:relative; background:url(../img/status.png);   display:inline-block; height:30px; width:110px; color:#D6D6D8; font-size:12px; padding-left:10px; padding-right:15px;margin-right:6px; margin-bottom:6px; line-height:31px; float:left; white-space:nowrap;}
+.area-pre-list a{ position:relative; background:url(../images/status.png);   display:inline-block; height:30px; width:110px; color:#D6D6D8; font-size:12px; padding-left:10px; padding-right:15px;margin-right:6px; margin-bottom:6px; line-height:31px; float:left; white-space:nowrap;}
 .area-pre-list a span { position:absolute; right:10px; top:0px; }
 .area-status-red{color:#FE0003}
 .area-status-yellow{color:#FFDC00}
@@ -88,7 +88,7 @@ body{ margin:0; padding:0}
 .area-manage-tab td{ height:26px; padding-left:20px; padding-right:20px; border:1px #999 solid;border:1px #DCDCDC solid}
 .area-manage-tab thead td{ background:#F0F0F0; color:#878787}
 .area-manage-button { margin-top:20px;}
-.area-manage-button a{ background-image:url(../img/button_g.png); padding:0px 8px;height:26px; display:inline-block; font-size:14px; color:#2F8AB5; text-align:center; line-height:26px; border:#A8A8A8 solid 1px;}
+.area-manage-button a{ background-image:url(../images/button_g.png); padding:0px 8px;height:26px; display:inline-block; font-size:14px; color:#2F8AB5; text-align:center; line-height:26px; border:#A8A8A8 solid 1px;}
 
 /*属性修改*/
 .area-manage-attr{border:1px #dcdcdc solid;border-spacing:0;border-collapse: collapse; font-size:12px}
@@ -103,7 +103,7 @@ body{ margin:0; padding:0}
 /*操作栏*/
 .area-operation{ margin:0; width:400px;}
 .area-operation li{ list-style-type:none; float:left}
-.area-operation a{ color:#2F8AB5; line-height:28px; margin-right:5px; font-size:14px;  background-image:url(../img/button_g.png); display:inline-block;height: 26px;padding: 0 5px;border: 1px #A8A8A8 solid; }
+.area-operation a{ color:#2F8AB5; line-height:28px; margin-right:5px; font-size:14px;  background-image:url(../images/button_g.png); display:inline-block;height: 26px;padding: 0 5px;border: 1px #A8A8A8 solid; }
 
 
 /*外层表格*/
@@ -126,7 +126,7 @@ body{ margin:0; padding:0}
 .area-list-status{ width:120px;}
 .area-list-op{ width:300px;}
 .area-button{ padding-left:100px;}
-.area-button a{ display:inline-block; margin-top:20px; margin-right:20px; text-align:center; width:127px;height: 28px;border: none;line-height: 30px;font-size: 14px;font-weight: bold;color: white; background-image:url(../img/button.png);cursor: pointer;}
+.area-button a{ display:inline-block; margin-top:20px; margin-right:20px; text-align:center; width:127px;height: 28px;border: none;line-height: 30px;font-size: 14px;font-weight: bold;color: white; background-image:url(../images/button.png);cursor: pointer;}
 
 
 
@@ -175,7 +175,7 @@ body{ margin:0; padding:0}
 .area-attr-boxset thead td{ height:30px; background:#DFDFDF!important;}
 .area-attr-boxset-id{ text-align:center}
 .area-attr-boxset tfoot td{ text-align:center; border-bottom:0}
-.area-attr-boxset tfoot td a{ display:inline-block;background-image:url(../img/button.png); color:#FFF; width:60px; margin:10px 15px;  height:15px; padding-top:5px;  }
+.area-attr-boxset tfoot td a{ display:inline-block;background-image:url(../images/button.png); color:#FFF; width:60px; margin:10px 15px;  height:15px; padding-top:5px;  }
 .area-add-text span{ font-size:12px; margin-left:10px;}
 .area-add-nums{ width:50px;}
 /*冒泡提示*/
@@ -205,7 +205,7 @@ ul li{ list-style-type:none}
 .setser li label{ display:inline-block; width:70px;}
 .setser li span{ color:#EF9800}
 .setser .btn{ padding:10px 0 10px 10px;}
-.setser .btn a{ width:69px; height:24px; display:block; float:left; text-indent:-9999em; background-image:url("../img/butn01.png");
+.setser .btn a{ width:69px; height:24px; display:block; float:left; text-indent:-9999em; background-image:url("../images/butn01.png");
  background-repeat:no-repeat}
 .setser .btn a.reset{ background-position:-69px 0; margin-left:20px;}
 #changearea li label{ display:inline-block; width:150px;}/*  |xGv00|d555d25b47d32eaa48dacf79e37b8bf1 */

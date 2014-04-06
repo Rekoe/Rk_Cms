@@ -29,7 +29,7 @@ body{font:normal 12px/1.8 Tahoma,"宋体",sans-serif;background:#fff;color:#333;
 .wy_banner{display:none;}
 /*==wy server list==*/
 /*server icons*/
-.wy_ico{background-image:url(../img/wy_ico.png); background-repeat:no-repeat;}
+.wy_ico{background-image:url(../images/wy_ico.png); background-repeat:no-repeat;}
 .wyico1{width:14px;height:14px;display:inline-block;background-position:0 0;}
 .wyico2{width:20px;height:18px;display:inline-block;background-position:0 -14px;}
 .wy_ico_o,.wy_ico_c,.wy_ico_b,.wy_ico_m{width:11px;height:11px;display:inline-block;}
@@ -118,14 +118,14 @@ body{font:normal 12px/1.8 Tahoma,"宋体",sans-serif;background:#fff;color:#333;
 .wy_recommend{width:684px;height:113px;margin:0 auto;border:1px solid #d3d3d3;}
 .wy_recommend_btn{float:left;width:290px;height:113px;border-right:1px solid #d3d3d3;}
 .wy_recommend_btn a{color:#fff;}
-.wy_recommend_btn a,.wy_serList a,.wy_serList a:hover,.wy_ico_j,.wy_ico_new{display:block;background:url(../img/spr.png) no-repeat 0 0;}
+.wy_recommend_btn a,.wy_serList a,.wy_serList a:hover,.wy_ico_j,.wy_ico_new{display:block;background:url(../images/spr.png) no-repeat 0 0;}
 .wy_recommend_btn a{width:198px;height:68px;margin:24px auto 0;text-align:center;color:#fff;font-weight:bold;font-family:"Microsoft Yahei";text-decoration:none;}
 .wy_recommend_btn a em,.wy_recommend_btn a span{display:block;}
 .wy_recommend_btn a em{font-size:16px;padding-top:8px;}
 .wy_recommend_btn a span{font-size:12px;}
 .wy_serStatus{float:left;width:303px;height:65px;padding:24px 45px;background:#f1f1f1;text-align:left;border-bottom:0 none;font-size:14px;}
 .wy_serStatus p{padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid #cdcdcd;}
-.wy_ico_o, .wy_ico_c, .wy_ico_b, .wy_ico_m{background-image:url(../img/status.jpg);width:7px;height:13px;position:absolute;left:6px;top:2px}
+.wy_ico_o, .wy_ico_c, .wy_ico_b, .wy_ico_m{background-image:url(../images/status.jpg);width:7px;height:13px;position:absolute;left:6px;top:2px}
 .wy_ico_new,.wy_ico_j,.wy_serStatus .wy_ico_o,.wy_serStatus .wy_ico_c,.wy_serStatus .wy_ico_b,.wy_serStatus .wy_ico_m{width:16px;height:16px;vertical-align:-4px;position:static;}
 .wy_serStatus .wy_ico_o{background-position:0 0;}/*ct*/
 .wy_serStatus .wy_ico_c{background-position:-16px 0;}/*yj*/
@@ -145,7 +145,7 @@ body{font:normal 12px/1.8 Tahoma,"宋体",sans-serif;background:#fff;color:#333;
 .zjdl_list li a{width:143px;}
 #sevlist .wy_serverT{margin-bottom:15px;padding-bottom:10px;}
 .wy_box{border:1px solid #dbdbdb;}
-.tabMenu li{background:url(../img/tabbg.jpg) repeat-x 0 0;border-color:#cfcfcf;}
+.tabMenu li{background:url(../images/tabbg.jpg) repeat-x 0 0;border-color:#cfcfcf;}
 .tabbox_x .tabMenu li.hover{height:25px;}
 #sevlist .wy_serverT{border-bottom:1px solid #cfcfcf;}
 
@@ -153,7 +153,7 @@ body{font:normal 12px/1.8 Tahoma,"宋体",sans-serif;background:#fff;color:#333;
 /*==========样式风格===========*/
 /*--不同颜色风格请换下面的css文件，高雅灰：wy_hui.css;清新�??:wy_lan.css;古典�??:wy_lan.css;梦幻�??:wy_zi.css�??*/
 /*====古典�??====*/
-/*.s_sp{background:url(../img/wy_sp_zong.png) no-repeat;}
+/*.s_sp{background:url(../images/wy_sp_zong.png) no-repeat;}
 .s_bd{border:1px solid #e9e1d6;border-top:0;}
 .bd_b{border:1px solid #d5ba94;}
 .wy_navbox{border-bottom-color:#d2c2ac;}.wy_navbox ul{border-bottom-color:#f2e8d5;}
@@ -164,7 +164,7 @@ body{font:normal 12px/1.8 Tahoma,"宋体",sans-serif;background:#fff;color:#333;
 .wy_serverT .wy_lastLogin{color:#70502c;}
 .tabMenu li{background:#F5F0D6;border:1px solid #DCE1E6;}*/
 /*template css yellow*/
-.s_sp{background:#e0aa75 url(../img/title_y.jpg) no-repeat right top;}
+.s_sp{background:#e0aa75 url(../images/title_y.jpg) no-repeat right top;}
 .wy_serverT div,.wy_serList a,.wy_serList a:hover,.tabMenu li,.tabbox_x .tabMenu li.hover{color:#c18953;}
 .wy_recommend_btn a{background-position:0 -68px;}
 /*  |xGv00|b48797c50b60c25835a0e9a50b16dd1d */

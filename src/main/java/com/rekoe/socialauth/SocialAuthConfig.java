@@ -13,7 +13,7 @@ import org.nutz.lang.Files;
 import org.nutz.lang.Lang;
 import org.nutz.log.Logs;
 
-@IocBean
+@IocBean(create="load")
 public class SocialAuthConfig implements Serializable {
 	private static final long serialVersionUID = 5445308327297705055L;
 	private Map<String, String> domainMap = new HashMap<String, String>();

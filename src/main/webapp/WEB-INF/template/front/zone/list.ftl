@@ -3,8 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>游戏服列表</title>
-<!-- <link rel="stylesheet" type="text/css" href="${base}/resource/css/selectarea.css"  charset="UTF-8"/>-->
-<link rel="stylesheet" type="text/css" href="${base}/resource/css/style.css?2"/>
+<!-- <link rel="stylesheet" type="text/css" href="${base}/resources/front/css/selectarea.css"  charset="UTF-8"/>-->
+<link rel="stylesheet" type="text/css" href="${base}/resources/front/css/style.css"/>
 <style>
 #theServiceList{padding:18px;width:700px;border:#660099 1px solid;height:425px; overflow:hidden;overflow-y:auto; position:relative;}
 .wy_serverT .wy_lastLogin { color:#70502c}
@@ -17,17 +17,24 @@
 .wlop_area_tab{display:none}
 .display_checkbox {margin:0px 0px 0px 0px}
 </style>
-<script type="text/javascript" src="${base}/resource/admin/js/jquery.js" charset="UTF-8"></script>
+<script type="text/javascript" src="${base}/resources/admin/js/jquery.js" charset="UTF-8"></script>
+<script type="text/javascript">
+function loginZone(zoneid)
+{
+	var loginPath = "${base}/app/redirect.rk";
+	location.href = loginPath + "?id=" + zoneid;
+}
+</script>
 <body>
 <div class="w717">
-    <div class="wy_name s_sp"><b class="fl mt6 wy_favicon"></b><h3 class="fl stroke">facebook ID:${sessionScope.account}</h3></div>
+    <div class="wy_name s_sp"><b class="fl mt6 wy_favicon"></b><h3 class="fl stroke">facebook ID:${accountID}</h3></div>
     <div class="wy_box s_bd">
         <!--推荐\最近服务器列表-->
         <div id="zjdl">
             <div class="wy_serverT"><div><h4>推荐服务器</h4></div></div>
             <div class="wy_recommend">
                 <div class="wy_recommend_btn">
-                   <a href="javascript:void(0);" onclick="javascript:loginZone(${recommendZone.zoneId });return false;"><em>${recommendZone.zoneName }</em><span>进入游戏</span></a>
+                   <a href="javascript:void(0);" onclick="javascript:loginZone('${top.id}');return false;"><em>${top.name}</em><span>进入游戏</span></a>
             	</div>                
             <div class="wy_serStatus">
                 <p>我们根据您使用的网络环境为您推荐左侧服务器</p>
@@ -36,10 +43,9 @@
             </div>
             <div class="tabCnt zjtj_server">
                 <ul class="wy_serList zltj_server c">
-                	<li><a href="javascript:void(0);" onclick="javascript:loginZone(${newZone.zoneId });return false;"><em class="fl">${newZone.zoneName }<c:if test="${!empty newZone.zoneTag}">(${newZone.zoneTag })</c:if></em><b class="wy_ico_o wy_ico"></b><b class="wy_ico_new wy_ico"></b><b class="wy_ico_j wy_ico"></b></a></li>
+                	<li><a href="javascript:void(0);" onclick="javascript:loginZone('${top.id}');return false;"><em class="fl">${top.name}</em><b class="wy_ico_o wy_ico"></b><b class="wy_ico_new wy_ico"></b><b class="wy_ico_j wy_ico"></b></a></li>
             	</ul>
             </div>
-            <c:if test="${!empty lastLoginZone }">
             <div class="tabbox_x c">
                 <div class="wy_serverT"><div><h4>最近登录服务器</h4></div></div>
                 <div class="tabMenu">
@@ -51,48 +57,43 @@
                 <div class="tabCnt">
                     <div id="con_dlnav_0">
                         <ul class="wy_serList zjdl_list c">
-            				<li><a href="javascript:void(0);" onclick="javascript:loginZone(${lastLoginZone.zoneId });return false;"><em class="fl">${lastLoginZone.zoneName }<c:if test="${!empty lastLoginZone.zoneTag}">(${lastLoginZone.zoneTag })</c:if></em><b class="wy_ico_o wy_ico"></b></a><span class="time"></span></li>
+            				<li><a href="javascript:void(0);" onclick="javascript:loginZone('${obj.id}');return false;"><em class="fl">${obj.name}</em><b class="wy_ico_o wy_ico"></b></a><span class="time"></span></li>
         				</ul>
                     </div>
                     <div id="con_dlnav_1" style="display:none">
                         <ul class="wy_serList zjdl_list c">
-	                        <c:forEach var="latestLoginZone" items="${latestLoginZoneList}">
-	                        <li><a href="javascript:void(0);" onclick="javascript:loginZone(${latestLoginZone.zoneId });return false;"><em class="fl">${latestLoginZone.zoneName }<c:if test="${!empty latestLoginZone.zoneTag}">(${latestLoginZone.zoneTag })</c:if></em><b class="wy_ico_o wy_ico"></b></a><span class="time"></span></li>
-	                        </c:forEach>
+	                       	<#list zones as zone>
+	                        <li><a href="javascript:void(0);" onclick="javascript:loginZone('${zone.id}');return false;"><em class="fl">${zone.name }</em><b class="wy_ico_o wy_ico"></b></a><span class="time"></span></li>
+	                        </#list>
         				</ul>
                         <div style="padding:10px;float:right;">本栏目最多显示5个我最近登录过的服务器</div>
                     </div>
                 </div>
-            </div></c:if>
+            </div>
         </div>
-        <!--推荐\最近服务器列表End-->
-        <!--所有服务器列表-->
         <div id="sevlist">
             <div class="wy_serverT"><div><h4 id="font1">所有服务器</h4></div></div>
 				<div class="tabbox_x c">
 		    			<div class="tabCnt"><div id="con_daqu_0" >
 			             <ul class="wy_serList c">
-			             <c:forEach var="allZone" items="${obj}" varStatus="status">
+			             <#list zones as zone>
 			             	<li>
-			                    <a href="javascript:void(0);" onclick="javascript:loginZone(${allZone.zoneid});return false;">
-			                        <em class="fl">${allZone.zoneName}<c:if test="${!empty allZone.zoneTag}">(${allZone.zoneTag})</c:if></em>
-			                        <c:if test="${allZone.open}"><b class="wy_ico_o wy_ico"></b></c:if>
-			                        <c:if test="${allZone.open}"><b class="wy_ico_m wy_ico"></b></c:if>
-									<c:if test="${status.index == 0}"><b class="wy_ico_new wy_ico"></b></c:if>
-									<c:if test="${status.index == 0}"><b class="wy_ico_j wy_ico"></b></c:if>
+			                    <a href="javascript:void(0);" onclick="javascript:loginZone(${zone.id});return false;">
+			                        <em class="fl">${zone.name}</em>
+			                        <#if zone.open><b class="wy_ico_o wy_ico"></b></#if>
+			                        <#if zone.fresh><b class="wy_ico_m wy_ico"></b></#if>
+			                        <#if zone.status=0><b class="wy_ico_new wy_ico"></b><#elseif zone.status=1><b class="wy_ico_j wy_ico"></b></#if>
 								</a>
 			                </li>
-			             </c:forEach>
+			            </#list>
 			            </ul>
 			        </div>
 			    </div>
 			</div>
 		</div>
-        <!--所有服务器列表End-->
     </div>
 </div>
 <script type="text/javascript">
-//用于最近登录和所有服务器间切换
 function serlist()
 {
 	document.getElementById("sevlist").style.display="block";
@@ -103,7 +104,6 @@ function zjdllist()
 	document.getElementById("zjdl").style.display="block";
 	document.getElementById("sevlist").style.display="none";
 }
-//用于切换大区的class变化
 function settab(name,cursel,n){
 	for(i=0;i<n;i++){
 		var menu=document.getElementById(name+i);
@@ -127,13 +127,5 @@ function changeTab(id) {
        $("#"+select_daqu).attr("class","hover");
        $("#"+select_area_server).css('display','block');
 }
-//登陆
-function loginZone(zoneid)
-{
-	var loginPath = "${base}/loginZone";
-	location.href = loginPath + "?zoneid=" + zoneid + "&pf=${pf}";
-}
-</script>
-
 </body>
 </html>
