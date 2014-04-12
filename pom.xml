@@ -318,20 +318,52 @@
 		</dependency>
 	</dependencies>
 	<build>
-	<sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
-	<testSourceDirectory>${project.basedir}/test</testSourceDirectory>
-	<outputDirectory>${project.basedir}/src/main/webapp/WEB-INF/classes</outputDirectory>
-	<testResources>
-		<testResource>
-			<directory>${project.basedir}/test</directory>
-			<filtering>true</filtering>
-			<excludes>
-				<exclude>**/*.java</exclude>
-			</excludes>
-		</testResource>
-	</testResources>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<testSourceDirectory>test</testSourceDirectory>
+		<outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
+		<resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>**/*</exclude>
+                </excludes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+		<testResources>
+			<testResource>
+				<directory>test</directory>
+				<filtering>true</filtering>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</testResource>
+		</testResources>
 		<finalName>rk_cms</finalName>
 		<plugins>
+		<plugin>  
+		    <groupId>org.apache.maven.plugins</groupId>  
+		    <artifactId>maven-resources-plugin</artifactId>  
+		    <version>2.6</version>  
+		    <configuration>  
+		      <encoding>UTF-8</encoding>  
+		    </configuration>  
+		</plugin>
+		<plugin>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-jar-plugin</artifactId>
+		    <executions>
+		      <execution>
+		        <goals><goal>jar</goal></goals>
+		        <phase>prepare-package</phase>
+		        <configuration>
+		            <excludes>
+		                <exclude>src/main/resources/**/*</exclude>
+		            </excludes>
+		        </configuration>
+		      </execution>
+		    </executions>
+		</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId> 
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -349,13 +381,17 @@
 				<configuration>
 					<archiveClasses>true</archiveClasses>
 					<packagingExcludes>WEB-INF/web.xml</packagingExcludes>
-					 <webResources>  
-				        <resource>  
-				            <directory>src/main/resources</directory>  
-				            <targetPath>WEB-INF/classes</targetPath>  
-				            <filtering>true</filtering>  
-				        </resource>  
-				    </webResources> 
+					<warSourceExcludes>game.html</warSourceExcludes>
+					<warSourceExcludes>WEB-INF/classes/com/**</warSourceExcludes>
+					<webResources>
+				      <resource>  
+				        <directory>src/main/resources</directory>  
+				        <targetPath>WEB-INF/classes</targetPath>  
+				        <includes>  
+				          <include>**</include>  
+				        </includes>  
+				      </resource>  
+				    </webResources>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -374,6 +410,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.17</version>
 				<configuration>
 					<forkMode>once</forkMode>
 					<argLine>-Dfile.encoding=UTF-8</argLine>
