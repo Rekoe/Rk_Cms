@@ -1,12 +1,5 @@
 <div class="container header">
-	<div class="span5">
-		<div class="logo">
-		</div>
-	</div>
-	<div class="span9">
-<div class="headerAd">
-</div>	</div>
-	<div class="span10 last">
+	<div class="span24">
 		<div class="topNav clearfix">
 			<ul>
 				<li class="headerLogin" id="headerLogin" style="display: list-item;">
@@ -17,9 +10,7 @@
 	</div>
 	<div class="span24">
 		<ul class="mainNav">
-			<li>
-				<a href="/">首页</a> |
-			</li>
+			<li><a href="/">首页</a> |</li>
 		</ul>
 	</div>
 	<div class="span24">
