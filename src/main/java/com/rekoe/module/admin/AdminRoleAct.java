@@ -17,7 +17,9 @@ import org.nutz.mvc.annotation.Param;
 
 import com.rekoe.common.Message;
 import com.rekoe.domain.Permission;
+import com.rekoe.domain.PermissionCategory;
 import com.rekoe.domain.Role;
+import com.rekoe.service.PermissionCategoryService;
 import com.rekoe.service.PermissionService;
 import com.rekoe.service.RoleService;
 
@@ -32,6 +34,9 @@ public class AdminRoleAct {
 	@Inject
 	private PermissionService permissionService;
 
+	@Inject
+	private PermissionCategoryService permissionCategoryService;
+	
 	@At
 	@Ok("fm:template.admin.role.list")
 	@RequiresPermissions({ "admin:role" })
@@ -43,8 +48,8 @@ public class AdminRoleAct {
 	@Ok("fm:template.admin.role.edit")
 	public Object edit(@Param("id") long id, HttpServletRequest req) {
 		Role role = roleService.view(id);
-		List<Permission> pList = permissionService.list();
-		req.setAttribute("pList", pList);
+		List<PermissionCategory> pcList = permissionCategoryService.list();
+		req.setAttribute("pcList", pcList);
 		return role;
 	}
 
@@ -68,8 +73,8 @@ public class AdminRoleAct {
 	 */
 	@At
 	@Ok("fm:template.admin.role.add")
-	public List<Permission> add() {
-		return permissionService.list();
+	public List<PermissionCategory> add(HttpServletRequest req) {
+		return permissionCategoryService.list();
 	}
 
 	@At

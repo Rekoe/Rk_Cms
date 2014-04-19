@@ -63,15 +63,18 @@ $().ready(function() {
 			<tr>
 				<td colspan="2">&nbsp;</td>
 			</tr>
+			<#list obj as permissionCategory>
 			<tr class="authorities">
-				<th><a href="javascript:;" class="selectAll" title="<@s.m "admin.role.selectAll" />"><@s.m "admin.role.manager" /></a></th>
+				<th><a href="javascript:;" class="selectAll" title="<@s.m "admin.role.selectAll" />">${permissionCategory.name}</a></th>
 				<td>
 					<span class="fieldSet">
-						<label><@cms_perm perm='admin:role' permList=obj /></label>
-						<label><@cms_perm perm='admin:admin' permList=obj /></label>
+					<#list permissionCategory.permissions as permission>
+						<label><input value="${permission.id}" type="checkbox" name="authorities">${permission.description} </label>
+					</#list>
 					</span>
 				</td>
 			</tr>
+			</#list>
 			<tr>
 				<th>&nbsp;</th>
 				<td>

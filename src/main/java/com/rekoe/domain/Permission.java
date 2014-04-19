@@ -9,6 +9,7 @@ import org.nutz.dao.entity.annotation.Column;
 import org.nutz.dao.entity.annotation.Id;
 import org.nutz.dao.entity.annotation.Index;
 import org.nutz.dao.entity.annotation.ManyMany;
+import org.nutz.dao.entity.annotation.One;
 import org.nutz.dao.entity.annotation.Table;
 import org.nutz.dao.entity.annotation.TableIndexes;
 
@@ -26,6 +27,36 @@ public class Permission implements Serializable{
 	private String description;
 	@ManyMany(target = Role.class, relation = "system_role_permission", from = "permissionid", to = "roleid")
 	private List<Role> roles;
+	@Column("permission_category_id")
+	private String permissionCategoryId;
+	@One(target = PermissionCategory.class, field = "permissionCategoryId")
+	private PermissionCategory permissionCategory;
+	@Column("is_locked")
+	@ColDefine(type = ColType.BOOLEAN)
+	private boolean locked;
+	public String getPermissionCategoryId() {
+		return permissionCategoryId;
+	}
+
+	public boolean isLocked() {
+		return locked;
+	}
+
+	public void setLocked(boolean locked) {
+		this.locked = locked;
+	}
+
+	public void setPermissionCategoryId(String permissionCategoryId) {
+		this.permissionCategoryId = permissionCategoryId;
+	}
+
+	public PermissionCategory getPermissionCategory() {
+		return permissionCategory;
+	}
+
+	public void setPermissionCategory(PermissionCategory permissionCategory) {
+		this.permissionCategory = permissionCategory;
+	}
 
 	public Long getId() {
 		return id;

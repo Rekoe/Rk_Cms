@@ -54,41 +54,37 @@ $().ready(function() {
 		<input type="hidden" name="role.id" value="${role.id}" />
 		<table class="input">
 			<tr>
-				<th>
-					<span class="requiredField">*</span><@s.m "admin.role.name" />:
-				</th>
-				<td>
-					<input type="text" name="name" class="text" value="${role.name}" maxlength="200" />
-				</td>
+				<th><span class="requiredField">*</span><@s.m "admin.role.name" />:</th>
+				<td><input type="text" name="name" class="text" value="${role.name}" maxlength="200" /></td>
 			</tr>
 			<tr>
-				<th>
-					<@s.m "admin.role.description" />:
-				</th>
-				<td>
-					<input type="text" name="role.description" class="text" value="${role.description}" maxlength="200" />
-				</td>
+				<th><@s.m "admin.role.description" />:</th>
+				<td><input type="text" name="role.description" class="text" value="${role.description}" maxlength="200" /></td>
 			</tr>
 			<tr>
-				<td colspan="2">
-					&nbsp;
-				</td>
+				<td colspan="2">&nbsp;</td>
 			</tr>
+			<#list pcList as permissionCategory>
 			<tr class="authorities">
-				<th>
-					<a href="javascript:;" class="selectAll" title="<@s.m "admin.role.selectAll" />"><@s.m "admin.role.manager" /></a>
-				</th>
+				<th><a href="javascript:;" class="selectAll" title="<@s.m "admin.role.selectAll" />">${permissionCategory.name}</a></th>
 				<td>
 					<span class="fieldSet">
-						<label><@cms_perm role=role perm='admin:role' permList=pList/></label>
-						<label><@cms_perm role=role perm='admin:admin' permList=pList/></label>
+					<#list permissionCategory.permissions as permission>
+						<label><input value="${permission.id}" type="checkbox" 
+						<#list obj.permissions as p>
+							<#if permission.id = p.id>
+							 checked="checked"
+							<#break>
+							</#if>
+						</#list>
+						name="authorities">${permission.description} </label>
+					</#list>
 					</span>
 				</td>
 			</tr>
+			</#list>
 			<tr>
-				<th>
-					&nbsp;
-				</th>
+				<th>&nbsp;</th>
 				<td>
 					<input type="submit" class="button" value="<@s.m "admin.common.submit" />"/>
 					<input type="button" id="backButton" class="button" value="<@s.m "admin.common.back" />" />

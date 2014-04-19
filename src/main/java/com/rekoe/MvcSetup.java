@@ -17,6 +17,7 @@ import com.rekoe.domain.Article;
 import com.rekoe.domain.ArticleCategory;
 import com.rekoe.domain.Client;
 import com.rekoe.domain.Permission;
+import com.rekoe.domain.PermissionCategory;
 import com.rekoe.domain.Role;
 import com.rekoe.domain.Setting;
 import com.rekoe.domain.User;
@@ -39,6 +40,7 @@ public class MvcSetup implements Setup {
 			dao.create(Article.class, true);
 			dao.create(ArticleCategory.class, true);
 			dao.create(Zone.class,true);
+			dao.create(PermissionCategory.class,true);
 			FileSqlManager fm = new FileSqlManager("init_system_h2.sql");
 			List<Sql> sqlList = fm.createCombo(fm.keys());
 			dao.execute(sqlList.toArray(new Sql[sqlList.size()]));
@@ -59,10 +61,5 @@ public class MvcSetup implements Setup {
 	@Override
 	public void destroy(NutConfig config) {
 
-	}
-
-	public static void main(String[] args) {
-		System.out.println(R.UU16());
-		System.out.println(R.UU16());
 	}
 }

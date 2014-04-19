@@ -9,13 +9,18 @@ INSERT INTO system_role(ID,NAME,DESCRIPTION) VALUES
 (4,'user-admin','用户管理员：拥有对用户的浏览、增加和编辑(不包括删除)权限的角色'),
 (5,'security-admin','安全管理员：拥有对角色和权限的任意操作，对用户分配角色及对角色分配权限的权限');
 /*  .system_permission   		*/
-INSERT INTO system_permission(ID,NAME,DESCRIPTION) VALUES
-(1,'*:*:*','全部权限'),
-(2,'admin:role','对用户分配角色 '),
-(3,'admin:setting','系统设置 '),
-(4,'admin:article','文章管理 '),
-(5,'admin:articleCategory','文章分类 '),
-(6,'admin:admin','添加管理员');
+INSERT INTO system_permission(ID,NAME,DESCRIPTION,PERMISSION_CATEGORY_ID,IS_LOCKED) VALUES
+(1,'*:*:*','全部权限','1',1),
+(2,'admin:role','对用户分配角色 ','1',1),
+(3,'admin:setting','系统设置 ','1',1),
+(4,'admin:article','文章管理 ','1',1),
+(5,'admin:articleCategory','文章分类 ','1',1),
+(6,'admin:admin','添加管理员','1',1),
+(7,'admin:permission','权限管理','1',1),
+(8,'admin:permissionCategory','权限分类','1',1);
+/*  .permission_category   		*/
+INSERT INTO permission_category(ID,NAME,IS_LOCKED) VALUES 
+('1','超级权利',1);
 /*  .system_user_role   		*/
 INSERT INTO system_user_role(USERID,ROLEID) VALUES 
 (1,1);

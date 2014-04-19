@@ -106,6 +106,12 @@ $().ready(function() {
 					<@shiro.hasPermission name="admin:role">
 						<dd><a href="${base}/role/list.rk" target="iframe"><@s.m "admin.main.role" /></a></dd>
 					</@shiro.hasPermission>
+					<@shiro.hasPermission name="admin:permission">
+						<dd><a href="${base}/admin/permission/list.rk" target="iframe"><@s.m "admin.main.permission" /></a></dd>
+					</@shiro.hasPermission>
+					<@shiro.hasPermission name="admin:permissionCategory">
+						<dd><a href="${base}/admin/permission/category/list.rk" target="iframe"><@s.m "admin.main.permissionCategory" /></a></dd>
+					</@shiro.hasPermission>
 				</dl>
 				<dl id="statistics">
 					<dt><@s.m "admin.main.statisticsGroup" /></dt>

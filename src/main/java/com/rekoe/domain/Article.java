@@ -16,8 +16,8 @@ import org.nutz.lang.random.R;
 public class Article {
 
 	@Name
-	//@Prev(els = { @EL("uuid()") })
-	@Prev(els = { @EL("$me.uuid()") })
+	@Prev(els = { @EL("uuid()") })
+	//@Prev(els = { @EL("$me.uuid()") })
 	private String id;
 	@Column("create_date")
 	@ColDefine(type = ColType.TIMESTAMP)
