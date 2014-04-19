@@ -19,7 +19,7 @@
  * limitations under the License.
  */
 
-package cms.rekoe;
+package com.rekoe.cms.authorize.test;
 
 import java.net.HttpURLConnection;
 import java.util.Map;

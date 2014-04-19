@@ -1,4 +1,4 @@
-package cms.rekoe;
+package com.rekoe.cms.authorize.test;
 
 import java.util.ArrayList;
 import java.util.List;

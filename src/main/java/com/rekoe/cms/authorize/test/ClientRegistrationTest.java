@@ -19,7 +19,7 @@
  * limitations under the License.
  */
 
-package cms.rekoe;
+package com.rekoe.cms.authorize.test;
 
 import org.apache.oltu.oauth2.client.URLConnectionClient;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;

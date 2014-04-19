@@ -319,7 +319,6 @@
 	</dependencies>
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
-		<testSourceDirectory>test</testSourceDirectory>
 		<outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
 		<resources>
             <resource>
@@ -330,15 +329,6 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
-		<testResources>
-			<testResource>
-				<directory>test</directory>
-				<filtering>true</filtering>
-				<excludes>
-					<exclude>**/*.java</exclude>
-				</excludes>
-			</testResource>
-		</testResources>
 		<finalName>rk_cms</finalName>
 		<plugins>
 		<plugin>  

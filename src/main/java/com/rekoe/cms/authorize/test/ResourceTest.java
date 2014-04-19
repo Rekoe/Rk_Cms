@@ -19,7 +19,7 @@
  * limitations under the License.
  */
 
-package cms.rekoe;
+package com.rekoe.cms.authorize.test;
 
 import java.io.InputStream;
 import java.io.OutputStream;
