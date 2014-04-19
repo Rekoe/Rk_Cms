@@ -7,7 +7,7 @@
 <meta name="copyright" content="Rekoe" />
 <link href="${base}/resources/admin/css/common.css" rel="stylesheet" type="text/css" />
 <link href="${base}/resources/admin/css/main.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="${base}/resources/admin/js/jquery.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <style type="text/css">
 *{
 	font: 12px tahoma, Arial, Verdana, sans-serif;
