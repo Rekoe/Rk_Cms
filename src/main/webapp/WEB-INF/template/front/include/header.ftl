@@ -3,7 +3,7 @@
 		<div class="topNav clearfix">
 			<ul>
 				<li class="headerLogin" id="headerLogin" style="display: list-item;">
-					<a href="${base}/user/login/qq"><img alt="QQ登录" class="vm" src="${base}/resources/front/images/qq_login.gif"></a>
+					<a href="${base}/user/login/github"><img alt="GitHub登录" class="vm" src="${base}/resources/front/images/github_logo.gif"></a>
 				</li>
 			</ul>
 		</div>
