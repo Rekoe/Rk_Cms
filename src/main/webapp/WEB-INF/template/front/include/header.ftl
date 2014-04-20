@@ -4,6 +4,7 @@
 			<ul>
 				<li class="headerLogin" id="headerLogin" style="display: list-item;">
 					<a href="${base}/user/login/github"><img alt="GitHub登录" class="vm" src="${base}/resources/front/images/github_logo.gif"></a>
+					<a href="${base}/user/login/facebook"><img alt="FaceBook登录" class="vm" src="${base}/resources/front/images/facebook_header.png"></a>
 				</li>
 			</ul>
 		</div>
