@@ -9,7 +9,6 @@ import org.nutz.dao.Dao;
 import org.nutz.dao.impl.FileSqlManager;
 import org.nutz.dao.sql.Sql;
 import org.nutz.ioc.Ioc;
-import org.nutz.lang.random.R;
 import org.nutz.mvc.NutConfig;
 import org.nutz.mvc.Setup;
 

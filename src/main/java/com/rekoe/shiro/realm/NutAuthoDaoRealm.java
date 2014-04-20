@@ -1,5 +1,6 @@
 package com.rekoe.shiro.realm;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -25,7 +26,7 @@ public class NutAuthoDaoRealm extends AbstractNutAuthoRealm {
 		String openid = credential.getValidatedId();
 		User user = getUserService().fetchByOpenID(openid);
 		if (Lang.isEmpty(user)) {
-			String nickName = credential.getDisplayName();
+			String nickName = StringUtils.defaultString(credential.getDisplayName(), openid);
 			String providerid = credential.getProviderId();
 			user = getUserService().initUser(nickName, openid, providerid, oauthToken.getAddr());
 			throw Lang.makeThrow(UnknownAccountException.class, "Account [ %s ] not found", user.getName());
