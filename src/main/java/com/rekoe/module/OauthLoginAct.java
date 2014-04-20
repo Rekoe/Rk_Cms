@@ -89,12 +89,12 @@ public class OauthLoginAct {
 			throw new SocialAuthException("Not manager found!");
 		session.removeAttribute("openid.manager"); // 防止重复登录的可能性
 		Map<String, String> paramsMap = SocialAuthUtil.getRequestParametersMap(request);
-		AuthProvider provider = manager.connect(paramsMap);
-		Profile p = provider.getUserProfile();
-		Subject currentUser = SecurityUtils.getSubject();
-		ThreadContext.bind(currentUser);
-		OAuthToken token = new OAuthToken(p, request.getRemoteAddr());
 		try {
+			AuthProvider provider = manager.connect(paramsMap);
+			Profile p = provider.getUserProfile();
+			Subject currentUser = SecurityUtils.getSubject();
+			ThreadContext.bind(currentUser);
+			OAuthToken token = new OAuthToken(p, request.getRemoteAddr());
 			currentUser.login(token);
 		} catch (UnknownAccountException uae) {
 			return new ViewWrapper(new ForwardView("/admin/index"), "帐号不存在");
