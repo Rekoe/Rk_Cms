@@ -61,14 +61,12 @@ $().ready(function() {
 						<li><a href="#system"><@s.m "admin.main.systemNav" /></a></li>
 					</@shiro.hasAnyPermission>
 					<@shiro.hasAnyPermission name = "admin:statistics">
-						<li>
-							<a href="#statistics"><@s.m "admin.main.statisticsNav" /></a>
-						</li>
+						<li><a href="#statistics"><@s.m "admin.main.statisticsNav" /></a></li>
 					</@shiro.hasAnyPermission>
-						<li>
-							<a href="#zones"><@s.m "admin.main.zoneNav" /></a>
-						</li>
+					<@shiro.hasPermission name="admin:setting">
+						<li><a href="#zones"><@s.m "admin.main.zoneNav" /></a></li>
 						<li><a href="${base}/" target="_blank"><@s.m "admin.main.home" /></a></li>
+					</@shiro.hasPermission>
 					</ul>
 				</div>
 				<div class="link">
