@@ -39,9 +39,8 @@
 					<td><input type="checkbox" name="ids" value="${member.id}" /></td>
 					<td>${member.name}</td>
 					<td>${member.createDate?string("yyyy-MM-dd HH:mm:ss")}</td>
-					<td><span class="green"><@s.m "admin.member.normal" /></span></td>
+					<td><span class="green"><#if member.locked><@s.m "admin.member.locked" /><#else><@s.m "admin.member.normal" /></#if></span></td>
 					<td>
-						<a href="view.rk?id=${member.id}">[<@s.m "admin.common.view" />]</a>
 						<a href="edit.rk?id=${member.id}">[<@s.m "admin.common.edit" />]</a>
 					</td>
 				</tr>

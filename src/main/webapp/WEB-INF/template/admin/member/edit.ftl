@@ -60,8 +60,8 @@ $().ready(function() {
 				<th><@s.m "admin.common.setting" />:</th>
 				<td>
 					<label>
-						<input type="checkbox" name="isEnabled"<#if member.locked> checked="checked"</#if> value="true"><@s.m "Member.isEnabled" />
-						<input type="hidden" name="_isEnabled" value="false" />
+						<input type="checkbox" name="isLocked"<#if member.locked> checked="checked"</#if> value="true"><@s.m "Member.isLocked" />
+						<input type="hidden" name="_isLocked" value="false" />
 					</label>
 				</td>
 			</tr>

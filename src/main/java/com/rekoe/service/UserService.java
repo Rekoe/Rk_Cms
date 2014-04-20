@@ -32,7 +32,7 @@ public class UserService extends BaseService<User> {
 		dao().update(user);
 	}
 
-	public void update(long uid, String password, boolean isEnable, Integer[] ids) {
+	public void update(long uid, String password, boolean isLocked, Integer[] ids) {
 		User user = fetch(uid);
 		dao().clearLinks(user, "roles");
 		if (!Lang.isEmptyArray(ids)) {
@@ -43,7 +43,7 @@ public class UserService extends BaseService<User> {
 			user.setSalt(salt);
 			user.setPassword(new Sha256Hash(password, salt, 1024).toBase64());
 		}
-		user.setLocked(!isEnable);
+		user.setLocked(isLocked);
 		dao().update(user);
 		if (!Lang.isEmpty(user.getRoles())) {
 			dao().insertRelation(user, "roles");

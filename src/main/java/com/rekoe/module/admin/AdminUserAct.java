@@ -101,8 +101,8 @@ public class AdminUserAct {
 
 	@At
 	@Ok(">>:/admin/list.rk")
-	public boolean update(@Param("id") long id, @Param("password") String password, @Param("isEnabled") boolean isEnabled, @Param("roleIds") Integer[] roleIds) {
-		userService.update(id, password, isEnabled, roleIds);
+	public boolean update(@Param("id") long id, @Param("password") String password, @Param("isLocked") boolean isLocked, @Param("roleIds") Integer[] roleIds) {
+		userService.update(id, password, isLocked, roleIds);
 		return true;
 	}
 

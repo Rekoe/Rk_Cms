@@ -129,10 +129,12 @@ $().ready(function() {
 						</dd>
 					</@shiro.hasPermission>
 				</dl>
+				<@shiro.hasPermission name="admin:setting">
 				<dl id="zones">
 					<dt><@s.m "admin.main.zoneGroup" /></dt>
 					<dd><a href="${base}/admin/zone/list.rk" target="iframe"><@s.m "admin.main.zone" /></a></dd>
 				</dl>
+				</@shiro.hasPermission>
 			</td>
 			<td><iframe id="iframe" name="iframe" src="${base}/admin/common/index.rk" frameborder="0"></iframe></td>
 		</tr>

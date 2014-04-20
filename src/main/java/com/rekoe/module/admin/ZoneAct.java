@@ -3,6 +3,7 @@ package com.rekoe.module.admin;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.lang.Lang;
@@ -16,7 +17,7 @@ import com.rekoe.service.ZoneService;
 
 @IocBean
 @At("/admin/zone")
-@RequiresAuthentication
+@RequiresPermissions({ "admin:setting" })
 public class ZoneAct {
 
 	@Inject
