@@ -21,7 +21,6 @@ public class User implements Serializable {
 
 	@Id
 	private Long id;
-
 	@Column
 	@ColDefine(type = ColType.VARCHAR, width = 20)
 	private String name;
@@ -49,15 +48,26 @@ public class User implements Serializable {
 	@Column("create_date")
 	@ColDefine(type = ColType.TIMESTAMP)
 	private Date createDate;
-
 	@Column("register_ip")
 	@ColDefine(type = ColType.VARCHAR, width = 15)
 	private String registerIp;
 	@ManyMany(target = Role.class, relation = "system_user_role", from = "userid", to = "roleid")
 	private List<Role> roles;
 
+	@Column("is_updated")
+	@ColDefine(type = ColType.BOOLEAN)
+	private boolean updated;
+
 	public String getProviderid() {
 		return providerid;
+	}
+
+	public boolean isUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(boolean updated) {
+		this.updated = updated;
 	}
 
 	public void setProviderid(String providerid) {

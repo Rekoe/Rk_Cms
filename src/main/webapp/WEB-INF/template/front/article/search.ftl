@@ -10,7 +10,7 @@
 <meta name="description" content="Rekoe Cms" />
 <link href="${base}/resources/front/css/common.css" rel="stylesheet" type="text/css" />
 <link href="${base}/resources/front/css/article.css" rel="stylesheet" type="text/css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="${base}/resources/admin/js/jquery.min.js"></script>
 <script type="text/javascript" src="${base}/resources/admin/js/common.js"></script>
 <script type="text/javascript">
 $().ready(function() {

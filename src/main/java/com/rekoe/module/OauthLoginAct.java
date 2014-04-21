@@ -89,13 +89,15 @@ public class OauthLoginAct {
 			throw new SocialAuthException("Not manager found!");
 		session.removeAttribute("openid.manager"); // 防止重复登录的可能性
 		Map<String, String> paramsMap = SocialAuthUtil.getRequestParametersMap(request);
+		Subject currentUser = SecurityUtils.getSubject();
+		boolean rname = false;
 		try {
 			AuthProvider provider = manager.connect(paramsMap);
 			Profile p = provider.getUserProfile();
-			Subject currentUser = SecurityUtils.getSubject();
 			ThreadContext.bind(currentUser);
-			OAuthToken token = new OAuthToken(p, request.getRemoteAddr());
+			OAuthToken token = new OAuthToken(p, request.getRemoteAddr(), session);
 			currentUser.login(token);
+			rname = token.isRname();
 		} catch (UnknownAccountException uae) {
 			return new ViewWrapper(new ForwardView("/admin/index"), "帐号不存在");
 		} catch (IncorrectCredentialsException ice) {
@@ -106,6 +108,9 @@ public class OauthLoginAct {
 			return new ViewWrapper(new ForwardView("/admin/index"), "尝试的次数太多");
 		} catch (AuthenticationException ae) {
 			return new ViewWrapper(new ForwardView("/admin/index"), ae.getMessage());
+		}
+		if (rname) {
+			return new ViewWrapper(new ServerRedirectView("/admin/register.rk"), null);
 		}
 		return new ViewWrapper(new ServerRedirectView("/admin/main.rk"), null);
 	}

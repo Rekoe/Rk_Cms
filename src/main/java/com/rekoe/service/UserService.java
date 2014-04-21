@@ -109,14 +109,15 @@ public class UserService extends BaseService<User> {
 		return getObjListByPager(dao(), getPageNumber(pageNumber), pageSize, null, User.class);
 	}
 
-	public User initUser(String name, String openid, String providerid, String addr) {
+	public User initUser(String name, String openid, String providerid, String addr,boolean isUpdated) {
 		User user = new User();
 		user.setCreateDate(Times.now());
 		user.setName(name);
 		user.setOpenid(openid);
 		user.setProviderid(providerid);
 		user.setRegisterIp(addr);
-		user.setLocked(true);
+		user.setLocked(false);
+		user.setUpdated(isUpdated);
 		return dao().insert(user);
 	}
 

@@ -6,7 +6,7 @@
 <meta name="author" content="SHOP++ Team" />
 <meta name="copyright" content="SHOP++" />
 <link href="${base}/resources/admin/css/common.css" rel="stylesheet" type="text/css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="${base}/resources/admin/js/jquery.min.js"></script>
 <script type="text/javascript" src="${base}/resources/admin/js/jquery.tools.js"></script>
 <script type="text/javascript" src="${base}/resources/admin/js/jquery.lSelect.js"></script>
 <script type="text/javascript" src="${base}/resources/admin/js/jquery.validate.js"></script>
@@ -14,10 +14,9 @@
 <script type="text/javascript" src="${base}/resources/admin/js/input.js"></script>
 <script type="text/javascript" src="${base}/resources/admin/datePicker/WdatePicker.js"></script>
 <script type="text/javascript">
-$().ready(function() {
-	var $inputForm = $("#inputForm");
-	// 表单验证
-	$inputForm.validate({
+$(function(){
+		var $inputForm = $("#inputForm");
+		$inputForm.validate({
 		rules: {
 			username: {
 				required: true,
@@ -33,12 +32,13 @@ $().ready(function() {
 				required: true,
 				pattern: /^[^\s&\"<>]+$/,
 				minlength: 1,
-				maxlength: 5
+				maxlength: 10
 			},
 			rePassword: {
 				required: true,
 				equalTo: "#password"
-			},
+			}
+		},
 		messages: {
 			username: {
 				pattern: "<@s.m "admin.validate.illegal" />",
@@ -49,7 +49,6 @@ $().ready(function() {
 			}
 		}
 	});
-
 });
 </script>
 </head>

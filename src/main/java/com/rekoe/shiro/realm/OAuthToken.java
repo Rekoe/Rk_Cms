@@ -18,6 +18,8 @@
  */
 package com.rekoe.shiro.realm;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.shiro.authc.AuthenticationToken;
 import org.brickred.socialauth.Profile;
 
@@ -34,10 +36,12 @@ public final class OAuthToken implements AuthenticationToken {
 	private Profile credential;
 	private String userId;
 	private String addr;
-
-	public OAuthToken(Profile credential, String addr) {
+	private HttpSession session;
+	private boolean rname;
+	public OAuthToken(Profile credential, String addr,HttpSession session) {
 		this.credential = credential;
 		this.addr = addr;
+		this.session = session;
 	}
 
 	public void setUserId(String userId) {
@@ -54,5 +58,17 @@ public final class OAuthToken implements AuthenticationToken {
 
 	public String getAddr() {
 		return addr;
+	}
+
+	public HttpSession getSession() {
+		return session;
+	}
+
+	public boolean isRname() {
+		return rname;
+	}
+
+	public void setRname(boolean rname) {
+		this.rname = rname;
 	}
 }

@@ -9,6 +9,7 @@ import org.apache.shiro.session.SessionException;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ThreadContext;
 import org.nutz.ioc.loader.annotation.IocBean;
+import org.nutz.lang.Lang;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
 import org.nutz.mvc.View;
@@ -20,15 +21,14 @@ import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.view.ForwardView;
 import org.nutz.mvc.view.ServerRedirectView;
 import org.nutz.mvc.view.ViewWrapper;
+import org.nutz.web.Webs;
 
+import com.rekoe.domain.User;
 import com.rekoe.exception.IncorrectCaptchaException;
 import com.rekoe.filter.CaptchaFormAuthenticationFilter;
 
 /**
- * @author 科技㊣²º¹³
- * 2014年2月6日 下午8:19:23
- * http://www.rekoe.com
- * QQ:5382211
+ * @author 科技㊣²º¹³ 2014年2月6日 下午8:19:23 http://www.rekoe.com QQ:5382211
  */
 @IocBean
 @At("/admin")
@@ -46,12 +46,12 @@ public class AdminLoginAct {
 		} catch (IncorrectCaptchaException e) {
 			return new ViewWrapper(new ForwardView("/admin/index.rk"), e.getMessage());
 		} catch (LockedAccountException e) {
-			//Map<String, Object> msgs = Mvcs.getLocaleMessage("zh_CN");
-			//String errMsg = msgs.get("admin.login.lockedAccount").toString();
+			// Map<String, Object> msgs = Mvcs.getLocaleMessage("zh_CN");
+			// String errMsg = msgs.get("admin.login.lockedAccount").toString();
 			return new ViewWrapper(new ForwardView("/admin/index.rk"), e.getMessage());
 		} catch (AuthenticationException e) {
-			//Map<String, Object> msgs = Mvcs.getLocaleMessage("zh_CN");
-			//String errMsg = msgs.get("login_error").toString();
+			// Map<String, Object> msgs = Mvcs.getLocaleMessage("zh_CN");
+			// String errMsg = msgs.get("login_error").toString();
 			return new ViewWrapper(new ForwardView("/admin/index.rk"), e.getMessage());
 		} catch (Exception e) {
 			return new ViewWrapper(new ForwardView("/admin/index.rk"), e.getMessage());
@@ -76,6 +76,16 @@ public class AdminLoginAct {
 	@Ok("fm:template.login.login")
 	@Filters
 	public String index() {
+		return null;
+	}
+
+	@At
+	@Ok("fm:template.front.account.create_user")
+	@RequiresAuthentication
+	public Object register(@Attr(Webs.ME) User user) {
+		if (Lang.isEmpty(user) || user.isUpdated()) {
+			return new ForwardView("/admin/common/unauthorized.rk");
+		}
 		return null;
 	}
 }

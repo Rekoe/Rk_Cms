@@ -10,7 +10,7 @@
 <meta name="copyright" content="Rekoe.Com" />
 <link href="${base}/resources/admin/css/common.css" rel="stylesheet" type="text/css" />
 <link href="${base}/resources/admin/css/login.css" rel="stylesheet" type="text/css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="${base}/resources/admin/js/jquery.min.js"></script>
 <script type="text/javascript" src="${base}/resources/admin/js/common.js"></script>
 <script type="text/javascript">
 	$().ready( function() {

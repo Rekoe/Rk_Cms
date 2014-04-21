@@ -9,6 +9,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AccountException;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.apache.shiro.subject.Subject;
 import org.nutz.ioc.loader.annotation.Inject;
@@ -16,6 +17,7 @@ import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.lang.Lang;
 import org.nutz.lang.Mirror;
 import org.nutz.mvc.annotation.At;
+import org.nutz.mvc.annotation.Attr;
 import org.nutz.mvc.annotation.Fail;
 import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.Param;
@@ -60,7 +62,7 @@ public class AdminUserAct {
 	@At
 	@Ok("json")
 	@RequiresPermissions("admin:delete")
-	public Message delete(@Param("ids") int[] uids,HttpServletRequest req) {
+	public Message delete(@Param("ids") int[] uids, HttpServletRequest req) {
 		for (int id : uids) {
 			userService.delete(id);
 		}
@@ -115,36 +117,51 @@ public class AdminUserAct {
 	public AjaxReturn lock(@Param("id") long id) {
 		return Ajax.ok();
 	}
-	
+
 	@At("/profile/check_current_password")
 	@Ok("raw")
 	public boolean checkCurrentPassword(@Param("currentPassword") String password) {
-		if(StringUtils.isBlank(password)){
+		if (StringUtils.isBlank(password)) {
 			return false;
 		}
 		Object principal = SecurityUtils.getSubject().getPrincipal();
-		User user = (User)principal;
-		if(StringUtils.equals(new Sha256Hash(password, user.getSalt(), 1024).toBase64(), user.getPassword())) {
+		User user = (User) principal;
+		if (StringUtils.equals(new Sha256Hash(password, user.getSalt(), 1024).toBase64(), user.getPassword())) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	@At("/profile/edit")
 	@Ok("fm:template.admin.profile.edit")
 	public Subject profileEdit() {
 		return SecurityUtils.getSubject();
 	}
+
 	@At("/profile/update")
 	@Ok("fm:template.admin.profile.edit")
-	public boolean profileUpdate(@Param("currentPassword") String currentPassword,@Param("password") String password) {
-		if(checkCurrentPassword(currentPassword))
-		{
+	public boolean profileUpdate(@Param("currentPassword") String currentPassword, @Param("password") String password) {
+		if (checkCurrentPassword(currentPassword)) {
 			Object principal = SecurityUtils.getSubject().getPrincipal();
 			Object uid = Mirror.me(User.class).getValue(principal, "id");
 			userService.updatePwd(uid, password);
 			return true;
 		}
 		return false;
+	}
+
+	@At("/profile/re_update")
+	@Ok(">>:${obj?'/admin/main':'/admin/common/unauthorized.rk'}")
+	public boolean regUpate(@Param("username") String username, @Param("password") String password, @Attr("me") User suser) {
+		if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
+			return false;
+		}
+		suser.setUpdated(true);
+		suser.setName(username);
+		String salt = new SecureRandomNumberGenerator().nextBytes().toBase64();
+		suser.setSalt(salt);
+		suser.setPassword(new Sha256Hash(password, salt, 1024).toBase64());
+		userService.update(suser);
+		return true;
 	}
 }
