@@ -1,6 +1,8 @@
 package com.rekoe.cms.socialauth;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,15 +75,21 @@ public abstract class AbstractOAuthProvider extends AbstractProvider implements 
 
 	protected abstract Profile authLogin() throws Exception;
 
-	public Response api(String arg0, String arg1, Map<String, String> arg2, Map<String, String> arg3, String arg4) throws Exception {
-		return null;
+	public Response api(final String url, final String methodType, final Map<String, String> params, final Map<String, String> headerParams, final String body) throws Exception {
+		try {
+			return authenticationStrategy.executeFeed(url, methodType, params, headerParams, body);
+		} catch (Exception e) {
+			throw new SocialAuthException("Error while making request to URL : " + url, e);
+		}
 	}
 
 	public List<Contact> getContactList() throws Exception {
-		return null;
+		throw new SocialAuthException("Get contact list is not implemented for QQ");
 	}
 
 	public void logout() {
+		accessGrant = null;
+		authenticationStrategy.logout();
 	}
 
 	@Override
@@ -132,21 +140,25 @@ public abstract class AbstractOAuthProvider extends AbstractProvider implements 
 
 	@Override
 	public Response updateStatus(String arg0) throws Exception {
-		return null;
+		throw new SocialAuthException("Update Status is not implemented for QQ");
 	}
 
 	@Override
 	public Response uploadImage(String arg0, String arg1, InputStream arg2) throws Exception {
-		return null;
+		throw new SocialAuthException("Upload Image is not implemented for QQ");
 	}
 
 	@Override
 	protected OAuthStrategyBase getOauthStrategy() {
-		return null;
+		return authenticationStrategy;
 	}
 
 	@Override
 	protected List<String> getPluginsList() {
-		return null;
+		List<String> list = new ArrayList<String>();
+		if (config.getRegisteredPlugins() != null && config.getRegisteredPlugins().length > 0) {
+			list.addAll(Arrays.asList(config.getRegisteredPlugins()));
+		}
+		return list;
 	}
 }
