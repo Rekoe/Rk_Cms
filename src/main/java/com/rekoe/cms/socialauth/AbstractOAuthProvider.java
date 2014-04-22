@@ -22,6 +22,7 @@ import org.brickred.socialauth.util.AccessGrant;
 import org.brickred.socialauth.util.OAuthConfig;
 import org.brickred.socialauth.util.Response;
 import org.brickred.socialauth.util.SocialAuthUtil;
+import org.nutz.lang.Lang;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
 
@@ -36,11 +37,11 @@ public abstract class AbstractOAuthProvider extends AbstractProvider implements 
 	protected AccessGrant accessGrant;
 	protected OAuthStrategyBase authenticationStrategy;
 
-	protected String[] AllPerms;
-	protected String[] AuthPerms;
-	protected String PROFILE_URL;
-	protected Map<String, String> ENDPOINTS = new HashMap<String, String>();
+	protected static String[] AllPerms;
+	protected static String[] AuthPerms;
+	protected static Map<String, String> ENDPOINTS = new HashMap<String, String>();
 
+	protected abstract String getPlatform();
 	public AbstractOAuthProvider(OAuthConfig providerConfig) throws Exception {
 		this.config = providerConfig;
 	}
@@ -84,7 +85,7 @@ public abstract class AbstractOAuthProvider extends AbstractProvider implements 
 	}
 
 	public List<Contact> getContactList() throws Exception {
-		throw new SocialAuthException("Get contact list is not implemented for QQ");
+		throw Lang.makeThrow(SocialAuthException.class, "Get contact list is not implemented for %s", getPlatform());
 	}
 
 	public void logout() {
@@ -140,12 +141,12 @@ public abstract class AbstractOAuthProvider extends AbstractProvider implements 
 
 	@Override
 	public Response updateStatus(String arg0) throws Exception {
-		throw new SocialAuthException("Update Status is not implemented for QQ");
+		throw Lang.makeThrow(SocialAuthException.class, "Update Status is not implemented for %s", getPlatform());
 	}
 
 	@Override
 	public Response uploadImage(String arg0, String arg1, InputStream arg2) throws Exception {
-		throw new SocialAuthException("Upload Image is not implemented for QQ");
+		throw Lang.makeThrow(SocialAuthException.class, "Update Image is not implemented for %s", getPlatform());
 	}
 
 	@Override

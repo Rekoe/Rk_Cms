@@ -25,23 +25,26 @@ import com.rekoe.cms.socialauth.AbstractOAuthProvider;
 public class QQAuthProvider extends AbstractOAuthProvider {
 
 	private final static Log log = Logs.get();
-	public QQAuthProvider(final OAuthConfig providerConfig) throws Exception {
-		super(providerConfig);
+	private String PROFILE_URL= "https://graph.qq.com/oauth2.0/me";
+	static {
 		ENDPOINTS.put(Constants.OAUTH_AUTHORIZATION_URL, "https://graph.qq.com/oauth2.0/authorize");
 		ENDPOINTS.put(Constants.OAUTH_ACCESS_TOKEN_URL, "https://graph.qq.com/oauth2.0/token");
 		AllPerms = new String[] { "get_user_info", "get_info" };
 		AuthPerms = new String[] { "get_user_info", "get_info" };
+	}
+
+	public QQAuthProvider(final OAuthConfig providerConfig) throws Exception {
+		super(providerConfig);
 		authenticationStrategy = new OAuth2(config, ENDPOINTS);
 		authenticationStrategy.setPermission(scope);
 		authenticationStrategy.setScope(getScope());
-		PROFILE_URL = "https://graph.qq.com/oauth2.0/me";
 	}
 
 	protected Profile authLogin() throws Exception {
 		String presp;
 		try {
 			Response response = authenticationStrategy.executeFeed(PROFILE_URL);
-			presp = response.getResponseBodyAsString(Constants.ENCODING); 
+			presp = response.getResponseBodyAsString(Constants.ENCODING);
 			if (presp != null) {
 				presp = presp.trim().intern();
 				if (presp.startsWith("callback(") && presp.endsWith(");")) {
@@ -59,8 +62,8 @@ public class QQAuthProvider extends AbstractOAuthProvider {
 							params.put("oauth_consumer_key", config.get_consumerKey());
 							response = authenticationStrategy.executeFeed("https://graph.qq.com/user/get_user_info", "GET", params, null, null);
 							presp = response.getResponseBodyAsString(Constants.ENCODING);
-							Map<String, String> user_info = Json.fromJsonAsMap(String.class,presp);
-							boolean isRight = NumberUtils.toInt(user_info.get("ret"), -1)==0;
+							Map<String, String> user_info = Json.fromJsonAsMap(String.class, presp);
+							boolean isRight = NumberUtils.toInt(user_info.get("ret"), -1) == 0;
 							if (isRight) { // 获取成功
 								if (user_info.get("nickname") != null)
 									p.setDisplayName(user_info.get("nickname"));
@@ -80,5 +83,10 @@ public class QQAuthProvider extends AbstractOAuthProvider {
 		} catch (Exception e) {
 			throw new SocialAuthException("Error while getting profile from " + PROFILE_URL, e);
 		}
+	}
+
+	@Override
+	protected String getPlatform() {
+		return "QQ";
 	}
 }
