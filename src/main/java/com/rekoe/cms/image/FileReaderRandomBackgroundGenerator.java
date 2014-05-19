@@ -25,7 +25,6 @@ import com.sun.image.codec.jpeg.ImageFormatException;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageDecoder;
 
-@SuppressWarnings("restriction")
 public class FileReaderRandomBackgroundGenerator implements BackgroundGenerator {
 
 	private final static Log log = Logs.get();
