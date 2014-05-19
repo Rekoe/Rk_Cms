@@ -16,7 +16,6 @@ import org.nutz.mvc.ioc.provider.ComboIocProvider;
 import com.rekoe.filter.ShiroActionFilter;
 import com.rekoe.mvc.view.FreemarkerViewMaker;
 import com.rekoe.mvc.view.JPEGViewMaker;
-import com.rekoe.mvc.view.OauthJsonBodyViewMaker;
 
 @Modules(scanPackage = true)
 @IocBy(type = ComboIocProvider.class, args = { "*org.nutz.ioc.loader.json.JsonLoader", "com/rekoe/mvc/view", "/ioc", "*org.nutz.ioc.loader.annotation.AnnotationIocLoader", "com.rekoe" })
@@ -26,7 +25,7 @@ import com.rekoe.mvc.view.OauthJsonBodyViewMaker;
 @Filters(@By(type = ShiroActionFilter.class, args = "/login.jsp"))
 @Encoding(input = "UTF-8", output = "UTF-8")
 @ChainBy(type = NutActionChainMaker.class, args = { "com/rekoe/mvc/mvc-chains.js" })
-@Views({ FreemarkerViewMaker.class, JPEGViewMaker.class, OauthJsonBodyViewMaker.class })
+@Views({ FreemarkerViewMaker.class, JPEGViewMaker.class})
 public class MainModule {
 
 }

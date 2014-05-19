@@ -14,7 +14,6 @@ import org.nutz.mvc.Setup;
 
 import com.rekoe.domain.Article;
 import com.rekoe.domain.ArticleCategory;
-import com.rekoe.domain.Client;
 import com.rekoe.domain.Permission;
 import com.rekoe.domain.PermissionCategory;
 import com.rekoe.domain.Role;
@@ -31,7 +30,6 @@ public class MvcSetup implements Setup {
 		Dao dao = ioc.get(Dao.class);
 		//若必要的数据表不存在，则初始化数据库
 		if (!dao.exists(User.class)) {
-			dao.create(Client.class, true);
 			dao.create(User.class, true);
 			dao.create(Role.class, true);
 			dao.create(Permission.class, true);

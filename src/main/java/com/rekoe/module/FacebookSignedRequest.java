@@ -1,6 +1,5 @@
 package com.rekoe.module;
 
-import org.apache.commons.codec.binary.Base64;
 import org.nutz.json.Json;
 
 public class FacebookSignedRequest {
@@ -18,7 +17,7 @@ public class FacebookSignedRequest {
 			throws Exception {
 		String payload = signedRequest.split("[.]", 2)[1];
 		payload = payload.replace("-", "+").replace("_", "/").trim();
-		String jsonString = new String(Base64.decodeBase64(payload.getBytes()));
+		String jsonString = new String(org.nutz.repo.Base64.decode(payload.getBytes()));
 		return Json.fromJson(clazz, jsonString);
 		
 	}
