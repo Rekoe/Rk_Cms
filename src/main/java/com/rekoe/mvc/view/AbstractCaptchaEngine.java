@@ -1,17 +1,17 @@
 package com.rekoe.mvc.view;
 
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Random;
+
 import com.octo.captcha.CaptchaException;
 import com.octo.captcha.CaptchaFactory;
 import com.octo.captcha.engine.CaptchaEngineException;
 import com.octo.captcha.engine.image.ImageCaptchaEngine;
 import com.octo.captcha.image.ImageCaptcha;
 import com.octo.captcha.image.ImageCaptchaFactory;
-
-import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Random;
 
 public abstract class AbstractCaptchaEngine extends ImageCaptchaEngine {
 	private List<CaptchaFactory> factories = new ArrayList<CaptchaFactory>();

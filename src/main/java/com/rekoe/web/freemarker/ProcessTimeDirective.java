@@ -1,5 +1,7 @@
 package com.rekoe.web.freemarker;
 
+import static com.rekoe.mvc.ProcessTimeProcessor.START_TIME;
+
 import java.io.IOException;
 import java.io.Writer;
 import java.text.DecimalFormat;
@@ -8,8 +10,6 @@ import java.util.Map;
 import org.nutz.mvc.NutConfigException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static com.rekoe.mvc.ProcessTimeProcessor.START_TIME;
 
 import freemarker.core.Environment;
 import freemarker.template.TemplateDirectiveBody;
