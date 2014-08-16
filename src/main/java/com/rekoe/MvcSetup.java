@@ -19,8 +19,6 @@ import com.rekoe.domain.PermissionCategory;
 import com.rekoe.domain.Role;
 import com.rekoe.domain.Setting;
 import com.rekoe.domain.User;
-import com.rekoe.domain.Zone;
-import com.rekoe.service.AccountService;
 
 public class MvcSetup implements Setup {
 
@@ -36,7 +34,6 @@ public class MvcSetup implements Setup {
 			dao.create(Setting.class, true);
 			dao.create(Article.class, true);
 			dao.create(ArticleCategory.class, true);
-			dao.create(Zone.class,true);
 			dao.create(PermissionCategory.class,true);
 			FileSqlManager fm = new FileSqlManager("init_system_h2.sql");
 			List<Sql> sqlList = fm.createCombo(fm.keys());
@@ -51,7 +48,6 @@ public class MvcSetup implements Setup {
 				user.setPassword(hashedPasswordBase64);
 				dao.update(user);
 			}
-			ioc.get(AccountService.class).createTable();
 		}
 	}
 
