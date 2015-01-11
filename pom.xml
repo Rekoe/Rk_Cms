@@ -27,7 +27,7 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
-			<version>1.0.7</version>
+			<version>1.0.12</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.codehaus.jettison</groupId>
@@ -43,7 +43,7 @@
 		<dependency>
 			<groupId>org.nutz</groupId>
 			<artifactId>nutz</artifactId>
-			<version>1.b.50</version>
+			<version>1.b.51</version>
 		</dependency>
 		<dependency>
 			<groupId>org.nutz</groupId>
