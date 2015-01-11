@@ -25,7 +25,6 @@ import com.sun.image.codec.jpeg.ImageFormatException;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageDecoder;
 
-@SuppressWarnings("restriction")
 public class FileReaderRandomBackgroundGenerator implements BackgroundGenerator {
 
 	private final static Log log = Logs.get();
@@ -35,7 +34,8 @@ public class FileReaderRandomBackgroundGenerator implements BackgroundGenerator 
 	private int width = 200;
 	private Random myRandom = new SecureRandom();
 
-	public FileReaderRandomBackgroundGenerator(Integer width, Integer height, String rootPath) {
+	public FileReaderRandomBackgroundGenerator(Integer width, Integer height,
+			String rootPath) {
 		this.width = width;
 		this.height = height;
 		List<NutResource> list = Scans.me().scan(rootPath, ".+\\.jpg");
@@ -51,11 +51,13 @@ public class FileReaderRandomBackgroundGenerator implements BackgroundGenerator 
 			}
 			if (this.images.size() != 0)
 				for (int i = 0; i < this.images.size(); ++i) {
-					BufferedImage bufferedImage = (BufferedImage) this.images.get(i);
+					BufferedImage bufferedImage = (BufferedImage) this.images
+							.get(i);
 					this.images.set(i, tile(bufferedImage));
 				}
 			else {
-				throw new CaptchaException("Root path directory is valid but does not contains any image (jpg) files");
+				throw new CaptchaException(
+						"Root path directory is valid but does not contains any image (jpg) files");
 			}
 		}
 	}
@@ -74,12 +76,14 @@ public class FileReaderRandomBackgroundGenerator implements BackgroundGenerator 
 				dir = new File("/", rootPath);
 				appendFilePath(triedPath, dir);
 				if ((!(dir.canRead())) || (!(dir.isDirectory()))) {
-					URL url = FileReaderRandomBackgroundGenerator.class.getClassLoader().getResource(rootPath);
+					URL url = FileReaderRandomBackgroundGenerator.class
+							.getClassLoader().getResource(rootPath);
 					if (url != null) {
 						dir = new File(url.getFile());
 						appendFilePath(triedPath, dir);
 					} else {
-						url = ClassLoader.getSystemClassLoader().getResource(rootPath);
+						url = ClassLoader.getSystemClassLoader().getResource(
+								rootPath);
 						if (url != null) {
 							dir = new File(url.getFile());
 							appendFilePath(triedPath, dir);
@@ -102,7 +106,9 @@ public class FileReaderRandomBackgroundGenerator implements BackgroundGenerator 
 			}
 		}
 		if ((!(dir.canRead())) || (!(dir.isDirectory()))) {
-			throw new CaptchaException("All tried paths :'" + triedPath.toString() + "' is not" + " a directory or cannot be read");
+			throw new CaptchaException("All tried paths :'"
+					+ triedPath.toString() + "' is not"
+					+ " a directory or cannot be read");
 		}
 		cachedDirectories.put(rootPath, dir);
 		return dir;
@@ -110,7 +116,8 @@ public class FileReaderRandomBackgroundGenerator implements BackgroundGenerator 
 
 	private StringTokenizer getClasspathFromSystemProperty() {
 		String classpath = System.getProperty("java.class.path");
-		StringTokenizer token = new StringTokenizer(classpath, File.pathSeparator);
+		StringTokenizer token = new StringTokenizer(classpath,
+				File.pathSeparator);
 		return token;
 	}
 
@@ -120,13 +127,17 @@ public class FileReaderRandomBackgroundGenerator implements BackgroundGenerator 
 	}
 
 	private BufferedImage tile(BufferedImage tileImage) {
-		BufferedImage image = new BufferedImage(getImageWidth(), getImageHeight(), tileImage.getType());
+		BufferedImage image = new BufferedImage(getImageWidth(),
+				getImageHeight(), tileImage.getType());
 		Graphics2D g2 = (Graphics2D) image.getGraphics();
 		int NumberX = getImageWidth() / tileImage.getWidth();
 		int NumberY = getImageHeight() / tileImage.getHeight();
 		for (int k = 0; k <= NumberY; ++k) {
 			for (int l = 0; l <= NumberX; ++l) {
-				g2.drawImage(tileImage, l * tileImage.getWidth(), k * tileImage.getHeight(), Math.min(tileImage.getWidth(), getImageWidth()), Math.min(tileImage.getHeight(), getImageHeight()), null);
+				g2.drawImage(tileImage, l * tileImage.getWidth(),
+						k * tileImage.getHeight(),
+						Math.min(tileImage.getWidth(), getImageWidth()),
+						Math.min(tileImage.getHeight(), getImageHeight()), null);
 			}
 		}
 		g2.dispose();

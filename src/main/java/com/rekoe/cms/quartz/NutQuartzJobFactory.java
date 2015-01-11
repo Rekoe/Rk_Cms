@@ -37,7 +37,7 @@ public class NutQuartzJobFactory implements JobFactory {
 	public Job newJob(TriggerFiredBundle bundle, Scheduler scheduler) throws SchedulerException {
 		if (Lang.isEmpty(ioc))
 			try {
-				ioc = Mvcs.ctx.getDefaultIoc();
+				ioc = Mvcs.ctx().getDefaultIoc();
 			} catch (Exception e) {
 				log.warn("Without Ioc!! fallback to SimpleJobFactory", e);
 				return simple.newJob(bundle, scheduler);
