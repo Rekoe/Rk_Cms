@@ -11,7 +11,12 @@ import org.nutz.dao.entity.annotation.Index;
 import org.nutz.dao.entity.annotation.ManyMany;
 import org.nutz.dao.entity.annotation.Table;
 import org.nutz.dao.entity.annotation.TableIndexes;
-
+/**
+ * @author 科技㊣²º¹³
+ * 2014年2月3日 下午4:48:45
+ * http://www.rekoe.com
+ * QQ:5382211
+ */
 @Table("system_role")
 @TableIndexes({ @Index(name = "role_name", fields = { "name" }, unique = true) })
 public class Role implements Serializable{

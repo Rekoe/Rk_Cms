@@ -38,7 +38,12 @@ import org.nutz.mvc.view.ServerRedirectView;
 import org.nutz.mvc.view.ViewWrapper;
 
 import com.rekoe.shiro.realm.OAuthToken;
-
+/**
+ * @author 科技㊣²º¹³
+ * 2014年2月3日 下午4:48:45
+ * http://www.rekoe.com
+ * QQ:5382211
+ */
 @IocBean(create = "init")
 @At("/user")
 @Filters

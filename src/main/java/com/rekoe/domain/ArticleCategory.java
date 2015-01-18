@@ -18,13 +18,17 @@ import org.nutz.dao.entity.annotation.Prev;
 import org.nutz.dao.entity.annotation.Readonly;
 import org.nutz.dao.entity.annotation.Table;
 import org.nutz.lang.Lang;
-
+/**
+ * @author 科技㊣²º¹³
+ * 2014年2月3日 下午4:48:45
+ * http://www.rekoe.com
+ * QQ:5382211
+ */
 @Table("article_category")
 public class ArticleCategory {
 
 	@Name
 	@Prev(els = { @EL("uuid()") })
-	// @Prev(els = { @EL("$me.uuid()") })
 	private String id;
 
 	@Column("create_date")

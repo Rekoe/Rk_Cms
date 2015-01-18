@@ -11,9 +11,13 @@ import org.nutz.mvc.ActionFilter;
 import org.nutz.mvc.View;
 
 import com.rekoe.shiro.realm.CaptchaUsernamePasswordToken;
-
+/**
+ * @author 科技㊣²º¹³
+ * 2014年2月3日 下午4:48:45
+ * http://www.rekoe.com
+ * QQ:5382211
+ */
 public class CaptchaFormAuthenticationFilter extends FormAuthenticationFilter implements ActionFilter {
-	//private final static Log log = Logs.get();
 	private String captchaParam = "captcha";
 
 	public String getCaptchaParam() {

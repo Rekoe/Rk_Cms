@@ -10,7 +10,12 @@ import org.brickred.socialauth.Profile;
 import org.nutz.lang.Lang;
 
 import com.rekoe.domain.User;
-
+/**
+ * @author 科技㊣²º¹³
+ * 2014年2月3日 下午4:48:45
+ * http://www.rekoe.com
+ * QQ:5382211
+ */
 public class NutAuthoDaoRealm extends AbstractNutAuthoRealm {
 
 	public NutAuthoDaoRealm() {

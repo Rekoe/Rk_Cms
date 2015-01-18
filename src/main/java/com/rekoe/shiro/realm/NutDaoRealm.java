@@ -11,10 +11,17 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.util.ByteSource;
 import org.nutz.lang.Lang;
+import org.nutz.lang.Strings;
 
 import com.rekoe.domain.User;
+import com.rekoe.exception.CreateUserSaltException;
 import com.rekoe.exception.IncorrectCaptchaException;
-
+/**
+ * @author 科技㊣²º¹³
+ * 2014年2月3日 下午4:48:45
+ * http://www.rekoe.com
+ * QQ:5382211
+ */
 public class NutDaoRealm extends AbstractNutAuthoRealm {
 
 	public NutDaoRealm() {
@@ -43,8 +50,12 @@ public class NutDaoRealm extends AbstractNutAuthoRealm {
 		if (user.isLocked()) {
 			throw Lang.makeThrow(LockedAccountException.class, "Account [ %s ] is locked.", authcToken.getUsername());
 		}
-		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getPassword(), getName());
+		String userSalt = user.getSalt();
+		if (Strings.isBlank(userSalt)) {
+			throw Lang.makeThrow(CreateUserSaltException.class, "Account [ %s ] is not set PassWord", authcToken.getUsername());
+		}
 		ByteSource salt = ByteSource.Util.bytes(user.getSalt());
+		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getPassword(), getName());
 		info.setCredentialsSalt(salt);
 		return info;
 	}

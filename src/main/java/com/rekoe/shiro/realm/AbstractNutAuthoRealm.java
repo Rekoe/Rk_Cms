@@ -71,13 +71,14 @@ public abstract class AbstractNutAuthoRealm extends AuthorizingRealm {
 			}
 		}
 	}
+
 	/**
 	 * 授权查询回调函数, 进行鉴权但缓存中无用户的授权信息时调用.
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		User user = (User) principals.getPrimaryPrincipal();
-		if (user != null) {
+		if (!Lang.isEmpty(user)) {
 			SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 			info.addRoles(getUserService().getRoleNameList(user));
 			for (Role role : user.getRoles()) {

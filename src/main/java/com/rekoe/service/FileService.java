@@ -20,7 +20,12 @@ import com.rekoe.web.freemarker.FreeMarkerConfigurer;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-
+/**
+ * @author 科技㊣²º¹³
+ * 2014年2月3日 下午4:48:45
+ * http://www.rekoe.com
+ * QQ:5382211
+ */
 @IocBean
 public class FileService extends BaseService<Object> {
 

@@ -18,7 +18,12 @@ import org.nutz.mvc.view.ViewWrapper;
 
 import com.rekoe.exception.IncorrectCaptchaException;
 import com.rekoe.filter.AuthenticationFilter;
-
+/**
+ * @author 科技㊣²º¹³
+ * 2014年2月3日 下午4:48:45
+ * http://www.rekoe.com
+ * QQ:5382211
+ */
 @IocBean
 public class LoginModule {
 

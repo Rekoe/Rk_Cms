@@ -8,7 +8,12 @@ import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.nutz.mvc.ActionContext;
 import org.nutz.mvc.ActionFilter;
 import org.nutz.mvc.View;
-
+/**
+ * @author 科技㊣²º¹³
+ * 2014年2月3日 下午4:48:45
+ * http://www.rekoe.com
+ * QQ:5382211
+ */
 public class AuthenticationFilter extends FormAuthenticationFilter implements ActionFilter {
 
 	protected AuthenticationToken createToken(HttpServletRequest request) {

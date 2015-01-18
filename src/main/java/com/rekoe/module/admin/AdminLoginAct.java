@@ -28,7 +28,10 @@ import com.rekoe.exception.IncorrectCaptchaException;
 import com.rekoe.filter.CaptchaFormAuthenticationFilter;
 
 /**
- * @author 科技㊣²º¹³ 2014年2月6日 下午8:19:23 http://www.rekoe.com QQ:5382211
+ * @author 科技㊣²º¹³
+ * 2014年2月3日 下午4:48:45
+ * http://www.rekoe.com
+ * QQ:5382211
  */
 @IocBean
 @At("/admin")

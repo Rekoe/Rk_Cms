@@ -25,7 +25,12 @@ import org.nutz.mvc.upload.UploadAdaptor;
 
 import com.rekoe.common.Message;
 import com.rekoe.service.FileService;
-
+/**
+ * @author 科技㊣²º¹³
+ * 2014年2月3日 下午4:48:45
+ * http://www.rekoe.com
+ * QQ:5382211
+ */
 @IocBean
 @At("/admin/file")
 public class FileAct {

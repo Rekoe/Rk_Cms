@@ -24,7 +24,13 @@ import com.octo.captcha.component.image.backgroundgenerator.BackgroundGenerator;
 import com.sun.image.codec.jpeg.ImageFormatException;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageDecoder;
-
+/**
+ * @author 科技㊣²º¹³
+ * 2014年2月3日 下午4:48:45
+ * http://www.rekoe.com
+ * QQ:5382211
+ */
+@SuppressWarnings("restriction")
 public class FileReaderRandomBackgroundGenerator implements BackgroundGenerator {
 
 	private final static Log log = Logs.get();

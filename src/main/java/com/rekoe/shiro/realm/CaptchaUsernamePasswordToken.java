@@ -1,7 +1,12 @@
 package com.rekoe.shiro.realm;
 
 import org.apache.shiro.authc.UsernamePasswordToken;
-
+/**
+ * @author 科技㊣²º¹³
+ * 2014年2月3日 下午4:48:45
+ * http://www.rekoe.com
+ * QQ:5382211
+ */
 public class CaptchaUsernamePasswordToken extends UsernamePasswordToken {
 
 	private static final long serialVersionUID = 4676958151524148623L;

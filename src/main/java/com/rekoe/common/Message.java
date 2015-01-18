@@ -3,7 +3,12 @@ package com.rekoe.common;
 import javax.servlet.http.HttpServletRequest;
 
 import org.nutz.mvc.Mvcs;
-
+/**
+ * @author 科技㊣²º¹³
+ * 2014年2月3日 下午4:48:45
+ * http://www.rekoe.com
+ * QQ:5382211
+ */
 public class Message {
 
 	private Type type;

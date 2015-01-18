@@ -2,7 +2,12 @@ package com.rekoe.common.page;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author 科技㊣²º¹³
+ * 2014年2月3日 下午4:48:45
+ * http://www.rekoe.com
+ * QQ:5382211
+ */
 public class SimplePage implements Paginable {
 
 	public static final int DEF_COUNT = 20;

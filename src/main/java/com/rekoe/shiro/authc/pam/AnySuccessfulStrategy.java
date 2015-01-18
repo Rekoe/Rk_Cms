@@ -35,14 +35,10 @@ import org.apache.shiro.util.CollectionUtils;
 import org.nutz.lang.Lang;
 
 /**
- * {@link AuthenticationStrategy} implementation that only accepts the account
- * data from the first successfully consulted Realm and ignores all subsequent
- * realms. This is slightly different behavior than
- * {@link AtLeastOneSuccessfulStrategy}, so please review both to see which one
- * meets your needs better.
- * 
- * @see AtLeastOneSuccessfulStrategy AtLeastOneSuccessfulAuthenticationStrategy
- * @since 0.9
+ * @author 科技㊣²º¹³
+ * 2014年2月3日 下午4:48:45
+ * http://www.rekoe.com
+ * QQ:5382211
  */
 public class AnySuccessfulStrategy extends AbstractAuthenticationStrategy {
 

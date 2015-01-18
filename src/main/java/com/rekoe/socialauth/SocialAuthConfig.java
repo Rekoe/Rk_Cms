@@ -12,7 +12,12 @@ import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.lang.Files;
 import org.nutz.lang.Lang;
 import org.nutz.log.Logs;
-
+/**
+ * @author 科技㊣²º¹³
+ * 2014年2月3日 下午4:48:45
+ * http://www.rekoe.com
+ * QQ:5382211
+ */
 @IocBean(create="load")
 public class SocialAuthConfig implements Serializable {
 	private static final long serialVersionUID = 5445308327297705055L;

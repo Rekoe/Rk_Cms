@@ -2,20 +2,28 @@ package com.rekoe.common.page;
 
 import java.util.List;
 
-
-public class Pagination extends SimplePage implements java.io.Serializable{
+/**
+ * @author 科技㊣²º¹³
+ * 2014年2月3日 下午4:48:45
+ * http://www.rekoe.com
+ * QQ:5382211
+ */
+public class Pagination extends SimplePage implements java.io.Serializable {
 
 	private static final long serialVersionUID = -1585539529849523194L;
-
 
 	public Pagination() {
 	}
 
 	/**
 	 * 构造器
-	 * @param pageNo 页码
-	 * @param pageSize 每页几条数据
-	 * @param totalCount  总共几条数据
+	 * 
+	 * @param pageNo
+	 *            页码
+	 * @param pageSize
+	 *            每页几条数据
+	 * @param totalCount
+	 *            总共几条数据
 	 */
 	public Pagination(int pageNo, int pageSize, int totalCount) {
 		super(pageNo, pageSize, totalCount);
@@ -24,10 +32,14 @@ public class Pagination extends SimplePage implements java.io.Serializable{
 	/**
 	 * 构造器
 	 * 
-	 * @param pageNo 页码
-	 * @param pageSize 每页几条数据
-	 * @param totalCount 总共几条数据
-	 * @param list 分页内容
+	 * @param pageNo
+	 *            页码
+	 * @param pageSize
+	 *            每页几条数据
+	 * @param totalCount
+	 *            总共几条数据
+	 * @param list
+	 *            分页内容
 	 */
 	public Pagination(int pageNo, int pageSize, int totalCount, List<?> list) {
 		super(pageNo, pageSize, totalCount);

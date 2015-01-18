@@ -15,7 +15,12 @@ import com.rekoe.common.page.Pagination;
 import com.rekoe.domain.Article;
 import com.rekoe.service.ArticleCategoryService;
 import com.rekoe.service.ArticleService;
-
+/**
+ * @author 科技㊣²º¹³
+ * 2014年2月3日 下午4:48:45
+ * http://www.rekoe.com
+ * QQ:5382211
+ */
 @IocBean
 @At("/article")
 @Filters
