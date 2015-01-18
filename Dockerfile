@@ -1,4 +1,4 @@
-FROM tutum/tomcat:8.0
+FROM tomcat:jre7
 
 MAINTAINER wendal "wendal1985@gmail.com"
 
