@@ -13,4 +13,5 @@ RUN curl -sSL http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binari
   && mv /usr/share/apache-maven-$MAVEN_VERSION /usr/share/maven \
   && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
   
-RUN /usr/bin/mvn war:war && unzip -d /usr/local/tomcat/webapps/ROOT/ target/rk_cms.war && rm -fr target
+RUN git clone --depth=0 https://github.com/Rekoe/Rk_Cms.git && cd Rk_Cms \
+    /usr/bin/mvn war:war && unzip -d /usr/local/tomcat/webapps/ROOT/ target/rk_cms.war && rm -fr target
