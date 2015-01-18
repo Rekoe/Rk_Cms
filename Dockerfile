@@ -1,4 +1,4 @@
-FROM tomcat:jre7
+FROM tutum/tomcat:8.0
 
 MAINTAINER wendal "wendal1985@gmail.com"
 
@@ -14,5 +14,5 @@ RUN curl -sSL http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binari
 RUN apt-get update && \
 	apt-get install -y --force-yes zip git && git clone --depth=1 https://github.com/Rekoe/Rk_Cms.git && cd Rk_Cms && \
     /usr/bin/mvn war:war && unzip -d /usr/local/tomcat/webapps/ROOT/ target/rk_cms.war && rm -fr target && \
-	apt-get remove -y zip git && apt-get autoremove && apt-get autoremove -y && \
+	apt-get remove -y zip git && apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
