@@ -14,6 +14,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.StringTokenizer;
 
+import javax.imageio.ImageIO;
+
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
 import org.nutz.resource.NutResource;
@@ -21,16 +23,13 @@ import org.nutz.resource.Scans;
 
 import com.octo.captcha.CaptchaException;
 import com.octo.captcha.component.image.backgroundgenerator.BackgroundGenerator;
-import com.sun.image.codec.jpeg.ImageFormatException;
-import com.sun.image.codec.jpeg.JPEGCodec;
-import com.sun.image.codec.jpeg.JPEGImageDecoder;
+
 /**
  * @author 科技㊣²º¹³
  * 2014年2月3日 下午4:48:45
  * http://www.rekoe.com
  * QQ:5382211
  */
-@SuppressWarnings("restriction")
 public class FileReaderRandomBackgroundGenerator implements BackgroundGenerator {
 
 	private final static Log log = Logs.get();
@@ -139,16 +138,11 @@ public class FileReaderRandomBackgroundGenerator implements BackgroundGenerator 
 	}
 
 	private static BufferedImage getImage(InputStream in) {
-		BufferedImage out = null;
 		try {
-			JPEGImageDecoder decoder = JPEGCodec.createJPEGDecoder(in);
-			out = decoder.decodeAsBufferedImage();
-			return out;
+			return ImageIO.read(in);
 		} catch (IOException e) {
 			throw new CaptchaException("Unknown error during file reading ", e);
-		} catch (ImageFormatException e) {
 		}
-		return null;
 	}
 
 	public BufferedImage getBackground() {
