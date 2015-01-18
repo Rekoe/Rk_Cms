@@ -28,8 +28,6 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.pam.AbstractAuthenticationStrategy;
-import org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy;
-import org.apache.shiro.authc.pam.AuthenticationStrategy;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.util.CollectionUtils;
 import org.nutz.lang.Lang;
