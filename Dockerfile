@@ -51,7 +51,8 @@ RUN apt-get update && \
     /usr/bin/mvn -Dmaven.repo.local=/tmp/clean-repo package war:war && unzip -d /usr/local/tomcat/webapps/ROOT/ target/rk_cms.war && \
 	cd .. && rm -fr Rk_Cms && rm -fr /usr/share/maven && rm -fr /usr/bin/mvn && \
 	apt-get remove -y zip git && apt-get autoremove -y && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+	cd $CATALINA_HOME/webapps/ROOT/WEB-INF/classes/ && sed -i 's/127.0.0.1/tomysql/g' jdbc.properties
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
