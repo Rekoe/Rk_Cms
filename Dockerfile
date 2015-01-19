@@ -44,3 +44,4 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 EXPOSE 8080
+CMD ["catalina.sh", "run"]
