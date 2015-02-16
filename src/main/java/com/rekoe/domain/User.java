@@ -12,11 +12,9 @@ import org.nutz.dao.entity.annotation.Index;
 import org.nutz.dao.entity.annotation.ManyMany;
 import org.nutz.dao.entity.annotation.Table;
 import org.nutz.dao.entity.annotation.TableIndexes;
+
 /**
- * @author 科技㊣²º¹³
- * 2014年2月3日 下午4:48:45
- * http://www.rekoe.com
- * QQ:5382211
+ * @author 科技㊣²º¹³ 2014年2月3日 下午4:48:45 http://www.rekoe.com QQ:5382211
  */
 @Table("system_user")
 @TableIndexes({ @Index(name = "user_name", fields = { "name" }, unique = true), @Index(name = "user_openid", fields = { "openid" }, unique = true) })
@@ -59,20 +57,12 @@ public class User implements Serializable {
 	@ManyMany(target = Role.class, relation = "system_user_role", from = "userid", to = "roleid")
 	private List<Role> roles;
 
-	@Column("is_updated")
+	@Column("is_system")
 	@ColDefine(type = ColType.BOOLEAN)
-	private boolean updated;
+	private boolean system;
 
 	public String getProviderid() {
 		return providerid;
-	}
-
-	public boolean isUpdated() {
-		return updated;
-	}
-
-	public void setUpdated(boolean updated) {
-		this.updated = updated;
 	}
 
 	public void setProviderid(String providerid) {
@@ -166,4 +156,13 @@ public class User implements Serializable {
 	public void setSalt(String salt) {
 		this.salt = salt;
 	}
+
+	public boolean isSystem() {
+		return system;
+	}
+
+	public void setSystem(boolean system) {
+		this.system = system;
+	}
+
 }

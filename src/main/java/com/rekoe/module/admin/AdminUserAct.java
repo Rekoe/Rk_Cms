@@ -30,11 +30,9 @@ import com.rekoe.domain.Role;
 import com.rekoe.domain.User;
 import com.rekoe.service.RoleService;
 import com.rekoe.service.UserService;
+
 /**
- * @author 科技㊣²º¹³
- * 2014年2月3日 下午4:48:45
- * http://www.rekoe.com
- * QQ:5382211
+ * @author 科技㊣²º¹³ 2014年2月3日 下午4:48:45 http://www.rekoe.com QQ:5382211
  */
 @IocBean
 @At("/admin")
@@ -161,7 +159,7 @@ public class AdminUserAct {
 		if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
 			return false;
 		}
-		suser.setUpdated(true);
+		suser.setSystem(false);
 		suser.setName(username);
 		String salt = new SecureRandomNumberGenerator().nextBytes().toBase64();
 		suser.setSalt(salt);

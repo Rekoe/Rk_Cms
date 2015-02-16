@@ -16,11 +16,9 @@ import org.nutz.lang.Times;
 import com.rekoe.common.page.Pagination;
 import com.rekoe.domain.Role;
 import com.rekoe.domain.User;
+
 /**
- * @author 科技㊣²º¹³
- * 2014年2月3日 下午4:48:45
- * http://www.rekoe.com
- * QQ:5382211
+ * @author 科技㊣²º¹³ 2014年2月3日 下午4:48:45 http://www.rekoe.com QQ:5382211
  */
 @IocBean(args = { "refer:dao" })
 public class UserService extends BaseService<User> {
@@ -55,11 +53,11 @@ public class UserService extends BaseService<User> {
 		}
 	}
 
-	public void updatePwd(Object uid,String password)
-	{
+	public void updatePwd(Object uid, String password) {
 		String salt = new SecureRandomNumberGenerator().nextBytes().toBase64();
 		dao().update(User.class, Chain.make("password", new Sha256Hash(password, salt, 1024).toBase64()).add("salt", salt), Cnd.where("id", "=", uid));
 	}
+
 	public void insert(User user) {
 		user = dao().insert(user);
 		dao().insertRelation(user, "roles");
@@ -114,7 +112,7 @@ public class UserService extends BaseService<User> {
 		return getObjListByPager(dao(), getPageNumber(pageNumber), pageSize, null, User.class);
 	}
 
-	public User initUser(String name, String openid, String providerid, String addr,boolean isUpdated) {
+	public User initUser(String name, String openid, String providerid, String addr) {
 		User user = new User();
 		user.setCreateDate(Times.now());
 		user.setName(name);
@@ -122,7 +120,7 @@ public class UserService extends BaseService<User> {
 		user.setProviderid(providerid);
 		user.setRegisterIp(addr);
 		user.setLocked(false);
-		user.setUpdated(isUpdated);
+		user.setSystem(false);
 		return dao().insert(user);
 	}
 

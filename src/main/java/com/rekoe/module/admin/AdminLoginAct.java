@@ -86,7 +86,7 @@ public class AdminLoginAct {
 	@Ok("fm:template.front.account.create_user")
 	@RequiresAuthentication
 	public Object register(@Attr(Webs.ME) User user) {
-		if (Lang.isEmpty(user) || user.isUpdated()) {
+		if (Lang.isEmpty(user) || user.isSystem()) {
 			return new ForwardView("/admin/common/unauthorized.rk");
 		}
 		return null;
