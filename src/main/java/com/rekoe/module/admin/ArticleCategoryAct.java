@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
@@ -16,11 +17,9 @@ import org.nutz.mvc.annotation.Param;
 import com.rekoe.common.Message;
 import com.rekoe.domain.ArticleCategory;
 import com.rekoe.service.ArticleCategoryService;
+
 /**
- * @author 科技㊣²º¹³
- * 2014年2月3日 下午4:48:45
- * http://www.rekoe.com
- * QQ:5382211
+ * @author 科技㊣²º¹³ 2014年2月3日 下午4:48:45 http://www.rekoe.com QQ:5382211
  */
 @IocBean
 @At("/admin/article_category")
@@ -53,12 +52,50 @@ public class ArticleCategoryAct {
 
 	@At
 	@Ok(">>:/admin/article_category/list.rk")
-	public void save(@Param("name") String name, @Param("order") int order, @Param("::ac.") ArticleCategory ac) {
+	public void save(@Param("name") String name, @Param("order") int order, final @Param("::ac.") ArticleCategory ac) {
+		ParentCallBack callBack = new ParentCallBack() {
+			int i = 0;
+
+			@Override
+			public void invoke() {
+				i++;
+			}
+
+			@Override
+			public int getCount() {
+				return i;
+			}
+		};
+		checkCategoryGread(ac.getParentId(), callBack);
+		ac.setGrade(callBack.getCount());
 		ac.setCreateDate(Times.now());
 		ac.setModifyDate(Times.now());
 		ac.setName(name);
 		ac.setOrder(order);
 		articleCategoryService.insert(ac);
+	}
+
+	private String checkCategoryGread(String parentid, ParentCallBack callBack) {
+		boolean haveParent = StringUtils.isNotBlank(parentid);
+		if (haveParent) {
+			callBack.invoke();
+			ArticleCategory articleCategory = articleCategoryService.fetch(parentid);
+			if (!Lang.isEmpty(articleCategory)) {
+				String tempParentid = checkCategoryGread(articleCategory.getParentId(), callBack);
+				if (StringUtils.isBlank(tempParentid)) {
+					return "";
+				} else {
+					checkCategoryGread(tempParentid, callBack);
+				}
+			}
+		}
+		return "";
+	}
+
+	public abstract interface ParentCallBack {
+		public void invoke();
+
+		public int getCount();
 	}
 
 	@At

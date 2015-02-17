@@ -45,7 +45,6 @@ $().ready(function() {
 					<select name="parentId">
 						<option value=""><@s.m "admin.articleCategory.root" /></option>
 						<#list articleCategoryTree as category>
-							<#if category != obj && !children?seq_contains(category)>
 								<option value="${category.id}" <#if category == obj> selected="selected"</#if>>
 									<#if category.grade != 0>
 										<#list 1..category.grade as i>
@@ -54,7 +53,6 @@ $().ready(function() {
 									</#if>
 									${category.name}
 								</option>
-							</#if>
 						</#list>
 					</select>
 				</td>
