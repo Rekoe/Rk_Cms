@@ -1,5 +1,6 @@
 package com.rekoe.module.admin;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,11 +21,9 @@ import com.rekoe.domain.Article;
 import com.rekoe.domain.ArticleCategory;
 import com.rekoe.service.ArticleCategoryService;
 import com.rekoe.service.ArticleService;
+
 /**
- * @author 科技㊣²º¹³
- * 2014年2月3日 下午4:48:45
- * http://www.rekoe.com
- * QQ:5382211
+ * @author 科技㊣²º¹³ 2014年2月3日 下午4:48:45 http://www.rekoe.com QQ:5382211
  */
 @IocBean
 @At("/admin/article")
@@ -40,7 +39,7 @@ public class ArticleAct {
 	@At
 	@Ok("fm:template.admin.article.list")
 	public Pagination list(@Param("pageNumber") Integer pageNumber) {
-		return articleService.getArticleListByPager(pageNumber, 20,null);
+		return articleService.getArticleListByPager(pageNumber, 20, null);
 	}
 
 	@At
@@ -53,14 +52,10 @@ public class ArticleAct {
 	@At
 	@Ok(">>:/admin/article/list.rk")
 	@RequiresAuthentication
-	public boolean save(@Param("articleCategoryId") String articleCategoryId,
-			@Param("title") String title, @Param("content") String content,
-			@Param("::art.") Article article) {
-		article.setCreateDate(Times.now());
-		article.setModifyDate(Times.now());
-		article.setContent(content);
-		article.setArticleCategoryId(articleCategoryId);
-		article.setTitle(title);
+	public boolean save(@Param("::art.") Article article) {
+		Date now = Times.now();
+		article.setCreateDate(now);
+		article.setModifyDate(now);
 		articleService.insert(article);
 		return true;
 	}
@@ -77,7 +72,7 @@ public class ArticleAct {
 
 	@At
 	@Ok(">>:/admin/article/list.rk")
-	public boolean update(@Param("content")String content,@Param("::article.") Article article,@Param("title")String title,@Param("articleCategoryId")String articleCategoryId) {
+	public boolean update(@Param("content") String content, @Param("::article.") Article article, @Param("title") String title, @Param("articleCategoryId") String articleCategoryId) {
 		articleService.update(Chain.make("title", title).add("articleCategoryId", articleCategoryId).add("content", content).add("modifyDate", Times.now()), Cnd.where("id", "=", article.getId()));
 		return true;
 	}

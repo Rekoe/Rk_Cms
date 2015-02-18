@@ -11,6 +11,7 @@
 <script type="text/javascript" src="${base}/resources/admin/tinyeditor/tinyeditor.js"></script>
 <script type="text/javascript" src="${base}/resources/admin/js/common.js"></script>
 <script type="text/javascript" src="${base}/resources/admin/js/input.js"></script>
+<link type="text/css" rel="stylesheet" href="${base}/resources/admin/tinyeditor/style.css">
 <style type="text/css">
 .sel-disabled{background-color:#ccc}
 </style>
@@ -23,6 +24,23 @@ $().ready(function() {
 			articleCategoryId: "required"
 		}
 	});
+	$('#submit').click(function() {
+			editor.post();
+			$.ajax({
+				url : "save",
+				type : "POST",
+				data : $('#jvForm').serialize(),
+				dataType : "json",
+				cache : false,
+				success : function(message) {
+					$.message(message);
+					if (message.type == "success") {
+						window.location.href = "list"
+					}
+				}
+			});
+			return false;
+		});
 });
 </script>
 </head>
@@ -30,12 +48,12 @@ $().ready(function() {
 	<div class="path">
 		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "admin.article.add" />
 	</div>
-	<@p.form id="jvForm" action="save.rk" labelWidth="10" method="post" tableClass="input">
-	<@p.text label="Article.title" colspan="2" id="title" name="title" required="true" class="required" maxlength="40"/><@p.tr/>
-	<@p.tree label="Article.articleCategory" colspan="2" id="articleCategoryId" required="true" class="required" name="articleCategoryId" list=obj /><@p.tr/>
-	<@p.shiroAuthor label="Article.author" colspan="2" id="letter.title" name="letter.title" required="true" class="required" maxlength="40"/><@p.tr/>
+	<@p.form id="jvForm" action="" labelWidth="10" method="post" tableClass="input">
+	<@p.text label="Article.title" colspan="2" id="art.title" name="art.title" required="true" class="required" maxlength="40"/><@p.tr/>
+	<@p.tree label="Article.articleCategory" colspan="2" name="art.articleCategoryId" required="true" class="required" list=obj /><@p.tr/>
+	<@p.shiroAuthor label="Article.author" colspan="2" id="art.author" name="art.author" required="true" class="required" maxlength="40"/><@p.tr/>
 	<@p.radio width="50" colspan="2" label="admin.common.setting" id="art.publication" name="art.publication" value=0 list={"0":"Article.isPublication","1":"Article.isTop"}/><@p.tr/>
-	<@p.editor value="" colspan="2" label="Article.content"  name="letter.content" required="true" /><@p.tr/>
+	<@p.editor value="" colspan="2" label="Article.content"  name="art.content" required="true" /><@p.tr/>
 	<@p.th />
 	<@p.td colspan="" hasColon="false">
 		<@p.submit code="admin.common.submit" id="submit"/> &nbsp; <@p.button code="admin.common.back" id="backButton" class="button"/>

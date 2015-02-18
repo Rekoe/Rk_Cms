@@ -49,6 +49,9 @@ $().ready(function() {
 									<#if category.grade != 0>
 										<#list 1..category.grade as i>
 											&nbsp;&nbsp;
+											<#if category.grade ==i>
+												|-
+											</#if>
 										</#list>
 									</#if>
 									${category.name}
