@@ -7,6 +7,7 @@ import org.nutz.dao.Cnd;
 import org.nutz.dao.Dao;
 import org.nutz.dao.FieldFilter;
 import org.nutz.dao.pager.Pager;
+import org.nutz.dao.util.Daos;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.trans.Atom;
 
@@ -43,12 +44,13 @@ public class ArticleService extends BaseService<Article> {
 	}
 
 	public void update(final Article art) {
-		FieldFilter.create(Article.class, null, "^(createDate|hits)$", true).run(new Atom() {
-			@Override
-			public void run() {
-				dao().update(art);
-			}
-		});
+		Daos.ext(dao(), FieldFilter.create(Article.class, null, "^(createDate|hits)$", true)).update(art);
+		//FieldFilter.create(Article.class, null, "^(createDate|hits)$", true).run(new Atom() {
+			//@Override
+			//public void run() {
+				//dao().update(art);
+			//}
+		//});
 	}
 
 	public Article fetchByID(String id) {
