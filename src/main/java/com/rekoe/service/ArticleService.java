@@ -5,16 +5,16 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Dao;
+import org.nutz.dao.FieldFilter;
 import org.nutz.dao.pager.Pager;
 import org.nutz.ioc.loader.annotation.IocBean;
+import org.nutz.trans.Atom;
 
 import com.rekoe.common.page.Pagination;
 import com.rekoe.domain.Article;
+
 /**
- * @author 科技㊣²º¹³
- * 2014年2月3日 下午4:48:45
- * http://www.rekoe.com
- * QQ:5382211
+ * @author 科技㊣²º¹³ 2014年2月3日 下午4:48:45 http://www.rekoe.com QQ:5382211
  */
 @IocBean(fields = { "dao" })
 public class ArticleService extends BaseService<Article> {
@@ -34,15 +34,21 @@ public class ArticleService extends BaseService<Article> {
 		return query(null, null);
 	}
 
-	public List<Article> getIndexNewList(){
+	public List<Article> getIndexNewList() {
 		return dao().query(getEntityClass(), Cnd.NEW().limit(10).desc("id"));
 	}
+
 	public void insert(Article art) {
 		dao().insert(art);
 	}
 
-	public void update(Article art) {
-		dao().update(art);
+	public void update(final Article art) {
+		FieldFilter.create(Article.class, null, "^(createDate|hits)$", true).run(new Atom() {
+			@Override
+			public void run() {
+				dao().update(art);
+			}
+		});
 	}
 
 	public Article fetchByID(String id) {

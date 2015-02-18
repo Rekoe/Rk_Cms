@@ -6,8 +6,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
-import org.nutz.dao.Chain;
-import org.nutz.dao.Cnd;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.lang.Times;
@@ -50,14 +48,14 @@ public class ArticleAct {
 	}
 
 	@At
-	@Ok(">>:/admin/article/list.rk")
+	@Ok("json")
 	@RequiresAuthentication
-	public boolean save(@Param("::art.") Article article) {
+	public Message save(@Param("::art.") Article article, HttpServletRequest req) {
 		Date now = Times.now();
 		article.setCreateDate(now);
 		article.setModifyDate(now);
 		articleService.insert(article);
-		return true;
+		return Message.success("admin.message.success", req);
 	}
 
 	@At
@@ -71,10 +69,11 @@ public class ArticleAct {
 	}
 
 	@At
-	@Ok(">>:/admin/article/list.rk")
-	public boolean update(@Param("content") String content, @Param("::article.") Article article, @Param("title") String title, @Param("articleCategoryId") String articleCategoryId) {
-		articleService.update(Chain.make("title", title).add("articleCategoryId", articleCategoryId).add("content", content).add("modifyDate", Times.now()), Cnd.where("id", "=", article.getId()));
-		return true;
+	@Ok("json")
+	public Message update(@Param("::art.") Article article, HttpServletRequest req) {
+		article.setModifyDate(Times.now());
+		articleService.update(article);
+		return Message.success("admin.message.success", req);
 	}
 
 	@At

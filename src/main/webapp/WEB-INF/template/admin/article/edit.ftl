@@ -32,7 +32,7 @@ $().ready(function() {
 					$.ajax({
 						url: "update.rk",
 						type: "POST",
-						data: $('#jvForm').serialize(),
+						data: $('#inputForm').serialize(),
 						dataType: "json",
 						cache: false,
 						success: function(message) {
@@ -54,7 +54,7 @@ $().ready(function() {
 		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "admin.article.edit" />
 	</div>
 	<@p.form id="inputForm" action="" labelWidth="10" method="post" tableClass="input">
-		<@p.hidden name="article.id" value="${article.id}" />
+		<@p.hidden name="art.id" value="${article.id}" />
 			<@p.text label="Article.title" colspan="2" value="${article.title}" id="art.title" name="art.title" required="true" class="required" maxlength="40"/><@p.tr/>
 			<@p.tree label="Article.articleCategory" colspan="2" name="art.articleCategoryId" required="true" value="${article.articleCategory.id}" class="required" list=obj /><@p.tr/>
 			<@p.shiroAuthor label="Article.author" colspan="2" id="art.author" name="art.author" required="true" class="required" maxlength="40"/><@p.tr/>
@@ -62,7 +62,7 @@ $().ready(function() {
 			<@p.editor value="" colspan="2" label="Article.content" value="${article.content!}" name="art.content" required="true" /><@p.tr/>
 			<@p.th />
 			<@p.td colspan="" hasColon="false">
-				<@p.submit code="admin.common.submit" id="submit"/> &nbsp; <@p.button code="admin.common.back" id="backButton" class="button"/>
+				<@p.submit code="admin.common.submit" id="update"/> &nbsp; <@p.button code="admin.common.back" id="backButton" class="button"/>
 			</@p.td>
 		</@p.form>
 </body>

@@ -10,12 +10,9 @@ import org.nutz.dao.entity.annotation.Name;
 import org.nutz.dao.entity.annotation.One;
 import org.nutz.dao.entity.annotation.Prev;
 import org.nutz.dao.entity.annotation.Table;
-import org.nutz.lang.random.R;
+
 /**
- * @author 科技㊣²º¹³
- * 2014年2月3日 下午4:48:45
- * http://www.rekoe.com
- * QQ:5382211
+ * @author 科技㊣²º¹³ 2014年2月3日 下午4:48:45 http://www.rekoe.com QQ:5382211
  */
 @Table("article")
 public class Article {
@@ -30,7 +27,7 @@ public class Article {
 	@ColDefine(type = ColType.TIMESTAMP)
 	private Date modifyDate;
 	@Column
-	@ColDefine(type = ColType.VARCHAR,width=100)
+	@ColDefine(type = ColType.VARCHAR, width = 100)
 	private String author;
 	@Column
 	@ColDefine(type = ColType.TEXT)
@@ -47,7 +44,7 @@ public class Article {
 	@ColDefine(type = ColType.BOOLEAN)
 	private boolean top;
 	@Column
-	@ColDefine(type = ColType.VARCHAR,width=255)
+	@ColDefine(type = ColType.VARCHAR, width = 255)
 	private String title;
 	@Column("article_category_id")
 	private String articleCategoryId;
@@ -58,9 +55,7 @@ public class Article {
 	public ArticleCategory getArticleCategory() {
 		return articleCategory;
 	}
-	public String uuid() {
-		return R.UU16();
-	}
+
 	public void setArticleCategory(ArticleCategory articleCategory) {
 		this.articleCategory = articleCategory;
 	}
