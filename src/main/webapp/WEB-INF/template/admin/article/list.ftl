@@ -3,12 +3,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title><@s.m "admin.article.list" /> - Powered By Rekoe Cms</title>
-<meta name="author" content="Rekoe Cms Team" />
-<meta name="copyright" content="Rekoe Cms" />
-<link href="${base}/resources/admin/css/common.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="${base}/resources/admin/js/jquery.min.js"></script>
-<script type="text/javascript" src="${base}/resources/admin/js/common.js"></script>
-<script type="text/javascript" src="${base}/resources/admin/js/list.js"></script>
+<#include "/template/admin/common/head.ftl" />
 </head>
 <body>
 	<div class="path">
@@ -42,28 +37,16 @@
 				</div>
 			</div>
 		</div>
-		<table id="listTable" class="list">
-			<tr>
-				<th class="check"><input type="checkbox" id="selectAll" /></th>
-				<th><span><@s.m "Article.title" /></span></th>
-				<th><span><@s.m "Article.articleCategory" /></span></th>
-				<th><span><@s.m "Article.isPublication" /></span></th>
-				<th><span><@s.m "admin.common.createDate" /></th>
-				<th><span><@s.m "admin.common.handle" /></span></th>
-			</tr>
-			<#list obj.list as article>
-				<tr>
-					<td><input type="checkbox" name="ids" value="${article.id}" /></td>
-					<td><span title="${article.title}"><@htmlCut s=article.title len=50 append='...' /></span></td>
-					<td><a href="${base}/article/list/${article.articleCategory.id}.rk" target="_blank">${article.articleCategory.name}</a></td>
-					<td><span class="${article.publication?string("true", "false")}Icon">&nbsp;</span></td>
-					<td><span title="${article.createDate?string("yyyy-MM-dd HH:mm:ss")}">${article.createDate?string("yyyy-MM-dd HH:mm:ss")}</span></td>
-					<td>
-						<a href="edit.rk?id=${article.id}">[<@s.m "admin.common.edit" />]</a>
-					</td>
-				</tr>
-			</#list>
-		</table>
+		<@p.table value=obj.list;article,i,has_next><#rt/>
+			<@p.column code=" " align="center" class="check" selectAll=true addSpan=false><input type="checkbox" name="ids" value="${article.id}" /></@p.column><#t/>
+			<@p.column code="ID" align="center">${i+1}</@p.column><#t/>
+			<@p.column code="Article.title" align="center"><@htmlCut s=article.title len=50 append='...' /></@p.column><#t/>
+			<@p.column code="Article.articleCategory" align="center"><a href="${base}/article/list/${article.articleCategory.id}.rk" target="_blank">${article.articleCategory.name}</a></@p.column><#t/>			
+			<@p.column code="Article.isPublication" align="center" iconClass="${article.publication?string('true', 'false')}Icon">&nbsp;</@p.column><#t/>
+			<@p.column code="admin.common.createDate" align="center">${article.createDate?string("yyyy-MM-dd HH:mm:ss")}</@p.column><#t/>				
+			<@p.column code="admin.common.handle" align="center"><a href="edit.rk?id=${article.id}">[<@s.m "admin.common.edit" />]</@p.column><#t/>			
+			<#t/>
+		</@p.table>
 		<@p.page value=obj/>
 	</form>
 </body>
