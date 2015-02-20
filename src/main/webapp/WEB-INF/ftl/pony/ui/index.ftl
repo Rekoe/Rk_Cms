@@ -20,5 +20,6 @@
 <#include "span.ftl"/>
 <#include "th.ftl"/>
 <#include "shiro-author.ftl"/>
+<#include "list.ftl"/>
 
 <#include "self_define_widget.ftl"/>

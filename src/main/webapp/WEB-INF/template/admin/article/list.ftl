@@ -9,34 +9,7 @@
 	<div class="path">
 		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "admin.article.list" /> <span>(<@s.ma "admin.page.total" "${obj.totalCount}"/>)</span>
 	</div>
-	<form id="listForm" action="list.rk" method="get">
-		<div class="bar">
-			<a href="add.rk" class="iconButton">
-				<span class="addIcon">&nbsp;</span><@s.m "admin.common.add" />
-			</a>
-			<div class="buttonWrap">
-				<a href="javascript:;" id="deleteButton" class="iconButton disabled">
-					<span class="deleteIcon">&nbsp;</span><@s.m "admin.common.delete" />
-				</a>
-				<a href="javascript:;" id="refreshButton" class="iconButton">
-					<span class="refreshIcon">&nbsp;</span><@s.m "admin.common.refresh" />
-				</a>
-			</div>
-			<div class="menuWrap">
-				<div class="search">
-					<span id="searchPropertySelect" class="arrow">&nbsp;</span>
-					<input type="text" id="searchValue" name="searchValue" value=" " maxlength="200" />
-					<button type="submit">&nbsp;</button>
-				</div>
-				<div class="popupMenu">
-					<ul id="searchPropertyOption">
-						<li>
-							<a href="javascript:;"class="current" val="title"><@s.m "Article.title" /></a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
+	<@p.list id="listForm" action="list.rk" method="get">
 		<@p.table value=obj.list;article,i,has_next><#rt/>
 			<@p.column code=" " align="center" class="check" selectAll=true addSpan=false><input type="checkbox" name="ids" value="${article.id}" /></@p.column><#t/>
 			<@p.column code="ID" align="center">${i+1}</@p.column><#t/>
@@ -48,6 +21,6 @@
 			<#t/>
 		</@p.table>
 		<@p.page value=obj/>
-	</form>
+	</@p.list>
 </body>
 </html>
