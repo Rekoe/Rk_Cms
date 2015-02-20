@@ -9,7 +9,7 @@
 	onclick="" ondblclick="" onmousedown="" onmouseup="" onmouseover="" onmousemove="" onmouseout="" onfocus="" onblur="" onkeypress="" onkeydown="" onkeyup="" onselect="" onchange=""
 	>
 <#include "control.ftl"/><#rt/>
-<input type="password" autocomplete="${autocomplete}"<#rt/>
+<input type="password" class="text" autocomplete="${autocomplete}"<#rt/>
 <#if id!=""> id="${id}"</#if><#rt/>
 <#if maxlength!=""> maxlength="${maxlength}"</#if><#rt/>
 <#if readonly!=""> readonly="${readonly}"</#if><#rt/>

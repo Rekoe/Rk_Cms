@@ -9,7 +9,6 @@
 <script type="text/javascript">
 $().ready(function() {
 	var $inputForm = $("#inputForm");
-	// 表单验证
 	$inputForm.validate({
 		rules: {
 			password: {
@@ -34,62 +33,32 @@ $().ready(function() {
 	<div class="path">
 		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "admin.member.edit" />
 	</div>
-	<form id="inputForm" action="update.rk" method="post">
-		<input type="hidden" name="id" value="${member.id}" />
-		<table class="input tabContent">
-			<tr>
-				<th><@s.m "Member.username" />:</th>
-				<td>${member.name}</td>
-			</tr>
-			<tr>
-				<th><@s.m "Member.password" />:</th>
-				<td><input type="password" id="password" name="password" class="text" maxlength="20" title="<@s.m "admin.member.passwordTitle" />" /></td>
-			</tr>
-			<tr>
-				<th><@s.m "admin.member.rePassword" />:</th>
-				<td><input type="password" name="rePassword" class="text" maxlength="20" /></td>
-			</tr>
-			<tr>
-				<th><@s.m "admin.common.setting" />:</th>
-				<td>
-					<label>
-						<input type="checkbox" name="isLocked"<#if member.locked> checked="checked"</#if> value="true"><@s.m "Member.isLocked" />
-						<input type="hidden" name="_isLocked" value="false" />
-					</label>
-				</td>
-			</tr>
-			<@shiro.hasPermission name="admin:role">
-			<tr class="roles">
-				<th><span class="requiredField">*</span><@s.m "Admin.roles" />:</th>
-				<td>
-					<span class="fieldSet">
-						<#list roleList as role>
-							<label>
-								<input type="checkbox" name="roleIds" value="${role.id}" <#if member.roles?seq_contains(role)> checked="checked"</#if> />${role.name}
-							</label>
-						</#list>
-					</span>
-				</td>
-			</tr>
-			</@shiro.hasPermission>
-			<tr>
-				<th><@s.m "admin.common.createDate" />:</th>
-				<td>${member.createDate?string("yyyy-MM-dd HH:mm:ss")}</td>
-			</tr>
-			<tr>
-				<th><@s.m "Member.registerIp" />:</th>
-				<td>${member.registerIp}</td>
-			</tr>
-		</table>
-		<table class="input">
-			<tr>
-				<th>&nbsp;</th>
-				<td>
-					<input type="submit" class="button" value="<@s.m "admin.common.submit" />" />
-					<input type="button" id="backButton" class="button" value="<@s.m "admin.common.back" />" />
-				</td>
-			</tr>
-		</table>
-	</form>
+	<@p.form id="inputForm" action="" labelWidth="10" method="post" tableClass="input">
+		<@p.hidden name="id" value="${member.id}" />
+		<@p.text label="Member.username" colspan="2" value="${member.name}" id="username" name="username" required="true" class="required" maxlength="40" readonly="true"/><@p.tr/>
+		<@p.password colspan="1" label="Member.password" id="password" name="password" maxlength="100" class="required" required="true"/><@p.tr/>
+		<@p.password colspan="1" label="admin.member.rePassword" id="rePassword" name="rePassword" maxlength="100" class="required" required="true"/><@p.tr/>
+		<@p.radio colspan="1" label="Member.isLocked" id="isEnabled" name="isEnabled" value=member.locked list={"false":"否","true":"是"}/><@p.tr/>
+		<@shiro.hasPermission name="admin:role">
+		<tr class="roles">
+			<th><span class="requiredField">*</span><@s.m "Admin.roles" />:</th>
+			<td>
+				<span class="fieldSet">
+					<#list roleList as role>
+						<label>
+							<input type="checkbox" name="roleIds" value="${role.id}" <#if member.roles?seq_contains(role)> checked="checked"</#if> />${role.name}
+						</label>
+					</#list>
+				</span>
+			</td>
+		</tr>
+		</@shiro.hasPermission>
+		<@p.text label="admin.common.createDate" colspan="2" value="${member.createDate?string('yyyy-MM-dd HH:mm:ss')}" id="createDate" name="createDate" required="true" class="required" maxlength="40" readonly="true"/><@p.tr/>
+		<@p.text label="Member.registerIp" colspan="2" value="${member.registerIp}" id="registerIp" name="registerIp" required="true" class="required" maxlength="40" readonly="true"/><@p.tr/>
+		<@p.th />
+		<@p.td colspan="" hasColon="false">
+			<@p.submit code="admin.common.submit" id="update"/> &nbsp; <@p.button code="admin.common.back" id="backButton" class="button"/>
+		</@p.td>
+	</@p.form>
 </body>
 </html>

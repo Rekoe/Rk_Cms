@@ -10,7 +10,7 @@
 <th<#if id?? && id!=""> id="${id}"</#if> width="${labelWidth}%" "><#if required!="false"><span class="requiredField">*</span></#if><@s.mt code=label text=label/><#if hasColon="true">${colon}</#if></th><#rt/>
 <td<#if colspan!=""> colspan="${colspan?number*2-1}"</#if> width="${width?number-labelWidth?number}%" class="pn-fcontent"><#rt/>
 <#else>
-<th<#if id?? && id!=""> id="${id}"</#if> colspan="<#if colspan=="">2<#else>${colspan?number*2}</#if>" class="pn-fbutton"><#rt/>
+<td<#if id?? && id!=""> id="${id}"</#if> colspan="<#if colspan=="">2<#else>${colspan?number*2}</#if>" class="pn-fbutton"><#rt/>
 </#if>
 <#if help!="" && helpPosition=='1'><div class="pn-fhelp"><@s.mt code=help text=help/></div></#if>
 <#nested/>
@@ -19,5 +19,5 @@
 <#elseif help!='' && helpPosition=='3'>
 <div class="pn-fhelp"><@s.mt code=help text=help/></div><#rt/>
 </#if>
-</th><#rt/>
+</td><#rt/>
 </#macro>

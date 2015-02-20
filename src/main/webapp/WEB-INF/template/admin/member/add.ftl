@@ -47,11 +47,11 @@ $(function(){
 	<div class="path">
 		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "admin.member.add" />
 	</div>
-	<@p.form id="inputForm" action="save.rk" labelWidth="10" method="post" tableClass="input tabContent">
+	<@p.form id="inputForm" action="save.rk" method="post" tableClass="input">
 		<@p.text label="Member.username" colspan="2" id="username" name="username" required="true" class="required" maxlength="40"/><@p.tr/>
-		<@p.password width="50" colspan="1" label="Member.password" id="password" name="password" maxlength="100" class="required" required="true"/><@p.tr/>
-		<@p.password width="50" colspan="1" label="admin.member.rePassword" id="rePassword" name="rePassword" maxlength="100" class="required" required="true"/><@p.tr/>
-		<@p.radio width="50" colspan="2" label="admin.common.setting" id="isEnabled" name="isEnabled" value="true" list={"false":"否","true":"是"}/><@p.tr/>
+		<@p.password colspan="1" label="Member.password" id="password" name="password" maxlength="100" class="required" required="true"/><@p.tr/>
+		<@p.password colspan="1" label="admin.member.rePassword" id="rePassword" name="rePassword" maxlength="100" class="required" required="true"/><@p.tr/>
+		<@p.radio colspan="1" label="Member.isLocked" id="isEnabled" name="isEnabled" value="true" list={"false":"否","true":"是"}/><@p.tr/>
 		<tr class="roles">
 			<th><span class="requiredField">*</span><@s.m "Admin.roles" />:</th>
 			<td>

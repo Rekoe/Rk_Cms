@@ -9,39 +9,17 @@
 	<div class="path">
 		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "admin.member.list" /> <span>(<@s.ma "admin.page.total" "${obj.totalCount}"/>)</span>
 	</div>
-	<form id="listForm" action="list.rk" method="get">
-		<div class="bar">
-			<a href="add.rk" class="iconButton">
-				<span class="addIcon">&nbsp;</span><@s.m "admin.common.add" />
-			</a>
-			<div class="buttonWrap">
-				<a href="javascript:;" id="deleteButton" class="iconButton disabled"><span class="deleteIcon">&nbsp;</span><@s.m "admin.common.delete" /></a>
-				<a href="javascript:;" id="refreshButton" class="iconButton"><span class="refreshIcon">&nbsp;</span><@s.m "admin.common.refresh" /></a>
-			</div>
-		</div>
-		<table id="listTable" class="list">
-			<tr>
-				<th class="check">
-					<input type="checkbox" id="selectAll" />
-				</th>
-				<th><span><@s.m "Member.username" /></span></th>
-				<th><span><@s.m "admin.common.createDate" /></span></th>
-				<th><span><@s.m "admin.member.status" /></span></th>
-				<th><span><@s.m "admin.common.handle" /></span></th>
-			</tr>
-			<#list obj.list as member>
-				<tr>
-					<td><input type="checkbox" name="ids" value="${member.id}" /></td>
-					<td>${member.name}</td>
-					<td>${member.createDate?string("yyyy-MM-dd HH:mm:ss")}</td>
-					<td><span class="green"><#if member.locked><@s.m "admin.member.locked" /><#else><@s.m "admin.member.normal" /></#if></span></td>
-					<td>
-						<a href="edit.rk?id=${member.id}">[<@s.m "admin.common.edit" />]</a>
-					</td>
-				</tr>
-			</#list>
-		</table>
+	<@p.list id="listForm" action="list.rk" method="get">
+		<@p.table value=obj.list;member,i,has_next><#rt/>
+			<@p.column code=" " align="center" class="check" selectAll=true addSpan=false><input type="checkbox" name="ids" value="${member.id}" /></@p.column><#t/>
+			<@p.column code="ID" align="center">${i+1}</@p.column><#t/>
+			<@p.column code="Member.username" align="center">${member.name}</@p.column><#t/>
+			<@p.column code="admin.common.createDate" align="center">${member.createDate?string("yyyy-MM-dd HH:mm:ss")}</@p.column><#t/>			
+			<@p.column code="admin.member.status" align="center" iconClass="${member.locked?string('false', 'true')}Icon">&nbsp;</@p.column><#t/>
+			<@p.column code="admin.common.handle" align="center"><a href="edit.rk?id=${member.id}">[<@s.m "admin.common.edit" />]</a></@p.column><#t/>			
+			<#t/>
+		</@p.table>
 		<@p.page value=obj/>
-	</form>
+	</@p.list>
 </body>
 </html>
