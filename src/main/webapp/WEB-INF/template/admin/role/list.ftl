@@ -9,31 +9,17 @@
 	<div class="path">
 		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "admin.role.list" /> <span>(<@s.ma "admin.page.total" "${obj.totalCount}"/>)</span>
 	</div>
-	<form id="listForm" action="list.rk" method="get">
-		<div class="bar">
-			<a href="add.rk" class="iconButton"><span class="addIcon">&nbsp;</span><@s.m "admin.common.add" /></a>
-			<div class="buttonWrap">
-				<a href="javascript:;" id="deleteButton" class="iconButton disabled"><span class="deleteIcon">&nbsp;</span><@s.m "admin.common.delete" /></a>
-				<a href="javascript:;" id="refreshButton" class="iconButton"><span class="refreshIcon">&nbsp;</span><@s.m "admin.common.refresh" /></a>
-			</div>
-		</div>
-		<table id="listTable" class="list">
-			<tr>
-				<th class="check"><input type="checkbox" id="selectAll" /></th>
-				<th><span><@s.m "admin.role.name" /></span></th>
-				<th><span><@s.m "admin.role.description" /></span></th>
-				<th><span><@s.m "admin.common.handle" /></span></th>
-			</tr>
-			<#list obj.list as role>
-				<tr>
-					<td><input type="checkbox" name="ids" value="${role.id}" /></td>
-					<td>${role.name}</td>
-					<td>${role.description}</td>
-					<td><a href="edit.rk?id=${role.id}">[<@s.m "admin.common.edit" />]</a></td>
-				</tr>
-			</#list>
-		</table>
+	<@p.list id="listForm" action="list.rk" method="get">
+		<@p.table value=obj.list;role,i,has_next><#rt/>
+			<@p.column code=" " align="left" class="check" selectAll=true addSpan=false><input type="checkbox" name="ids" value="${role.id}" /></@p.column><#t/>
+			<@p.column code="ID" align="left">${i+1}</@p.column><#t/>
+			<@p.column code="admin.role.name" align="left">${role.name}</@p.column><#t/>
+			<@p.column code="admin.role.description" align="left">${role.description}</@p.column><#t/>
+			<@p.column code="admin.common.handle" align="left">
+				<a href="edit.rk?id=${role.id}">[<@s.m "admin.common.edit" />]</a></@p.column><#t/>
+			<#t/>
+		</@p.table>
 		<@p.page value=obj/>
-	</form>
+	</@p.list>
 </body>
 </html>

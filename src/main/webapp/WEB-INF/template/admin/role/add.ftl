@@ -44,39 +44,27 @@ $().ready(function() {
 	<div class="path">
 		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "admin.role.add" />
 	</div>
-	<form id="inputForm" action="save" method="post">
-		<table class="input">
-			<tr>
-				<th><span class="requiredField">*</span><@s.m "admin.role.name" />:</th>
-				<td><input type="text" name="name" class="text" maxlength="200" /></td>
-			</tr>
-			<tr>
-				<th><@s.m "admin.role.description" />:</th>
-				<td><input type="text" name="description" class="text" maxlength="200" /></td>
-			</tr>
-			<tr>
-				<td colspan="2">&nbsp;</td>
-			</tr>
-			<#list obj as permissionCategory>
-			<tr class="authorities">
-				<th><a href="javascript:;" class="selectAll" title="<@s.m "admin.role.selectAll" />">${permissionCategory.name}</a></th>
-				<td>
-					<span class="fieldSet">
-					<#list permissionCategory.permissions as permission>
-						<label><input value="${permission.id}" type="checkbox" name="authorities">${permission.description} </label>
-					</#list>
-					</span>
-				</td>
-			</tr>
-			</#list>
-			<tr>
-				<th>&nbsp;</th>
-				<td>
-					<input type="submit" class="button" value="<@s.m "admin.common.submit" />" />
-					<input type="button" id="backButton" class="button" value="<@s.m "admin.common.back" />" />
-				</td>
-			</tr>
-		</table>
-	</form>
+	<@p.form id="inputForm" action="save.rk" method="post" tableClass="input">
+		<@p.text label="admin.role.name" id="name" name="name" required="true" class="requireField" maxlength="40"/><@p.tr/>
+		<@p.text label="admin.role.description" id="description" name="description" required="true" class="requireField" maxlength="40"/><@p.tr/>
+		<@p.td colspan="2">
+		</@p.td><@p.tr/>
+		<#list obj as permissionCategory>
+		<tr class="authorities">
+			<th><a href="javascript:;" class="selectAll" title="<@s.m "admin.role.selectAll" />">${permissionCategory.name}</a></th>
+			<td>
+				<span class="fieldSet">
+				<#list permissionCategory.permissions as permission>
+					<label><input value="${permission.id}" type="checkbox" name="authorities">${permission.description} </label>
+				</#list>
+				</span>
+			</td>
+		</tr>
+		</#list>
+		<@p.th />
+		<@p.td colspan="" hasColon="false">
+			<@p.submit code="admin.common.submit" id="submit"/> &nbsp; <@p.button code="admin.common.back" id="backButton" class="button"/>
+		</@p.td>
+	</@p.form>
 </body>
 </html>
