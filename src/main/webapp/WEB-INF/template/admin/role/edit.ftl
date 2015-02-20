@@ -69,8 +69,7 @@ $().ready(function() {
 				</td>
 			</tr>
 		</#list>
-		<@p.th />
-		<@p.td colspan="" hasColon="false">
+		<@p.td colspan="1" hasColon="false">
 			<@p.submit code="admin.common.submit" id="submit"/> &nbsp; <@p.button code="admin.common.back" id="backButton" class="button"/>
 		</@p.td>
 	</@p.form>
