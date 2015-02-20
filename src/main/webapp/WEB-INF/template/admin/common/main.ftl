@@ -3,11 +3,8 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title><@s.m "admin.main.title" /> - Powered By Rekoe</title>
-<meta name="author" content="Rekoe Team" />
-<meta name="copyright" content="Rekoe" />
-<link href="${base}/resources/admin/css/common.css" rel="stylesheet" type="text/css" />
+<#include "/template/admin/common/head.ftl" />
 <link href="${base}/resources/admin/css/main.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="${base}/resources/admin/js/jquery.min.js"></script>
 <style type="text/css">
 *{
 	font: 12px tahoma, Arial, Verdana, sans-serif;

@@ -3,8 +3,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title><@s.m "admin.setting.mailTestTitle" /> - Powered By Rekoe Cms</title>
-<meta name="author" content="Rekoe Cms Team" />
-<meta name="copyright" content="Rekoe Cms" />
+<#include "/template/admin/common/head.ftl" />
 </head>
 <body>
 <strong><@s.m "admin.setting.mailTestTitle" /></strong>

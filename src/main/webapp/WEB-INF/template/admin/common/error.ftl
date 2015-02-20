@@ -3,9 +3,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title><@s.m "admin.error.title" /> - Powered By Rekoe Cms</title>
-<meta name="author" content="Rekoe Cms Team" />
-<meta name="copyright" content="Rekoe Cms" />
-<link href="${base}/resources/admin/css/common.css" rel="stylesheet" type="text/css" />
+<#include "/template/admin/common/head.ftl" />
 <link href="${base}/resources/admin/css/error.css" rel="stylesheet" type="text/css" />
 </head>
 <body>

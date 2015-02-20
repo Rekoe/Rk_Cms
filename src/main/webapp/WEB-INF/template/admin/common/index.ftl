@@ -3,9 +3,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title><@s.m "admin.index.title" /> - Powered By SHOP++</title>
-<meta name="author" content="Rekoe Cms Team" />
-<meta name="copyright" content="Rekoe Cms" />
-<link href="${base}/resources/admin/css/common.css" rel="stylesheet" type="text/css" />
+<#include "/template/admin/common/head.ftl" />
 <style type="text/css">
 .input .powered {
 	font-size: 11px;
