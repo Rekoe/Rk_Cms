@@ -17,6 +17,7 @@
 <#if acceptCharset!=""> accept-charset="${acceptCharset}"</#if><#rt/>
 <#include "common-attributes.ftl"/><#rt/>
 >
+<#assign i=-1/>
 <#if theme!="simple">
 <#assign labelWidth=labelWidth/>
 <table width="${width}" class="${tableClass}" cellpadding="2" cellspacing="1" border="0">

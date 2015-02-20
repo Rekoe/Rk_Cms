@@ -3,12 +3,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title><@s.m "admin.articleCategory.list" /> - Powered By Rekoe Cms</title>
-<meta name="author" content="Rekoe Cms Team" />
-<meta name="copyright" content="Rekoe Cms" />
-<link href="${base}/resources/admin/css/common.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="${base}/resources/admin/js/jquery.min.js"></script>
-<script type="text/javascript" src="${base}/resources/admin/js/common.js"></script>
-<script type="text/javascript" src="${base}/resources/admin/js/list.js"></script>
+<#include "/template/admin/common/head.ftl" />
 <script type="text/javascript">
 $().ready(function() {
 	var $delete = $("#listTable a.delete");
@@ -42,41 +37,19 @@ $().ready(function() {
 	<div class="path">
 		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "admin.articleCategory.list" />
 	</div>
-	<div class="bar">
-		<a href="add.rk" class="iconButton">
-			<span class="addIcon">&nbsp;</span><@s.m "admin.common.add" />
-		</a>
-		<a href="javascript:;" id="refreshButton" class="iconButton">
-			<span class="refreshIcon">&nbsp;</span><@s.m "admin.common.refresh" />
-		</a>
-	</div>
-	<table id="listTable" class="list">
-		<tr>
-			<th>
-				<span><@s.m "ArticleCategory.name" /></span>
-			</th>
-			<th>
-				<span><@s.m "admin.common.order" /></span>
-			</th>
-			<th>
-				<span><@s.m "admin.common.handle" /></span>
-			</th>
-		</tr>
-		<#list obj as articleCategory>
-			<tr>
-				<td>
-					<span style="margin-left: ${articleCategory.grade * 40}px;<#if articleCategory.grade == 0] color: #000000;</#if>">
-						${articleCategory.name}
-					</span>
-				</td>
-				<td>${articleCategory.order}</td>
-				<td>
-					<a href="edit.rk?id=${articleCategory.id}">[<@s.m "admin.common.edit" />]</a>
-					<a href="javascript:;" class="delete" val="${articleCategory.id}">[<@s.m "admin.common.delete" />]</a>
-					<a href="${base}/article/list/${articleCategory.id}.rk" target="_blank">[<@s.m "admin.common.view" />]</a>
-				</td>
-			</tr>
-		</#list>
-	</table>
+<@p.list id="listForm" action="list.rk" method="get">
+		<@p.table value=obj;articleCategory,i,has_next><#rt/>
+			<@p.column code=" " align="center" class="check" selectAll=true addSpan=false><input type="checkbox" name="ids" value="${articleCategory.id}" /></@p.column><#t/>
+			<@p.column code="ID" align="center">${i+1}</@p.column><#t/>
+			<@p.column code="ArticleCategory.name" align="center">${articleCategory.name}</@p.column><#t/>
+			<@p.column code="admin.common.order" align="center">${articleCategory.order}</@p.column><#t/>			
+			<@p.column code="admin.common.handle" align="center">
+				<a href="edit.rk?id=${articleCategory.id}">[<@s.m "admin.common.edit" />]</a>
+				<a href="javascript:;" class="delete" val="${articleCategory.id}">[<@s.m "admin.common.delete" />]</a>
+				<a href="${base}/article/list/${articleCategory.id}.rk" target="_blank">[<@s.m "admin.common.view" />]</a>
+			</@p.column><#t/>
+			<#t/>
+		</@p.table>
+</@p.list>
 </body>
 </html>

@@ -3,13 +3,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title><@s.m "admin.articleCategory.add" /> - Powered By Rekoe Cms</title>
-<meta name="author" content="Rekoe Cms Team" />
-<meta name="copyright" content="Rekoe Cms" />
-<link href="${base}/resources/admin/css/common.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="${base}/resources/admin/js/jquery.min.js"></script>
-<script type="text/javascript" src="${base}/resources/admin/js/jquery.validate.js"></script>
-<script type="text/javascript" src="${base}/resources/admin/js/common.js"></script>
-<script type="text/javascript" src="${base}/resources/admin/js/input.js"></script>
+<#include "/template/admin/common/head.ftl" />
 <script type="text/javascript">
 $().ready(function() {
 	var $inputForm = $("#inputForm");
@@ -26,55 +20,17 @@ $().ready(function() {
 	<div class="path">
 		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "admin.articleCategory.add" />
 	</div>
-	<form id="inputForm" action="save.rk" method="post">
-		<table class="input">
-				<tr>
-					<th><@s.m "ArticleCategory.name" />: </th>
-					<td>
-						<input type="text" name="name" class="text" value="${(articleCategory.name)!}" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th><@s.m "ArticleCategory.parent" />: </th>
-					<td>
-						<select name="ac.parentId">
-							<option value=""><@s.m "admin.articleCategory.root" /></option>
-							<#list obj as articleCategoryTree>
-								<option value="${articleCategoryTree.id}">
-									<#if articleCategoryTree.grade != 0>
-										<#list 1..articleCategoryTree.grade as i>
-											&nbsp;&nbsp;
-										</#list>
-									</#if>
-									${articleCategoryTree.name}
-								</option>
-							</#list>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<th><@s.m "admin.common.order" />: </th>
-					<td>
-						<input type="text" name="order" class="text" value="" title="只允许输入零或正整数" />
-					</td>
-				</tr>
-				<tr>
-					<th>&nbsp;</th>
-					<td>
-						<span class="tips"><span class="icon">&nbsp;</span>页面关键词、页面描述可以更好的使用户通过搜索引擎搜索到站点</span>
-					</td>
-				</tr>
-							<tr>
-				<th>
-					&nbsp;
-				</th>
-				<td>
-					<input type="submit" class="button" value="<@s.m "admin.common.submit" />" />
-					<input type="button" id="backButton" class="button" value="<@s.m "admin.common.back" />" />
-				</td>
-			</tr>
-			</table>
-	</form>
+	<@p.form id="inputForm" action="save.rk" method="post" tableClass="input">
+		<@p.text label="ArticleCategory.name" id="name" name="name" required="true" class="requireField" maxlength="40"/><@p.tr/>
+		<@p.tree label="Article.articleCategory" name="ac.parentId" required="true" class="requireField" list=obj category=true/><@p.tr/>
+		<@p.text label="admin.common.order" id="name" name="name" required="true" class="requireField" help="只允许输入零或正整数"/><@p.tr/>	
+		<@p.fcolumn title="">
+				<span class="tips"><span class="icon">&nbsp;</span>页面关键词、页面描述可以更好的使用户通过搜索引擎搜索到站点</span>
+		</@p.fcolumn><#t/>
+		<@p.th />
+		<@p.td colspan="" hasColon="false">
+			<@p.submit code="admin.common.submit" id="submit"/> &nbsp; <@p.button code="admin.common.back" id="backButton" class="button"/>
+		</@p.td>
+	</@p.form>
 </body>
 </html>

@@ -6,4 +6,5 @@
 <script type="text/javascript" src="${base}/resources/admin/tinyeditor/tinyeditor.js"></script>
 <script type="text/javascript" src="${base}/resources/admin/js/common.js"></script>
 <script type="text/javascript" src="${base}/resources/admin/js/input.js"></script>
+<script type="text/javascript" src="${base}/resources/admin/js/list.js"></script>
 <link type="text/css" rel="stylesheet" href="${base}/resources/admin/tinyeditor/style.css">
