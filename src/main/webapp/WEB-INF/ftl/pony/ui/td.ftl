@@ -4,13 +4,13 @@
 <td></td>
 -->
 <#macro td id=""
-	label="" noHeight="false" required="false" colspan="" width="100" help="" helpPosition="2" colon=":" hasColon="true"
+	label="" required="false" colspan="" width="100" help="" helpPosition="2" colon=":" hasColon="true"
 	>
 <#if label!="">
-<td<#if id?? && id!=""> id="${id}"</#if> width="${labelWidth}%" class="pn-flabel<#if noHeight=='false'> pn-flabel-h</#if>"><#if required!="false"><span class="pn-frequired">*</span></#if><@s.mt code=label text=label/><#if hasColon="true">${colon}</#if></td><#rt/>
+<th<#if id?? && id!=""> id="${id}"</#if> width="${labelWidth}%" "><#if required!="false"><span class="requiredField">*</span></#if><@s.mt code=label text=label/><#if hasColon="true">${colon}</#if></th><#rt/>
 <td<#if colspan!=""> colspan="${colspan?number*2-1}"</#if> width="${width?number-labelWidth?number}%" class="pn-fcontent"><#rt/>
 <#else>
-<td<#if id?? && id!=""> id="${id}"</#if> colspan="<#if colspan=="">2<#else>${colspan?number*2}</#if>" class="pn-fbutton"><#rt/>
+<th<#if id?? && id!=""> id="${id}"</#if> colspan="<#if colspan=="">2<#else>${colspan?number*2}</#if>" class="pn-fbutton"><#rt/>
 </#if>
 <#if help!="" && helpPosition=='1'><div class="pn-fhelp"><@s.mt code=help text=help/></div></#if>
 <#nested/>
@@ -19,5 +19,5 @@
 <#elseif help!='' && helpPosition=='3'>
 <div class="pn-fhelp"><@s.mt code=help text=help/></div><#rt/>
 </#if>
-</td><#rt/>
+</th><#rt/>
 </#macro>

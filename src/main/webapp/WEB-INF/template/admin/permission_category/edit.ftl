@@ -19,21 +19,13 @@ $().ready(function() {
 	<div class="path">
 		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "admin.permissionCategory.edit" />
 	</div>
-	<form id="inputForm" action="update.rk" method="post">
-		<input type="hidden" name="id" value="${obj.id}" />
-		<table class="input">
-			<tr>
-				<th><span class="requiredField">*</span><@s.m "permissionCategory.name" />:</th>
-				<td><input type="text" id="name" name="name" class="text" value="${obj.name}" maxlength="200" /></td>
-			</tr>
-			<tr>
-				<th>&nbsp;</th>
-				<td>
-					<input type="submit" class="button" value="<@s.m "admin.common.submit" />" />
-					<input type="button" id="backButton" class="button" value="<@s.m "admin.common.back" />" />
-				</td>
-			</tr>
-		</table>
-	</form>
+	<@p.form id="inputForm" action="update.rk" method="post" tableClass="input">
+		<@p.hidden name="id" value="${obj.id}" />
+		<@p.text label="permissionCategory.name" id="name" name="name" value="${obj.name}" required="true" class="requireField" maxlength="40"/><@p.tr/>
+		<@p.th />
+		<@p.td colspan="" hasColon="false">
+			<@p.submit code="admin.common.submit" id="submit"/> &nbsp; <@p.button code="admin.common.back" id="backButton" class="button"/>
+		</@p.td>
+	</@p.form>
 </body>
 </html>

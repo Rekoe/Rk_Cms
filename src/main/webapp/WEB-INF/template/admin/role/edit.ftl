@@ -44,21 +44,13 @@ $().ready(function() {
 	<div class="path">
 		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "admin.role.edit" />
 	</div>
-	<form id="inputForm" action="update" method="post">
-		<input type="hidden" name="role.id" value="${role.id}" />
-		<table class="input">
-			<tr>
-				<th><span class="requiredField">*</span><@s.m "admin.role.name" />:</th>
-				<td><input type="text" name="name" class="text" value="${role.name}" maxlength="200" /></td>
-			</tr>
-			<tr>
-				<th><@s.m "admin.role.description" />:</th>
-				<td><input type="text" name="role.description" class="text" value="${role.description}" maxlength="200" /></td>
-			</tr>
-			<tr>
-				<td colspan="2">&nbsp;</td>
-			</tr>
-			<#list pcList as permissionCategory>
+	<@p.form id="inputForm" action="update.rk" method="post" tableClass="input">
+		<@p.hidden name="role.id" value="${role.id}" />
+		<@p.text label="admin.role.name" id="name" name="name" required="true" value="${role.name}" class="requireField" maxlength="40"/><@p.tr/>
+		<@p.text label="admin.role.description" value="${role.description!}" id="role.description" name="role.description" required="true" class="requireField" maxlength="40"/><@p.tr/>
+		<@p.td colspan="2">
+		</@p.td><@p.tr/>
+		<#list pcList as permissionCategory>
 			<tr class="authorities">
 				<th><a href="javascript:;" class="selectAll" title="<@s.m "admin.role.selectAll" />">${permissionCategory.name}</a></th>
 				<td>
@@ -76,15 +68,10 @@ $().ready(function() {
 					</span>
 				</td>
 			</tr>
-			</#list>
-			<tr>
-				<th>&nbsp;</th>
-				<td>
-					<input type="submit" class="button" value="<@s.m "admin.common.submit" />"/>
-					<input type="button" id="backButton" class="button" value="<@s.m "admin.common.back" />" />
-				</td>
-			</tr>
-		</table>
-	</form>
+		</#list>
+		<@p.td colspan="1" hasColon="false">
+			<@p.submit code="admin.common.submit" id="submit"/> &nbsp; <@p.button code="admin.common.back" id="backButton" class="button"/>
+		</@p.td>
+	</@p.form>
 </body>
 </html>

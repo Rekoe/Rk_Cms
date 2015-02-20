@@ -28,7 +28,7 @@
 				<tr>
 					<td><input type="checkbox" name="ids" value="${role.id}" /></td>
 					<td>${role.name}</td>
-					<td>${role.description}</td>
+					<td>${role.description!}</td>
 					<td><a href="edit.rk?id=${role.id}">[<@s.m "admin.common.edit" />]</a></td>
 				</tr>
 			</#list>

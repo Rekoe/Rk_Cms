@@ -20,26 +20,12 @@ $().ready(function() {
 	<div class="path">
 		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "admin.permissionCategory.add" />
 	</div>
-	<form id="inputForm" action="save.rk" method="post">
-		<table class="input">
-				<tr>
-					<th><@s.m "permissionCategory.name" />: </th>
-					<td>
-						<input type="text" name="name" class="text" value="${(permissionCategory.name)!}" />
-						<label class="requireField">*</label>
-					</td>
-				</tr>
-				<tr>
-					<th>&nbsp;</th>
-				</tr>
-				<tr>
-				<th>&nbsp;</th>
-				<td>
-					<input type="submit" class="button" value="<@s.m "admin.common.submit" />" />
-					<input type="button" id="backButton" class="button" value="<@s.m "admin.common.back" />" />
-				</td>
-			</tr>
-			</table>
-	</form>
+	<@p.form id="inputForm" action="save.rk" method="post" tableClass="input">
+		<@p.text label="permissionCategory.name" id="name" name="name" required="true" class="requireField" maxlength="40"/><@p.tr/>
+		<@p.th />
+		<@p.td colspan="" hasColon="false">
+			<@p.submit code="admin.common.submit" id="submit"/> &nbsp; <@p.button code="admin.common.back" id="backButton" class="button"/>
+		</@p.td>
+	</@p.form>
 </body>
 </html>

@@ -37,7 +37,7 @@ $().ready(function() {
 	<div class="path">
 		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "admin.articleCategory.list" />
 	</div>
-<@p.list id="listForm" action="list.rk" method="get">
+	<@p.list id="listForm" action="list.rk" method="get">
 		<@p.table value=obj;articleCategory,i,has_next><#rt/>
 			<@p.column code=" " align="center" class="check" selectAll=true addSpan=false><input type="checkbox" name="ids" value="${articleCategory.id}" /></@p.column><#t/>
 			<@p.column code="ID" align="center">${i+1}</@p.column><#t/>
@@ -50,6 +50,6 @@ $().ready(function() {
 			</@p.column><#t/>
 			<#t/>
 		</@p.table>
-</@p.list>
+	</@p.list>
 </body>
 </html>
