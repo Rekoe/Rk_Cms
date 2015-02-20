@@ -47,52 +47,25 @@ $(function(){
 	<div class="path">
 		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "admin.member.add" />
 	</div>
-	<form id="inputForm" action="save" method="post">
-		<ul id="tab" class="tab">
-			<li><input type="button" value="<@s.m "admin.member.base" />" /></li>
-		</ul>
-		<table class="input tabContent">
-			<tr>
-				<th><span class="requiredField">*</span><@s.m "Member.username" />:</th>
-				<td><input type="text" name="username" class="text" maxlength="20" /></td>
-			</tr>
-			<tr>
-				<th><span class="requiredField">*</span><@s.m "Member.password" />:</th>
-				<td><input type="password" id="password" name="password" class="text" maxlength="20" /></td>
-			</tr>
-			<tr>
-				<th><span class="requiredField">*</span><@s.m "admin.member.rePassword" />:</th>
-				<td><input type="password" name="rePassword" class="text" maxlength="20" /></td>
-			</tr>
-			<tr class="roles">
-				<th><span class="requiredField">*</span><@s.m "Admin.roles" />:</th>
-				<td>
-					<span class="fieldSet">
-						<#list obj as role>
-							<label><input type="checkbox" name="roleIds" value="${role.id}" />${role.name}</label>
-						</#list>
-					</span>
-				</td>
-			</tr>
-			<tr>
-				<th><@s.m "admin.common.setting" />:</th>
-				<td>
-					<label>
-						<input type="checkbox" name="isEnabled" value="true" checked="checked" /><@s.m "Member.isEnabled" />
-						<input type="hidden" name="_isEnabled" value="false" />
-					</label>
-				</td>
-			</tr>
-		</table>
-		<table class="input">
-			<tr>
-				<th>&nbsp;</th>
-				<td>
-					<input type="submit" class="button" value="<@s.m "admin.common.submit" />" />
-					<input type="button" id="backButton" class="button" value="<@s.m "admin.common.back" />" />
-				</td>
-			</tr>
-		</table>
-	</form>
+	<@p.form id="inputForm" action="save.rk" labelWidth="10" method="post" tableClass="input tabContent">
+		<@p.text label="Member.username" colspan="2" id="username" name="username" required="true" class="required" maxlength="40"/><@p.tr/>
+		<@p.password width="50" colspan="1" label="Member.password" id="password" name="password" maxlength="100" class="required" required="true"/><@p.tr/>
+		<@p.password width="50" colspan="1" label="admin.member.rePassword" id="rePassword" name="rePassword" maxlength="100" class="required" required="true"/><@p.tr/>
+		<@p.radio width="50" colspan="2" label="admin.common.setting" id="isEnabled" name="isEnabled" value="true" list={"false":"否","true":"是"}/><@p.tr/>
+		<tr class="roles">
+			<th><span class="requiredField">*</span><@s.m "Admin.roles" />:</th>
+			<td>
+				<span class="fieldSet">
+					<#list obj as role>
+						<label><input type="checkbox" name="roleIds" value="${role.id}" />${role.name}</label>
+					</#list>
+				</span>
+			</td>
+		</tr>
+		<@p.th />
+		<@p.td colspan="" hasColon="false">
+			<@p.submit code="admin.common.submit" id="submit"/> &nbsp; <@p.button code="admin.common.back" id="backButton" class="button"/>
+		</@p.td>
+	</@p.form>
 </body>
 </html>
