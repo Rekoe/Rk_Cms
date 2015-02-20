@@ -57,7 +57,7 @@ public class ArticleCategory {
 	@One(target = ArticleCategory.class, field = "parentId")
 	private ArticleCategory parent;// 上级分类
 
-	@Many(target = ArticleCategory.class, field = "id")
+	@Many(target = ArticleCategory.class, field = "parentId")
 	private Set<ArticleCategory> children;// 下级分类
 
 	@Many(target = Article.class, field = "articleCategoryId")
