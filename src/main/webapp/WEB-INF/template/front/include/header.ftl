@@ -13,13 +13,13 @@
 	</div>
 	<div class="span24">
 		<ul class="mainNav">
-			<li><a href="/">首页</a> |</li>
+			<li><a href="${base}/">首页</a> |</li>
 		</ul>
 	</div>
 	<div class="span24">
 		<div class="tagWrap">
 			<div class="search">
-				<form method="get" action="${base}/article/search.rk" id="productSearchForm" method="post">
+				<form action="${base}/article/search.rk" id="productSearchForm" method="post">
 					<input maxlength="30" value="搜索" class="keyword" name="keyword">
 					<button type="submit">搜索</button>
 				</form>

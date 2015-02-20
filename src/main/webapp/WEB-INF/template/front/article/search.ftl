@@ -79,7 +79,7 @@ $().ready(function() {
 				<div class="title"><@s.m "front.article.search" /></div>
 				<div class="content">
 					<form id="articleSearchForm" action="${base}/article/search.rk" method="post">
-						<input type="text" name="keyword" value="${articleKeyword}" maxlength="30" />
+						<input type="text" name="keyword" value="${articleKeyword!}" maxlength="30" />
 						<button type="submit"><@s.m "front.article.searchSubmit" /></button>
 					</form>
 				</div>
@@ -91,7 +91,7 @@ $().ready(function() {
 					<li>
 						<a href="${base}/"><@s.m "path.home" /></a>
 					</li>
-					<li class="last"><@s.ma "front.article.path", "${articleKeyword}" /></li>
+					<li class="last"><@s.ma "front.article.path", "${articleKeyword!}" /></li>
 				</ul>
 			</div>
 			<div class="result">
@@ -107,7 +107,7 @@ $().ready(function() {
 						</#list>
 					</ul>
 				<#else>
-					<@s.ma "front.article.noSearchResult", "${articleKeyword}"/>
+					<@s.ma "front.article.noSearchResult", "${articleKeyword!}"/>
 				</#if>
 			</div>
 			<@pagination pageNumber = page.pageNumber totalPages = page.totalPages pattern = "search.rk?keyword=${articleKeyword}&pageNumber={pageNumber}">
