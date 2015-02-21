@@ -23,7 +23,7 @@ $().ready(function() {
 	<@p.form id="inputForm" action="save.rk" method="post" tableClass="input">
 		<@p.text label="ArticleCategory.name" id="name" name="name" required="true" class="requireField" maxlength="40"/><@p.tr/>
 		<@p.tree label="Article.articleCategory" name="ac.parentId" required="true" class="requireField" list=obj category=true/><@p.tr/>
-		<@p.text label="admin.common.order" id="name" name="name" required="true" class="requireField" help="只允许输入零或正整数"/><@p.tr/>	
+		<@p.text label="admin.common.order" id="order" name="order" required="true" class="requireField" help="只允许输入零或正整数"/><@p.tr/>	
 		<@p.fcolumn title="">
 				<span class="tips"><span class="icon">&nbsp;</span>页面关键词、页面描述可以更好的使用户通过搜索引擎搜索到站点</span>
 		</@p.fcolumn><#t/>

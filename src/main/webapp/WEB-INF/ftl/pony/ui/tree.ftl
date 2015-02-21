@@ -13,19 +13,7 @@
 <#if category>
 <option value=""><@s.m "admin.articleCategory.root" /></option>
 </#if>
-<#list list as categoryTree>
-	<option value="${categoryTree.id}" <#if categoryTree.id==value> selected="selected"</#if>>
-		<#if categoryTree.grade != 0>
-			<#list 1..categoryTree.grade as i>
-				&nbsp;&nbsp;
-				<#if categoryTree.grade ==i>
-					|-
-				</#if>
-			</#list>
-		</#if>
-		${categoryTree.name}
-	</option>
-</#list>
+<@article_category_tree categoryid = value/>
 </#if>
 </select>
 <#include "control-close.ftl"/><#rt/>

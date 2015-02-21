@@ -16,7 +16,10 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateModel;
 
 /**
- * @author 科技㊣²º¹³ 2014年2月5日 下午6:16:26 http://www.rekoe.com QQ:5382211
+ * @author 科技㊣²º¹³ 
+ * 2014年2月5日 下午6:16:26 
+ * http://www.rekoe.com 
+ * QQ:5382211
  */
 public class ArticleListDirective implements TemplateDirectiveModel {
 	private ArticleService articleService;

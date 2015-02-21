@@ -30,6 +30,12 @@ var ioc = {
 			refer : "articleCategoryService"
 		} ]
 	},
+	articleCategoryTree : {
+		type : "com.rekoe.web.freemarker.ArticleCategoryTreeDirective",
+		args : [ {
+			refer : "articleCategoryService"
+		} ]
+	},
 	articleCategoryRootList : {
 		type : "com.rekoe.web.freemarker.ArticleCategoryRootListDirective",
 		args : [ {
@@ -78,6 +84,12 @@ var ioc = {
 			refer : "articleCategoryParentList"
 		} ]
 	},
+	articleCategoryTreeDirective : {
+		type : "com.rekoe.web.freemarker.FreemarkerDirective",
+		args : [ "article_category_tree", {
+			refer : "articleCategoryTree"
+		} ]
+	},
 	articleCategoryRootListDirective : {
 		type : "com.rekoe.web.freemarker.FreemarkerDirective",
 		args : [ "article_category_root_list", {
@@ -120,6 +132,8 @@ var ioc = {
 			refer : "articleListDirective"
 		}, {
 			refer : "timeFormatDirective"
+		}, {
+			refer : "articleCategoryTreeDirective"
 		} ]
 	}
 };
