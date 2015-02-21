@@ -88,6 +88,7 @@ $().ready(function() {
 					<@shiro.hasPermission name="admin:articleCategory">
 						<dd><a href="${base}/admin/article_category/list.rk" target="iframe"><@s.m "admin.main.articleCategory" /></a></dd>
 					</@shiro.hasPermission>
+					<dd><a href="${base}/admin/collection/qq.rk?name=edu" target="iframe">QQ采集</a></dd>
 				</dl>
 				<dl id="system">
 					<dt><@s.m "admin.main.systemGroup" /></dt>
