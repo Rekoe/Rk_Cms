@@ -11,7 +11,7 @@ $().ready(function() {
 		var $this = $(this);
 		$.dialog({
 			type: "warn",
-			content: "<@s.m "admin.dialog.deleteConfirm" />",
+			content: "<@s.m "admin.dialog.startConfirm" />",
 			onOk: function() {
 				$.ajax({
 					url: "start.rk",
