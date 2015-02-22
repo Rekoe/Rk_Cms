@@ -25,3 +25,5 @@ INSERT INTO system_role_permission(ROLEID,PERMISSIONID) VALUES
 (1,6);
 /*  .system_setting  		*/
 INSERT INTO system_setting(id,site_name,certtext,site_enabled,site_close_message) VALUES (1,'瑞克科技','Cms Game',1,'测试阶段<a herf="#">查看更多.....</a>');
+/* .acquisition*/
+INSERT INTO `acquisition` VALUES (1,'Sina','GBK','http://roll.news.sina.com.cn/news/gnxw/gdxw1/index_1.shtml','class=list_009','','false','true','id=artibody','','f910a34c9cbd4ece98363ca8398d995b',NULL),(2,'QQ','GBK','http://finance.qq.com/money/insurance/','id=newsList','','false','true','id=Cnt-Main-Article-QQ','','6d38b6b1afb4458fb6a2eb5a5ff9641e','http://finance.qq.com');
