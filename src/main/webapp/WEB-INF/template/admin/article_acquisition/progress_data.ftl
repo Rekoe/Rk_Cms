@@ -14,16 +14,16 @@
 		${top}
 		<#else>
 		<@s.m "rule.noAcquisitionRunning"/>
-	</#if>
+</#if>
 <#if list?size gt 0>
-		<#list list as temp>
+	<#list list as temp>
 		<@s.m "rule.d"/>${temp.id}<@s.m "rule.t"/> 
 		${temp.contentUrl}  
 		<#if temp.title??>【${temp.title!}】</#if>  
 		<@s.m "rule.success"/>
 		<br/>
-		</#list>
-		<script>
-		percent=${percent}
-		</script>
+	</#list>
 </#if>
+<script>
+	percent=${obj};
+</script>

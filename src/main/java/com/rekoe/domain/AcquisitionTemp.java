@@ -1,6 +1,7 @@
 package com.rekoe.domain;
 
 import org.nutz.dao.entity.annotation.ColDefine;
+import org.nutz.dao.entity.annotation.ColType;
 import org.nutz.dao.entity.annotation.Column;
 import org.nutz.dao.entity.annotation.Id;
 import org.nutz.dao.entity.annotation.Table;
@@ -17,7 +18,7 @@ public class AcquisitionTemp {
 	@ColDefine(width = 100)
 	private String title;
 	@Column
-	@ColDefine(width = 3)
+	@ColDefine(type = ColType.INT, width = 3)
 	private int percent;
 
 	public int getId() {

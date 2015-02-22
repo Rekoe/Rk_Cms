@@ -12,8 +12,8 @@ function getTableForm() {
 }
 
 function checkComplete(){
-	$.post("v_check_complete.do",{},function(data){
-		if(!data.completed){
+	$.post("v_check_complete.do",{},function(message){
+		if (message.type != "success") {
 			createProgress();
 		}
 	},"json");
@@ -29,7 +29,7 @@ function createProgress() {
 	$.post("v_progress_data.do",{},function(data){
 		$("#progressContainer").html(data);
 		messageBox = $("#messageBox");
-		if (percent >100){
+		if (percent ==0){
 			setBar(percent,messageBox, "<@s.m 'rule.complete'/>");
 			checkComplete();
 		}

@@ -1,8 +1,6 @@
 package com.rekoe.module.admin;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -78,23 +76,20 @@ public class AcquisitionAct {
 
 	@At
 	@Ok("fm:template.admin.article_acquisition.progress_data")
-	public void v_progress_data(HttpServletRequest req) {
+	public int v_progress_data(HttpServletRequest req) {
 		List<AcquisitionTemp> list = acquisitionTempService.getList();
-		req.setAttribute("percent", acquisitionTempService.getPercent());
 		req.setAttribute("list", list);
+		return acquisitionTempService.getPercent();
 	}
 
 	@At
 	@Ok("json")
-	public Map<String, Object> v_check_complete() {
-		Map<String, Object> map = new HashMap<String, Object>();
+	public Message v_check_complete(HttpServletRequest req) {
 		List<AcquisitionTemp> list = acquisitionTempService.getList();
 		if (Lang.isEmpty(list)) {
-			map.put("completed", true);
-		} else {
-			map.put("completed", false);
+			return Message.success("admin.message.success", req);
 		}
-		return map;
+		return Message.error("admin.message.success", req);
 	}
 
 	@At

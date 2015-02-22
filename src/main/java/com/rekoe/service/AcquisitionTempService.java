@@ -9,12 +9,15 @@ import org.nutz.dao.Dao;
 import org.nutz.dao.Sqls;
 import org.nutz.dao.sql.Sql;
 import org.nutz.ioc.loader.annotation.IocBean;
+import org.nutz.log.Log;
+import org.nutz.log.Logs;
 
 import com.rekoe.domain.AcquisitionTemp;
 
 @IocBean(fields = { "dao" })
 public class AcquisitionTempService extends BaseService<AcquisitionTemp> {
 
+	private final static Log log = Logs.get();
 	public AcquisitionTempService() {
 		super();
 	}
@@ -55,6 +58,7 @@ public class AcquisitionTempService extends BaseService<AcquisitionTemp> {
 		Sql sql = Sqls.create("select max(percent) from acquisition_temp");
 		sql.setCallback(Sqls.callback.integer());
 		dao().execute(sql);
+		log.info(sql.getInt());
 		return sql.getResult() == null ? 0 : sql.getInt();
 	}
 
