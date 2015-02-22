@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.nutz.dao.Cnd;
+import org.nutz.dao.Condition;
 import org.nutz.dao.Dao;
 import org.nutz.dao.FieldFilter;
 import org.nutz.dao.pager.Pager;
@@ -34,10 +35,12 @@ public class ArticleService extends BaseService<Article> {
 		return query(null, null);
 	}
 
-	public List<Article> getIndexNewList() {
-		return dao().query(getEntityClass(), Cnd.NEW().limit(10).desc("id"));
+	public List<Article> getIndexNewList(int limit,String desc) {
+		return getListByCnd(Cnd.NEW().limit(1,10).desc("id"));
 	}
-
+	public List<Article> getListByCnd(Condition cnd) {
+		return dao().query(getEntityClass(), cnd);
+	}
 	public void insert(Article art) {
 		dao().insert(art);
 	}

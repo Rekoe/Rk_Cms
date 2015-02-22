@@ -57,7 +57,7 @@ $().ready(function() {
 					<@article_list articleCategoryId = articleCategory.id count = 10 desc="hits">
 						<#list articles as article>
 							<li>
-								<a href="${base}/article/view/${article.id}.rk" title="${article.title}"><@htmlCut s=article.title len=18 append="..."/></a>
+								<a href="${base}/article/view/${article.id}.rk" title="${article.title}"><@htmlCut s=article.title len=17 append="..."/></a>
 							</li>
 						</#list>
 					</@article_list>

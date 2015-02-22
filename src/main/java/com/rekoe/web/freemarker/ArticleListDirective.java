@@ -34,7 +34,7 @@ public class ArticleListDirective implements TemplateDirectiveModel {
 		String id = DirectiveUtils.getString("articleCategoryId", params);
 		String desc = DirectiveUtils.getString("desc", params);
 		int count = DirectiveUtils.getInt("count", params);
-		localHashMap.put("articles", articleService.query(Cnd.where("articleCategoryId", "=", id).limit(count).desc(desc), null));
+		localHashMap.put("articles", articleService.getListByCnd(Cnd.where("articleCategoryId", "=", id).limit(1, count).desc(desc)));
 		DirectiveUtils.setVariables(localHashMap, env, body);
 	}
 }
