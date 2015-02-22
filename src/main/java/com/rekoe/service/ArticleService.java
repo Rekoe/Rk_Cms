@@ -14,10 +14,7 @@ import com.rekoe.common.page.Pagination;
 import com.rekoe.domain.Article;
 
 /**
- * @author 科技㊣²º¹³ 
- * 2014年2月3日 下午4:48:45 
- * http://www.rekoe.com 
- * QQ:5382211
+ * @author 科技㊣²º¹³ 2014年2月3日 下午4:48:45 http://www.rekoe.com QQ:5382211
  */
 @IocBean(fields = { "dao" })
 public class ArticleService extends BaseService<Article> {
@@ -47,12 +44,13 @@ public class ArticleService extends BaseService<Article> {
 
 	public void update(final Article art) {
 		Daos.ext(dao(), FieldFilter.create(Article.class, null, "^(createDate|hits)$", true)).update(art);
-		//FieldFilter.create(Article.class, null, "^(createDate|hits)$", true).run(new Atom() {
-			//@Override
-			//public void run() {
-				//dao().update(art);
-			//}
-		//});
+		// FieldFilter.create(Article.class, null, "^(createDate|hits)$",
+		// true).run(new Atom() {
+		// @Override
+		// public void run() {
+		// dao().update(art);
+		// }
+		// });
 	}
 
 	public Article fetchByID(String id) {
@@ -65,14 +63,14 @@ public class ArticleService extends BaseService<Article> {
 		pageNumber = getPageNumber(pageNumber);
 		Pager pager = dao().createPager(pageNumber, pageSize);
 		Cnd cnd = Cnd.where("articleCategoryId", "=", articleCategoryId);
-		List<Article> list = dao().query(Article.class, StringUtils.isBlank(articleCategoryId) ? null : cnd, pager);
+		List<Article> list = dao().query(Article.class, StringUtils.isBlank(articleCategoryId) ? Cnd.orderBy().desc("createDate") : cnd.desc("createDate"), pager);
 		for (Article atricle : list) {
 			atricle = dao().fetchLinks(atricle, "articleCategory");
 		}
 		pager.setRecordCount(dao().count(Article.class, StringUtils.isBlank(articleCategoryId) ? null : cnd));
 		return new Pagination(pageNumber, pageSize, pager.getRecordCount(), list);
 	}
-
+	
 	public Pagination getObjListByPager(Integer pageNumber, String keyWorld) {
 		pageNumber = getPageNumber(pageNumber);
 		Pager pager = dao().createPager(pageNumber, 20);

@@ -3,6 +3,7 @@ package com.rekoe.service;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Dao;
 import org.nutz.http.Http;
@@ -76,7 +77,7 @@ public class AcquisitionService extends BaseService<CmsAcquisition> {
 			String html = Http.get(url.trim()).getContent(acqu.getPageEncoding());
 			this.urlList = parseHtmlTool.getUrlList(html);
 			this.titleList = parseHtmlTool.getTitleList(html);
-			acquisitionTempService.save(titleList,urlList);
+			acquisitionTempService.save(titleList, urlList);
 		}
 
 		@Override
@@ -92,7 +93,8 @@ public class AcquisitionService extends BaseService<CmsAcquisition> {
 					if (Lang.isEmpty(temp)) {
 						break;
 					}
-					saveContent(temp.getContentUrl(), temp.getTitle(), acqu.getArticleCategoryId());
+					String url = StringUtils.isBlank(acqu.getHost()) ? temp.getContentUrl() : acqu.getHost() + temp.getContentUrl();
+					saveContent(url, temp.getTitle(), acqu.getArticleCategoryId());
 					acquisitionTempService.delete(temp.getId());
 					Lang.sleep(1000);
 				}

@@ -31,6 +31,7 @@ $().ready(function() {
 	</div>
 	<@p.form id="inputForm" action="" method="post" tableClass="input">
 		<@p.text label="ArticleCategory.name" id="acqu.name" name="acqu.name" required="true" class="requireField" maxlength="40"/><@p.tr/>
+		<@p.text label="采集主机" id="acqu.host" name="acqu.host" required="true" class="requireField" maxlength="120"/><@p.tr/>
 		<@p.tree label="分类" id="acqu.articleCategoryId" name="acqu.articleCategoryId" required="true" class="requireField" category=false/><@p.tr/>
 		<@p.td colspan="1" width="50" label="页面编码"  required="true">
 			<@p.select id="acqu.pageEncoding" name="acqu.pageEncoding" value='UTF-8' list={"GBK":"GBK","UTF-8":"UTF-8","gb2312":"gb2312"} required="true"/>

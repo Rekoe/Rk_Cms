@@ -34,6 +34,9 @@ public class CmsAcquisition {
 	@Column("article_category_id")
 	private String articleCategoryId;
 
+	@Column
+	private String host;
+	
 	public CmsAcquisition() {
 	}
 
@@ -41,9 +44,18 @@ public class CmsAcquisition {
 		this.setId(id);
 	}
 
-	public CmsAcquisition(String name, String pageEncoding) {
+	public CmsAcquisition(String name, String pageEncoding,String host) {
 		this.setName(name);
 		this.setPageEncoding(pageEncoding);
+		this.host = host;
+	}
+
+	public String getHost() {
+		return host;
+	}
+
+	public void setHost(String host) {
+		this.host = host;
 	}
 
 	public int getId() {
