@@ -6,12 +6,21 @@
 <#include "/template/admin/common/head.ftl" />
 <script type="text/javascript">
 $().ready(function() {
-	var $inputForm = $("#inputForm");
-	$inputForm.validate({
-		rules: {
-			name: "required",
-			order: "digits"
-		}
+	$('#submit').click(function() {
+		$.ajax({
+			url : "save",
+			type : "POST",
+			data : $('#jvForm').serialize(),
+			dataType : "json",
+			cache : false,
+			success : function(message) {
+				$.message(message);
+				if (message.type == "success") {
+					window.location.href = "list"
+				}
+			}
+		});
+		return false;
 	});
 });
 </script>
@@ -20,7 +29,7 @@ $().ready(function() {
 	<div class="path">
 		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "admin.articleCategory.add" />
 	</div>
-	<@p.form id="inputForm" action="save.rk" method="post" tableClass="input">
+	<@p.form id="inputForm" action="" method="post" tableClass="input">
 		<@p.text label="ArticleCategory.name" id="acqu.name" name="acqu.name" required="true" class="requireField" maxlength="40"/><@p.tr/>
 		<@p.tree label="分类" id="acqu.articleCategoryId" name="acqu.articleCategoryId" required="true" class="requireField" list=obj category=false/><@p.tr/>
 		<@p.td colspan="1" width="50" label="页面编码"  required="true">

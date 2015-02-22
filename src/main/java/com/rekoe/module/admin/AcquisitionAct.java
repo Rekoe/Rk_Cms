@@ -47,11 +47,25 @@ public class AcquisitionAct {
 		acquisitionService.insert(acquisition);
 		return Message.success("admin.message.success", req);
 	}
-	
+
 	@At
 	@Ok("json")
 	public Message start(@Param("id") int id, HttpServletRequest req) {
 		acquisitionService.start(id);
 		return Message.success("admin.message.success", req);
 	}
+
+	@At
+	@Ok("fm:template.admin.article_acquisition.edit")
+	public CmsAcquisition edit(@Param("id") long id) {
+		return acquisitionService.fetch(id);
+	}
+
+	@At
+	@Ok("json")
+	public Message update(@Param("::acqu.") CmsAcquisition acquisition, HttpServletRequest req) {
+		acquisitionService.update(acquisition);
+		return Message.success("admin.message.success", req);
+	}
+
 }

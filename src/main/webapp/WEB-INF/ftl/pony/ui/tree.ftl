@@ -1,5 +1,4 @@
-<#macro tree
-	list value="" multiple="" headerKey="" headerValue="" listKey="" listValue="" listDeep="" headerButtom="false"
+<#macro tree value="" multiple="" headerKey="" headerValue="" listKey="" listValue="" listDeep="" headerButtom="false"
 	label="" noHeight="false" required="false" colspan="" width="100" help="" helpPosition="2" colon=":" hasColon="true"
 	id="" name="" class="" style="" size="" title="" disabled="" tabindex="" accesskey=""
 	vld="" category = false
@@ -9,12 +8,10 @@
 <select<#rt/>
 <#if name!=""> name="${name}"</#if> <#if id!=""> name="${id}"</#if><#rt/>
 ><#rt/>
-<#if list?is_sequence>
 <#if category>
 <option value=""><@s.m "admin.articleCategory.root" /></option>
 </#if>
 <@article_category_tree categoryid = value/>
-</#if>
 </select>
 <#include "control-close.ftl"/><#rt/>
 </#macro>

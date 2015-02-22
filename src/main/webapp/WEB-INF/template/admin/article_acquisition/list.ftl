@@ -36,12 +36,13 @@ $().ready(function() {
 	</div>
 	<@p.list id="listForm" action="list.rk" method="get">
 		<@p.table value=obj;acquisition,i,has_next><#rt/>
-			<@p.column code=" " align="center" class="check" selectAll=true addSpan=false><input type="checkbox" name="ids" value="${acquisition.id}" /></@p.column><#t/>
-			<@p.column code="ID" align="center">${i+1}</@p.column><#t/>
-			<@p.column code="ArticleCategory.name" align="center">${acquisition.name}</@p.column><#t/>
-			<@p.column code="admin.common.handle" align="center">
+			<@p.column code=" " align="left" class="check" selectAll=true addSpan=false><input type="checkbox" name="ids" value="${acquisition.id}" /></@p.column><#t/>
+			<@p.column code="ID" align="left">${i+1}</@p.column><#t/>
+			<@p.column code="ArticleCategory.name" align="left">${acquisition.name}</@p.column><#t/>
+			<@p.column code="admin.common.handle" align="left">
 				<a href="javascript:;" class="delete" val="${acquisition.id}">[<@s.m "admin.common.acquisition.start" />]</a>
 			</@p.column><#t/>
+			<@p.column code="admin.common.handle" align="left"><a href="edit.rk?id=${acquisition.id}">[<@s.m "admin.common.edit" />]</@p.column><#t/>	
 			<#t/>
 		</@p.table>
 	</@p.list>

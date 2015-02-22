@@ -13,6 +13,30 @@ $().ready(function() {
 			order: "digits"
 		}
 	});
+	$('#update').click(function() {  
+			$.dialog({
+				type: "warn",
+				content: '<@s.m "admin.dialog.updateConfirm"/>',
+				ok: '<@s.m "admin.dialog.ok"/>',
+				cancel: '<@s.m "admin.dialog.cancel"/>',
+				onOk: function() {
+					$.ajax({
+						url: "update.rk",
+						type: "POST",
+						data: $('#inputForm').serialize(),
+						dataType: "json",
+						cache: false,
+						success: function(message) {
+							$.message(message);
+							if (message.type == "success") {
+								window.location.href = "list"
+							}
+						}
+					});
+				}
+			}); 
+			return false;
+		}); 
 });
 </script>
 </head>
@@ -20,18 +44,24 @@ $().ready(function() {
 	<div class="path">
 		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "admin.articleCategory.edit" />
 	</div>
-	<@p.form id="inputForm" action="" labelWidth="10" method="post" tableClass="input">
-		<@p.hidden name="category.id" value="${obj.id}" />
-		<@p.text label="ArticleCategory.name" value="${obj.name}" id="category.name" name="category.name" required="true" class="required" maxlength="40"/><@p.tr/>
-		<@p.tree label="ArticleCategory.parent" colspan="2" name="category.parentId" required="true" value="${obj.id}" class="required" list=articleCategoryTree /><@p.tr/>			
-		<@p.text label="admin.common.order" id="category.order" name="category.order" value="${obj.order}" required="true" class="requireField" help="只允许输入零或正整数"/><@p.tr/>
-		<@p.fcolumn title="">
-			<span class="tips"><span class="icon">&nbsp;</span>页面关键词、页面描述可以更好的使用户通过搜索引擎搜索到站点</span>
-		</@p.fcolumn><#t/>		
+	<@p.form id="inputForm" action="update.rk" method="post" tableClass="input">
+		<@p.hidden name="acqu.id" value="${obj.id}" />
+		<@p.text label="ArticleCategory.name" id="acqu.name" value="${obj.name!}" name="acqu.name" required="true" class="requireField" maxlength="40"/><@p.tr/>
+		<@p.tree label="分类" value="${obj.articleCategoryId}" id="acqu.articleCategoryId" name="acqu.articleCategoryId" required="true" class="requireField" category=false/><@p.tr/>
+		<@p.td colspan="1" width="50" label="页面编码"  required="true">
+			<@p.select id="acqu.pageEncoding" name="acqu.pageEncoding" value='UTF-8' value="${obj.pageEncoding!}" list={"GBK":"GBK","UTF-8":"UTF-8","gb2312":"gb2312"} required="true"/>
+		</@p.td><@p.tr/>
+		<@p.textarea label="采集地址" id="acqu.planUrl" value="${obj.planUrl!}" name="acqu.planUrl" cols="70" rows="2" class="textbox" required="true" class="requireField" maxlength="240"/><@p.tr/>
+		<@p.textarea label="链接开始" id="acqu.linksetStart" value="${obj.linksetStart!}" name="acqu.linksetStart" cols="40" rows="2" class="textbox" required="true" class="requireField" maxlength="40"/><@p.tr/>
+		<@p.textarea label="链接结束" id="acqu.linksetEnd" value="${obj.linksetEnd!}"name="acqu.linksetEnd" cols="40" rows="2" class="textbox" required="true" class="requireField" maxlength="40"/><@p.tr/>
+		<@p.textarea label="标题开始" id="acqu.titleStart" value="${obj.titleStart!}" name="acqu.titleStart" cols="40" rows="2" class="textbox" required="true" class="requireField" maxlength="40"/><@p.tr/>
+		<@p.textarea label="标题结束" id="acqu.titleEnd" value="${obj.titleEnd!}" name="acqu.titleEnd" cols="40" rows="2" class="textbox" required="true" class="requireField" maxlength="40"/><@p.tr/>
+		<@p.textarea label="内容开始" id="acqu.contentStart" value="${obj.contentStart!}" name="acqu.contentStart" cols="40" rows="2" class="textbox" required="true" class="requireField" maxlength="40"/><@p.tr/>
+		<@p.textarea label="内容结束" id="acqu.contentEnd" value="${obj.contentEnd!}" name="acqu.contentEnd" cols="40" rows="2" class="textbox" required="true" class="requireField" maxlength="40"/><@p.tr/>
 		<@p.th />
 		<@p.td colspan="" hasColon="false">
 			<@p.submit code="admin.common.submit" id="update"/> &nbsp; <@p.button code="admin.common.back" id="backButton" class="button"/>
 		</@p.td>
-		</@p.form>
+	</@p.form>
 </body>
 </html>
