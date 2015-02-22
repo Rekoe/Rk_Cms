@@ -21,10 +21,11 @@ public class ArticleCategoryRootListDirective implements TemplateDirectiveModel 
 		this.articleCategoryService = articleCategoryService;
 	}
 
-	@SuppressWarnings({ "rawtypes" })
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void execute(Environment env, Map params, TemplateModel[] loopVars, TemplateDirectiveBody body) throws TemplateException, IOException {
 		Map<String, Object> localHashMap = new HashMap<String, Object>();
-		localHashMap.put("articleCategories", articleCategoryService.findRoots());
+		int count = DirectiveUtils.getInt("count", params);
+		localHashMap.put("articleCategories", articleCategoryService.findRoots(count));
 		DirectiveUtils.setVariables(localHashMap, env, body);
 	}
 }

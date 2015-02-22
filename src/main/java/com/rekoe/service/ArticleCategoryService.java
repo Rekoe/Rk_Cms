@@ -14,10 +14,7 @@ import org.nutz.service.IdEntityService;
 import com.rekoe.domain.ArticleCategory;
 
 /**
- * @author 科技㊣²º¹³ 
- * 2014年2月3日 下午4:48:45
- *  http://www.rekoe.com 
- *  QQ:5382211
+ * @author 科技㊣²º¹³ 2014年2月3日 下午4:48:45 http://www.rekoe.com QQ:5382211
  */
 @IocBean(fields = { "dao" })
 public class ArticleCategoryService extends IdEntityService<ArticleCategory> {
@@ -36,33 +33,32 @@ public class ArticleCategoryService extends IdEntityService<ArticleCategory> {
 	}
 
 	public StringBuffer loadSelect(String actid) {
-		List<ArticleCategory> list = dao().query(ArticleCategory.class, Cnd.where("grade", "=", 0));;
+		List<ArticleCategory> list = dao().query(ArticleCategory.class, Cnd.where("grade", "=", 0));
+		;
 		for (ArticleCategory actCategory : list) {
 			loadChildren(actCategory);
 		}
 		StringBuffer sb = new StringBuffer();
 		for (ArticleCategory articleCategory : list) {
 			sb.append("<option value=").append('"').append(articleCategory.getId()).append('"');
-			if(StringUtils.equals(articleCategory.getId(), actid))
-			{
+			if (StringUtils.equals(articleCategory.getId(), actid)) {
 				sb.append(" selected=\"selected\"");
 			}
 			sb.append(">");
 			sb.append(articleCategory.getName()).append("</option>").append("\n");
-			loadChildren(articleCategory, sb,actid);
+			loadChildren(articleCategory, sb, actid);
 		}
 		return sb;
 	}
 
-	private ArticleCategory loadChildren(ArticleCategory articleCategory, StringBuffer sb,String actid) {
+	private ArticleCategory loadChildren(ArticleCategory articleCategory, StringBuffer sb, String actid) {
 		Set<ArticleCategory> childrens = articleCategory.getChildren();
 		if (Lang.isEmpty(childrens)) {
 			return null;
 		}
 		for (ArticleCategory children : childrens) {
 			sb.append("<option value=").append('"').append(children.getId()).append('"');
-			if(StringUtils.equals(children.getId(), actid))
-			{
+			if (StringUtils.equals(children.getId(), actid)) {
 				sb.append(" selected=\"selected\"");
 			}
 			sb.append(">");
@@ -74,7 +70,7 @@ public class ArticleCategoryService extends IdEntityService<ArticleCategory> {
 				}
 			}
 			sb.append(children.getName()).append("</option>").append("\n");
-			loadChildren(children, sb,actid);
+			loadChildren(children, sb, actid);
 		}
 		return articleCategory;
 	}
@@ -109,9 +105,9 @@ public class ArticleCategoryService extends IdEntityService<ArticleCategory> {
 		dao().clear(getEntityClass(), Cnd.where("id", "=", id));
 	}
 
-	public List<ArticleCategory> findRoots() {
+	public List<ArticleCategory> findRoots(int count) {
 		// "select * from article_category as articleCategory where articleCategory.parent is null order by articleCategory.order asc";
-		List<ArticleCategory> list = dao().query(getEntityClass(), Cnd.where("parentId", "=", null).limit(10).desc("order"));
+		List<ArticleCategory> list = dao().query(getEntityClass(), Cnd.where("grade", "=", 0).limit(1, count).desc("order"));
 		for (ArticleCategory ac : list) {
 			dao().fetchLinks(ac, "children");
 		}

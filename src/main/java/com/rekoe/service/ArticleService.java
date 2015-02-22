@@ -76,11 +76,11 @@ public class ArticleService extends BaseService<Article> {
 	
 	public Pagination getObjListByPager(Integer pageNumber, String keyWorld) {
 		pageNumber = getPageNumber(pageNumber);
-		Pager pager = dao().createPager(pageNumber, 20);
+		Pager pager = dao().createPager(pageNumber, 10);
 		Cnd cnd = Cnd.where("title", "like", "%" + keyWorld + "%");
 		List<Article> list = dao().query(getEntityClass(), cnd, pager);
 		pager.setRecordCount(dao().count(getEntityClass(), cnd));
-		Pagination pagination = new Pagination(pageNumber, 20, pager.getRecordCount(), list);
+		Pagination pagination = new Pagination(pageNumber, 10, pager.getRecordCount(), list);
 		return pagination;
 	}
 }

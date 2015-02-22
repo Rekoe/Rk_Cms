@@ -35,7 +35,7 @@ public class ArticleModule {
 	@Ok("fm:template.front.article.list")
 	public Pagination list(String id, @Param("pageNumber") Integer pageNumber, HttpServletRequest req) {
 		req.setAttribute("articleCategory", articleCategoryService.fetch(id));
-		return articleService.getArticleListByPager(pageNumber, 20, id);
+		return articleService.getArticleListByPager(pageNumber, 4, id);
 	}
 
 	@At("/view/?")

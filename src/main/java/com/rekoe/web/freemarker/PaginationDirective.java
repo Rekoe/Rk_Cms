@@ -16,9 +16,11 @@ import freemarker.template.TemplateModel;
 
 public class PaginationDirective implements TemplateDirectiveModel {
 
+	private static final String PATTERN = "pattern";
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void execute(Environment env, Map params, TemplateModel[] loopVars, TemplateDirectiveBody body) throws TemplateException, IOException {
+		String pattern = DirectiveUtils.getString(PATTERN, params);
 		int pageNumber = DirectiveUtils.getInt("pageNumber", params);
 		int totalPages = DirectiveUtils.getInt("totalPages", params);
 		int segmentCount = DirectiveUtils.getInt("segmentCount", params);
@@ -42,6 +44,7 @@ public class PaginationDirective implements TemplateDirectiveModel {
 			localArrayList.add(i);
 		}
 		Map<String, Object> localHashMap = new HashMap<String, Object>();
+		localHashMap.put("pattern", pattern);
 		localHashMap.put("pageNumber", pageNumber);
 		localHashMap.put("totalPages", totalPages);
 		localHashMap.put("segmentCount", segmentCount);

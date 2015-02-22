@@ -123,7 +123,7 @@ $().ready(function() {
 									<a href="${base}/article/view/${article.id}.rk" title="${article.title}">${article.title}</a>
 									<@s.m "front.article.author" /> : ${article.author}
 									<span title="${article.createDate?string("yyyy-MM-dd")}">${article.createDate?string("yyyy-MM-dd ")}</span>
-									<p><@htmlCut s=article.content len=110 append="..."/><a href="${base}/article/view/${article.id}.rk">[<@s.m "front.article.view" />]</a></p>
+									<p><@htmlCut s=article.content len=100 append="..."/><a href="${base}/article/view/${article.id}.rk">[<@s.m "front.article.view" />]</a></p>
 								</li>
 							</#list>
 						</ul>
