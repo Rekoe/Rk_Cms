@@ -21,6 +21,9 @@ $().ready(function() {
 					cache: false,
 					success: function(message) {
 						$.message(message);
+						if (message.type == "success") {
+							window.location.href = "progress"
+						}
 					}
 				});
 			}
