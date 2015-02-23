@@ -36,7 +36,7 @@ public class ArticleService extends BaseService<Article> {
 	}
 
 	public List<Article> getIndexNewList(int limit,String desc) {
-		return getListByCnd(Cnd.NEW().limit(1,10).desc("id"));
+		return getListByCnd(Cnd.NEW().limit(1,10).desc(desc));
 	}
 	public List<Article> getListByCnd(Condition cnd) {
 		return dao().query(getEntityClass(), cnd);
@@ -47,13 +47,6 @@ public class ArticleService extends BaseService<Article> {
 
 	public void update(final Article art) {
 		Daos.ext(dao(), FieldFilter.create(Article.class, null, "^(createDate|hits)$", true)).update(art);
-		// FieldFilter.create(Article.class, null, "^(createDate|hits)$",
-		// true).run(new Atom() {
-		// @Override
-		// public void run() {
-		// dao().update(art);
-		// }
-		// });
 	}
 
 	public Article fetchByID(String id) {

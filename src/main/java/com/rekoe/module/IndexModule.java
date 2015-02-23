@@ -31,6 +31,6 @@ public class IndexModule {
 	@Ok("fm:template.front.index")
 	public List<Article> index(HttpServletRequest req) {
 		req.setAttribute("setting", settingService.getSetting());
-		return articleService.getIndexNewList(10,"id");
+		return articleService.getIndexNewList(10,"createDate");
 	}
 }
