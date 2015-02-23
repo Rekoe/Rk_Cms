@@ -97,4 +97,11 @@ public class AcquisitionAct {
 	public void progress() {
 
 	}
+	
+	@At
+	@Ok("json")
+	public Message delete(@Param("ids") String[] ids, HttpServletRequest req) {
+		acquisitionService.delete(ids);
+		return Message.success("admin.message.success", req);
+	}
 }

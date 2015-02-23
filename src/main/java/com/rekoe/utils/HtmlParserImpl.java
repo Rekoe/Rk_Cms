@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,16 +21,23 @@ import org.htmlparser.NodeFilter;
 import org.htmlparser.Parser;
 import org.htmlparser.filters.HasAttributeFilter;
 import org.htmlparser.filters.NodeClassFilter;
+import org.htmlparser.filters.OrFilter;
 import org.htmlparser.filters.TagNameFilter;
 import org.htmlparser.nodes.RemarkNode;
-import org.htmlparser.nodes.TagNode;
+import org.htmlparser.tags.ScriptTag;
+import org.htmlparser.tags.Span;
+import org.htmlparser.tags.StyleTag;
 import org.htmlparser.util.NodeList;
 import org.htmlparser.util.ParserException;
+import org.htmlparser.util.ParserUtils;
 import org.nutz.http.Http;
+import org.nutz.log.Log;
+import org.nutz.log.Logs;
 
 import com.rekoe.domain.CmsAcquisition;
 
 public class HtmlParserImpl implements ParseHtmlTool {
+	private final static Log log = Logs.get();
 	/** 连接集合标志 */
 	private static String LINK_LIST = "linkList";
 	/** 标题集合标志 */
@@ -87,7 +95,7 @@ public class HtmlParserImpl implements ParseHtmlTool {
 	 */
 	public String getHtml(String orginHtml) {
 		orginHtml = getHtmlByFilter(paramBean.getContentStartMap(), paramBean.getContentEndMap(), orginHtml);
-		return orginHtml;
+		return htmlInit(orginHtml);
 	}
 
 	/**
@@ -190,12 +198,9 @@ public class HtmlParserImpl implements ParseHtmlTool {
 			// 第三步过滤注释
 			filter = new NodeClassFilter(RemarkNode.class);
 			contentHtml = removeHtmlByFilter(parser, filter, contentHtml);
-			System.out.println("=================================结果=======================================");
-			System.out.println(contentHtml);
 			return contentHtml;
 		} catch (ParserException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e);
 		}
 		return "";
 	}
@@ -291,7 +296,7 @@ public class HtmlParserImpl implements ParseHtmlTool {
 	 */
 	private void appendHtmlByFilter(Parser parser, NodeFilter filter, StringBuilder sb) throws ParserException {
 		NodeList nodes = parser.extractAllNodesThatMatch(filter);
-		System.out.println("匹配节点数:" + nodes.size());
+		log.info("匹配节点数:" + nodes.size());
 		for (int i = 0; i < nodes.size(); i++) {
 			Node textnode = (Node) nodes.elementAt(i);
 			sb.append(textnode.toHtml());
@@ -357,6 +362,7 @@ public class HtmlParserImpl implements ParseHtmlTool {
 			bis.close();
 			return szContent.toString();
 		} catch (Exception e) {
+			log.error(e);
 			return "";
 		}
 	}
@@ -448,30 +454,52 @@ public class HtmlParserImpl implements ParseHtmlTool {
 		System.out.println("=========================过滤注释后HTML==================================");
 		System.out.println(html);
 	}
-//getHtmlByFilter(paramBean.getContentStartMap(), paramBean.getContentEndMap(), orginHtml);
+
+	// getHtmlByFilter(paramBean.getContentStartMap(),
+	// paramBean.getContentEndMap(), orginHtml);
 	public static void main(String[] args) throws ParserException, URISyntaxException, IOException {
 		CmsAcquisition acqu = new CmsAcquisition();
-		acqu.setPlanUrl("http://roll.news.sina.com.cn/news/gnxw/gdxw1/index_1.shtml");
-		acqu.setLinksetStart("class=list_009");
+		acqu.setPlanUrl("http://www.qq.com/");
+		acqu.setLinksetStart("class=newsContent|bosszone=beijingnews");
 		acqu.setLinksetEnd("");
+		acqu.setPageEncoding("GBK");
 		acqu.setTitleStart("false");
 		acqu.setTitleEnd("true");
-		acqu.setContentStart("id=artibody");
+		acqu.setContentStart("style=TEXT-INDENT: 2em");
 		acqu.setContentEnd("");
 		HtmlParserImpl parseHtmlTool = new HtmlParserImpl(acqu);
-		String orginHtml = Http.get("http://roll.news.sina.com.cn/news/gnxw/gdxw1/index_1.shtml").getContent("GBK");
-		//List<String> linkList = parseHtmlTool.getUrlList(orginHtml);
-		//List<String> linkList = parseHtmlTool.getTitleList(orginHtml);
-		//System.out.println(linkList);
-		//
-		orginHtml = Http.get("http://news.sina.com.cn/c/2015-02-22/045031536613.shtml").getContent("GBK");
-		String text = parseHtmlTool.getHtml(orginHtml);
-		NodeFilter filter = new NodeClassFilter(TagNode.class);
-		System.out.println(parseHtmlTool.removeHtmlByFilter(new Parser(), filter, text));
+		String orginHtml = Http.get(acqu.getPlanUrl()).getContent(acqu.getPageEncoding());
+		List<String> linkList = parseHtmlTool.getUrlList(orginHtml);
+		// List<String> linkList = parseHtmlTool.getTitleList(orginHtml);
+		// System.out.println(linkList);
+		for (String url : linkList) {
+			String orginHtmlTemp = Http.get(url).getContent(acqu.getPageEncoding());
+			String text = parseHtmlTool.getHtml(orginHtmlTemp);
+			System.out.println(parseHtmlTool.htmlInit(text));
+		}
+
+		// NodeFilter filter = new NodeClassFilter(TagNode.class);
+		// System.out.println(parseHtmlTool.removeHtmlByFilter(new Parser(),
+		// filter, text));
 		// parseHtmlTool.testParseParam();
 		// parseHtmlTool.testFetchLinkAndTitle();
 		// parseHtmlTool.testFetchContent();
 		// parseHtmlTool.testRemarkFilter();
 	}
 
+	public String htmlInit(String htmlStr) {
+		NodeFilter scriptFilter = new NodeClassFilter(ScriptTag.class);
+		NodeFilter styleFilter = new NodeClassFilter(StyleTag.class);
+		NodeFilter spanFilter = new NodeClassFilter(Span.class);
+		NodeFilter[] filter = { scriptFilter, styleFilter,spanFilter };
+		OrFilter orFilter = new OrFilter(filter);
+		try {
+			htmlStr = ParserUtils.trimTags(htmlStr, orFilter, true, true);
+		} catch (ParserException e) {
+			log.error(e);
+		} catch (UnsupportedEncodingException e) {
+			log.error(e);
+		}
+		return htmlStr;
+	}
 }

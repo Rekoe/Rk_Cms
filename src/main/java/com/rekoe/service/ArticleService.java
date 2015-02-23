@@ -27,10 +27,6 @@ public class ArticleService extends BaseService<Article> {
 		super(dao);
 	}
 
-	public void delete(String[] ids) {
-		dao().clear(getEntityClass(), Cnd.where("id", "in", ids));
-	}
-
 	public List<Article> list() {
 		return query(null, null);
 	}

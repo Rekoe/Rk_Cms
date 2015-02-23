@@ -2,6 +2,7 @@ package com.rekoe.service;
 
 import java.util.List;
 
+import org.nutz.dao.Cnd;
 import org.nutz.dao.Condition;
 import org.nutz.dao.Dao;
 import org.nutz.dao.pager.Pager;
@@ -41,5 +42,9 @@ public class BaseService<T> extends IdEntityService<T> {
 
 	protected int getPageNumber(Integer pageNumber) {
 		return Lang.isEmpty(pageNumber) ? 1 : pageNumber;
+	}
+	
+	public void delete(String[] ids) {
+		dao().clear(getEntityClass(), Cnd.where("id", "in", ids));
 	}
 }
