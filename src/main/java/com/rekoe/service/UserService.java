@@ -18,7 +18,10 @@ import com.rekoe.domain.Role;
 import com.rekoe.domain.User;
 
 /**
- * @author 科技㊣²º¹³ 2014年2月3日 下午4:48:45 http://www.rekoe.com QQ:5382211
+ * @author 科技㊣²º¹³ 
+ * 2014年2月3日 下午4:48:45 
+ * http://www.rekoe.com 
+ * QQ:5382211
  */
 @IocBean(args = { "refer:dao" })
 public class UserService extends BaseService<User> {
@@ -109,7 +112,7 @@ public class UserService extends BaseService<User> {
 	}
 
 	public Pagination getUserListByPager(Integer pageNumber, int pageSize) {
-		return getObjListByPager(dao(), getPageNumber(pageNumber), pageSize, null, User.class);
+		return getObjListByPager(pageNumber, pageSize, null);
 	}
 
 	public User initUser(String name, String openid, String providerid, String addr) {

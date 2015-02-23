@@ -17,6 +17,8 @@ import com.rekoe.common.page.Pagination;
  */
 public class BaseService<T> extends IdEntityService<T> {
 
+	protected final static int DEFAULT_PAGE_NUMBER = 20;
+
 	public BaseService() {
 		super();
 	}
@@ -25,13 +27,16 @@ public class BaseService<T> extends IdEntityService<T> {
 		super(dao);
 	}
 
-	public Pagination getObjListByPager(Dao dao, Integer pageNumber, int pageSize, Condition cnd, Class<T> entityType) {
+	public Pagination getObjListByPager(Integer pageNumber, int pageSize, Condition cnd) {
 		pageNumber = getPageNumber(pageNumber);
-		Pager pager = dao.createPager(pageNumber, pageSize);
-		List<T> list = dao.query(entityType, cnd, pager);
-		pager.setRecordCount(dao.count(entityType, cnd));
-		Pagination pagination = new Pagination(pageNumber, pageSize, pager.getRecordCount(), list);
-		return pagination;
+		Pager pager = dao().createPager(pageNumber, pageSize);
+		List<T> list = dao().query(getEntityClass(), cnd, pager);
+		pager.setRecordCount(dao().count(getEntityClass(), cnd));
+		return new Pagination(pageNumber, pageSize, pager.getRecordCount(), list);
+	}
+
+	public Pagination getObjListByPager(Integer pageNumber, Condition cnd) {
+		return getObjListByPager(pageNumber, DEFAULT_PAGE_NUMBER, cnd);
 	}
 
 	protected int getPageNumber(Integer pageNumber) {

@@ -36,12 +36,12 @@ public class RoleService extends BaseService<Role> {
 		dao().insertRelation(role, "permissions");
 	}
 
-	public void delete(Long id)
-	{
+	public void delete(Long id) {
 		dao().delete(Role.class, id);
 		dao().clear("system_role_permission", Cnd.where("roleid", "=", id));
 		dao().clear("system_user_role", Cnd.where("roleid", "=", id));
 	}
+
 	public Role view(Long id) {
 		return dao().fetchLinks(fetch(id), "permissions");
 	}
@@ -91,6 +91,6 @@ public class RoleService extends BaseService<Role> {
 	}
 
 	public Pagination getRoleListByPager(Integer pageNumber, int pageSize) {
-		return getObjListByPager(dao(), pageNumber, pageSize, null, Role.class);
+		return getObjListByPager(pageNumber, pageSize, null);
 	}
 }

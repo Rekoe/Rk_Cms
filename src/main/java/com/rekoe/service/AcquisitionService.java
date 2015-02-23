@@ -40,7 +40,7 @@ public class AcquisitionService extends BaseService<CmsAcquisition> {
 	}
 
 	public Pagination getListByPager(Integer pageNumber, int pageSize) {
-		return getObjListByPager(dao(), pageNumber, pageSize, null, CmsAcquisition.class);
+		return getObjListByPager(pageNumber, pageSize, null);
 	}
 
 	public void insert(CmsAcquisition acqu) {
