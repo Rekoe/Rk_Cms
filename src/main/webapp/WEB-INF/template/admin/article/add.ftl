@@ -42,7 +42,7 @@ $().ready(function() {
 	</div>
 	<@p.form id="jvForm" action="" labelWidth="10" method="post" tableClass="input">
 	<@p.text label="Article.title" colspan="2" id="art.title" name="art.title" required="true" class="required" maxlength="40"/><@p.tr/>
-	<@p.tree label="Article.articleCategory" colspan="2" name="art.articleCategoryId" required="true" class="required" list=obj /><@p.tr/>
+	<@p.tree label="Article.articleCategory" colspan="2" name="art.articleCategoryId" required="true" class="required" /><@p.tr/>
 	<@p.shiroAuthor label="Article.author" colspan="2" id="art.author" name="art.author" required="true" class="required" maxlength="40"/><@p.tr/>
 	<@p.radio width="50" colspan="2" label="Article.isTop" id="art.top" name="art.top" value="false" list={"false":"否","true":"是"}/><@p.tr/>
 	<@p.radio width="50" colspan="2" label="Article.isPublication" id="art.publication" name="art.publication" value="true" list={"false":"否","true":"是"}/><@p.tr/>	
