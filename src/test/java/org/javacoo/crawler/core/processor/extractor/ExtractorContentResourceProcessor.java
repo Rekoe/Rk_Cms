@@ -35,7 +35,8 @@ public class ExtractorContentResourceProcessor extends Extractor {
 				String key = crawlURI.getNewResUrl();
 				String value = crawlURI.getOriginResUrl();
 				if (StringUtils.isNotEmpty(value)) {
-					task.getController().getHandler().handleResponse(task.getController().getHostCache().getHttpHostUrl(crawlURI));
+					String context = task.getController().getHandler().handleResponse(task.getController().getHostCache().getHttpHostUrl(crawlURI));
+					log.info(context);
 					// TODOｓａｖｅ　ｔｏ　ｆｉｌｅ
 					// task.getController().getCrawlScope().getFileHelper().saveFile(entity.getContent(),
 					// Constants.SYSTEM_ROOT_PATH +key);

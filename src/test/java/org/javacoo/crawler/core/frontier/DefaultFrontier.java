@@ -10,7 +10,6 @@ import org.javacoo.crawler.core.data.Task;
 import org.javacoo.crawler.core.data.queue.SimpleTaskQueue;
 import org.javacoo.crawler.core.data.queue.TaskQueue;
 import org.javacoo.crawler.core.data.queue.UrlQueue;
-import org.nutz.http.Http;
 
 import com.rekoe.crawler.core.data.uri.CrawlLinkURI;
 
@@ -81,13 +80,10 @@ public class DefaultFrontier implements Frontier {
 	private void populateTaskQueue(CrawlLinkURI uri, Integer planNum) {
 		log.info("=========开始组装任务队列=========");
 		try {
-			this.controller.getHandler();
-			String html = Http.get(this.controller.getHostCache().getHttpHostUrl(uri)).getContent();
-			Task task = null;
+			String html = this.controller.getHandler().handleResponse(this.controller.getHostCache().getHttpHostUrl(uri));
 			int taskNum = 1;
-
-			List<CrawlLinkURI> crawlURIList = this.controller.getHtmlParserWrapper().getCrawlURIList(html, this.controller.getCrawlScope().getSavePath(), uri);
-			log.info("=========isAllowRepeat=========" + this.controller.getCrawlScope().isAllowRepeat());
+			//List<CrawlLinkURI> crawlURIList = this.controller.getHtmlParserWrapper().getCrawlURIList(html, this.controller.getCrawlScope().getSavePath(), uri);
+			List<CrawlLinkURI> crawlURIList = this.controller.getHtmlParserWrapper().getLinkAreaUrlList(html, uri);
 			if (this.controller.getCrawlScope().isAllowRepeat()) {
 				// 从采集历史表中检查是否已经采集过
 				for (CrawlLinkURI crawlURI : crawlURIList) {
@@ -98,7 +94,7 @@ public class DefaultFrontier implements Frontier {
 			}
 			if (this.controller.getCrawlScope().isGatherOrder()) {
 				for (CrawlLinkURI crawlURI : crawlURIList) {
-					task = new Task();
+					Task task = new Task();
 					task.setPlanNum(planNum);
 					task.setTaskNum(taskNum);
 					task.setCurrTaskTotalNum(crawlURIList.size());
@@ -115,7 +111,7 @@ public class DefaultFrontier implements Frontier {
 				}
 			} else {
 				for (int i = crawlURIList.size() - 1; i >= 0; i--) {
-					task = new Task();
+					Task task = new Task();
 					task.setPlanNum(planNum);
 					task.setTaskNum(taskNum);
 					task.setCurrTaskTotalNum(crawlURIList.size());

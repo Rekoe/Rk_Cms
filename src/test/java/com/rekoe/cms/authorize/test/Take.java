@@ -39,9 +39,9 @@ public class Take {
 		crawlerRuleBean.setRuleIdList(ruleIdList);
 		crawlerRuleBean.setRuleBaseBean(Json.fromJson(RuleBaseBean.class, crawlerRule.getRuleBaseConfig()));
 		crawlerRuleBean.setRuleContentBean(Json.fromJson(RuleContentBean.class, crawlerRule.getRuleContentConfig()));
-		/*RunTestRule runTestRule = new RunTestRule(crawlerRuleBean);
-		Thread currThread = new Thread(runTestRule);
-		currThread.start();*/
+		//RunTestRule runTestRule = new RunTestRule(crawlerRuleBean);
+		//Thread currThread = new Thread(runTestRule);
+		//currThread.start();
 		take.startCrawker(crawlerRuleBean);
 	}
 	

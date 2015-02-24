@@ -39,7 +39,7 @@ public class ProcessorRunnableThread implements Runnable {
 				Thread.sleep(this.controller.getCrawlScope().getSleepTime());
 			}
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			log.error(e);
 		} finally {
 			log.info("======================采集内容子线程：" + Thread.currentThread().getName() + "结束.");
 			latch.countDown();

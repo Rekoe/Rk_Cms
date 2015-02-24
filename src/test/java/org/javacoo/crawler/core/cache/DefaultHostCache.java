@@ -20,7 +20,7 @@ public class DefaultHostCache implements HostCache {
 			hostName = crawlURI.getParentURI().getHost();
 			port = crawlURI.getParentURI().getPort();
 		}
-		return StringUtils.trim(hostName + port);
+		return crawlURI.getUrl();
 	}
 
 }
