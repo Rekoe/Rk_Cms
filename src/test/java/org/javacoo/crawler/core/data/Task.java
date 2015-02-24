@@ -5,32 +5,30 @@ import com.rekoe.crawler.core.data.uri.CrawlLinkURI;
 import org.javacoo.crawler.core.processor.Processor;
 import org.javacoo.crawler.core.processor.ProcessorChain;
 
-
-
-
 /**
  * 任务
+ * 
  * @author javacoo
  * @since 2011-11-09
  */
 public class Task {
-	/**当前任务总数:用于采集监控*/
+	/** 当前任务总数:用于采集监控 */
 	private Integer currTaskTotalNum;
-	/**所属计划编号:用于采集监控*/
+	/** 所属计划编号:用于采集监控 */
 	private Integer planNum;
-	/**任务编号:用于采集监控*/
+	/** 任务编号:用于采集监控 */
 	private Integer taskNum;
-	/**是否完成*/
+	/** 是否完成 */
 	private boolean finished;
-	/**任务URI对象*/
+	/** 任务URI对象 */
 	private CrawlLinkURI crawlURI = new CrawlLinkURI();
-	/**采集内容值对象*/
+	/** 采集内容值对象 */
 	private transient ContentBean contentBean = new ContentBean();
-	/**下一个处理器*/
+	/** 下一个处理器 */
 	private transient Processor nextProcessor;
-	/**下一个处理器链*/
+	/** 下一个处理器链 */
 	private transient ProcessorChain nextProcessorChain;
-	/**爬虫控制器*/
+	/** 爬虫控制器 */
 	private CrawlerController controller;
 
 	public Processor getNextProcessor() {
@@ -41,8 +39,6 @@ public class Task {
 		this.nextProcessor = nextProcessor;
 	}
 
-	
-	
 	public CrawlLinkURI getCrawlURI() {
 		return crawlURI;
 	}
@@ -83,7 +79,6 @@ public class Task {
 		this.contentBean = contentBean;
 	}
 
-
 	public Integer getPlanNum() {
 		return planNum;
 	}
@@ -107,10 +102,11 @@ public class Task {
 	public void setCurrTaskTotalNum(Integer currTaskTotalNum) {
 		this.currTaskTotalNum = currTaskTotalNum;
 	}
+
 	/**
 	 * 完成任务,并清理
 	 */
-	public void finished(){
+	public void finished() {
 		setFinished(true);
 		contentBean.clear();
 		setNextProcessor(null);
@@ -123,8 +119,7 @@ public class Task {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((contentBean == null) ? 0 : contentBean.hashCode());
+		result = prime * result + ((contentBean == null) ? 0 : contentBean.hashCode());
 		result = prime * result + ((crawlURI == null) ? 0 : crawlURI.hashCode());
 		return result;
 	}
@@ -150,6 +145,4 @@ public class Task {
 			return false;
 		return true;
 	}
-	
-    
 }
