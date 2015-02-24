@@ -4,13 +4,10 @@ package org.javacoo.crawler.core.processor.extractor;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.http.HttpHost;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.protocol.HttpClientContext;
 import org.javacoo.crawler.core.data.Task;
 import org.javacoo.crawler.core.data.queue.UrlQueue;
-import org.javacoo.crawler.core.util.HttpClientHelper;
 import org.nutz.lang.Lang;
+import org.nutz.log.Logs;
 
 import com.rekoe.crawler.core.data.uri.CrawlLinkURI;
 
@@ -21,6 +18,7 @@ import com.rekoe.crawler.core.data.uri.CrawlLinkURI;
  * @since 2012-02-09
  */
 public class ExtractorPaginationProcessor extends Extractor{
+	private static final org.nutz.log.Log log = Logs.get();
 	/**存放SimpleUrlQueue的ThreadLocal对象*/ 
 	private static ThreadLocal<UrlQueue> pageUrlQueueThreadLocal = new ThreadLocal<UrlQueue>(); 
 	

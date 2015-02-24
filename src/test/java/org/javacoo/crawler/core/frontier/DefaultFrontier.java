@@ -3,13 +3,12 @@ package org.javacoo.crawler.core.frontier;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.javacoo.crawler.core.CrawlerController;
 import org.javacoo.crawler.core.data.Task;
 import org.javacoo.crawler.core.data.queue.SimpleTaskQueue;
 import org.javacoo.crawler.core.data.queue.TaskQueue;
 import org.javacoo.crawler.core.data.queue.UrlQueue;
+import org.nutz.log.Logs;
 
 import com.rekoe.crawler.core.data.uri.CrawlLinkURI;
 
@@ -22,7 +21,7 @@ import com.rekoe.crawler.core.data.uri.CrawlLinkURI;
  * @since 2011-11-09
  */
 public class DefaultFrontier implements Frontier {
-	private static Log log = LogFactory.getLog(DefaultFrontier.class);
+	private static final org.nutz.log.Log log = Logs.get();
 	/** 爬虫控制器 */
 	private CrawlerController controller;
 	/** 计划UrlQueue对象 */
@@ -82,7 +81,9 @@ public class DefaultFrontier implements Frontier {
 		try {
 			String html = this.controller.getHandler().handleResponse(this.controller.getHostCache().getHttpHostUrl(uri));
 			int taskNum = 1;
-			//List<CrawlLinkURI> crawlURIList = this.controller.getHtmlParserWrapper().getCrawlURIList(html, this.controller.getCrawlScope().getSavePath(), uri);
+			// List<CrawlLinkURI> crawlURIList =
+			// this.controller.getHtmlParserWrapper().getCrawlURIList(html,
+			// this.controller.getCrawlScope().getSavePath(), uri);
 			List<CrawlLinkURI> crawlURIList = this.controller.getHtmlParserWrapper().getLinkAreaUrlList(html, uri);
 			if (this.controller.getCrawlScope().isAllowRepeat()) {
 				// 从采集历史表中检查是否已经采集过

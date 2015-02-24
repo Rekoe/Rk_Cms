@@ -7,6 +7,7 @@ import java.util.Map;
 import org.javacoo.crawler.core.data.Task;
 import org.javacoo.crawler.core.processor.AbstractProcessor;
 import org.nutz.lang.Lang;
+import org.nutz.log.Logs;
 
 import com.rekoe.crawler.core.data.uri.CrawlLinkURI;
 import com.rekoe.crawler.core.data.uri.CrawlURI;
@@ -20,6 +21,7 @@ import com.rekoe.crawler.core.filter.Filter;
  */
 public class PrepareProcessor extends AbstractProcessor {
 
+	private static final org.nutz.log.Log log = Logs.get();
 	public PrepareProcessor() {
 		super();
 	}

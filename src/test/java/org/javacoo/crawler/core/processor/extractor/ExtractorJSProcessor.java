@@ -15,7 +15,6 @@ public class ExtractorJSProcessor extends Extractor{
 	}
 	@Override
 	protected void extract(Task task) {
-		// TODO Auto-generated method stub
 		
 	}
 	

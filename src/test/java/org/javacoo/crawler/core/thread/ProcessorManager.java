@@ -3,9 +3,8 @@ package org.javacoo.crawler.core.thread;
 
 import java.util.concurrent.CountDownLatch;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.javacoo.crawler.core.CrawlerController;
+import org.nutz.log.Logs;
 
 import com.rekoe.crawler.core.constants.Constants;
 /**
@@ -14,7 +13,7 @@ import com.rekoe.crawler.core.constants.Constants;
  * @since 2011-11-10
  */
 public class ProcessorManager implements Runnable{
-	private static Log log =  LogFactory.getLog(ProcessorManager.class);
+	private static final org.nutz.log.Log log = Logs.get();
 	/** 爬虫控制器 */
 	private CrawlerController controller;
 	/** 线程池服务类 */

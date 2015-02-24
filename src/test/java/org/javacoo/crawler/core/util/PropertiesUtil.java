@@ -5,11 +5,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.nutz.log.Logs;
 
 public class PropertiesUtil {
-	private static Log log = LogFactory.getLog(PropertiesUtil.class);
+	private static final org.nutz.log.Log log = Logs.get();
 	/**
 	 * 将文件读取成Properties
 	 * @param filePath

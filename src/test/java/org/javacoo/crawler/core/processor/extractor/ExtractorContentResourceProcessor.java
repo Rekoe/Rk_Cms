@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.javacoo.crawler.core.data.Task;
 import org.nutz.lang.Lang;
+import org.nutz.log.Logs;
 
 import com.rekoe.crawler.core.data.uri.CrawlResURI;
 
@@ -16,6 +17,7 @@ import com.rekoe.crawler.core.data.uri.CrawlResURI;
  */
 public class ExtractorContentResourceProcessor extends Extractor {
 
+	private static final org.nutz.log.Log log = Logs.get();
 	public ExtractorContentResourceProcessor() {
 		super();
 		setDefaultNextProcessor(new ExtractorFieldProcessor());

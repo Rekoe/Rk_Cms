@@ -1,7 +1,3 @@
-/**
- * 如石子一粒,仰高山之巍峨,但不自惭形秽.
- * 若小草一棵,慕白杨之伟岸,却不妄自菲薄.
- */
 package org.javacoo.crawler.core.util;
 
 import java.io.IOException;
@@ -76,24 +72,14 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.message.LineParser;
 import org.apache.http.util.CharArrayBuffer;
 import org.apache.http.util.EntityUtils;
+import org.nutz.log.Logs;
 
 import com.rekoe.crawler.core.constants.Constants;
 import com.rekoe.crawler.core.data.CrawlScope;
 import com.rekoe.crawler.core.data.uri.CrawlURI;
 
-/**
- * 
- * <p>
- * 说明:
- * </p>
- * <li></li>
- * 
- * @author DuanYong
- * @since 2013-10-19 下午2:15:32
- * @version 1.0
- */
 public class HttpClientHelper {
-	private static Log log = LogFactory.getLog(HttpClientHelper.class);
+	private static final org.nutz.log.Log log = Logs.get();
 
 	public static CloseableHttpClient createHttpClient(final CrawlScope crawlScope) {
 		HttpHost proxy = null;

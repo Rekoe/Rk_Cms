@@ -2,6 +2,7 @@ package org.javacoo.crawler.core.processor.writer;
 
 import org.javacoo.crawler.core.data.Task;
 import org.javacoo.crawler.core.processor.AbstractProcessor;
+import org.nutz.log.Logs;
 
 /**
  * 任务处理器接口-写链实现类
@@ -11,6 +12,7 @@ import org.javacoo.crawler.core.processor.AbstractProcessor;
  */
 public class WriterProcessor extends AbstractProcessor{
 
+	private static final org.nutz.log.Log log = Logs.get();
 	public WriterProcessor() {
 		super();
 	}

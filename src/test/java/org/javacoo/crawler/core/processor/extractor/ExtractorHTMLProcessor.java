@@ -2,6 +2,7 @@ package org.javacoo.crawler.core.processor.extractor;
 
 
 import org.javacoo.crawler.core.data.Task;
+import org.nutz.log.Logs;
 
 /**
  * 任务处理器接口-抽取HTML内容实现类
@@ -11,6 +12,7 @@ import org.javacoo.crawler.core.data.Task;
  */
 public class ExtractorHTMLProcessor extends Extractor{
 
+	private static final org.nutz.log.Log log = Logs.get();
 	public ExtractorHTMLProcessor() {
 		super();
 		setDefaultNextProcessor(new ExtractorPaginationProcessor());

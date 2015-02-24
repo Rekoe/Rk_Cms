@@ -5,6 +5,7 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.javacoo.crawler.core.data.Task;
 import org.nutz.json.Json;
+import org.nutz.log.Logs;
 
 /**
  * 任务处理器接口-抽取FIELD内容实现类
@@ -14,6 +15,7 @@ import org.nutz.json.Json;
  */
 public class ExtractorFieldProcessor extends Extractor{
 
+	private static final org.nutz.log.Log log = Logs.get();
 	public ExtractorFieldProcessor() {
 		super();
 	}

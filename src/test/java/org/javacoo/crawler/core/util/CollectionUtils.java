@@ -7,8 +7,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.nutz.log.Log;
+import org.nutz.log.Logs;
 
 /**
  * Miscellaneous collection utility methods.
@@ -18,7 +18,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public abstract class CollectionUtils {
 	
-	protected static final Log logger = LogFactory.getLog(CollectionUtils.class);
+	private static final Log logger = Logs.get();
 
 	/**
 	 * Return <code>true</code> if the supplied <code>Collection</code> is null or empty.
