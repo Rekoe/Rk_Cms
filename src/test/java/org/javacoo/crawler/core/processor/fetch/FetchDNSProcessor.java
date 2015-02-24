@@ -32,23 +32,8 @@ public class FetchDNSProcessor extends AbstractProcessor{
 	 */
 	private void fetchHTML(Task task){
 		log.info("=========下载网页,提取原始html=========");
-		HttpHost target = null;
-		HttpGet httpGet = null;
-		HttpClientContext context = null;
-		try {
-			target = task.getController().getHostCache().getHttpHost(task.getCrawlURI());
-			httpGet = HttpClientHelper.getHttpGet(task.getCrawlURI());
-			context = HttpClientHelper.getHttpClientContext();
-			String html = Http.get(task.getCrawlURI().getUrl()).getContent();//task.getController().getHttpClient().execute(target, httpGet, task.getController().getHandler(), context);
-			task.getContentBean().setOrginHtml(html);
-			log.info("=========HTML内容=========");
-		} catch (Exception e) {
-			log.error(e);
-		}finally{
-			if(null != httpGet){
-				httpGet.abort();
-			}
-		}
+		String html = task.getController().getHandler().handleResponse(task.getController().getHostCache().getHttpHostUrl(task.getCrawlURI()));
+		task.getContentBean().setOrginHtml(html);
+		log.info("=========HTML内容=========");
 	}
-
 }

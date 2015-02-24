@@ -85,9 +85,9 @@ public class CrawlerRuleService extends BaseService<CrawlerRule> {
 			this.crawlerRuleBean = crawlerRuleBean;
 		}
 
-		@SuppressWarnings({ "rawtypes", "unchecked" })
+		@SuppressWarnings({"unchecked" })
 		private void init() {
-			List<Filter> filters = new ArrayList<Filter>();
+			List<Filter<String,?>> filters = new ArrayList<Filter<String,?>>();
 			filters.add(new LinkAreaFilter(crawlerRuleBean.getRuleContentBean().getLinksetStart(), crawlerRuleBean.getRuleContentBean().getLinksetEnd()));
 			filters.add(new ContentAreaFilter(crawlerRuleBean.getRuleContentBean().getContentStart(), crawlerRuleBean.getRuleContentBean().getContentEnd()));
 			filters.add(new BriefAreaFilter(crawlerRuleBean.getRuleContentBean().getDescriptionStart(), crawlerRuleBean.getRuleContentBean().getDescriptionEnd()));
@@ -108,7 +108,7 @@ public class CrawlerRuleService extends BaseService<CrawlerRule> {
 			crawlScope.addSeeds(crawlerRuleBean.getRuleContentBean().getAllPlans());
 			crawlScope.setRepairPageUrl(crawlerRuleBean.getRuleBaseBean().getUrlRepairUrl());
 
-			List<Filter> midFilters = new ArrayList<Filter>();
+			List<Filter<String,Map<String,String>>> midFilters = new ArrayList<Filter<String,Map<String,String>>>();
 			// 添加过度连接过滤器
 			if (null != crawlerRuleBean.getRuleContentBean() && !Lang.isEmpty(crawlerRuleBean.getRuleContentBean().getMidExtendFields())) {
 				addFilter(crawlerRuleBean.getRuleContentBean().getMidExtendFields(), midFilters);
@@ -122,8 +122,7 @@ public class CrawlerRuleService extends BaseService<CrawlerRule> {
 			writeLog("初始化采集配置完成");
 		}
 
-		@SuppressWarnings("rawtypes")
-		private void addFilter(List<ExtendFieldsBean> extendFields, List<Filter> filters) {
+		private void addFilter(List<ExtendFieldsBean> extendFields, List<Filter<String,Map<String,String>>> filters) {
 			for (ExtendFieldsBean extendFieldsBean : extendFields) {
 				filters.add(new FieldFilter(extendFieldsBean.getFields(), extendFieldsBean.getFilterStart(), extendFieldsBean.getFilterEnd()));
 			}
@@ -135,7 +134,6 @@ public class CrawlerRuleService extends BaseService<CrawlerRule> {
 			test();
 		}
 
-		@SuppressWarnings("unchecked")
 		private void test() {
 			long startTime = System.currentTimeMillis();
 			writeLog("开始提取原始URL连接");

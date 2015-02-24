@@ -7,18 +7,19 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.javacoo.crawler.core.cache.DefaultHostCache;
 import org.javacoo.crawler.core.cache.HostCache;
-import com.rekoe.crawler.core.constants.Constants;
-import com.rekoe.crawler.core.data.CrawlScope;
-import com.rekoe.crawler.core.filter.factory.DefaultFilterFactory;
-import com.rekoe.crawler.core.filter.factory.FilterFactory;
 import org.javacoo.crawler.core.frontier.DefaultFrontier;
 import org.javacoo.crawler.core.frontier.Frontier;
 import org.javacoo.crawler.core.processor.ProcessorChain;
 import org.javacoo.crawler.core.processor.ProcessorChainList;
 import org.javacoo.crawler.core.thread.ProcessorManager;
 import org.javacoo.crawler.core.util.CharsetHandler;
-import com.rekoe.crawler.core.util.DefaultURIHelper;
 import org.javacoo.crawler.core.util.HttpClientHelper;
+
+import com.rekoe.crawler.core.constants.Constants;
+import com.rekoe.crawler.core.data.CrawlScope;
+import com.rekoe.crawler.core.filter.factory.DefaultFilterFactory;
+import com.rekoe.crawler.core.filter.factory.FilterFactory;
+import com.rekoe.crawler.core.util.DefaultURIHelper;
 import com.rekoe.crawler.core.util.URIHelper;
 import com.rekoe.crawler.core.util.parser.HtmlParserWrapper;
 import com.rekoe.crawler.core.util.parser.HtmlParserWrapperImpl;
@@ -63,6 +64,7 @@ public class CrawlerController {
 	/**爬虫状态：初始状态,准备就绪,运行中,暂停*/
 	private transient String state = Constants.CRAWL_STATE_ORIGINAL;
 	/**过滤器工厂*/
+	@SuppressWarnings("rawtypes")
 	private transient FilterFactory filterFactory;
 	/**主机缓存*/
 	private transient HostCache hostCache;
@@ -79,6 +81,7 @@ public class CrawlerController {
 	 * 初始化爬虫各个模块
 	 * @param crawlScope 配置参数
 	 */
+	@SuppressWarnings("unchecked")
 	private void setupCrawlModules(CrawlScope crawlScope) {
 		log.info("=========开始初始化爬虫各个模块=========");
 		log.info("=====================加载爬虫配置参数=========");
@@ -197,7 +200,7 @@ public class CrawlerController {
 		try {
 			this.httpClient.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error(e);
 		}
 		this.destory();
 	}
@@ -245,7 +248,6 @@ public class CrawlerController {
 		this.processorManager = null;
 		this.filterFactory.clear();
 		this.filterFactory = null;
-		this.hostCache.clear();
 		this.hostCache = null;
 		this.state = Constants.CRAWL_STATE_ORIGINAL;
 	}

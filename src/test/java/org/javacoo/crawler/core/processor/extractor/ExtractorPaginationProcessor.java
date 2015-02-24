@@ -136,23 +136,7 @@ public class ExtractorPaginationProcessor extends Extractor{
 	 */
 	private String fetchHTML(Task task,CrawlLinkURI crawlURI){
 		log.info("=========下载分页内容,提取原始html=========");
-		HttpGet httpGet = null;
-		HttpHost target = null;
-		HttpClientContext context = null;
-		String html = "";
-		try {
-			target = task.getController().getHostCache().getHttpHost(crawlURI);
-			httpGet = HttpClientHelper.getHttpGet(crawlURI);
-			context = HttpClientHelper.getHttpClientContext();
-			html = task.getController().getHttpClient().execute(target, httpGet, task.getController().getHandler(), context);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			if(null != httpGet){
-				httpGet.abort();
-			}
-		}
-		return html;
+		return task.getController().getHandler().handleResponse(task.getController().getHostCache().getHttpHostUrl(crawlURI));
 	}
 	
 	/**

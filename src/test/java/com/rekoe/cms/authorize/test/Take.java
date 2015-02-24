@@ -2,6 +2,7 @@ package com.rekoe.cms.authorize.test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.javacoo.crawler.core.CrawlerController;
@@ -46,7 +47,7 @@ public class Take {
 	
 	private void startCrawker(CrawlerRuleBean rule){
 		CrawlerController crawlController = new CrawlerController();
-		List<Filter> filters = new ArrayList<Filter>();
+		List<Filter<String,?>> filters = new ArrayList<Filter<String,?>>();
 		filters.add(new LinkAreaFilter(rule.getRuleContentBean().getLinksetStart(),rule.getRuleContentBean().getLinksetEnd()));
 		filters.add(new ContentAreaFilter(rule.getRuleContentBean().getContentStart(),rule.getRuleContentBean().getContentEnd()));
 		filters.add(new BriefAreaFilter(rule.getRuleContentBean().getDescriptionStart(),rule.getRuleContentBean().getDescriptionEnd()));
@@ -57,14 +58,14 @@ public class Take {
 		//filters.add(new CommentLinkFilter(rule.getRuleCommentBean().getCommentLinkStart(),rule.getRuleCommentBean().getCommentLinkEnd()));
 		
 		
-		List<Filter> midFilters = new ArrayList<Filter>();
+		List<Filter<String,Map<String,String>>> midFilters = new ArrayList<Filter<String,Map<String,String>>>();
 		//添加过度连接过滤器
 		if(null != rule.getRuleContentBean() && !Lang.isEmpty(rule.getRuleContentBean().getMidExtendFields())){
 			addFilter(rule.getRuleContentBean().getMidExtendFields(),midFilters);
 		}
 		
 		
-		List<Filter> multeityFilters = new ArrayList<Filter>();
+		List<Filter<String,Map<String,String>>> multeityFilters = new ArrayList<Filter<String,Map<String,String>>>();
 		//添加扩展字段过滤器
 		if(null != rule.getRuleFieldsBean() && !Lang.isEmpty(rule.getRuleFieldsBean().getExtendFields())){
 			addFilter(rule.getRuleFieldsBean().getExtendFields(),multeityFilters);
@@ -110,7 +111,7 @@ public class Take {
 		crawlController.start();
 	}
 	
-	private void addFilter(List<ExtendFieldsBean> extendFields,List<Filter> filters){
+	private void addFilter(List<ExtendFieldsBean> extendFields,List<Filter<String,Map<String,String>>> filters){
 		for(ExtendFieldsBean extendFieldsBean : extendFields){
 			filters.add(new FieldFilter(extendFieldsBean.getFields(),extendFieldsBean.getFilterStart(),extendFieldsBean.getFilterEnd()));
 		}

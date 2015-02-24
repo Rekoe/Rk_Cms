@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.rekoe.crawler.core.constants.Constants;
 import com.rekoe.crawler.core.filter.Filter;
 import com.rekoe.crawler.core.util.File.DefaultFileHelper;
+import com.rekoe.crawler.core.util.File.FileHelper;
 import com.rekoe.utils.CommonUtils;
 
 /**
@@ -40,18 +41,18 @@ public class CrawlScope {
 	/** 是否将内容中的超级链接去除 */
 	private boolean replaceHtmlLink;
 	/** 采集单过滤器列表 */
-	private List<Filter> filterList;
+	private List<Filter<String,?>> filterList;
 	/** 过度过滤器列表 */
-	private List<Filter> midFilterList;
+	private List<Filter<String,Map<String, String>>> midFilterList;
 	/** 采集多过滤器列表 */
-	private List<Filter> multeityFilterList;
+	private List<Filter<String,Map<String,String>>> multeityFilterList;
 	/** 评论内容列表是否与内容页分离,默认false */
 	private boolean commentListIsAlone = false;
 	/** 采集种子列表 */
 	private List<String> seeds = new ArrayList<String>();
 	/** 唯一标示生成接口,默认实现 */
 	/** 文件帮助类 */
-	private com.rekoe.crawler.core.util.File.FileHelper fileHelper = new DefaultFileHelper();
+	private FileHelper fileHelper = new DefaultFileHelper();
 	/** 每个线程休眠毫秒数 */
 	private int sleepTime = Constants.SLEEP_TIME;
 	/** 是否允许采集重复数据,默认允许 */
@@ -99,18 +100,18 @@ public class CrawlScope {
 		this.id = id;
 	}
 
-	public List<Filter> getFilterList() {
+	public List<Filter<String,?>> getFilterList() {
 		return filterList;
 	}
 
-	public void setFilterList(List<Filter> filterList) {
+	public void setFilterList(List<Filter<String,?>> filterList) {
 		this.filterList = filterList;
 	}
 
 	/**
 	 * @return the midFilterList
 	 */
-	public List<Filter> getMidFilterList() {
+	public List<Filter<String,Map<String, String>>> getMidFilterList() {
 		return midFilterList;
 	}
 
@@ -118,15 +119,15 @@ public class CrawlScope {
 	 * @param midFilterList
 	 *            the midFilterList to set
 	 */
-	public void setMidFilterList(List<Filter> midFilterList) {
+	public void setMidFilterList(List<Filter<String,Map<String, String>>> midFilterList) {
 		this.midFilterList = midFilterList;
 	}
 
-	public List<Filter> getMulteityFilterList() {
+	public List<Filter<String,Map<String,String>>> getMulteityFilterList() {
 		return multeityFilterList;
 	}
 
-	public void setMulteityFilterList(List<Filter> multeityFilterList) {
+	public void setMulteityFilterList(List<Filter<String,Map<String,String>>> multeityFilterList) {
 		this.multeityFilterList = multeityFilterList;
 	}
 

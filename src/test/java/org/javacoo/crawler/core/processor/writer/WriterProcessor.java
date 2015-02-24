@@ -21,7 +21,7 @@ public class WriterProcessor extends AbstractProcessor{
 		//过滤指定区域内容
 		String html = task.getController().getHtmlParserWrapper().filterTargetContentHtml(task.getContentBean().getContent());
 		task.getContentBean().setContent(html);
-		//log.info(html);
+		log.info(html);
 		//TODO　ＳＡＶＥ　ＴＯ　ＤＢ　task.getController().getCrawlScope().getCrawlerPersistent().save(task);
 	}
 

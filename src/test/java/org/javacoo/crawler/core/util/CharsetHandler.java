@@ -10,6 +10,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.util.EntityUtils;
+import org.nutz.http.Http;
 
 public class CharsetHandler implements ResponseHandler<String> {
 	private String charset;
@@ -33,5 +34,9 @@ public class CharsetHandler implements ResponseHandler<String> {
 		} else {
 			return null;
 		}
+	}
+
+	public String handleResponse(String url) {
+		return Http.get(url).getContent(charset);
 	}
 }
