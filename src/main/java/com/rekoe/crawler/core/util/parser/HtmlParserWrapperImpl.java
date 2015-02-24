@@ -1,7 +1,5 @@
 package com.rekoe.crawler.core.util.parser;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -337,9 +335,4 @@ public class HtmlParserWrapperImpl implements HtmlParserWrapper {
 		}
 		return commentLinkList;
 	}
-
-	public static void main(String[] args) throws ParserException, URISyntaxException, IOException {
-
-	}
-
 }

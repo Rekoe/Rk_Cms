@@ -7,6 +7,7 @@ import org.apache.http.client.protocol.HttpClientContext;
 import org.javacoo.crawler.core.data.Task;
 import org.javacoo.crawler.core.processor.AbstractProcessor;
 import org.javacoo.crawler.core.util.HttpClientHelper;
+import org.nutz.http.Http;
 
 
 /**
@@ -38,12 +39,11 @@ public class FetchDNSProcessor extends AbstractProcessor{
 			target = task.getController().getHostCache().getHttpHost(task.getCrawlURI());
 			httpGet = HttpClientHelper.getHttpGet(task.getCrawlURI());
 			context = HttpClientHelper.getHttpClientContext();
-			String html = task.getController().getHttpClient().execute(target, httpGet, task.getController().getHandler(), context);
+			String html = Http.get(task.getCrawlURI().getUrl()).getContent();//task.getController().getHttpClient().execute(target, httpGet, task.getController().getHandler(), context);
 			task.getContentBean().setOrginHtml(html);
 			log.info("=========HTML内容=========");
-			log.info(html);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e);
 		}finally{
 			if(null != httpGet){
 				httpGet.abort();

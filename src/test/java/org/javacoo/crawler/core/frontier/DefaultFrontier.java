@@ -89,7 +89,6 @@ public class DefaultFrontier implements Frontier{
 			httpGet = HttpClientHelper.getHttpGet(uri);
 			context = HttpClientHelper.getHttpClientContext();
 			String html = Http.get(uri.getUrl()).getContent();//this.controller.getHttpClient().execute(target, httpGet, this.controller.getHandler(), context);
-			log.info("=========连接原始html========="+html);
 			Task task = null;
 			int taskNum = 1;
 			

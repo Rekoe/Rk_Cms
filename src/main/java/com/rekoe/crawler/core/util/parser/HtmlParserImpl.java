@@ -3,9 +3,7 @@ package com.rekoe.crawler.core.util.parser;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -105,7 +103,7 @@ public class HtmlParserImpl implements HtmlParser {
 					}
 				}
 			} catch (ParserException e) {
-				e.printStackTrace();
+				log.error(e);
 			}
 		}
 		return resultList;
@@ -143,9 +141,8 @@ public class HtmlParserImpl implements HtmlParser {
 			try {
 				Parser parser = new Parser();
 				orginHtml = filterRequire(fetchAreaTagMap, parser, orginHtml);
-				log.info(orginHtml);
 			} catch (ParserException e) {
-				e.printStackTrace();
+				log.error(e);
 			}
 		}
 		return orginHtml;
@@ -182,7 +179,7 @@ public class HtmlParserImpl implements HtmlParser {
 			}
 			resultStr = sb.toString();
 		} catch (ParserException e) {
-			e.printStackTrace();
+			log.error(e);
 		}
 		return resultStr.replaceAll("\\s", "");
 	}
@@ -208,7 +205,7 @@ public class HtmlParserImpl implements HtmlParser {
 				extractLinkRes(parser, resCrawlURIList, parentCrawlURI);
 				orginHtml = extractObject(parser, orginHtml, resCrawlURIList, parentCrawlURI);
 			} catch (ParserException e) {
-				e.printStackTrace();
+				log.error(e);
 			}
 		}
 		return orginHtml;
@@ -237,7 +234,7 @@ public class HtmlParserImpl implements HtmlParser {
 					addHtmlToListByFilter(parser, filter, htmlList);
 				}
 			} catch (ParserException e) {
-				e.printStackTrace();
+				log.error(e);
 			}
 		}
 		return htmlList;
@@ -250,9 +247,8 @@ public class HtmlParserImpl implements HtmlParser {
 				Parser parser = new Parser();
 				orginHtml = filterThrowAway(filterMap, parser, orginHtml);
 				orginHtml = filterOtherTag(parser, orginHtml);
-				log.info(orginHtml);
 			} catch (ParserException e) {
-				e.printStackTrace();
+				log.error(e);
 			}
 		}
 		return orginHtml;
@@ -409,7 +405,7 @@ public class HtmlParserImpl implements HtmlParser {
 				orginHtml = replaceLinkRes(orginHtml, savePath, resCrawlURIList, parentCrawlURI, parser);
 				orginHtml = replaceObject(orginHtml, savePath, resCrawlURIList, parentCrawlURI, parser);
 			} catch (ParserException e) {
-				e.printStackTrace();
+				log.error(e);
 			}
 		}
 		return orginHtml;
@@ -648,7 +644,7 @@ public class HtmlParserImpl implements HtmlParser {
 					orginHtml = StringUtils.replace(orginHtml, linkTag.toHtml(), tempStr);
 				}
 			} catch (ParserException e) {
-				e.printStackTrace();
+				log.error(e);
 			}
 		}
 		return orginHtml;
@@ -686,7 +682,6 @@ public class HtmlParserImpl implements HtmlParser {
 	 */
 	private List<CrawlLinkURI> getUrlAndTitleAndImagesMap(String html, String savePath, Map<String, String> fetchAreaTagMap, Map<String, String> deleteAreaTagMap, CrawlURI parentCrawlURI) {
 		log.info("========开始得到连接标题MAP=========savePath:" + savePath);
-		log.info("========连接标题MAP=========getLinksetStartMap：" + fetchAreaTagMap + ",getLinksetEndMap:" + deleteAreaTagMap);
 		List<CrawlLinkURI> crawlList = new CopyOnWriteArrayList<CrawlLinkURI>();
 		try {
 			html = getHtmlByFilter(fetchAreaTagMap, deleteAreaTagMap, html);
@@ -733,7 +728,7 @@ public class HtmlParserImpl implements HtmlParser {
 			}
 			return crawlList;
 		} catch (ParserException e) {
-			e.printStackTrace();
+			log.error(e);
 		}
 		return null;
 	}
@@ -783,11 +778,9 @@ public class HtmlParserImpl implements HtmlParser {
 				// 第三步过滤其他标签
 				orginHtml = filterOtherTag(parser, orginHtml);
 				log.info("=================================采集结果=======================================");
-				log.info(orginHtml);
 				return orginHtml;
 			} catch (ParserException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.error(e);
 			}
 		}
 		return "";
@@ -848,7 +841,6 @@ public class HtmlParserImpl implements HtmlParser {
 	private String getNaturalHtml(Map<String, String> tagMap, Parser parser, String orginHtml) throws ParserException {
 		if (null != tagMap && !tagMap.isEmpty()) {
 			log.info("========原始HTML=========");
-			log.info(orginHtml);
 			log.info("========开始采集指定属性/标签内容=========");
 			log.info("指定属性/标签=========" + tagMap);
 			parser.setInputHTML(orginHtml);
@@ -859,7 +851,6 @@ public class HtmlParserImpl implements HtmlParser {
 				appendHtmlByFilter(parser, filter, sb);
 			}
 			log.info("========采集指定属性/标签内容结果=========");
-			log.info(sb.toString());
 			return sb.toString();
 		}
 		return orginHtml;
@@ -887,7 +878,7 @@ public class HtmlParserImpl implements HtmlParser {
 			}
 			return sb.toString();
 		} catch (ParserException e) {
-			e.printStackTrace();
+			log.error(e);
 		}
 		return "";
 	}
@@ -914,7 +905,7 @@ public class HtmlParserImpl implements HtmlParser {
 					addPlainTextToList(parser, filter, list);
 				}
 			} catch (ParserException e) {
-				e.printStackTrace();
+				log.error(e);
 			}
 		}
 		return list;
@@ -1095,7 +1086,6 @@ public class HtmlParserImpl implements HtmlParser {
 		for (int i = 0; i < nodes.size(); i++) {
 			Node textnode = (Node) nodes.elementAt(i);
 			sb.append(textnode.toHtml());
-			log.info("=========================HTML：=========" + textnode.toHtml());
 		}
 	}
 
@@ -1115,7 +1105,6 @@ public class HtmlParserImpl implements HtmlParser {
 		for (int i = 0; i < nodes.size(); i++) {
 			Node textnode = (Node) nodes.elementAt(i);
 			list.add(textnode.toHtml());
-			log.info("=========================HTML：=========" + textnode.toHtml());
 		}
 	}
 
@@ -1194,9 +1183,4 @@ public class HtmlParserImpl implements HtmlParser {
 			return "";
 		}
 	}
-
-	public static void main(String[] args) throws ParserException, URISyntaxException, IOException {
-
-	}
-
 }
