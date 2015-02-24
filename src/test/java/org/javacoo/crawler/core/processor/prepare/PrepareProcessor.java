@@ -73,7 +73,6 @@ public class PrepareProcessor extends AbstractProcessor{
 			String html = Http.get(crawlURI.getUrl()).getContent();//task.getController().getHttpClient().execute(target, httpGet, task.getController().getHandler(), context);
 			//task.getContentBean().setOrginHtml(html);
 			log.info("=========HTML内容=========");
-			log.info(html);
 			return html;
 		} catch (Exception e) {
 			e.printStackTrace();
