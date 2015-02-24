@@ -16,6 +16,7 @@ import com.rekoe.domain.AcquisitionTemp;
 import com.rekoe.domain.Article;
 import com.rekoe.domain.ArticleCategory;
 import com.rekoe.domain.CmsAcquisition;
+import com.rekoe.domain.CrawlerRule;
 import com.rekoe.domain.Permission;
 import com.rekoe.domain.PermissionCategory;
 import com.rekoe.domain.Role;
@@ -23,8 +24,8 @@ import com.rekoe.domain.Setting;
 import com.rekoe.domain.User;
 
 /**
- * @author 科技㊣²º¹³ 
- * 2014年2月3日 下午4:48:45 
+ * @author 科技㊣²º¹³
+ * 2014年2月3日 下午4:48:45
  * http://www.rekoe.com
  * QQ:5382211
  */
@@ -36,6 +37,7 @@ public class MvcSetup implements Setup {
 		Dao dao = ioc.get(Dao.class);
 		dao.create(CmsAcquisition.class, false);
 		dao.create(AcquisitionTemp.class, false);
+		dao.create(CrawlerRule.class, false);
 		// 若必要的数据表不存在，则初始化数据库
 		if (!dao.exists(User.class)) {
 			dao.create(User.class, true);
