@@ -27,6 +27,7 @@ import org.htmlparser.tags.ImageTag;
 import org.htmlparser.tags.LinkTag;
 import org.htmlparser.util.NodeList;
 import org.htmlparser.util.ParserException;
+import org.nutz.lang.Lang;
 import org.nutz.lang.random.R;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
@@ -708,15 +709,17 @@ public class HtmlParserImpl implements HtmlParser {
 				title = StringUtils.defaultIfBlank(title, altTitle);
 				// 取得连接中的子标签
 				NodeList childrenList = linkTag.getChildren();
-				for (int j = 0; j < childrenList.size(); j++) {
-					Node node = childrenList.elementAt(j);
-					// 如果有图片
-					if (null != node && node instanceof ImageTag) {
-						ImageTag imageTag = (ImageTag) node;
-						orignImagePath = imageTag.getImageURL();
-						newImagePath = populateSavePath(orignImagePath, savePath, "");
-						title = linkTag.getAttribute("title");
-						break;
+				if (!Lang.isEmpty(childrenList)) {
+					for (int j = 0; j < childrenList.size(); j++) {
+						Node node = childrenList.elementAt(j);
+						// 如果有图片
+						if (null != node && node instanceof ImageTag) {
+							ImageTag imageTag = (ImageTag) node;
+							orignImagePath = imageTag.getImageURL();
+							newImagePath = populateSavePath(orignImagePath, savePath, "");
+							title = linkTag.getAttribute("title");
+							break;
+						}
 					}
 				}
 				if (StringUtils.isNotBlank(linkTag.getLink()) && StringUtils.isNotBlank(title)) {
