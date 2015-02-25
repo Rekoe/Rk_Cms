@@ -59,7 +59,7 @@ public class CrawlScope {
 	/** 代理地址 */
 	private String proxyAddress;
 	/** 代理端口 */
-	private String proxyPort;
+	private int proxyPort;
 	/** 替换字符串 */
 	private String replaceWords;
 	/** 是否随机日期 */
@@ -214,11 +214,11 @@ public class CrawlScope {
 		this.proxyAddress = proxyAddress;
 	}
 
-	public String getProxyPort() {
+	public int getProxyPort() {
 		return proxyPort;
 	}
 
-	public void setProxyPort(String proxyPort) {
+	public void setProxyPort(int proxyPort) {
 		this.proxyPort = proxyPort;
 	}
 

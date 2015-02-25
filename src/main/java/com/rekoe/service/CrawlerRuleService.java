@@ -22,8 +22,6 @@ import org.nutz.log.Logs;
 
 import com.rekoe.crawler.bean.CrawlerRuleBean;
 import com.rekoe.crawler.bean.ExtendFieldsBean;
-import com.rekoe.crawler.bean.RuleBaseBean;
-import com.rekoe.crawler.bean.RuleContentBean;
 import com.rekoe.crawler.core.CrawlerController;
 import com.rekoe.crawler.core.constants.Constants;
 import com.rekoe.crawler.core.constants.CrawlerConfig;
@@ -32,10 +30,15 @@ import com.rekoe.crawler.core.data.CrawlScope;
 import com.rekoe.crawler.core.data.Task;
 import com.rekoe.crawler.core.data.uri.CrawlLinkURI;
 import com.rekoe.crawler.core.filter.BriefAreaFilter;
+import com.rekoe.crawler.core.filter.CommentAreaFilter;
+import com.rekoe.crawler.core.filter.CommentFilter;
+import com.rekoe.crawler.core.filter.CommentIndexFilter;
+import com.rekoe.crawler.core.filter.CommentLinkFilter;
 import com.rekoe.crawler.core.filter.ContentAreaFilter;
 import com.rekoe.crawler.core.filter.FieldFilter;
 import com.rekoe.crawler.core.filter.Filter;
 import com.rekoe.crawler.core.filter.LinkAreaFilter;
+import com.rekoe.crawler.core.filter.PaginationAreaFilter;
 import com.rekoe.crawler.core.filter.factory.DefaultFilterFactory;
 import com.rekoe.crawler.core.filter.factory.FilterFactory;
 import com.rekoe.crawler.core.util.DefaultURIHelper;
@@ -65,14 +68,14 @@ public class CrawlerRuleService extends BaseService<CrawlerRule> {
 	public void start(int id) {
 		CrawlerRule crawlerRule = fetch(id);
 		List<Integer> ruleIdList = new ArrayList<Integer>();
-		ruleIdList.add(crawlerRule.getRuleId());
+		ruleIdList.add(crawlerRule.getId());
 		CrawlerRuleBean crawlerRuleBean = new CrawlerRuleBean();
-		crawlerRuleBean.setRuleId(crawlerRule.getRuleId());
+		crawlerRuleBean.setRuleId(crawlerRule.getId());
 		crawlerRuleBean.setStartTime(crawlerRule.getStartTime());
 		crawlerRuleBean.setEndTime(crawlerRule.getEndTime());
 		crawlerRuleBean.setRuleIdList(ruleIdList);
-		crawlerRuleBean.setRuleBaseBean(Json.fromJson(RuleBaseBean.class, crawlerRule.getRuleBaseConfig()));
-		crawlerRuleBean.setRuleContentBean(Json.fromJson(RuleContentBean.class, crawlerRule.getRuleContentConfig()));
+		//crawlerRuleBean.setRuleBaseBean(Json.fromJson(RuleBaseBean.class, crawlerRule.getRuleBaseConfig()));
+		//crawlerRuleBean.setRuleContentBean(Json.fromJson(RuleContentBean.class, crawlerRule.getRuleContentConfig()));
 		RunRule runTestRule = new RunRule(crawlerRuleBean);
 		Thread currThread = new Thread(runTestRule);
 		currThread.start();
@@ -312,6 +315,51 @@ public class CrawlerRuleService extends BaseService<CrawlerRule> {
 		return resultList;
 	}
 
+	public void s(CrawlerRule rule)
+	{
+		CrawlerController crawlController = new CrawlerController();
+		List<Filter<String, ?>> filters = new ArrayList<Filter<String, ?>>();
+		filters.add(new LinkAreaFilter(rule.getLinksetStart(),rule.getLinksetEnd()));
+		filters.add(new ContentAreaFilter(rule.getContentStart(),rule.getContentEnd()));
+		filters.add(new BriefAreaFilter(rule.getDescriptionStart(),rule.getDescriptionEnd()));
+		filters.add(new PaginationAreaFilter(rule.getPaginationStart(),rule.getPaginationEnd()));
+		filters.add(new CommentIndexFilter(rule.getCommentIndexStart(),rule.getCommentIndexEnd()));
+		filters.add(new CommentAreaFilter(rule.getCommentAreaStart(),rule.getCommentAreaEnd()));
+		filters.add(new CommentFilter(rule.getCommentStart(),rule.getCommentEnd()));
+		filters.add(new CommentLinkFilter(rule.getCommentLinkStart(),rule.getCommentLinkEnd()));
+		
+		//添加扩展字段过滤器
+		if(StringUtils.isNotEmpty(rule.getKeywordsStart())){
+			addFilter(rule.getKeywordsStart(),filters);
+		}
+		
+		CrawlScope crawlScope = new CrawlScope();
+		//crawlScope.setCrawlerPersistent(crawlerPersistent);
+		crawlScope.setEncoding(rule.getPageEncoding());
+		crawlScope.setId(rule.getId());
+		crawlScope.setFilterList(filters);
+		//评论内容列表是否与内容页分离，如果填写了,则为true
+		if(StringUtils.isNotEmpty(rule.getCommentIndexStart())){
+			crawlScope.setCommentListIsAlone(true);
+		}
+		crawlScope.setRepairPageUrl(rule.getLinkStart());
+		crawlScope.setRepairImageUrl(rule.getLinkEnd());
+		//设置休眠时间
+		crawlScope.setSleepTime(rule.getPauseTime());
+		crawlScope.setPaginationRepairUrl(rule.getPaginationRepairUrl());
+		//是否下载图片至本地
+		crawlScope.setExtractContentRes(Boolean.valueOf(rule.getTitleStart()));
+		//是否去掉内容中连接
+		crawlScope.setReplaceHtmlLink(Boolean.valueOf(rule.getTitleEnd()));
+		crawlScope.setAllowRepeat(rule.isRepeatCheckType());
+		crawlScope.setUseProxy(rule.isUseProxy());
+		crawlScope.setProxyAddress(rule.getProxyAddress());
+		crawlScope.setProxyPort(rule.getProxyPort());
+		crawlScope.setReplaceWords(rule.getReplaceWords());
+		crawlScope.addSeeds(rule.getAllPlans());
+		crawlController.initialize(crawlScope);
+		crawlController.start();
+	}
 	public void startCrawker(CrawlerRuleBean rule) {
 		CrawlerController crawlController = new CrawlerController();
 		List<Filter<String, ?>> filters = new ArrayList<Filter<String, ?>>();
@@ -379,6 +427,24 @@ public class CrawlerRuleService extends BaseService<CrawlerRule> {
 		crawlController.start();
 	}
 
+	private void addFilter(String jsonStr,List<Filter<String, ?>> filters){
+		List<String> arry = Json.fromJsonAsList(String.class, jsonStr);
+		String fields= "",filterStart= "",filterEnd = "";
+		for(int i = 0;i < arry.size();i++){
+			Map<String,String> map = Json.fromJsonAsMap(String.class, arry.get(i));
+			if(null != map.get("fields")){
+				fields = map.get("fields");
+			}
+			if(null != map.get("filterStart")){
+				filterStart =map.get("filterStart");
+			}
+            if(null != map.get("filterEnd")){
+        	   filterEnd = map.get("filterEnd");
+			}
+			filters.add(new FieldFilter(fields,filterStart,filterEnd));
+		}
+	}
+	
 	private void addFilter(List<ExtendFieldsBean> extendFields, List<Filter<String, Map<String, String>>> filters) {
 		for (ExtendFieldsBean extendFieldsBean : extendFields) {
 			filters.add(new FieldFilter(extendFieldsBean.getFields(), extendFieldsBean.getFilterStart(), extendFieldsBean.getFilterEnd()));

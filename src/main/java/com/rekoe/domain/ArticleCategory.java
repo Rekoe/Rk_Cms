@@ -63,6 +63,9 @@ public class ArticleCategory {
 	@Many(target = Article.class, field = "articleCategoryId")
 	private List<Article> articleSet;// 文章
 
+	@Many(target = CrawlerRule.class, field = "articleCategoryId")
+	private List<CrawlerRule> crawlerRuleSet;
+	
 	/*
 	 * public String uuid() { return R.UU16(); }
 	 */
@@ -191,4 +194,13 @@ public class ArticleCategory {
 			return Lang.array2list(arrayOfString);
 		return Collections.emptyList();
 	}
+
+	public List<CrawlerRule> getCrawlerRuleSet() {
+		return crawlerRuleSet;
+	}
+
+	public void setCrawlerRuleSet(List<CrawlerRule> crawlerRuleSet) {
+		this.crawlerRuleSet = crawlerRuleSet;
+	}
+	
 }

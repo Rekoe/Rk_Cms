@@ -28,7 +28,7 @@ public class Take {
 	public static void main(String[] args) {
 		Take take = new Take();
 		Dao dao = IocProvider.ioc().get(Dao.class);
-		CrawlerRule crawlerRule = dao.fetch(CrawlerRule.class,Cnd.where("ruleId", "=", 81));
+		/*CrawlerRule crawlerRule = dao.fetch(CrawlerRule.class,Cnd.where("ruleId", "=", 81));
 		//CrawlerRule
 		List<Integer> ruleIdList = new ArrayList<Integer>();
 		ruleIdList.add(crawlerRule.getRuleId());
@@ -42,7 +42,7 @@ public class Take {
 		//RunTestRule runTestRule = new RunTestRule(crawlerRuleBean);
 		//Thread currThread = new Thread(runTestRule);
 		//currThread.start();
-		take.startCrawker(crawlerRuleBean);
+		take.startCrawker(crawlerRuleBean);*/
 	}
 	
 	private void startCrawker(CrawlerRuleBean rule){

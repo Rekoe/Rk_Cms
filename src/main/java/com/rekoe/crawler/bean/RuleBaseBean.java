@@ -31,7 +31,7 @@ public class RuleBaseBean {
 	/**代理地址*/
 	private java.lang.String proxyAddress;
 	/**代理端口*/
-	private java.lang.String proxyPort;
+	private int proxyPort;
 	/**替换字符*/
 	private java.lang.String replaceWords;
 	/**随机日期格式*/
@@ -110,10 +110,10 @@ public class RuleBaseBean {
 	public void setProxyAddress(java.lang.String proxyAddress) {
 		this.proxyAddress = proxyAddress;
 	}
-	public java.lang.String getProxyPort() {
+	public int getProxyPort() {
 		return proxyPort;
 	}
-	public void setProxyPort(java.lang.String proxyPort) {
+	public void setProxyPort(int proxyPort) {
 		this.proxyPort = proxyPort;
 	}
 	public java.lang.String getReplaceWords() {
