@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import org.javacoo.crawler.core.CrawlerController;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Dao;
 import org.nutz.json.Json;
@@ -15,6 +14,7 @@ import com.rekoe.crawler.bean.CrawlerRuleBean;
 import com.rekoe.crawler.bean.ExtendFieldsBean;
 import com.rekoe.crawler.bean.RuleBaseBean;
 import com.rekoe.crawler.bean.RuleContentBean;
+import com.rekoe.crawler.core.CrawlerController;
 import com.rekoe.crawler.core.data.CrawlScope;
 import com.rekoe.crawler.core.filter.BriefAreaFilter;
 import com.rekoe.crawler.core.filter.ContentAreaFilter;
