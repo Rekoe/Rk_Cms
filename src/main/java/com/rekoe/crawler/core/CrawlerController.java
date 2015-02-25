@@ -1,11 +1,13 @@
 package com.rekoe.crawler.core;
 
+import org.nutz.lang.Lang;
 import org.nutz.log.Logs;
 
 import com.rekoe.crawler.core.cache.DefaultHostCache;
 import com.rekoe.crawler.core.cache.HostCache;
 import com.rekoe.crawler.core.constants.Constants;
 import com.rekoe.crawler.core.data.CrawlScope;
+import com.rekoe.crawler.core.data.Task;
 import com.rekoe.crawler.core.filter.factory.DefaultFilterFactory;
 import com.rekoe.crawler.core.filter.factory.FilterFactory;
 import com.rekoe.crawler.core.frontier.DefaultFrontier;
@@ -18,6 +20,7 @@ import com.rekoe.crawler.core.util.DefaultURIHelper;
 import com.rekoe.crawler.core.util.URIHelper;
 import com.rekoe.crawler.core.util.parser.HtmlParserWrapper;
 import com.rekoe.crawler.core.util.parser.HtmlParserWrapperImpl;
+import com.rekoe.service.CrawlerRuleService;
 
 /**
  * 爬虫控制器 <li>CrawlController 类是整个爬虫的总控制者 , 控制整个抓取工作的起点 ， 决定整个抓取任务的开始和结束。</li>
@@ -60,12 +63,16 @@ public class CrawlerController {
 	/** URIHelper */
 	private transient URIHelper uriHelper;
 
+	private transient CrawlerRuleService crawlerRuleService;
+
 	/**
 	 * 初始化
-	 * 
-	 * @param crawlScope
-	 *            配置参数
 	 */
+	public void initialize(CrawlScope crawlScope, CrawlerRuleService crawlerRuleService) {
+		this.crawlerRuleService = crawlerRuleService;
+		setupCrawlModules(crawlScope);
+	}
+
 	public void initialize(CrawlScope crawlScope) {
 		setupCrawlModules(crawlScope);
 	}
@@ -247,5 +254,11 @@ public class CrawlerController {
 		this.filterFactory = null;
 		this.hostCache = null;
 		this.state = Constants.CRAWL_STATE_ORIGINAL;
+	}
+
+	public void addArticle(Task task) {
+		if (!Lang.isEmpty(this.crawlerRuleService)) {
+			crawlerRuleService.addArticle(task);
+		}
 	}
 }
