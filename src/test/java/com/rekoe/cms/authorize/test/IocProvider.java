@@ -23,8 +23,8 @@ public class IocProvider {
 
 	public static void init() {
 		try {
-			ioc = new NutIoc(new ComboIocLoader("*org.nutz.ioc.loader.json.JsonLoader", "ioc/datasource.js", "*org.nutz.ioc.loader.annotation.AnnotationIocLoader", "com.rekoe.domain"));
-			new PropertiesCrawlerConfig().loadCrawlerConfig("GatherCore.properties");
+			ioc = new NutIoc(new ComboIocLoader("*org.nutz.ioc.loader.json.JsonLoader", "ioc/", "*org.nutz.ioc.loader.annotation.AnnotationIocLoader", "com.rekoe"));
+			//new PropertiesCrawlerConfig().loadCrawlerConfig("gathe_core.properties");
 		} catch (ClassNotFoundException e) {
 			logger.error("Ioc create error", e);
 		} catch (Exception e) {

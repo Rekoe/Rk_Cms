@@ -2,6 +2,7 @@ package com.rekoe.crawler.core.data;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -71,7 +72,7 @@ public class CrawlScope {
 	/** 随机日期结束 */
 	private String endRandomDate;
 	/** 替换字符串map */
-	private Map<String, String> replaceWordsMap = Constants.DEFAULT_COMMON_REPLACE_WORDS;
+	private Map<String, String> replaceWordsMap = new HashMap<String, String>();
 	/** 扩展字段键值字符窜 */
 	private String extendField;
 	/** 是否保存数据库 */
@@ -242,7 +243,6 @@ public class CrawlScope {
 		Map<String, String> currMap = CommonUtils.populateWordsMap(this.replaceWords);
 		if (null != currMap) {
 			replaceWordsMap.putAll(currMap);
-
 		}
 		return replaceWordsMap;
 	}

@@ -272,7 +272,7 @@ public class CrawlerRuleService extends BaseService<CrawlerRule> {
 	}
 
 	private final static String PROPERTIES_CONF = "gather_core.properties";
-	private PropertiesProxy conf;
+	private PropertiesProxy conf = new PropertiesProxy();
 
 	public void init() {
 		log.info("开始加载爬虫配置文件:" + PROPERTIES_CONF);
