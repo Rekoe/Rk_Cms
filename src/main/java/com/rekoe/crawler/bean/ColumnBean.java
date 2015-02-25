@@ -1,7 +1,3 @@
-/**
- * 如石子一粒,仰高山之巍峨,但不自惭形秽.
- * 若小草一棵,慕白杨之伟岸,却不妄自菲薄.
- */
 package com.rekoe.crawler.bean;
 
 import org.apache.commons.lang3.StringUtils;
@@ -10,9 +6,6 @@ import com.rekoe.crawler.core.constants.GatherConstant;
 
 /**
  * 列类型信息bean
- *@author DuanYong
- *@since 2013-3-3上午12:05:58
- *@version 1.0
  */
 public class ColumnBean {
 	/**字段名称*/

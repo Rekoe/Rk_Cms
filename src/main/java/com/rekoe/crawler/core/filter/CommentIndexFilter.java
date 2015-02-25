@@ -4,9 +4,6 @@ import com.rekoe.crawler.core.constants.Constants;
 
 /**
  * 过滤器接口实现类-评论列表入口连接区域过滤
- * @author javacoo
- * @since 2012-05-11
- * @LastModify 2012-05-12
  */
 public class CommentIndexFilter extends AbstractFilter<String,String>{
 	/**

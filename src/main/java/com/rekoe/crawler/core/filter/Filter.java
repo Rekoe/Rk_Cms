@@ -3,8 +3,6 @@ package com.rekoe.crawler.core.filter;
 import java.util.Map;
 /**
  * 过滤器接口
- * @author javacoo
- * @since 2011-11-10
  */
 public interface Filter<K,V> {
 	/**

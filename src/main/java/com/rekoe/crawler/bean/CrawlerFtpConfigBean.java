@@ -1,16 +1,9 @@
-/**
- * 如石子一粒,仰高山之巍峨,但不自惭形秽.
- * 若小草一棵,慕白杨之伟岸,却不妄自菲薄.
- */
 package com.rekoe.crawler.bean;
 
 /**
  * FTP配置
  * <p>说明:</p>
  * <li></li>
- * @author DuanYong
- * @since 2013-4-22 下午3:48:33
- * @version 1.0
  */
 public class CrawlerFtpConfigBean {
 	/**FTP服务器名称*/

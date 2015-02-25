@@ -6,8 +6,6 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * 资源URI对象
- * @author javacoo
- * @since 2012-05-14
  */
 public class CrawlResURI implements CrawlURI{
 	/**父资源对象*/

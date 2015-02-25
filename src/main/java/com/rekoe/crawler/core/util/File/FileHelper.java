@@ -4,8 +4,6 @@ import java.io.InputStream;
 
 /**
  * 文件操作工具类接口
- * @author javacoo
- * @since 2011-11-15
  */
 public interface FileHelper {
 	/**

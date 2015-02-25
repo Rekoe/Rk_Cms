@@ -11,8 +11,6 @@ import com.rekoe.crawler.core.data.uri.CrawlURI;
 
 /**
  * HTML解析工具类接口
- * @author javacoo
- * @since 2011-10-31
  */
 public interface HtmlParser {
 	/**

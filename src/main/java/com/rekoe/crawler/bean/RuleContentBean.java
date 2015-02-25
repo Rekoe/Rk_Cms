@@ -7,9 +7,6 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * 采集规则内容参数值对象
- *@author DuanYong
- *@since 2012-11-15上午9:33:22
- *@version 1.0
  */
 public class RuleContentBean {
 	/**采集地址*/

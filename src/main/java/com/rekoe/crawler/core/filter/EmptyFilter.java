@@ -4,9 +4,6 @@ import com.rekoe.crawler.core.constants.Constants;
 
 /**
  * 过滤器接口实现类-空过滤器
- * @author javacoo
- * @since 2011-11-10
- * @LastModify 2012-05-12
  */
 public class EmptyFilter extends AbstractFilter<String,String>{
 	/**

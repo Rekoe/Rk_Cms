@@ -2,9 +2,6 @@ package com.rekoe.crawler.bean;
 
 /**
  * 采集规则内容分页参数值对象
- *@author DuanYong
- *@since 2012-11-15上午9:34:09
- *@version 1.0
  */
 public class RuleContentPageBean {
 	/**内容分页开始标签*/

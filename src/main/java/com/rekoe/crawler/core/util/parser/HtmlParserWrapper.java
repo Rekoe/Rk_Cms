@@ -10,8 +10,6 @@ import com.rekoe.crawler.core.data.uri.CrawlURI;
 
 /**
  * HTML解析包装类接口
- * @author javacoo
- * @since 2012-05-12
  */
 public interface HtmlParserWrapper {
 	/**

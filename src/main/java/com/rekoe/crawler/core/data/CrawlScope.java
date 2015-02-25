@@ -15,9 +15,6 @@ import com.rekoe.utils.CommonUtils;
 
 /**
  * 采集器配置
- * 
- * @author javacoo
- * @since 2011-11-09
  */
 public class CrawlScope {
 	/** 采集ID */

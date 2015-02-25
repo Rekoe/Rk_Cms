@@ -4,8 +4,6 @@ import org.htmlparser.tags.CompositeTag;
 /**
  * 自定义标签
  * <li>抽取链 ： 当提取完成时 ， 抽取感兴趣的 HTML 或者 JavaScript等 </li>
- * @author javacoo
- * @since 2011-11-09
  */
 public class EmbedTag extends CompositeTag {
 	private static final long serialVersionUID = 1L;

@@ -2,9 +2,6 @@ package com.rekoe.crawler.bean;
 
 /**
  * 采集评论参数值对象
- *@author DuanYong
- *@since 2012-11-15上午9:32:44
- *@version 1.0
  */
 public class RuleCommentBean {
 	/**评论列表入口开始标签*/

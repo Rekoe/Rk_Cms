@@ -6,8 +6,6 @@ import com.rekoe.crawler.core.filter.Filter;
 
 /**
  * 过滤器工厂
- * @author javacoo
- * @since 2012-05-12
  */
 public interface FilterFactory<K,V> {
 	/**

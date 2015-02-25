@@ -10,9 +10,6 @@ import com.rekoe.crawler.core.constants.Constants;
 
 /**
  * 过滤器接口实现类-抽象实现类
- * @author javacoo
- * @since 2011-11-10
- * @LastModify 2012-05-12
  */
 public abstract class AbstractFilter<K,V> implements Filter<K,V>{
 	/**过滤器内容MAP*/

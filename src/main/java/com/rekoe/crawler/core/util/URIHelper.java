@@ -6,9 +6,6 @@ import com.rekoe.crawler.core.data.uri.CrawlURI;
 
 /**
  * URI帮助类接口
- * 
- * @author javacoo
- * @since 2012-05-15
  */
 public interface URIHelper {
 	/**

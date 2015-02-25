@@ -13,9 +13,6 @@ import com.rekoe.crawler.core.data.uri.CrawlURI;
 
 /**
  * URI帮助类接口实现类
- * 
- * @author javacoo
- * @since 2012-05-15
  */
 public class DefaultURIHelper implements URIHelper {
 	/** 爬虫参数 */

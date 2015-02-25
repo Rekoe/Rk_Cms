@@ -1,14 +1,7 @@
-/**
- * 如石子一粒,仰高山之巍峨,但不自惭形秽.
- * 若小草一棵,慕白杨之伟岸,却不妄自菲薄.
- */
 package com.rekoe.crawler.bean;
 
 /**
  * 扩展字段bean
- *@author DuanYong
- *@since 2013-3-18上午9:38:29
- *@version 1.0
  */
 public class ExtendFieldsBean {
 	/**扩展字段*/

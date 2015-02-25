@@ -5,9 +5,6 @@ import com.rekoe.crawler.core.constants.Constants;
 
 /**
  * 过滤器接口实现类-内容区域过滤
- * @author javacoo
- * @since 2011-11-10
- * @LastModify 2012-05-12
  */
 public class ContentAreaFilter extends AbstractFilter<String,String>{
 	/**

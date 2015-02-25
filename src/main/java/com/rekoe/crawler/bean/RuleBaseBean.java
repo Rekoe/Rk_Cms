@@ -2,9 +2,6 @@ package com.rekoe.crawler.bean;
 
 /**
  * 采集规则基本参数值对象
- *@author DuanYong
- *@since 2012-11-15上午9:32:14
- *@version 1.0
  */
 public class RuleBaseBean {
 	/**采集名称*/

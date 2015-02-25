@@ -4,9 +4,6 @@ import java.util.Map;
 
 /**
  * 采集规则远程数据库配置
- *@author DuanYong
- *@since 2013-3-2下午7:46:00
- *@version 1.0
  */
 public class RuleDataBaseBean {
 	/**是否保存至指定数据库*/

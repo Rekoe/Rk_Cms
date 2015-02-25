@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 /**
  * 过滤器构建接口
- * @author javacoo
- * @since 2012-05-10
  */
 public class FilterBean {
 	/**待采集连接区域属性MAP*/

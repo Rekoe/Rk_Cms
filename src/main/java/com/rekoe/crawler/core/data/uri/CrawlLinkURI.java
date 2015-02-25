@@ -8,8 +8,6 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * 爬虫URI对象
- * @author javacoo
- * @since 2012-04-21
  */
 public class CrawlLinkURI implements CrawlURI{
 	/**来源URI*/

@@ -1,8 +1,6 @@
 package com.rekoe.crawler.core.data.uri;
 /**
  * 爬虫URI对象接口
- * @author javacoo
- * @since 2012-05-14
  */
 public interface CrawlURI {
 	/**取得父URI对象*/

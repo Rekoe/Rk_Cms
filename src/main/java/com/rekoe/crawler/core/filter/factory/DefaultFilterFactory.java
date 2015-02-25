@@ -12,9 +12,6 @@ import com.rekoe.crawler.core.filter.Filter;
 
 /**
  * 过滤器工厂接口默认实现类
- * 
- * @author javacoo
- * @since 2012-05-12
  */
 public class DefaultFilterFactory implements FilterFactory<String, String> {
 	/** 过滤器map */
