@@ -1,7 +1,5 @@
 package org.javacoo.crawler.core.cache;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.rekoe.crawler.core.data.uri.CrawlURI;
 
 /**
@@ -14,12 +12,12 @@ public class DefaultHostCache implements HostCache {
 
 	@Override
 	public String getHttpHostUrl(CrawlURI crawlURI) {
-		String hostName = crawlURI.getHost();
-		int port = crawlURI.getPort();
-		if (StringUtils.isBlank(hostName)) {
-			hostName = crawlURI.getParentURI().getHost();
-			port = crawlURI.getParentURI().getPort();
-		}
+		//String hostName = crawlURI.getHost();
+		//int port = crawlURI.getPort();
+		//if (StringUtils.isBlank(hostName)) {
+			//hostName = crawlURI.getParentURI().getHost();
+			//port = crawlURI.getParentURI().getPort();
+		//}
 		return crawlURI.getUrl();
 	}
 

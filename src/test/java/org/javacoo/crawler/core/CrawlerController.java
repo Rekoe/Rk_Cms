@@ -1,9 +1,5 @@
 package org.javacoo.crawler.core;
 
-import java.io.IOException;
-
-import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.CloseableHttpClient;
 import org.javacoo.crawler.core.cache.DefaultHostCache;
 import org.javacoo.crawler.core.cache.HostCache;
 import org.javacoo.crawler.core.frontier.DefaultFrontier;
@@ -12,7 +8,6 @@ import org.javacoo.crawler.core.processor.ProcessorChain;
 import org.javacoo.crawler.core.processor.ProcessorChainList;
 import org.javacoo.crawler.core.thread.ProcessorManager;
 import org.javacoo.crawler.core.util.CharsetHandler;
-import org.javacoo.crawler.core.util.HttpClientHelper;
 import org.nutz.log.Logs;
 
 import com.rekoe.crawler.core.constants.Constants;
@@ -50,8 +45,6 @@ public class CrawlerController {
 	private transient CharsetHandler handler;
 	/** HTML解析器包装类类 */
 	private transient HtmlParserWrapper htmlParserWrapper;
-	/** HttpClient对象 */
-	private transient CloseableHttpClient httpClient;
 	/** 爬虫边界控制器 */
 	private transient Frontier frontier;
 	/** 爬虫线程控制器 */
@@ -93,8 +86,6 @@ public class CrawlerController {
 		this.crawlScope = crawlScope;
 		log.info("=====================初始化字符集帮助类=========");
 		this.handler = new CharsetHandler(crawlScope.getEncoding());
-		log.info("=====================初始化初始化HttpCilent对象=========");
-		initHttpCilent();
 		log.info("=====================初始化过滤器工厂,并注册过滤器=========");
 		filterFactory = new DefaultFilterFactory();
 		filterFactory.register(crawlScope.getFilterList());
@@ -118,13 +109,6 @@ public class CrawlerController {
 		}
 		log.info("=====================初始化爬虫状态=========");
 		this.state = Constants.CRAWL_STATE_READY;
-	}
-
-	/**
-	 * 初始化HttpCilent对象
-	 */
-	private void initHttpCilent() {
-		this.httpClient = HttpClientHelper.createHttpClient(this.crawlScope);
 	}
 
 	/**
@@ -173,15 +157,6 @@ public class CrawlerController {
 	}
 
 	/**
-	 * 取得爬虫HttpClient对象
-	 * 
-	 * @return HttpClient对象
-	 */
-	public HttpClient getHttpClient() {
-		return httpClient;
-	}
-
-	/**
 	 * 取得爬虫第一个处理链对象
 	 * 
 	 * @return ProcessorChain 处理链对象
@@ -222,11 +197,6 @@ public class CrawlerController {
 	 */
 	public void shutdown() {
 		log.info("=====================爬虫正常停止=========");
-		try {
-			this.httpClient.close();
-		} catch (IOException e) {
-			log.error(e);
-		}
 		this.destory();
 	}
 
