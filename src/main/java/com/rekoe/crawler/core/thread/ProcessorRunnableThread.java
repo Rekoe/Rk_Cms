@@ -2,6 +2,7 @@ package com.rekoe.crawler.core.thread;
 
 import java.util.concurrent.CountDownLatch;
 
+import org.nutz.lang.Lang;
 import org.nutz.log.Logs;
 
 import com.rekoe.crawler.core.CrawlerController;
@@ -28,6 +29,10 @@ public class ProcessorRunnableThread implements Runnable {
 			while (!this.controller.getFrontier().isEmpty() && !Thread.interrupted() && !this.controller.getProcessorManager().getThreadPoolService().isShutdown()) {
 				if (checkContinue()) {
 					Task currentTask = this.controller.getFrontier().next();
+					if(Lang.isEmpty(currentTask))
+					{
+						System.err.println("+++++++++++++++++++");
+					}
 					processorTask(currentTask);
 					this.controller.getFrontier().finished(currentTask);
 				}
