@@ -21,10 +21,10 @@ public class WriterProcessor extends AbstractProcessor{
 	protected void innerProcess(Task task) {
 		log.info("=========存储抓取结果=========");
 		//过滤指定区域内容
+		String title = task.getContentBean().getTitle();
 		String html = task.getController().getHtmlParserWrapper().filterTargetContentHtml(task.getContentBean().getContent());
 		task.getContentBean().setContent(html);
-		log.info(html);
-		//TODO　ＳＡＶＥ　ＴＯ　ＤＢ　task.getController().getCrawlScope().getCrawlerPersistent().save(task);
+		log.info(title);
 	}
 
 }
