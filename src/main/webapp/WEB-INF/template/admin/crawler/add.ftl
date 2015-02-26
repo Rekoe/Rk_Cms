@@ -3,8 +3,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title></title>
-<meta name="author" content="Rekoe Cms Team" />
-<meta name="copyright" content="Rekoe Cms" />
 <#include "/template/admin/common/head.ftl" />
 <script type="text/javascript">
 $.validator.methods.leafChannel = function(value, element, param) {
@@ -98,7 +96,7 @@ function ShowTab(theA,Small,main){
 </head>
 <body>
 	<div class="path">
-		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "rule.function"/>- <@s.m "global.add"/>
+		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "rule.function"/>- <@s.m "admin.common.add"/>
 	</div>
 <@p.crawler_form id="jvForm" action="o_save.do" labelWidth="12" >
 <div class="ParamTab border box-positon" style="height:500px">
@@ -139,7 +137,6 @@ function ShowTab(theA,Small,main){
 				<span class="pn-fhelp"><@s.m "rule.replaceHtmlLink.help"/></span>
 				</@p.td>
 				<@p.tr/>
-				
 				<@p.td colspan="1" width="50" label="rule.repeatCheckType">
 				<input type="radio" value="true" name="repeatCheckType" style=""><@s.m "rule.radio.yes"/>
 				<input type="radio" value="false" name="repeatCheckType" checked style=""><@s.m "rule.radio.no"/></br>
@@ -155,11 +152,11 @@ function ShowTab(theA,Small,main){
 				<@p.td colspan="2" label="rule.proxy">
 				<table border="0" width="100%">
 				<tr>
-				<td><@s.m "rule.proxy.address"/>：<input type="text" name="proxyAddress" style="width:200px" maxlength="100"/><@s.m "rule.proxy.port"/>：<input type="text" name="proxyPort" style="width:50px" maxlength="10"/></td>
+				<td><@s.m "rule.proxy.address"/>：<input type="text" name="proxyAddress" class="text" style="width:200px" maxlength="100"/><@s.m "rule.proxy.port"/>：<input type="text" name="proxyPort" class="text" style="width:50px" maxlength="10"/></td>
 				</tr>
 				</table>
 				</@p.td><@p.tr/>
-				<@p.textarea colspan="2" label="rule.replaceWords" name="replaceWords" rows="3" cols="70" help="rule.replaceWords.help" helpPosition="3"/><@p.tr/>
+				<@p.textarea colspan="2" label="rule.replaceWords" class="textbox" name="replaceWords" rows="3" cols="70" help="rule.replaceWords.help" helpPosition="3"/><@p.tr/>
 		    </tr>
 	    </table>
 	
@@ -167,11 +164,11 @@ function ShowTab(theA,Small,main){
 	<!-- 内容属性 -->
 	<div style="display: none;" class="cont" id="Tab2">
 	<table class="input" cellspacing="1" cellpadding="2" border="0" width="100%">
-		    <tr>
+		<tr>
 	   <@p.textarea colspan="2" label="rule.planList" name="planList" rows="2" cols="70" help="rule.planList.help" helpPosition="3"/><@p.tr/>
 		<@p.td colspan="2" label="rule.dynamicAddr">
-		<div><input type="text" name="dynamicAddr" style="width:450px" maxlength="255"/> <span class="pn-fhelp"><@s.m "rule.dynamicAddr.help"/></span></div>
-		<div><@s.m "rule.dynamicPage"/> <@s.m "rule.from"/> <input type="text" name="dynamicStart" value="2" size="7"/> &nbsp; <@s.m "rule.to"/>: <input type="text" name="dynamicEnd" value="10" size="7"/></div> 
+		<div><input type="text" name="dynamicAddr" class="text" style="width:450px" maxlength="255"/> <span class="pn-fhelp"><@s.m "rule.dynamicAddr.help"/></span></div>
+		<div><@s.m "rule.dynamicPage"/> <@s.m "rule.from"/> <input type="text" class="text" name="dynamicStart" value="2" size="7"/> &nbsp; <@s.m "rule.to"/>: <input type="text" class="text" name="dynamicEnd" value="10" size="7"/></div> 
 		</@p.td><@p.tr/>
 		
 		<@p.td colspan="2" label="rule.linkset">
@@ -181,8 +178,8 @@ function ShowTab(theA,Small,main){
 		<td align="center" width="50%"><@s.m "rule.end"/></td>
 		</tr>
 		<tr>
-		<td align="center" width="50%"><textarea name="linksetStart" rows="2" style="width:85%"></textarea></td>
-		<td align="center" width="50%"><textarea name="linksetEnd" rows="2" style="width:85%"></textarea></td>
+		<td align="center" width="50%"><textarea name="linksetStart" rows="2" class="textbox" style="width:85%"></textarea></td>
+		<td align="center" width="50%"><textarea name="linksetEnd" rows="2" class="textbox" style="width:85%"></textarea></td>
 		</tr>
 		</table>
 		</@p.td><@p.tr/>
@@ -190,16 +187,16 @@ function ShowTab(theA,Small,main){
 		<@p.td colspan="2" label="rule.description">
 		<table border="0" width="100%">
 		<tr>
-		<td align="center" width="50%"><textarea name="descriptionStart" rows="2" style="width:85%"></textarea></td>
-		<td align="center" width="50%"><textarea name="descriptionEnd" rows="2" style="width:85%"></textarea></td>
+		<td align="center" width="50%"><textarea name="descriptionStart" rows="2" class="textbox" style="width:85%"></textarea></td>
+		<td align="center" width="50%"><textarea name="descriptionEnd" rows="2" class="textbox" style="width:85%"></textarea></td>
 		</tr>
 		</table>
 		</@p.td><@p.tr/>
 		<@p.td colspan="2" label="rule.content">
 		<table border="0" width="100%">
 		<tr>
-		<td align="center" width="50%"><textarea name="contentStart" rows="2" style="width:85%"></textarea></td>
-		<td align="center" width="50%"><textarea name="contentEnd" rows="2" style="width:85%"></textarea></td>
+		<td align="center" width="50%"><textarea name="contentStart" rows="2" class="textbox" style="width:85%"></textarea></td>
+		<td align="center" width="50%"><textarea name="contentEnd" rows="2" class="textbox" style="width:85%"></textarea></td>
 		</tr>
 		</table>
 		</@p.td><@p.tr/>
@@ -209,7 +206,7 @@ function ShowTab(theA,Small,main){
 	<!-- 内容分页属性 -->
 	<div style="display: none;" class="cont" id="Tab3">
 	<table class="input" cellspacing="1" cellpadding="2" border="0" width="100%">
-		    <tr>
+		<tr>
 	   <@p.td colspan="2" label="rule.pagelinkarea">
 		<table border="0" width="100%">
 		<tr>
@@ -218,8 +215,8 @@ function ShowTab(theA,Small,main){
 		</tr>
 		<tr>
 		<tr>
-		<td align="center" width="50%"><textarea name="paginationStart" rows="2" style="width:85%"></textarea></td>
-		<td align="center" width="50%"><textarea name="paginationEnd" rows="2" style="width:85%"></textarea></td>
+		<td align="center" width="50%"><textarea name="paginationStart" rows="2" class="textbox" style="width:85%"></textarea></td>
+		<td align="center" width="50%"><textarea name="paginationEnd" rows="2" class="textbox" style="width:85%"></textarea></td>
 		</tr>
 		</table>
 		</@p.td><@p.tr/>
@@ -230,8 +227,7 @@ function ShowTab(theA,Small,main){
 	<!-- 评论属性 -->
 	<div style="display: none;" class="cont" id="Tab4">
 	<table class="input" cellspacing="1" cellpadding="2" border="0" width="100%">
-		    <tr>
-	    
+		<tr>
 		<@p.td colspan="2" label="rule.commentIndex">
 		<table border="0" width="100%">
 		<tr>
@@ -240,32 +236,32 @@ function ShowTab(theA,Small,main){
 		</tr>
 		<tr>
 		<tr>
-		<td align="center" width="50%"><textarea name="commentIndexStart" rows="2" style="width:85%"></textarea></td>
-		<td align="center" width="50%"><textarea name="commentIndexEnd" rows="2" style="width:85%"></textarea></td>
+		<td align="center" width="50%"><textarea name="commentIndexStart" rows="2" class="textbox" style="width:85%"></textarea></td>
+		<td align="center" width="50%"><textarea name="commentIndexEnd" rows="2" class="textbox" style="width:85%"></textarea></td>
 		</tr>
 		</table>
 		</@p.td><@p.tr/>
 		<@p.td colspan="2" label="rule.commentArea">
 		<table border="0" width="100%">
 		<tr>
-		<td align="center" width="50%"><textarea name="commentAreaStart" rows="2" style="width:85%"></textarea></td>
-		<td align="center" width="50%"><textarea name="commentAreaEnd" rows="2" style="width:85%"></textarea></td>
+		<td align="center" width="50%"><textarea name="commentAreaStart" rows="2" class="textbox" style="width:85%"></textarea></td>
+		<td align="center" width="50%"><textarea name="commentAreaEnd" rows="2" class="textbox" style="width:85%"></textarea></td>
 		</tr>
 		</table>
 		</@p.td><@p.tr/>
 		<@p.td colspan="2" label="rule.comment">
 		<table border="0" width="100%">
 		<tr>
-		<td align="center" width="50%"><textarea name="commentStart" rows="2" style="width:85%"></textarea></td>
-		<td align="center" width="50%"><textarea name="commentEnd" rows="2" style="width:85%"></textarea></td>
+		<td align="center" width="50%"><textarea name="commentStart" rows="2" class="textbox" style="width:85%"></textarea></td>
+		<td align="center" width="50%"><textarea name="commentEnd" rows="2" class="textbox" style="width:85%"></textarea></td>
 		</tr>
 		</table>
 		</@p.td><@p.tr/>
 		<@p.td colspan="2" label="rule.commentLink">
 		<table border="0" width="100%">
 		<tr>
-		<td align="center" width="50%"><textarea name="commentLinkStart" rows="2" style="width:85%"></textarea></td>
-		<td align="center" width="50%"><textarea name="commentLinkEnd" rows="2" style="width:85%"></textarea></td>
+		<td align="center" width="50%"><textarea name="commentLinkStart" rows="2" class="textbox" style="width:85%"></textarea></td>
+		<td align="center" width="50%"><textarea name="commentLinkEnd" rows="2" class="textbox" style="width:85%"></textarea></td>
 		</tr>
 		</table>
 		</@p.td><@p.tr/>
@@ -275,9 +271,9 @@ function ShowTab(theA,Small,main){
 	<!-- 扩展字段集 -->
 	<div style="display: none;" class="cont" id="Tab5">
 	<table class="input" cellspacing="1" cellpadding="2" border="0" width="100%">
-		    <tr>
+		<tr>
 		<@p.td label="rule.fields" colspan="2" >
-		<div><input type="button" class="add" style="width:80px" onclick="addPicLine();" value="<@s.m "rule.fields.add"/>"/><@s.m "rule.fields.help"/></div>
+		<div><input type="button" class="button" style="width:80px" onclick="addPicLine();" value="<@s.m "rule.fields.add"/>"/><@s.m "rule.fields.help"/></div>
 		<table border="0" width="100%">
 			<tr id="picBefore">
 				<td align="center" width="25%"><@s.m "rule.fields.name"/></td>
@@ -305,13 +301,13 @@ function ShowTab(theA,Small,main){
 		<textarea id="picTable" style="display:none;">
 		<tr id="picTable{0}">
 			<td align="center" width="25%">
-				<input type="text" id="fields{0}" name="fields" style="width:100px"/> 
+				<input type="text" id="fields{0}" name="fields" style="width:100px" /> 
 			</td>
 			<td align="center" width="25%">
-				&lt;textarea style="width:200px;height:60px;" id="filterStart{0}" name="filterStart" maxlength="255"&gt;&lt;/textarea&gt;
+				&lt;textarea class="textbox" id="filterStart{0}" name="filterStart" maxlength="255"&gt;&lt;/textarea&gt;
 			</td>
 			<td align="center" width="25%">
-				&lt;textarea style="width:200px;height:60px;" id="filterEnd{0}" name="filterEnd" maxlength="255"&gt;&lt;/textarea&gt;
+				&lt;textarea class="textbox" id="filterEnd{0}" name="filterEnd" maxlength="255"&gt;&lt;/textarea&gt;
 			</td>
 			<td align="center" width="25%">
 				<a href="javascript:void(0);" onclick="$('#picTable{0}').remove();" class="pn-opt"><@s.m "content.picturesDel"/></a>
