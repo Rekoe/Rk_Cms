@@ -22,5 +22,6 @@
 <#include "shiro-author.ftl"/>
 <#include "list.ftl"/>
 <#include "form-column.ftl"/>
+<#include "crawler_form.ftl"/>
 
 <#include "self_define_widget.ftl"/>
