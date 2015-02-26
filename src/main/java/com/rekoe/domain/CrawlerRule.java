@@ -693,4 +693,21 @@ public class CrawlerRule {
 			setQueue(0);
 		}
 	}
+
+	public String getArticleCategoryId() {
+		return articleCategoryId;
+	}
+
+	public void setArticleCategoryId(String articleCategoryId) {
+		this.articleCategoryId = articleCategoryId;
+	}
+
+	public ArticleCategory getArticleCategory() {
+		return articleCategory;
+	}
+
+	public void setArticleCategory(ArticleCategory articleCategory) {
+		this.articleCategory = articleCategory;
+	}
+	
 }

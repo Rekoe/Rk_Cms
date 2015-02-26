@@ -24,13 +24,13 @@ public class CrawlerAct {
 
 	@Inject
 	private ArticleCategoryService articleCategoryService;
-	
+
 	@At
 	@Ok("fm:template.admin.crawler.add")
 	public List<ArticleCategory> add() {
 		return articleCategoryService.getTopList();
 	}
-	
+
 	@At
 	@Ok("fm:template.admin.crawler.list")
 	public Object list(@Param("pageNumber") Integer pageNumber) {
@@ -40,6 +40,7 @@ public class CrawlerAct {
 	@At
 	@Ok("fm:template.admin.crawler.edit")
 	public CrawlerRule edit(@Param("id") long id) {
-		return crawlerRuleService.fetch(id);
+		CrawlerRule crawlerRule = crawlerRuleService.fetch(id);
+		return crawlerRule;
 	}
 }
