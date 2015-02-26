@@ -90,6 +90,7 @@ $().ready(function() {
 					</@shiro.hasPermission>
 					<dd><a href="${base}/admin/acquisition/list.rk" target="iframe">采集</a></dd>
 					<dd><a href="${base}/admin/crawler/add.rk" target="iframe">采集xxxx</a></dd>
+					<dd><a href="${base}/admin/crawler/list.rk" target="iframe">采集list</a></dd>
 				</dl>
 				<dl id="system">
 					<dt><@s.m "admin.main.systemGroup" /></dt>

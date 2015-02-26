@@ -12,14 +12,15 @@ import org.apache.shiro.util.CollectionUtils;
 import org.nutz.dao.Dao;
 import org.nutz.http.Http;
 import org.nutz.ioc.impl.PropertiesProxy;
+import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.json.Json;
 import org.nutz.lang.Lang;
-import org.nutz.lang.Streams;
 import org.nutz.lang.Times;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
 
+import com.rekoe.common.page.Pagination;
 import com.rekoe.crawler.bean.CrawlerRuleBean;
 import com.rekoe.crawler.bean.ExtendFieldsBean;
 import com.rekoe.crawler.core.CrawlerController;
@@ -59,7 +60,11 @@ public class CrawlerRuleService extends BaseService<CrawlerRule> {
 	public CrawlerRuleService() {
 		super();
 	}
-
+	
+	public Pagination getListByPager(Integer pageNumber, int pageSize) {
+		return getObjListByPager(pageNumber, pageSize, null);
+	}
+	
 	public CrawlerRuleService(Dao dao, ArticleService articleService) {
 		super(dao);
 		this.articleService = articleService;
@@ -271,27 +276,25 @@ public class CrawlerRuleService extends BaseService<CrawlerRule> {
 
 	}
 
-	private final static String PROPERTIES_CONF = "gather_core.properties";
-	private PropertiesProxy conf = new PropertiesProxy();
+	@Inject
+	private PropertiesProxy gatheConf;
 
 	public void init() {
-		log.info("开始加载爬虫配置文件:" + PROPERTIES_CONF);
-		conf.joinAndClose(Streams.fileInr(PROPERTIES_CONF));
-		CrawlerConfig.threadNum = conf.getInt("threadNum", CrawlerConfig.threadNum);
-		CrawlerConfig.taskTimeOut = conf.getInt("taskTimeOut", CrawlerConfig.taskTimeOut);
-		CrawlerConfig.resSaveRootPath = conf.get("resSaveRootPath", CrawlerConfig.resSaveRootPath);
-		CrawlerConfig.resSavePath = conf.get("resSavePath", CrawlerConfig.resSavePath);
-		CrawlerConfig.extractResType = conf.get("extractResType", CrawlerConfig.extractResType);
-		CrawlerConfig.extractMediaResType = conf.get("extractMediaResType", CrawlerConfig.extractMediaResType);
-		CrawlerConfig.replaceResName = conf.get("replaceName", CrawlerConfig.replaceResName);
-		CrawlerConfig.proxyServerList = populateProxyServer(conf.get("proxyServerList"));
-		CrawlerConfig.systemRootPath = conf.get("systemRootPath", CrawlerConfig.systemRootPath);
-		CrawlerConfig.httpClientMaxConn = conf.getInt("httpClientMaxConn", CrawlerConfig.httpClientMaxConn);
-		CrawlerConfig.httpClientMaxRoute = conf.getInt("httpClientMaxRoute", CrawlerConfig.httpClientMaxRoute);
-		CrawlerConfig.httpConnTimeout = conf.getInt("httpConnTimeout", CrawlerConfig.httpConnTimeout);
-		CrawlerConfig.httpSocketTimeout = conf.getInt("httpSocketTimeout", CrawlerConfig.httpSocketTimeout);
-		CrawlerConfig.defaultWords = conf.get("defaultWords", CrawlerConfig.defaultWords);
-		CrawlerConfig.defaultCommonReplaceWords = CommonUtils.populateWordsMap(conf.get("defaultCommonReplaceWords"));
+		CrawlerConfig.threadNum = gatheConf.getInt("threadNum", CrawlerConfig.threadNum);
+		CrawlerConfig.taskTimeOut = gatheConf.getInt("taskTimeOut", CrawlerConfig.taskTimeOut);
+		CrawlerConfig.resSaveRootPath = gatheConf.get("resSaveRootPath", CrawlerConfig.resSaveRootPath);
+		CrawlerConfig.resSavePath = gatheConf.get("resSavePath", CrawlerConfig.resSavePath);
+		CrawlerConfig.extractResType = gatheConf.get("extractResType", CrawlerConfig.extractResType);
+		CrawlerConfig.extractMediaResType = gatheConf.get("extractMediaResType", CrawlerConfig.extractMediaResType);
+		CrawlerConfig.replaceResName = gatheConf.get("replaceName", CrawlerConfig.replaceResName);
+		CrawlerConfig.proxyServerList = populateProxyServer(gatheConf.get("proxyServerList"));
+		CrawlerConfig.systemRootPath = gatheConf.get("systemRootPath", CrawlerConfig.systemRootPath);
+		CrawlerConfig.httpClientMaxConn = gatheConf.getInt("httpClientMaxConn", CrawlerConfig.httpClientMaxConn);
+		CrawlerConfig.httpClientMaxRoute = gatheConf.getInt("httpClientMaxRoute", CrawlerConfig.httpClientMaxRoute);
+		CrawlerConfig.httpConnTimeout = gatheConf.getInt("httpConnTimeout", CrawlerConfig.httpConnTimeout);
+		CrawlerConfig.httpSocketTimeout = gatheConf.getInt("httpSocketTimeout", CrawlerConfig.httpSocketTimeout);
+		CrawlerConfig.defaultWords = gatheConf.get("defaultWords", CrawlerConfig.defaultWords);
+		CrawlerConfig.defaultCommonReplaceWords = CommonUtils.populateWordsMap(gatheConf.get("defaultCommonReplaceWords"));
 		log.info("爬虫配置文件加载完成");
 
 	}

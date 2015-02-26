@@ -98,7 +98,8 @@ function ShowTab(theA,Small,main){
 	<div class="path">
 		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "rule.function"/>- <@s.m "admin.common.add"/>
 	</div>
-<@p.crawler_form id="jvForm" action="save.rk" labelWidth="12" >
+<@p.crawler_form id="jvForm" action="update.rk" labelWidth="12" >
+<@p.hidden name="id" value="${obj.id}" />
 <div class="ParamTab border box-positon" style="height:500px">
 	<div class="head" style="height:29px">
 		<div class="choose" style="width: 120px;" onclick="ShowTab(1,1,6)" id="Span1">
@@ -121,42 +122,23 @@ function ShowTab(theA,Small,main){
 	<div class="cont" id="Tab1">
 	    <table class="input" cellspacing="1" cellpadding="2" border="0" width="100%">
 		    <tr>
-		       <@p.text colspan="1" width="50" label="rule.name" name="name" required="true" class="required" maxlength="50"/>
-				<@p.tree label="rule.channel" colspan="2" name="channelId" required="true" class="required" />
+		       <@p.text colspan="1" width="50" label="rule.name" name="name" value="${obj.name}" required="true" class="required" maxlength="50"/>
+				<@p.tree label="rule.channel" colspan="2" name="channelId" value="${obj.articleCategoryId!}" required="true" class="required" />
 				<@p.tr/>
-				<@p.text colspan="1" width="50" label="rule.pageEncoding" name="pageEncoding" value="GBK" required="true" class="required" maxlength="20" help="rule.pageEncoding.help"/>
-				<@p.text colspan="1" width="50" label="rule.pauseTime" name="pauseTime" value="500" style="width:50px" required="true" class="required" maxlength="10" help="rule.pauseTime.help"/><@p.tr/>
-				<@p.td colspan="1" width="50" label="rule.extractContentRes">
-				<input type="radio" value="true" name="titleStart" style=""><@s.m "rule.radio.yes"/>
-				<input type="radio" value="false" name="titleStart" checked style=""><@s.m "rule.radio.no"/></br>
-				<span class="pn-fhelp"><@s.m "rule.extractContentRes.help"/></span>
-				</@p.td>
-				<@p.td colspan="1" width="50" label="rule.replaceHtmlLink">
-				<input type="radio" value="true" name="titleEnd" style=""><@s.m "rule.radio.yes"/>
-				<input type="radio" value="false" name="titleEnd" checked style=""><@s.m "rule.radio.no"/>
-				<span class="pn-fhelp"><@s.m "rule.replaceHtmlLink.help"/></span>
-				</@p.td>
-				<@p.tr/>
-				<@p.td colspan="1" width="50" label="rule.repeatCheckType">
-				<input type="radio" value="true" name="repeatCheckType" style=""><@s.m "rule.radio.yes"/>
-				<input type="radio" value="false" name="repeatCheckType" checked style=""><@s.m "rule.radio.no"/></br>
-				<span class="pn-fhelp"><@s.m "rule.repeatCheckType.help"/></span>
-				</@p.td>
-				<@p.td colspan="1" width="50" label="rule.useProxy">
-				<input type="radio" value="true" name="useProxy" style=""><@s.m "rule.radio.yes"/>
-				<input type="radio" value="false" name="useProxy" checked style=""><@s.m "rule.radio.no"/>
-				<span class="pn-fhelp"><@s.m "rule.useProxy.help"/></span>
-				</@p.td>
-				<@p.tr/>
-				
+				<@p.text colspan="1" width="50" label="rule.pageEncoding" value="${obj.pageEncoding}" name="pageEncoding" value="GBK" required="true" class="required" maxlength="20" help="rule.pageEncoding.help"/>
+				<@p.text colspan="1" width="50" label="rule.pauseTime" value="${obj.pauseTime}" name="pauseTime" value="500" style="width:50px" required="true" class="required" maxlength="10" help="rule.pauseTime.help"/><@p.tr/>
+				<@p.radio width="50" colspan="2" label="rule.extractContentRes" id="titleStart" name="titleStart" value=obj.titleStart list={"false":"rule.radio.yes","true":"rule.radio.no"} help="rule.extractContentRes.help"/><@p.tr/>
+				<@p.radio width="50" colspan="2" label="rule.replaceHtmlLink" id="titleEnd" name="titleEnd" value=obj.titleEnd list={"false":"rule.radio.yes","true":"rule.radio.no"} help="rule.replaceHtmlLink.help"/><@p.tr/>
+				<@p.radio width="50" colspan="2" label="rule.repeatCheckType" id="repeatCheckType" name="repeatCheckType" value=obj.repeatCheckType list={"false":"rule.radio.yes","true":"rule.radio.no"} help="rule.repeatCheckType.help"/><@p.tr/>
+				<@p.radio width="50" colspan="2" label="rule.useProxy" id="useProxy" name="useProxy" value=obj.repeatCheckType list={"false":"rule.radio.yes","true":"rule.radio.no"} help="rule.useProxy.help"/><@p.tr/>
 				<@p.td colspan="2" label="rule.proxy">
 				<table border="0" width="100%">
 				<tr>
-				<td><@s.m "rule.proxy.address"/>：<input type="text" name="proxyAddress" class="text" style="width:200px" maxlength="100"/><@s.m "rule.proxy.port"/>：<input type="text" name="proxyPort" class="text" style="width:50px" maxlength="10"/></td>
+				<td><@s.m "rule.proxy.address"/>：<input type="text" name="proxyAddress" value="${obj.proxyAddress!}" class="text" style="width:200px" maxlength="100"/><@s.m "rule.proxy.port"/>：<input type="text" name="proxyPort" value="${obj.proxyPort!}" class="text" style="width:50px" maxlength="10"/></td>
 				</tr>
 				</table>
 				</@p.td><@p.tr/>
-				<@p.textarea colspan="2" label="rule.replaceWords" class="textbox" name="replaceWords" rows="3" cols="70" help="rule.replaceWords.help" helpPosition="3"/><@p.tr/>
+				<@p.textarea colspan="2" label="rule.replaceWords" class="textbox" name="replaceWords" value="${obj.replaceWords!}" rows="3" cols="70" help="rule.replaceWords.help" helpPosition="3"/><@p.tr/>
 		    </tr>
 	    </table>
 	
@@ -165,10 +147,10 @@ function ShowTab(theA,Small,main){
 	<div style="display: none;" class="cont" id="Tab2">
 	<table class="input" cellspacing="1" cellpadding="2" border="0" width="100%">
 		<tr>
-	   <@p.textarea colspan="2" label="rule.planList" name="planList" rows="2" cols="70" help="rule.planList.help" helpPosition="3"/><@p.tr/>
+	   <@p.textarea colspan="2" label="rule.planList" name="planList" rows="2" cols="70" value="${obj.planList!}" help="rule.planList.help" helpPosition="3"/><@p.tr/>
 		<@p.td colspan="2" label="rule.dynamicAddr">
-		<div><input type="text" name="dynamicAddr" class="text" style="width:450px" maxlength="255"/> <span class="pn-fhelp"><@s.m "rule.dynamicAddr.help"/></span></div>
-		<div><@s.m "rule.dynamicPage"/> <@s.m "rule.from"/> <input type="text" class="text" name="dynamicStart" value="2" size="7"/> &nbsp; <@s.m "rule.to"/>: <input type="text" class="text" name="dynamicEnd" value="10" size="7"/></div> 
+		<div><input type="text" name="dynamicAddr" value="${obj.dynamicAddr!}" class="text" style="width:450px" maxlength="255"/> <span class="pn-fhelp"><@s.m "rule.dynamicAddr.help"/></span></div>
+		<div><@s.m "rule.dynamicPage"/> <@s.m "rule.from"/> <input type="text" class="text" name="dynamicStart" value="${obj.dynamicStart!}" value="2" size="7"/> &nbsp; <@s.m "rule.to"/>: <input type="text" class="text" name="dynamicEnd" value="10" size="7"/></div> 
 		</@p.td><@p.tr/>
 		
 		<@p.td colspan="2" label="rule.linkset">
@@ -178,8 +160,8 @@ function ShowTab(theA,Small,main){
 		<td align="center" width="50%"><@s.m "rule.end"/></td>
 		</tr>
 		<tr>
-		<td align="center" width="50%"><textarea name="linksetStart" rows="2" class="textbox" style="width:85%"></textarea></td>
-		<td align="center" width="50%"><textarea name="linksetEnd" rows="2" class="textbox" style="width:85%"></textarea></td>
+		<td align="center" width="50%"><textarea name="linksetStart" rows="2" class="textbox" style="width:85%">${obj.linksetStart!}</textarea></td>
+		<td align="center" width="50%"><textarea name="linksetEnd" rows="2" class="textbox" style="width:85%">${obj.linksetEnd!}</textarea></td>
 		</tr>
 		</table>
 		</@p.td><@p.tr/>
@@ -187,16 +169,16 @@ function ShowTab(theA,Small,main){
 		<@p.td colspan="2" label="rule.description">
 		<table border="0" width="100%">
 		<tr>
-		<td align="center" width="50%"><textarea name="descriptionStart" rows="2" class="textbox" style="width:85%"></textarea></td>
-		<td align="center" width="50%"><textarea name="descriptionEnd" rows="2" class="textbox" style="width:85%"></textarea></td>
+		<td align="center" width="50%"><textarea name="descriptionStart" rows="2" class="textbox" style="width:85%">${obj.descriptionStart!}</textarea></td>
+		<td align="center" width="50%"><textarea name="descriptionEnd" rows="2" class="textbox" style="width:85%">${obj.descriptionEnd!}</textarea></td>
 		</tr>
 		</table>
 		</@p.td><@p.tr/>
 		<@p.td colspan="2" label="rule.content">
 		<table border="0" width="100%">
 		<tr>
-		<td align="center" width="50%"><textarea name="contentStart" rows="2" class="textbox" style="width:85%"></textarea></td>
-		<td align="center" width="50%"><textarea name="contentEnd" rows="2" class="textbox" style="width:85%"></textarea></td>
+		<td align="center" width="50%"><textarea name="contentStart" rows="2" class="textbox" style="width:85%">${obj.contentStart!}</textarea></td>
+		<td align="center" width="50%"><textarea name="contentEnd" rows="2" class="textbox" style="width:85%">${obj.contentEnd!}</textarea></td>
 		</tr>
 		</table>
 		</@p.td><@p.tr/>
@@ -215,8 +197,8 @@ function ShowTab(theA,Small,main){
 		</tr>
 		<tr>
 		<tr>
-		<td align="center" width="50%"><textarea name="paginationStart" rows="2" class="textbox" style="width:85%"></textarea></td>
-		<td align="center" width="50%"><textarea name="paginationEnd" rows="2" class="textbox" style="width:85%"></textarea></td>
+		<td align="center" width="50%"><textarea name="paginationStart" rows="2" class="textbox" style="width:85%">${obj.paginationStart!}</textarea></td>
+		<td align="center" width="50%"><textarea name="paginationEnd" rows="2" class="textbox" style="width:85%">${obj.paginationEnd!}</textarea></td>
 		</tr>
 		</table>
 		</@p.td><@p.tr/>
@@ -236,32 +218,32 @@ function ShowTab(theA,Small,main){
 		</tr>
 		<tr>
 		<tr>
-		<td align="center" width="50%"><textarea name="commentIndexStart" rows="2" class="textbox" style="width:85%"></textarea></td>
-		<td align="center" width="50%"><textarea name="commentIndexEnd" rows="2" class="textbox" style="width:85%"></textarea></td>
+		<td align="center" width="50%"><textarea name="commentIndexStart" rows="2" class="textbox" style="width:85%">${obj.commentIndexStart!}</textarea></td>
+		<td align="center" width="50%"><textarea name="commentIndexEnd" rows="2" class="textbox" style="width:85%">${obj.commentIndexEnd!}</textarea></td>
 		</tr>
 		</table>
 		</@p.td><@p.tr/>
 		<@p.td colspan="2" label="rule.commentArea">
 		<table border="0" width="100%">
 		<tr>
-		<td align="center" width="50%"><textarea name="commentAreaStart" rows="2" class="textbox" style="width:85%"></textarea></td>
-		<td align="center" width="50%"><textarea name="commentAreaEnd" rows="2" class="textbox" style="width:85%"></textarea></td>
+		<td align="center" width="50%"><textarea name="commentAreaStart" rows="2" class="textbox" style="width:85%">${obj.commentAreaStart!}</textarea></td>
+		<td align="center" width="50%"><textarea name="commentAreaEnd" rows="2" class="textbox" style="width:85%">${obj.commentAreaEnd!}</textarea></td>
 		</tr>
 		</table>
 		</@p.td><@p.tr/>
 		<@p.td colspan="2" label="rule.comment">
 		<table border="0" width="100%">
 		<tr>
-		<td align="center" width="50%"><textarea name="commentStart" rows="2" class="textbox" style="width:85%"></textarea></td>
-		<td align="center" width="50%"><textarea name="commentEnd" rows="2" class="textbox" style="width:85%"></textarea></td>
+		<td align="center" width="50%"><textarea name="commentStart" rows="2" class="textbox" style="width:85%">${obj.commentStart!}</textarea></td>
+		<td align="center" width="50%"><textarea name="commentEnd" rows="2" class="textbox" style="width:85%">${obj.commentEnd!}</textarea></td>
 		</tr>
 		</table>
 		</@p.td><@p.tr/>
 		<@p.td colspan="2" label="rule.commentLink">
 		<table border="0" width="100%">
 		<tr>
-		<td align="center" width="50%"><textarea name="commentLinkStart" rows="2" class="textbox" style="width:85%"></textarea></td>
-		<td align="center" width="50%"><textarea name="commentLinkEnd" rows="2" class="textbox" style="width:85%"></textarea></td>
+		<td align="center" width="50%"><textarea name="commentLinkStart" rows="2" class="textbox" style="width:85%">${obj.commentLinkStart!}</textarea></td>
+		<td align="center" width="50%"><textarea name="commentLinkEnd" rows="2" class="textbox" style="width:85%">${obj.commentLinkEnd!}</textarea></td>
 		</tr>
 		</table>
 		</@p.td><@p.tr/>
