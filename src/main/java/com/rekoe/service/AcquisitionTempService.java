@@ -12,12 +12,14 @@ import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
 
+import com.rekoe.crawler.core.data.uri.CrawlLinkURI;
 import com.rekoe.domain.AcquisitionTemp;
 
 @IocBean(fields = { "dao" })
 public class AcquisitionTempService extends BaseService<AcquisitionTemp> {
 
 	private final static Log log = Logs.get();
+
 	public AcquisitionTempService() {
 		super();
 	}
@@ -31,7 +33,7 @@ public class AcquisitionTempService extends BaseService<AcquisitionTemp> {
 		temp.setContentUrl(contentUrl);
 		temp.setTitle(title);
 		NumberFormat nf = NumberFormat.getPercentInstance();
-		String percent = nf.format((curr * 1F) / (total* 1F));
+		String percent = nf.format((curr * 1F) / (total * 1F));
 		temp.setPercent(Integer.parseInt(percent.substring(0, percent.length() - 1)));
 		return temp;
 	}
@@ -50,6 +52,21 @@ public class AcquisitionTempService extends BaseService<AcquisitionTemp> {
 		dao().fastInsert(newList);
 	}
 
+	/**
+	 * 保存内容
+	 */
+	public synchronized void save(List<CrawlLinkURI> urlList) {
+		Dao dao = dao();
+		dao.execute(Sqls.create("truncate acquisition_temp"));
+		int total = urlList.size();
+		List<AcquisitionTemp> newList = new ArrayList<>();
+		for (int i = 1; i <= total; i++) {
+			CrawlLinkURI link = urlList.get(i - 1);
+			newList.add(newTemp(link.getUrl(), link.getTitle(), i, total));
+		}
+		dao().fastInsert(newList);
+	}
+
 	public List<AcquisitionTemp> getList() {
 		return dao().query(AcquisitionTemp.class, Cnd.orderBy().desc("id"));
 	}
@@ -64,5 +81,10 @@ public class AcquisitionTempService extends BaseService<AcquisitionTemp> {
 
 	public AcquisitionTemp getAcquisitionTemp() {
 		return dao().fetch(AcquisitionTemp.class, Cnd.orderBy().desc("id"));
+	}
+
+	public void delete() {
+		AcquisitionTemp temp = getAcquisitionTemp();
+		dao().delete(temp);
 	}
 }

@@ -19,11 +19,11 @@ public class WriterProcessor extends AbstractProcessor{
 	@Override
 	protected void innerProcess(Task task) {
 		log.info("=========存储抓取结果=========");
+		task.getController().deleteTemp();
 		//过滤指定区域内容
-		String title = task.getContentBean().getTitle();
 		String html = task.getController().getHtmlParserWrapper().filterTargetContentHtml(task.getContentBean().getContent());
 		task.getContentBean().setContent(html);
-		log.info(title);
+		task.getController().addArticle(task);
 	}
 
 }

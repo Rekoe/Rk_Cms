@@ -1,5 +1,7 @@
 package com.rekoe.crawler.core;
 
+import java.util.List;
+
 import org.nutz.lang.Lang;
 import org.nutz.log.Logs;
 
@@ -8,6 +10,7 @@ import com.rekoe.crawler.core.cache.HostCache;
 import com.rekoe.crawler.core.constants.Constants;
 import com.rekoe.crawler.core.data.CrawlScope;
 import com.rekoe.crawler.core.data.Task;
+import com.rekoe.crawler.core.data.uri.CrawlLinkURI;
 import com.rekoe.crawler.core.filter.factory.DefaultFilterFactory;
 import com.rekoe.crawler.core.filter.factory.FilterFactory;
 import com.rekoe.crawler.core.frontier.DefaultFrontier;
@@ -106,7 +109,7 @@ public class CrawlerController {
 			frontier.initialize(this);
 		}
 		log.info("=====================初始化爬虫线程控制器=========");
-		this.processorManager = new ProcessorManager(this);
+		this.processorManager = new ProcessorManager(this,crawlScope.getArticleCategoryId());
 		log.info("=====================初始化任务处理器链=========");
 		if (null == processorChainList) {
 			processorChainList = new ProcessorChainList();
@@ -260,5 +263,13 @@ public class CrawlerController {
 		if (!Lang.isEmpty(this.crawlerRuleService)) {
 			crawlerRuleService.addArticle(task);
 		}
+	}
+
+	public void addLinkList(List<CrawlLinkURI> urlList) {
+		crawlerRuleService.addTempList(urlList);
+	}
+	
+	public void deleteTemp() {
+		crawlerRuleService.deleteTemp();
 	}
 }

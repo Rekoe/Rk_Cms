@@ -82,14 +82,16 @@ public class DefaultFrontier implements Frontier {
 			// this.controller.getHtmlParserWrapper().getCrawlURIList(html,
 			// this.controller.getCrawlScope().getSavePath(), uri);
 			List<CrawlLinkURI> crawlURIList = this.controller.getHtmlParserWrapper().getLinkAreaUrlList(html, uri);
-			if (this.controller.getCrawlScope().isAllowRepeat()) {
+			/*if (this.controller.getCrawlScope().isAllowRepeat()) {
 				// 从采集历史表中检查是否已经采集过
 				for (CrawlLinkURI crawlURI : crawlURIList) {
 					// if(this.controller.getCrawlScope().getCrawlerPersistent().check(false,crawlURI.getUrl())){
 					crawlURIList.remove(crawlURI);
 					// }
 				}
-			}
+			}*/
+			//添加到临时表中
+			controller.addLinkList(crawlURIList);
 			if (this.controller.getCrawlScope().isGatherOrder()) {
 				for (CrawlLinkURI crawlURI : crawlURIList) {
 					Task task = new Task();

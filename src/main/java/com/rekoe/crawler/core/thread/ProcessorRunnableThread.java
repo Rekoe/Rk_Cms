@@ -19,9 +19,11 @@ public class ProcessorRunnableThread implements Runnable {
 	private CrawlerController controller;
 	private CountDownLatch latch;
 
-	public ProcessorRunnableThread(CrawlerController controller, CountDownLatch latch) {
+	private String articleCategoryId;
+	public ProcessorRunnableThread(CrawlerController controller, CountDownLatch latch,String articleCategoryId) {
 		this.controller = controller;
 		this.latch = latch;
+		this.articleCategoryId = articleCategoryId;
 	}
 
 	public void run() {
@@ -29,10 +31,7 @@ public class ProcessorRunnableThread implements Runnable {
 			while (!this.controller.getFrontier().isEmpty() && !Thread.interrupted() && !this.controller.getProcessorManager().getThreadPoolService().isShutdown()) {
 				if (checkContinue()) {
 					Task currentTask = this.controller.getFrontier().next();
-					if(Lang.isEmpty(currentTask))
-					{
-						System.err.println("+++++++++++++++++++");
-					}
+					currentTask.setArticleCategoryId(articleCategoryId);
 					processorTask(currentTask);
 					this.controller.getFrontier().finished(currentTask);
 				}

@@ -82,6 +82,16 @@ public class CrawlScope {
 	/** 采集数量 */
 	private String gatherNum;
 
+	private String articleCategoryId;
+	
+	public String getArticleCategoryId() {
+		return articleCategoryId;
+	}
+
+	public void setArticleCategoryId(String articleCategoryId) {
+		this.articleCategoryId = articleCategoryId;
+	}
+
 	public List<String> getSeeds() {
 		return seeds;
 	}

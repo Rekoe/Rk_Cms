@@ -17,9 +17,11 @@ public class ProcessorManager implements Runnable{
 	/** 线程池服务类 */
 	private ThreadPoolService threadPoolService = new ThreadPoolService(Constants.THREAD_NUM);
 	
-	public ProcessorManager(CrawlerController c) {
+	private String articleCategoryId;
+	public ProcessorManager(CrawlerController c,String articleCategoryId) {
 		super();
 		this.controller = c;
+		this.articleCategoryId = articleCategoryId;
 	}
 	
 	public void run() {
@@ -30,7 +32,7 @@ public class ProcessorManager implements Runnable{
 			CountDownLatch latch = new CountDownLatch(Constants.THREAD_NUM);
 			//开启指定数目线程执行采集内容
 			for(int i=0;i<Constants.THREAD_NUM;i++){
-				threadPoolService.execute(new ProcessorRunnableThread(controller,latch));
+				threadPoolService.execute(new ProcessorRunnableThread(controller,latch,articleCategoryId));
 			}
 			latch.await();
 			threadPoolService.shutdown();

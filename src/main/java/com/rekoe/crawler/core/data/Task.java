@@ -28,6 +28,16 @@ public class Task {
 	/** 爬虫控制器 */
 	private CrawlerController controller;
 
+	private String articleCategoryId;
+	
+	public String getArticleCategoryId() {
+		return articleCategoryId;
+	}
+
+	public void setArticleCategoryId(String articleCategoryId) {
+		this.articleCategoryId = articleCategoryId;
+	}
+
 	public Processor getNextProcessor() {
 		return nextProcessor;
 	}
