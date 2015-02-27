@@ -351,9 +351,9 @@ public class CrawlerRuleService extends BaseService<CrawlerRule> {
 		crawlScope.setSleepTime(rule.getPauseTime());
 		crawlScope.setPaginationRepairUrl(rule.getPaginationRepairUrl());
 		//是否下载图片至本地
-		crawlScope.setExtractContentRes(Boolean.valueOf(rule.getTitleStart()));
+		crawlScope.setExtractContentRes(rule.isExtractContentRes());
 		//是否去掉内容中连接
-		crawlScope.setReplaceHtmlLink(Boolean.valueOf(rule.getTitleEnd()));
+		crawlScope.setReplaceHtmlLink(rule.isReplaceHtmlLink());
 		crawlScope.setAllowRepeat(rule.isRepeatCheckType());
 		crawlScope.setUseProxy(rule.isUseProxy());
 		crawlScope.setProxyAddress(rule.getProxyAddress());

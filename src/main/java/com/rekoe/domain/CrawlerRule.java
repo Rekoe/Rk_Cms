@@ -92,13 +92,15 @@ public class CrawlerRule {
 	@Comment("内容链接结束")
 	private String linkEnd;
 	
-	@Column("title_start")
-	@Comment("标题开始")
-	private String titleStart;
+	@Column("is_extractcontentres")
+	@Comment("是否去重")
+	@ColDefine(type = ColType.BOOLEAN)
+	private boolean extractContentRes;
 	
-	@Column("title_end")
-	@Comment("标题结束")
-	private String titleEnd;
+	@Column("is_replacehtmllink")
+	@Comment("是否去除链接")
+	@ColDefine(type = ColType.BOOLEAN)
+	private boolean replaceHtmlLink;
 	
 	@Column("keywords_start")
 	@Comment("关键字开始")
@@ -345,20 +347,20 @@ public class CrawlerRule {
 		this.linkEnd = linkEnd;
 	}
 
-	public String getTitleStart() {
-		return titleStart;
+	public boolean isExtractContentRes() {
+		return extractContentRes;
 	}
 
-	public void setTitleStart(String titleStart) {
-		this.titleStart = titleStart;
+	public void setExtractContentRes(boolean extractContentRes) {
+		this.extractContentRes = extractContentRes;
 	}
 
-	public String getTitleEnd() {
-		return titleEnd;
+	public boolean isReplaceHtmlLink() {
+		return replaceHtmlLink;
 	}
 
-	public void setTitleEnd(String titleEnd) {
-		this.titleEnd = titleEnd;
+	public void setReplaceHtmlLink(boolean replaceHtmlLink) {
+		this.replaceHtmlLink = replaceHtmlLink;
 	}
 
 	public String getKeywordsStart() {
