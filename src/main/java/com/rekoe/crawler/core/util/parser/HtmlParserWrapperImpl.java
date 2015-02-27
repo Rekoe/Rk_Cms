@@ -1,5 +1,6 @@
 package com.rekoe.crawler.core.util.parser;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -8,7 +9,14 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.util.CollectionUtils;
+import org.htmlparser.NodeFilter;
+import org.htmlparser.filters.NodeClassFilter;
+import org.htmlparser.filters.OrFilter;
+import org.htmlparser.tags.ScriptTag;
+import org.htmlparser.tags.Span;
+import org.htmlparser.tags.StyleTag;
 import org.htmlparser.util.ParserException;
+import org.htmlparser.util.ParserUtils;
 import org.nutz.lang.Lang;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
@@ -179,7 +187,24 @@ public class HtmlParserWrapperImpl implements HtmlParserWrapper {
 			}
 			returnHtml = StringUtils.left(returnHtml, Constants.BRIEF_NUM);
 		}
-		return returnHtml;
+
+		return htmlInit(returnHtml);
+	}
+
+	private String htmlInit(String htmlStr) {
+		NodeFilter scriptFilter = new NodeClassFilter(ScriptTag.class);
+		NodeFilter styleFilter = new NodeClassFilter(StyleTag.class);
+		NodeFilter spanFilter = new NodeClassFilter(Span.class);
+		NodeFilter[] filter = { scriptFilter, styleFilter, spanFilter };
+		OrFilter orFilter = new OrFilter(filter);
+		try {
+			htmlStr = ParserUtils.trimTags(htmlStr, orFilter, true, true);
+		} catch (ParserException e) {
+			log.error(e);
+		} catch (UnsupportedEncodingException e) {
+			log.error(e);
+		}
+		return htmlStr;
 	}
 
 	/**

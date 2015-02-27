@@ -88,33 +88,22 @@ public class CrawlerController {
 	 */
 	@SuppressWarnings("unchecked")
 	private void setupCrawlModules(CrawlScope crawlScope) {
-		log.info("=========开始初始化爬虫各个模块=========");
-		log.info("=====================加载爬虫配置参数=========");
 		this.crawlScope = crawlScope;
-		log.info("=====================初始化字符集帮助类=========");
 		this.handler = new CharsetHandler(crawlScope.getEncoding());
-		log.info("=====================初始化过滤器工厂,并注册过滤器=========");
 		filterFactory = new DefaultFilterFactory();
 		filterFactory.register(crawlScope.getFilterList());
 		filterFactory.registerMulteity(crawlScope.getMulteityFilterList());
-		log.info("=====================初始化主机缓存=========");
 		hostCache = new DefaultHostCache();
-		log.info("=====================初始化uriHelper=========");
 		uriHelper = new DefaultURIHelper(crawlScope);
-		log.info("=====================初始化HTML解析器帮助类=========");
 		this.htmlParserWrapper = new HtmlParserWrapperImpl(filterFactory, uriHelper);
-		log.info("=====================初始化爬虫边界控制器=========");
 		if (null == frontier) {
 			frontier = new DefaultFrontier();
 			frontier.initialize(this);
 		}
-		log.info("=====================初始化爬虫线程控制器=========");
 		this.processorManager = new ProcessorManager(this,crawlScope.getArticleCategoryId());
-		log.info("=====================初始化任务处理器链=========");
 		if (null == processorChainList) {
 			processorChainList = new ProcessorChainList();
 		}
-		log.info("=====================初始化爬虫状态=========");
 		this.state = Constants.CRAWL_STATE_READY;
 	}
 
@@ -203,7 +192,6 @@ public class CrawlerController {
 	 * 爬虫正常停止
 	 */
 	public void shutdown() {
-		log.info("=====================爬虫正常停止=========");
 		this.destory();
 	}
 
@@ -211,7 +199,6 @@ public class CrawlerController {
 	 * 爬虫非正常停止
 	 */
 	public void shutdownNow() {
-		log.info("=====================爬虫非正常停止=========");
 		this.processorManager.getThreadPoolService().shutdownNow();
 		this.state = Constants.CRAWL_STATE_ORIGINAL;
 	}

@@ -10,19 +10,30 @@ $.validator.methods.leafChannel = function(value, element, param) {
 	return $(element.options[i]).attr("class")!="sel-disabled";
 };
 $(function() {
-	$("#jvForm").validate({
-		rules: {
-			channelId: {
-				required: true,
-				leafChannel: true
+	$('#update').click(function() {  
+		$.dialog({
+			type: "warn",
+			content: '<@s.m "admin.dialog.updateConfirm"/>',
+			ok: '<@s.m "admin.dialog.ok"/>',
+			cancel: '<@s.m "admin.dialog.cancel"/>',
+			onOk: function() {
+				$.ajax({
+					url: "update.rk",
+					type: "POST",
+					data: $('#jvForm').serialize(),
+					dataType: "json",
+					cache: false,
+					success: function(message) {
+						$.message(message);
+						if (message.type == "success") {
+							window.location.href = "list"
+						}
+					}
+				});
 			}
-		},
-		messages:{
-			channelId: {
-				leafChannel: "<@s.m "rule.error.notLeafChannel"/>"
-			}
-		}
-	});
+		}); 
+		return false;
+	}); 
 });
 //点击滑动JS
 function ShowTab(theA,Small,main){
@@ -98,7 +109,7 @@ function ShowTab(theA,Small,main){
 	<div class="path">
 		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "rule.function"/>- <@s.m "admin.common.add"/>
 	</div>
-<@p.crawler_form id="jvForm" action="update.rk" labelWidth="12" >
+<@p.crawler_form id="jvForm" action="#" method="post" labelWidth="12" tableClass="input">
 <@p.hidden name="crawler.id" value="${obj.id}" />
 <div class="ParamTab border box-positon" style="height:500px">
 	<div class="head" style="height:29px">
@@ -127,10 +138,10 @@ function ShowTab(theA,Small,main){
 				<@p.tr/>
 				<@p.text colspan="1" width="50" label="rule.pageEncoding" value="${obj.pageEncoding}" name="crawler.pageEncoding" value="GBK" required="true" class="required" maxlength="20" help="rule.pageEncoding.help"/>
 				<@p.text colspan="1" width="50" label="rule.pauseTime" value="${obj.pauseTime}" name="crawler.pauseTime" value="500" style="width:50px" required="true" class="required" maxlength="10" help="rule.pauseTime.help"/><@p.tr/>
-				<@p.radio width="50" colspan="2" label="rule.extractContentRes" id="crawler.extractContentRes" name="crawler.extractContentRes" value=obj.extractContentRes list={"true":"rule.radio.yes","fales":"rule.radio.no"} help="rule.extractContentRes.help"/><@p.tr/>
-				<@p.radio width="50" colspan="2" label="rule.replaceHtmlLink" id="crawler.replaceHtmlLink" name="crawler.replaceHtmlLink" value=obj.replaceHtmlLink list={"true":"rule.radio.yes","true":"false.radio.no"} help="rule.replaceHtmlLink.help"/><@p.tr/>
-				<@p.radio width="50" colspan="2" label="rule.repeatCheckType" id="crawler.repeatCheckType" name="crawler.repeatCheckType" value=obj.repeatCheckType list={"true":"rule.radio.yes","true":"false.radio.no"} help="rule.repeatCheckType.help"/><@p.tr/>
-				<@p.radio width="50" colspan="2" label="rule.useProxy" id="crawler.useProxy" name="crawler.useProxy" value=obj.repeatCheckType list={"false":"rule.radio.yes","true":"rule.radio.no"} help="rule.useProxy.help"/><@p.tr/>
+				<@p.radio width="50" colspan="1" label="rule.extractContentRes" id="crawler.extractContentRes" name="crawler.extractContentRes" value=obj.extractContentRes list={"true":"rule.radio.yes","false":"rule.radio.no"} help="rule.extractContentRes.help"/>
+				<@p.radio width="50" colspan="1" label="rule.replaceHtmlLink" id="crawler.replaceHtmlLink" name="crawler.replaceHtmlLink" value=obj.replaceHtmlLink list={"true":"rule.radio.yes","false":"rule.radio.no"} help="rule.replaceHtmlLink.help"/><@p.tr/>
+				<@p.radio width="50" colspan="2" label="rule.repeatCheckType" id="crawler.repeatCheckType" name="crawler.repeatCheckType" value=obj.repeatCheckType list={"true":"rule.radio.yes","false":"rule.radio.no"} help="rule.repeatCheckType.help"/><@p.tr/>
+				<@p.radio width="50" colspan="2" label="rule.useProxy" id="crawler.useProxy" name="crawler.useProxy" value=obj.repeatCheckType list={"true":"rule.radio.yes","false":"rule.radio.no"} help="rule.useProxy.help"/><@p.tr/>
 				<@p.td colspan="2" label="rule.proxy">
 				<table border="0" width="100%">
 				<tr>

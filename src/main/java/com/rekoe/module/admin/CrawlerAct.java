@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
+import org.nutz.json.Json;
 import org.nutz.lang.Lang;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
@@ -60,6 +61,9 @@ public class CrawlerAct {
 		return Message.success("admin.message.success", req);
 	}
 
+	public static void main(String[] args) {
+		System.out.println(new Boolean("fales").booleanValue());
+	}
 	@At
 	@Ok("json")
 	public Message update(@Param("::crawler.") CrawlerRule crawler, HttpServletRequest req) {
