@@ -80,7 +80,7 @@ public class CrawlScope {
 	/** 采集顺序 */
 	private boolean gatherOrder = Constants.GATHER_ORDER;
 	/** 采集数量 */
-	private String gatherNum;
+	private int gatherNum;
 
 	private String articleCategoryId;
 	
@@ -329,19 +329,11 @@ public class CrawlScope {
 		this.paginationRepairUrl = paginationRepairUrl;
 	}
 
-	public boolean isGatherOrder() {
-		return gatherOrder;
-	}
-
-	public void setGatherOrder(boolean gatherOrder) {
-		this.gatherOrder = gatherOrder;
-	}
-
-	public String getGatherNum() {
+	public int getGatherNum() {
 		return gatherNum;
 	}
 
-	public void setGatherNum(String gatherNum) {
+	public void setGatherNum(int gatherNum) {
 		this.gatherNum = gatherNum;
 	}
 

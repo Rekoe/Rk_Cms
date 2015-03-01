@@ -20,7 +20,8 @@ public class ProcessorRunnableThread implements Runnable {
 	private CountDownLatch latch;
 
 	private String articleCategoryId;
-	public ProcessorRunnableThread(CrawlerController controller, CountDownLatch latch,String articleCategoryId) {
+
+	public ProcessorRunnableThread(CrawlerController controller, CountDownLatch latch, String articleCategoryId) {
 		this.controller = controller;
 		this.latch = latch;
 		this.articleCategoryId = articleCategoryId;
@@ -31,9 +32,11 @@ public class ProcessorRunnableThread implements Runnable {
 			while (!this.controller.getFrontier().isEmpty() && !Thread.interrupted() && !this.controller.getProcessorManager().getThreadPoolService().isShutdown()) {
 				if (checkContinue()) {
 					Task currentTask = this.controller.getFrontier().next();
-					currentTask.setArticleCategoryId(articleCategoryId);
-					processorTask(currentTask);
-					this.controller.getFrontier().finished(currentTask);
+					if (!Lang.isEmpty(currentTask)) {
+						currentTask.setArticleCategoryId(articleCategoryId);
+						processorTask(currentTask);
+						this.controller.getFrontier().finished(currentTask);
+					}
 				}
 				log.info("======================采集内容子线程：" + Thread.currentThread().getName() + "休眠：" + this.controller.getCrawlScope().getSleepTime() + "毫秒");
 				Thread.sleep(this.controller.getCrawlScope().getSleepTime());

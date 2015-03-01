@@ -156,6 +156,7 @@ public class CrawlerRuleService extends BaseService<CrawlerRule> {
 		crawlScope.setProxyPort(rule.getProxyPort());
 		crawlScope.setReplaceWords(rule.getReplaceWords());
 		crawlScope.addSeeds(rule.getAllPlans());
+		crawlScope.setGatherNum(rule.getGatherNum());
 		crawlController.initialize(crawlScope, this);
 		crawlController.start();
 	}

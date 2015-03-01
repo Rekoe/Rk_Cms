@@ -136,8 +136,9 @@ function ShowTab(theA,Small,main){
 		       <@p.text colspan="1" width="50" label="rule.name" name="crawler.name" value="${obj.name}" required="true" class="required" maxlength="50"/>
 				<@p.tree label="rule.channel" colspan="2" name="crawler.articleCategoryId" value="${obj.articleCategoryId!}" required="true" class="required" />
 				<@p.tr/>
+				<@p.text colspan="2" width="50" label="rule.gatherNum" name="crawler.gatherNum" value="${obj.gatherNum!}" style="width:50px" required="true" class="required" maxlength="10" help="rule.gatherNum.help"/><@p.tr/>
 				<@p.text colspan="1" width="50" label="rule.pageEncoding" value="${obj.pageEncoding}" name="crawler.pageEncoding" value="GBK" required="true" class="required" maxlength="20" help="rule.pageEncoding.help"/>
-				<@p.text colspan="1" width="50" label="rule.pauseTime" value="${obj.pauseTime}" name="crawler.pauseTime" value="500" style="width:50px" required="true" class="required" maxlength="10" help="rule.pauseTime.help"/><@p.tr/>
+				<@p.text colspan="1" width="50" label="rule.pauseTime" value="${obj.pauseTime}" name="crawler.pauseTime" style="width:50px" required="true" class="required" maxlength="10" help="rule.pauseTime.help"/><@p.tr/>
 				<@p.radio width="50" colspan="1" label="rule.extractContentRes" id="crawler.extractContentRes" name="crawler.extractContentRes" value=obj.extractContentRes list={"true":"rule.radio.yes","false":"rule.radio.no"} help="rule.extractContentRes.help"/>
 				<@p.radio width="50" colspan="1" label="rule.replaceHtmlLink" id="crawler.replaceHtmlLink" name="crawler.replaceHtmlLink" value=obj.replaceHtmlLink list={"true":"rule.radio.yes","false":"rule.radio.no"} help="rule.replaceHtmlLink.help"/><@p.tr/>
 				<@p.radio width="50" colspan="2" label="rule.repeatCheckType" id="crawler.repeatCheckType" name="crawler.repeatCheckType" value=obj.repeatCheckType list={"true":"rule.radio.yes","false":"rule.radio.no"} help="rule.repeatCheckType.help"/><@p.tr/>

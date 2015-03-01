@@ -1,5 +1,6 @@
 package com.rekoe.crawler.core.frontier;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -28,25 +29,25 @@ public class DefaultFrontier implements Frontier {
 	/** 任务总数 */
 	private transient int taskSize;
 
+	/** 需要采集的数量 */
+	private int gatherNum;
+
 	public synchronized void finished(Task task) {
 		task.finished();
 		taskQueue.addExecTask(task);
-		log.info("已经完成任务：" + taskQueue.getExecTaskNum() + "个");
-		if (StringUtils.isNotBlank(this.controller.getCrawlScope().getGatherNum())) {
-			if (Integer.valueOf(this.controller.getCrawlScope().getGatherNum()) - 1 == taskQueue.getExecTaskNum()) {
-				taskQueue.clear();
-			}
+		int finishedNum = taskQueue.getExecTaskNum();
+		log.infof("已经完成任务：%s 个", finishedNum);
+		if (this.gatherNum - 1 == finishedNum) {
+			taskQueue.clear();
 		}
 	}
 
 	/**
 	 * 初始化 <li>加载爬行种子链接</li> <li>初始化任务队列</li>
-	 * 
-	 * @param c
-	 *            控制器对象
 	 */
 	public void initialize(CrawlerController c) {
 		this.controller = c;
+		this.gatherNum = c.getCrawlScope().getGatherNum();
 		loadSeeds();
 		initTask();
 		this.taskSize = taskQueue.getUnExecTaskNum();
@@ -57,14 +58,15 @@ public class DefaultFrontier implements Frontier {
 	 */
 	private void initTask() {
 		log.info("=========初始化任务队列=========");
-		CrawlLinkURI url = null;
 		int planNum = 1;
+		List<CrawlLinkURI> gatherList = new ArrayList<CrawlLinkURI>();
 		while (!planIsEmpty()) {
-			url = getPlan();
+			CrawlLinkURI url = getPlan();
 			log.info(url);
-			populateTaskQueue(url, planNum);
+			populateTaskQueue(url, planNum, gatherList);
 			planNum++;
 		}
+		controller.addLinkList(gatherList);
 		log.info("=========初始化任务队列结束,任务总数：=========" + taskQueue.getUnExecTaskNum() + "个");
 	}
 
@@ -73,7 +75,7 @@ public class DefaultFrontier implements Frontier {
 	 * 
 	 * @param map
 	 */
-	private void populateTaskQueue(CrawlLinkURI uri, Integer planNum) {
+	private void populateTaskQueue(CrawlLinkURI uri, int planNum, List<CrawlLinkURI> gatherList) {
 		log.info("=========开始组装任务队列=========");
 		try {
 			String html = this.controller.getHandler().handleResponse(this.controller.getHostCache().getHttpHostUrl(uri));
@@ -82,50 +84,33 @@ public class DefaultFrontier implements Frontier {
 			// this.controller.getHtmlParserWrapper().getCrawlURIList(html,
 			// this.controller.getCrawlScope().getSavePath(), uri);
 			List<CrawlLinkURI> crawlURIList = this.controller.getHtmlParserWrapper().getLinkAreaUrlList(html, uri);
-			/*if (this.controller.getCrawlScope().isAllowRepeat()) {
-				// 从采集历史表中检查是否已经采集过
-				for (CrawlLinkURI crawlURI : crawlURIList) {
-					// if(this.controller.getCrawlScope().getCrawlerPersistent().check(false,crawlURI.getUrl())){
-					crawlURIList.remove(crawlURI);
-					// }
+			/*
+			 * if (this.controller.getCrawlScope().isAllowRepeat()) { //
+			 * 从采集历史表中检查是否已经采集过 for (CrawlLinkURI crawlURI : crawlURIList) { //
+			 * if
+			 * (this.controller.getCrawlScope().getCrawlerPersistent().check(false
+			 * ,crawlURI.getUrl())){ crawlURIList.remove(crawlURI); // } } }
+			 */
+			// 添加到临时表中
+			for (CrawlLinkURI crawlURI : crawlURIList) {
+				if (gatherList.size() >= gatherNum) {
+					break;
 				}
-			}*/
-			//添加到临时表中
-			controller.addLinkList(crawlURIList);
-			if (this.controller.getCrawlScope().isGatherOrder()) {
-				for (CrawlLinkURI crawlURI : crawlURIList) {
-					Task task = new Task();
-					task.setPlanNum(planNum);
-					task.setTaskNum(taskNum);
-					task.setCurrTaskTotalNum(crawlURIList.size());
-					task.setCrawlURI(crawlURI);
-					task.setController(this.controller);
-					task.getContentBean().setTitle(crawlURI.getTitle());
-					task.getContentBean().setAcquId(this.controller.getCrawlScope().getId());
-					if (StringUtils.isNotEmpty(crawlURI.getResURI().getUrl())) {
-						task.getContentBean().setTitleImg(crawlURI.getResURI().getUrl());
-					}
-					task.getContentBean().getResCrawlURIList().add(crawlURI.getResURI());
-					addTask(task);
-					taskNum++;
+				Task task = new Task();
+				task.setPlanNum(planNum);
+				task.setTaskNum(taskNum);
+				task.setCurrTaskTotalNum(crawlURIList.size());
+				task.setCrawlURI(crawlURI);
+				task.setController(this.controller);
+				task.getContentBean().setTitle(crawlURI.getTitle());
+				task.getContentBean().setAcquId(this.controller.getCrawlScope().getId());
+				if (StringUtils.isNotEmpty(crawlURI.getResURI().getUrl())) {
+					task.getContentBean().setTitleImg(crawlURI.getResURI().getUrl());
 				}
-			} else {
-				for (int i = crawlURIList.size() - 1; i >= 0; i--) {
-					Task task = new Task();
-					task.setPlanNum(planNum);
-					task.setTaskNum(taskNum);
-					task.setCurrTaskTotalNum(crawlURIList.size());
-					task.setCrawlURI(crawlURIList.get(i));
-					task.setController(this.controller);
-					task.getContentBean().setTitle(crawlURIList.get(i).getTitle());
-					task.getContentBean().setAcquId(this.controller.getCrawlScope().getId());
-					if (StringUtils.isNotEmpty(crawlURIList.get(i).getResURI().getUrl())) {
-						task.getContentBean().setTitleImg(crawlURIList.get(i).getResURI().getUrl());
-					}
-					task.getContentBean().getResCrawlURIList().add(crawlURIList.get(i).getResURI());
-					addTask(task);
-					taskNum++;
-				}
+				task.getContentBean().getResCrawlURIList().add(crawlURI.getResURI());
+				addTask(task);
+				taskNum++;
+				gatherList.add(crawlURI);
 			}
 		} catch (Exception e) {
 			log.error(e);
@@ -138,22 +123,11 @@ public class DefaultFrontier implements Frontier {
 	private void loadSeeds() {
 		log.info("=========开始加载种子链接=========");
 		List<String> plans = this.controller.getCrawlScope().getSeeds();
-		if (this.controller.getCrawlScope().isGatherOrder()) {
-			for (int i = 0; i < plans.size(); i++) {
-				CrawlLinkURI url = this.controller.getUriHelper().populateCrawlURI(null, plans.get(i), "");
-				url.setSeed(true);
-				addPlan(url);
-			}
-		} else {
-			log.info("=========plans.size()：=========" + plans.size());
-			for (int i = plans.size() - 1; i >= 0; i--) {
-				log.info("=========加载种植：=========" + i);
-				CrawlLinkURI url = this.controller.getUriHelper().populateCrawlURI(null, plans.get(i), "");
-				url.setSeed(true);
-				addPlan(url);
-			}
+		for (int i = 0; i < plans.size(); i++) {
+			CrawlLinkURI url = this.controller.getUriHelper().populateCrawlURI(null, plans.get(i), "");
+			url.setSeed(true);
+			addPlan(url);
 		}
-
 		log.info("=========加载种子链接结束,共加载种子数：=========" + planUrlQueue.getUnExecTaskNum() + "个");
 	}
 

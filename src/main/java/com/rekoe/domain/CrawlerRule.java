@@ -18,180 +18,180 @@ public class CrawlerRule {
 	@Id
 	@Column("rule_id")
 	private int id;
-	
+
 	@Column("acq_name")
 	@Comment("采集名称")
 	private String name;
-	
+
 	@Column("start_time")
 	@Comment("开始时间")
 	@ColDefine(type = ColType.TIMESTAMP)
 	private Date startTime;
-	
+
 	@Column("end_time")
 	@Comment("停止时间")
 	@ColDefine(type = ColType.TIMESTAMP)
 	private Date endTime;
-	
+
 	@Column
 	@Comment("当前状态(0:静止;1:采集;2:暂停)")
 	private int status;
-	
+
 	@Column("curr_num")
 	@Comment("当前号码")
 	private int currNum;
-	
+
 	@Column("curr_item")
 	@Comment("当前条数")
 	private int currItem;
-	
+
 	@Column("total_item")
 	@Comment("每页总条数")
 	private int totalItem;
-	
+
 	@Column("pause_time")
 	@Comment("暂停时间(毫秒)")
 	private int pauseTime;
-	
+
 	@Column("page_encoding")
 	@Comment("页面编码")
 	@Default("GBK")
 	private String pageEncoding;
-	
+
 	@Column("plan_list")
 	@Comment("采集列表")
 	@ColDefine(type = ColType.TEXT)
 	private String planList;
-	
+
 	@Column("dynamic_addr")
 	@Comment("动态地址")
-	@ColDefine(width=1024)
+	@ColDefine(width = 1024)
 	private String dynamicAddr;
-	
+
 	@Column("dynamic_start")
 	@Comment("页码开始")
 	private int dynamicStart;
-	
+
 	@Column("dynamic_end")
 	@Comment("页码结束")
 	private int dynamicEnd;
-	
+
 	@Column("linkset_start")
 	@Comment("内容链接区开始")
 	private String linksetStart;
-	
+
 	@Column("linkset_end")
 	@Comment("内容链接区结束")
 	private String linksetEnd;
-	
+
 	@Column("link_start")
 	@Comment("内容链接开始")
 	private String linkStart;
-	
+
 	@Column("link_end")
 	@Comment("内容链接结束")
 	private String linkEnd;
-	
+
 	@Column("is_extractcontentres")
 	@Comment("是否去重")
 	@ColDefine(type = ColType.BOOLEAN)
 	private boolean extractContentRes;
-	
+
 	@Column("is_replacehtmllink")
 	@Comment("是否去除链接")
 	@ColDefine(type = ColType.BOOLEAN)
 	private boolean replaceHtmlLink;
-	
+
 	@Column("keywords_start")
 	@Comment("关键字开始")
-	@ColDefine(width=1024)
+	@ColDefine(width = 1024)
 	private String keywordsStart;
-	
+
 	@Column("keywords_end")
 	@Comment("关键字结束")
 	private String keywordsEnd;
-	
+
 	@Column("description_start")
 	@Comment("描述开始")
 	private String descriptionStart;
-	
+
 	@Column("description_end")
 	@Comment("描述结束")
 	private String descriptionEnd;
-	
+
 	@Column("content_start")
 	@Comment("内容开始")
 	private String contentStart;
-	
+
 	@Column("content_end")
 	@Comment("内容结束")
 	private String contentEnd;
-	
+
 	@Column("pagination_start")
 	@Comment("内容分页开始")
 	private String paginationStart;
-	
+
 	@Column("pagination_end")
 	@Comment("内容分页结束")
 	private String paginationEnd;
-	
+
 	@Column("pagination_repair_url")
 	@Comment("内容分页补全URL")
 	private String paginationRepairUrl;
-	
+
 	@Column
 	private int queue;
-	
+
 	@Column("repeat_check_type")
 	@Comment("重复类型")
 	@ColDefine(type = ColType.BOOLEAN)
 	private boolean repeatCheckType;
-	
+
 	@Column("use_proxy")
 	@Comment("是否使用代理")
 	@ColDefine(type = ColType.BOOLEAN)
 	private boolean useProxy;
-	
+
 	@Column("proxy_address")
 	@Comment("代理地址")
 	private String proxyAddress;
-	
+
 	@Column("proxy_port")
 	@Comment("代理地址端口")
 	private int proxyPort;
-	
+
 	@Column("replace_words")
 	@Comment("替换字符串")
 	private String replaceWords;
-	
+
 	@Column("comment_start")
 	@Comment("评论内容开始标签属性")
 	private String commentStart;
-	
+
 	@Column("comment_index_start")
 	@Comment("内容评论列表页入口连接标签属性")
 	private String commentIndexStart;
-	
+
 	@Column("comment_index_end")
 	@Comment("内容评论列表页入口连接过滤标签属性")
 	private String commentIndexEnd;
-	
+
 	@Column("comment_area_start")
 	@Comment("评论内容列表区域标签属性")
 	private String commentAreaStart;
-	
+
 	@Column("comment_area_end")
 	@Comment("评论内容列表区域过滤标签属性")
 	private String commentAreaEnd;
-	
+
 	@Column("comment_end")
 	@Comment("评论内容过滤标签属性")
 	private String commentEnd;
-	
+
 	@Column("comment_link_start")
 	@Comment("评论连接标签属性")
 	private String commentLinkStart;
-	
+
 	@Column("comment_link_end")
 	@Comment("评论链接过虑标签属性")
 	private String commentLinkEnd;
@@ -202,6 +202,11 @@ public class CrawlerRule {
 
 	@One(target = ArticleCategory.class, field = "articleCategoryId")
 	private ArticleCategory articleCategory;// 文章分类
+
+	@Column("gather_num")
+	@Comment("采集数量")
+	@Default("50")
+	private int gatherNum;
 
 	public int getId() {
 		return id;
@@ -711,5 +716,13 @@ public class CrawlerRule {
 	public void setArticleCategory(ArticleCategory articleCategory) {
 		this.articleCategory = articleCategory;
 	}
-	
+
+	public int getGatherNum() {
+		return gatherNum;
+	}
+
+	public void setGatherNum(int gatherNum) {
+		this.gatherNum = gatherNum;
+	}
+
 }

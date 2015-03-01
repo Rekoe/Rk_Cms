@@ -124,6 +124,7 @@ function ShowTab(theA,Small,main){
 		       <@p.text colspan="1" width="50" label="rule.name" name="crawler.name" required="true" class="required" maxlength="50"/>
 				<@p.tree label="rule.channel" colspan="2" name="crawler.articleCategoryId" required="true" class="required" />
 				<@p.tr/>
+				<@p.text colspan="2" width="50" label="rule.gatherNum" name="crawler.gatherNum" style="width:50px" required="true" class="required" maxlength="10" help="rule.gatherNum.help"/><@p.tr/>
 				<@p.text colspan="1" width="50" label="rule.pageEncoding" name="crawler.pageEncoding" value="GBK" required="true" class="required" maxlength="20" help="rule.pageEncoding.help"/>
 				<@p.text colspan="1" width="50" label="rule.pauseTime" name="crawler.pauseTime" value="500" style="width:50px" required="true" class="required" maxlength="10" help="rule.pauseTime.help"/><@p.tr/>
 				<@p.radio width="50" colspan="2" label="rule.extractContentRes" id="crawler.extractContentRes" name="crawler.extractContentRes" value="false" list={"true":"rule.radio.yes","false":"rule.radio.no"} help="rule.extractContentRes.help"/><@p.tr/>

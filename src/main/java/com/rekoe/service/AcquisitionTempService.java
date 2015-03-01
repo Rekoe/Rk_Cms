@@ -84,7 +84,7 @@ public class AcquisitionTempService extends BaseService<AcquisitionTemp> {
 	}
 
 	public void delete() {
-		AcquisitionTemp temp = getAcquisitionTemp();
-		dao().delete(temp);
+		Sql sql = Sqls.create("delete from acquisition_temp order by percent desc limit 1 ");
+		dao().execute(sql);
 	}
 }

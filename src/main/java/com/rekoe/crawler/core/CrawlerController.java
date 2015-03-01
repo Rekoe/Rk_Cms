@@ -90,20 +90,16 @@ public class CrawlerController {
 	private void setupCrawlModules(CrawlScope crawlScope) {
 		this.crawlScope = crawlScope;
 		this.handler = new CharsetHandler(crawlScope.getEncoding());
-		filterFactory = new DefaultFilterFactory();
-		filterFactory.register(crawlScope.getFilterList());
-		filterFactory.registerMulteity(crawlScope.getMulteityFilterList());
-		hostCache = new DefaultHostCache();
-		uriHelper = new DefaultURIHelper(crawlScope);
+		this.filterFactory = new DefaultFilterFactory();
+		this.filterFactory.register(crawlScope.getFilterList());
+		this.filterFactory.registerMulteity(crawlScope.getMulteityFilterList());
+		this.hostCache = new DefaultHostCache();
+		this.uriHelper = new DefaultURIHelper(crawlScope);
 		this.htmlParserWrapper = new HtmlParserWrapperImpl(filterFactory, uriHelper);
-		if (null == frontier) {
-			frontier = new DefaultFrontier();
-			frontier.initialize(this);
-		}
+		this.frontier = new DefaultFrontier();
+		this.frontier.initialize(this);
 		this.processorManager = new ProcessorManager(this,crawlScope.getArticleCategoryId());
-		if (null == processorChainList) {
-			processorChainList = new ProcessorChainList();
-		}
+		this.processorChainList = new ProcessorChainList();
 		this.state = Constants.CRAWL_STATE_READY;
 	}
 
@@ -249,6 +245,7 @@ public class CrawlerController {
 	public void addArticle(Task task) {
 		if (!Lang.isEmpty(this.crawlerRuleService)) {
 			crawlerRuleService.addArticle(task);
+			deleteTemp();
 		}
 	}
 
@@ -257,6 +254,7 @@ public class CrawlerController {
 	}
 	
 	public void deleteTemp() {
+		System.err.println("delete ");
 		crawlerRuleService.deleteTemp();
 	}
 }
