@@ -254,7 +254,6 @@ public class CrawlerController {
 	}
 	
 	public void deleteTemp() {
-		System.err.println("delete ");
 		crawlerRuleService.deleteTemp();
 	}
 }
