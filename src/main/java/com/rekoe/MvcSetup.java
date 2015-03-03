@@ -35,7 +35,6 @@ public class MvcSetup implements Setup {
 	public void init(NutConfig config) {
 		Ioc ioc = config.getIoc();
 		Dao dao = ioc.get(Dao.class);
-		dao.create(CmsAcquisition.class, false);
 		dao.create(AcquisitionTemp.class, false);
 		dao.create(CrawlerRule.class, false);
 		// 若必要的数据表不存在，则初始化数据库
