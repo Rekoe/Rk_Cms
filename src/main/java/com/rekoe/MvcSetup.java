@@ -8,19 +8,12 @@ import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.nutz.dao.Dao;
 import org.nutz.dao.impl.FileSqlManager;
 import org.nutz.dao.sql.Sql;
+import org.nutz.dao.util.Daos;
 import org.nutz.ioc.Ioc;
 import org.nutz.mvc.NutConfig;
 import org.nutz.mvc.Setup;
 
-import com.rekoe.domain.AcquisitionTemp;
-import com.rekoe.domain.Article;
-import com.rekoe.domain.ArticleCategory;
 import com.rekoe.domain.CmsAcquisition;
-import com.rekoe.domain.CrawlerRule;
-import com.rekoe.domain.Permission;
-import com.rekoe.domain.PermissionCategory;
-import com.rekoe.domain.Role;
-import com.rekoe.domain.Setting;
 import com.rekoe.domain.User;
 
 /**
@@ -35,18 +28,9 @@ public class MvcSetup implements Setup {
 	public void init(NutConfig config) {
 		Ioc ioc = config.getIoc();
 		Dao dao = ioc.get(Dao.class);
-		dao.create(CmsAcquisition.class, false);
-		dao.create(AcquisitionTemp.class, false);
-		dao.create(CrawlerRule.class, false);
+		Daos.createTablesInPackage(dao, CmsAcquisition.class.getPackage().getName(), false);
 		// 若必要的数据表不存在，则初始化数据库
-		if (!dao.exists(User.class)) {
-			dao.create(User.class, true);
-			dao.create(Role.class, true);
-			dao.create(Permission.class, true);
-			dao.create(Setting.class, true);
-			dao.create(Article.class, true);
-			dao.create(ArticleCategory.class, true);
-			dao.create(PermissionCategory.class, true);
+		if (0 == dao.count(User.class)) {
 			FileSqlManager fm = new FileSqlManager("init_system_h2.sql");
 			List<Sql> sqlList = fm.createCombo(fm.keys());
 			dao.execute(sqlList.toArray(new Sql[sqlList.size()]));
