@@ -24,6 +24,8 @@ public class FreeMarkerConfigurer {
 		this.prefix = sc.getRealPath(prefix);
 		this.suffix = suffix;
 		this.freemarkerDirectiveFactory = freemarkerDirectiveFactory;
+		if (this.prefix == null)
+		    this.prefix = sc.getRealPath("/") + prefix;
 	}
 
 	public Configuration getConfiguration() {
