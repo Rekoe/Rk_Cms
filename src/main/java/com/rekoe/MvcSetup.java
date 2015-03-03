@@ -15,7 +15,6 @@ import org.nutz.mvc.Setup;
 import com.rekoe.domain.AcquisitionTemp;
 import com.rekoe.domain.Article;
 import com.rekoe.domain.ArticleCategory;
-import com.rekoe.domain.CmsAcquisition;
 import com.rekoe.domain.CrawlerRule;
 import com.rekoe.domain.Permission;
 import com.rekoe.domain.PermissionCategory;
