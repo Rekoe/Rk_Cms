@@ -1,7 +1,7 @@
 RK_Cms
 ======================================
 
-nutz version - nutz.b.52
+nutz version - nutz 1.b.52
 
 权限管理系统 采用apache shiro
 
