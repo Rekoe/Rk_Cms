@@ -23,7 +23,10 @@ INSERT INTO system_role_permission(ROLEID,PERMISSIONID) VALUES
 (1,4),
 (1,5),
 (1,6);
+/* .article_category */
+INSERT INTO article_category VALUES ('6d38b6b1afb4458fb6a2eb5a5ff9641e','2015-02-21 07:56:56','2015-02-21 07:56:56',1,'教育频道',3,'729f5f63a805472c8216887abe318bb3',NULL),('729f5f63a805472c8216887abe318bb3','2015-02-17 12:06:03','2015-02-17 12:06:03',0,'一级分类',1,'',NULL),('a51b07543d8f42b68d6b85864b277b47','2015-02-17 12:06:16','2015-02-17 12:06:16',1,'二级分类',2,'729f5f63a805472c8216887abe318bb3',NULL),('f910a34c9cbd4ece98363ca8398d995b','2015-02-21 08:05:05','2015-02-21 08:05:05',2,'学校教育',1,'6d38b6b1afb4458fb6a2eb5a5ff9641e',NULL);
 /*  .system_setting  		*/
 INSERT INTO system_setting(id,site_name,certtext,site_enabled,site_close_message) VALUES (1,'瑞克科技','Cms Game',1,'测试阶段<a herf="#">查看更多.....</a>');
-/* .acquisition*/
-INSERT INTO `acquisition` VALUES (1,'Sina','GBK','http://roll.news.sina.com.cn/news/gnxw/gdxw1/index_1.shtml','class=list_009','','false','true','id=artibody','','f910a34c9cbd4ece98363ca8398d995b',NULL),(2,'QQ','GBK','http://finance.qq.com/money/insurance/','id=newsList','','false','true','id=Cnt-Main-Article-QQ','','6d38b6b1afb4458fb6a2eb5a5ff9641e','http://finance.qq.com');
+/* .crawler_rule */
+INSERT INTO `crawler_rule` VALUES (1,'39健康-老人健康',NULL,NULL,0,0,0,0,500,'GBK','http://oldman.39.net/nutrition/','',2,0,'class=listbox','',NULL,NULL,0,0,NULL,NULL,'','','id=contentText','IFRAME,align=right','','',NULL,0,0,0,'',80,'39健康=美食汇,老人','','','','','','','','','f910a34c9cbd4ece98363ca8398d995b',1000);
+

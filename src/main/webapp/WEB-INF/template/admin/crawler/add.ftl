@@ -10,19 +10,30 @@ $.validator.methods.leafChannel = function(value, element, param) {
 	return $(element.options[i]).attr("class")!="sel-disabled";
 };
 $(function() {
-	$("#jvForm").validate({
-		rules: {
-			channelId: {
-				required: true,
-				leafChannel: true
+	$('#update').click(function() {  
+		$.dialog({
+			type: "warn",
+			content: '<@s.m "admin.dialog.updateConfirm"/>',
+			ok: '<@s.m "admin.dialog.ok"/>',
+			cancel: '<@s.m "admin.dialog.cancel"/>',
+			onOk: function() {
+				$.ajax({
+					url: "save.rk",
+					type: "POST",
+					data: $('#jvForm').serialize(),
+					dataType: "json",
+					cache: false,
+					success: function(message) {
+						$.message(message);
+						if (message.type == "success") {
+							window.location.href = "list"
+						}
+					}
+				});
 			}
-		},
-		messages:{
-			channelId: {
-				leafChannel: "<@s.m "rule.error.notLeafChannel"/>"
-			}
-		}
-	});
+		}); 
+		return false;
+	}); 
 });
 //点击滑动JS
 function ShowTab(theA,Small,main){
@@ -98,7 +109,7 @@ function ShowTab(theA,Small,main){
 	<div class="path">
 		<a href="${base}/admin/common/index.rk"><@s.m "admin.path.index" /></a> &raquo; <@s.m "rule.function"/>- <@s.m "admin.common.add"/>
 	</div>
-<@p.crawler_form id="jvForm" action="save.rk" labelWidth="12" >
+<@p.crawler_form id="jvForm" action="#" labelWidth="12" >
 	<div class="ParamTab border" style="height:500px">
 		<div class="head" style="height:29px">
 			<div class="choose" style="width: 120px;" onclick="ShowTab(1,1,6)" id="Span1">

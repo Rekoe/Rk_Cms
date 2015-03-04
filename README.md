@@ -16,7 +16,7 @@ nutz version - nutz 1.b.52
 基于maven
 
 ```
-maven clean package war:war
+mvn clean package war:war
 ```
 
 运行说明
