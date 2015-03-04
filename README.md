@@ -10,7 +10,7 @@ nutz version - nutz 1.b.52
 默认账号密码: admin 123
 
 maven 环境配置
-
+=================================================
  下载maven压缩包
  
  	http://maven.apache.org/download.cgi
