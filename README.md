@@ -10,6 +10,7 @@ nutz version - nutz 1.b.52
 默认账号密码: admin 123
 
 maven 环境配置
+
  下载maven压缩包
  
  	http://maven.apache.org/download.cgi
@@ -22,10 +23,13 @@ maven 环境配置
  	
  	我的电脑-属性-高级系统设置-高级-环境变量-系统环境变量-PATH-变量值后面添加
  	
-	``````
-	E:\Tools\apache-maven-3.1.1\bin
+```
+	;E:\Tools\apache-maven-3.1.1\bin
 	
-	``````
+```
+	
+	注意那个分号
+	
 	
 编译说明
 =================================================
