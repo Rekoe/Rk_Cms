@@ -11,14 +11,22 @@ nutz version - nutz 1.b.52
 
 maven 环境配置
  下载maven压缩包
+ 
  	http://maven.apache.org/download.cgi
+ 	
  	解压缩到
+ 	
  	E:\Tools\apache-maven-3.1.1
+ 	
  	配置环境变量
+ 	
  	我的电脑-属性-高级系统设置-高级-环境变量-系统环境变量-PATH-变量值后面添加
+ 	
 	``````
 	E:\Tools\apache-maven-3.1.1\bin
+	
 	``````
+	
 编译说明
 =================================================
 
