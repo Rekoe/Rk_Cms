@@ -17,7 +17,8 @@ import com.rekoe.filter.ShiroActionFilter;
 import com.rekoe.mvc.view.FreemarkerViewMaker;
 
 @Modules(scanPackage = true)
-@IocBy(type = ComboIocProvider.class, args = { "*org.nutz.ioc.loader.json.JsonLoader", "com/rekoe/mvc/view", "/ioc", "*org.nutz.ioc.loader.annotation.AnnotationIocLoader", "com.rekoe" })
+@IocBy(type = ComboIocProvider.class, args = { "*json", "com/rekoe/mvc/view", "/ioc", 
+                                               "*anno", "com.rekoe" })
 @SetupBy(MvcSetup.class)
 @Fail(">>:/admin/common/unauthorized.rk")
 @Localization("msg")
