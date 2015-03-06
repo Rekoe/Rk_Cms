@@ -9,6 +9,11 @@ nutz version - nutz 1.b.52
 
 默认账号密码: admin 123
 
+使用手册(编写过程中)
+=================================================
+
+http://wendal.gitbooks.io/rk_cms/content/
+
 maven 环境配置
 =================================================
  下载maven压缩包
@@ -45,7 +50,7 @@ mvn clean package war:war
 
 初始化数据库, root密码设置为root.
 ```
-create database platform default character set uft8;
+create database platform default character set utf8;
 ```
 
 将war放入tomcat的webapps目录,启动tomcat即可
