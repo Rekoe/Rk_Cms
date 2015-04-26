@@ -24,7 +24,7 @@ import com.rekoe.mvc.view.FreemarkerViewMaker;
 @Localization("msg")
 @Filters(@By(type = ShiroActionFilter.class, args = "/login.jsp"))
 @Encoding(input = "UTF-8", output = "UTF-8")
-@ChainBy(type = NutActionChainMaker.class, args = { "com/rekoe/mvc/mvc-chains.js" })
+@ChainBy(type = NutActionChainMaker.class, args = {"com/rekoe/mvc/mvc-chains.js"})
 @Views({ FreemarkerViewMaker.class})
 public class MainModule {
 
