@@ -1,15 +1,15 @@
-{
-	"default" : {
-		"ps" : [
-		      "org.nutz.mvc.impl.processor.UpdateRequestAttributesProcessor",
-		      "org.nutz.mvc.impl.processor.EncodingProcessor",
-		      "org.nutz.mvc.impl.processor.ModuleProcessor",
-		      "org.nutz.mvc.impl.processor.ActionFiltersProcessor",
-		      "org.nutz.mvc.impl.processor.AdaptorProcessor",
-		      "org.nutz.mvc.impl.processor.MethodInvokeProcessor",
-		      "com.rekoe.mvc.ProcessTimeProcessor",
-		      "org.nutz.mvc.impl.processor.ViewProcessor"
-		      ],
-		"error" : 'org.nutz.mvc.impl.processor.FailProcessor'
-	}
-}
+var ioc = {
+  "default": {
+    "ps": [
+      "org.nutz.mvc.impl.processor.UpdateRequestAttributesProcessor",
+      "org.nutz.mvc.impl.processor.EncodingProcessor",
+      "org.nutz.mvc.impl.processor.ModuleProcessor",
+      "org.nutz.mvc.impl.processor.ActionFiltersProcessor",
+      "org.nutz.mvc.impl.processor.AdaptorProcessor",
+      "org.nutz.mvc.impl.processor.MethodInvokeProcessor",
+      "com.rekoe.mvc.ProcessTimeProcessor",
+      "org.nutz.mvc.impl.processor.ViewProcessor"
+    ],
+    "error": 'org.nutz.mvc.impl.processor.FailProcessor'
+  }
+};
