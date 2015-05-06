@@ -430,8 +430,6 @@ $.fn.extend({
 			}, 2000);
 		} else if (loginStatus == "unauthorized") {
 			$.message("warn", "对不起，您无此操作权限！");
-		}else if(loginStatus == "upload_error"){
-			$.message("warn", "上传出现错误");
 		}
 	});
 })(jQuery);
