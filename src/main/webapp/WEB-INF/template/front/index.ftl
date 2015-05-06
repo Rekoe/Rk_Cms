@@ -7,6 +7,7 @@
 <meta name="copyright" content="Rekoe Cms" />
 <meta name="keywords" content="Rekoe Cms Game" />
 <meta name="description" content="Rekoe Cms Gam" />
+<meta property="qc:admins" content="57420667776253756375" />
 <link href="${base}/resources/front/css/common.css" rel="stylesheet" type="text/css" />
 <link href="${base}/resources/front/css/article.css" rel="stylesheet" type="text/css" />
 <link href="${base}/resources/admin/css/error.css" rel="stylesheet" type="text/css" />
