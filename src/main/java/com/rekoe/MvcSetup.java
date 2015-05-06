@@ -10,14 +10,10 @@ import org.nutz.dao.impl.FileSqlManager;
 import org.nutz.dao.sql.Sql;
 import org.nutz.dao.util.Daos;
 import org.nutz.ioc.Ioc;
-import org.nutz.ioc.Ioc2;
-import org.nutz.ioc.ObjectProxy;
 import org.nutz.mvc.NutConfig;
 import org.nutz.mvc.Setup;
-import org.snaker.engine.SnakerEngine;
 
 import com.rekoe.domain.User;
-import com.rekoe.snakerflow.SnakerFacets;
 
 /**
  * @author 科技㊣²º¹³
@@ -49,10 +45,6 @@ public class MvcSetup implements Setup {
 			}
 		}
 		
-		// 初始化工作流引擎
-		SnakerEngine snakerEngine = ioc.get(SnakerFacets.class).getEngine();
-		Ioc2 ioc2 = (Ioc2)ioc;
-		ioc2.getIocContext().save("app", "snakerEngine", new ObjectProxy(snakerEngine));
 	}
 
 	@Override
