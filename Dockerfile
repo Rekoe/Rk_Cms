@@ -32,7 +32,7 @@ RUN apt-get update && \
 	apt-get install -y --force-yes zip && \
     /usr/bin/mvn -Dmaven.repo.local=/tmp/clean-repo package war:war && unzip -d /usr/local/tomcat/webapps/ROOT/ target/rk_cms.war && \
 	cd .. && rm -fr Rk_Cms && rm -fr /usr/share/maven && rm -fr /usr/bin/mvn && \
-	apt-get remove -y zip git && apt-get autoremove -y && \
+	apt-get remove -y zip && apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
 	cd $CATALINA_HOME/webapps/ROOT/WEB-INF/classes/ && sed -i 's/192.168.3.157/tomysql/g' jdbc.properties
 
