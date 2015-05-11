@@ -29,7 +29,7 @@ RUN wget -O tomcat.tar.gz http://apache.fayea.com/tomcat/tomcat-8/v8.0.22/bin/ap
 	mkdir /usr/local/tomcat/webapps/ROOT
   
 RUN apt-get update && \
-	apt-get install -y --force-yes zip git && git clone --depth=1 https://github.com/Rekoe/Rk_Cms.git && cd Rk_Cms && \
+	apt-get install -y --force-yes zip && \
     /usr/bin/mvn -Dmaven.repo.local=/tmp/clean-repo package war:war && unzip -d /usr/local/tomcat/webapps/ROOT/ target/rk_cms.war && \
 	cd .. && rm -fr Rk_Cms && rm -fr /usr/share/maven && rm -fr /usr/bin/mvn && \
 	apt-get remove -y zip git && apt-get autoremove -y && \
