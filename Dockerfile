@@ -1,4 +1,4 @@
-FROM dockerfile/java:oracle-java8
+FROM java:8-jdk
 
 MAINTAINER wendal "wendal1985@gmail.com"
 
@@ -52,7 +52,7 @@ RUN apt-get update && \
 	cd .. && rm -fr Rk_Cms && rm -fr /usr/share/maven && rm -fr /usr/bin/mvn && \
 	apt-get remove -y zip git && apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-	cd $CATALINA_HOME/webapps/ROOT/WEB-INF/classes/ && sed -i 's/127.0.0.1/tomysql/g' jdbc.properties
+	cd $CATALINA_HOME/webapps/ROOT/WEB-INF/classes/ && sed -i 's/192.168.3.157/tomysql/g' jdbc.properties
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
