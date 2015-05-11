@@ -16,25 +16,29 @@ ENV MAVEN_HOME /usr/share/maven
 ENV CATALINA_HOME /usr/local/tomcat
 ENV PATH $CATALINA_HOME/bin:$PATH
 RUN mkdir -p "$CATALINA_HOME"
-WORKDIR $CATALINA_HOME
 
-ENV TOMCAT_MAJOR 7
-ENV TOMCAT_VERSION 7.0.57
-ENV TOMCAT_TGZ_URL https://www.apache.org/dist/tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz
-
-RUN wget -O tomcat.tar.gz http://apache.fayea.com/tomcat/tomcat-8/v8.0.22/bin/apache-tomcat-8.0.22.tar.gz \
+RUN cd $CATALINA_HOME \
+	&&wget -O tomcat.tar.gz http://apache.fayea.com/tomcat/tomcat-8/v8.0.22/bin/apache-tomcat-8.0.22.tar.gz \
 	&& tar -xvf tomcat.tar.gz --strip-components=1 \
+	&& cd $CATALINA_HOME \
 	&& rm bin/*.bat \
 	&& rm tomcat.tar.gz* && rm -fr /usr/local/tomcat/webapps/* && \
-	mkdir /usr/local/tomcat/webapps/ROOT
+	mkdir -p /usr/local/tomcat/webapps/ROOT
   
-RUN apt-get update && \
-	apt-get install -y --force-yes zip && \
-    /usr/bin/mvn -Dmaven.repo.local=/tmp/clean-repo package war:war && unzip -d /usr/local/tomcat/webapps/ROOT/ target/rk_cms.war && \
-	cd .. && rm -fr Rk_Cms && rm -fr /usr/share/maven && rm -fr /usr/bin/mvn && \
-	apt-get remove -y zip && apt-get autoremove -y && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-	cd $CATALINA_HOME/webapps/ROOT/WEB-INF/classes/ && sed -i 's/192.168.3.157/tomysql/g' jdbc.properties
+RUN apt-get update && apt-get install -y --force-yes zip git
+
+RUN cd /tmp && \
+	git clone https://github.com/wendal/Rk_Cms.git \
+	&& cd Rk_Cms \
+	&& /usr/bin/mvn -Dmaven.repo.local=/tmp/clean-repo package war:war \
+	&& unzip -d /usr/local/tomcat/webapps/ROOT/ target/rk_cms.war \
+	&& cd .. && rm -fr Rk_Cms && rm -fr /usr/share/maven && rm -fr /usr/bin/mvn \
+	&& apt-get remove -y zip && apt-get autoremove -y \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+	&& cd $CATALINA_HOME/webapps/ROOT/WEB-INF/classes/ \
+	&& sed -i 's/192.168.3.157/tomysql/g' jdbc.properties
+	
+WORKDIR $CATALINA_HOME
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
