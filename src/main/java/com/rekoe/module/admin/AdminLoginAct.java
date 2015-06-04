@@ -47,17 +47,13 @@ public class AdminLoginAct {
 			subject.login(token);
 			return new ServerRedirectView("/admin/main.rk");
 		} catch (IncorrectCaptchaException e) {
-			return new ViewWrapper(new ForwardView("/admin/index.rk"), e.getMessage());
+			return new ViewWrapper(new ForwardView("/user/login.rk"), e.getMessage());
 		} catch (LockedAccountException e) {
-			// Map<String, Object> msgs = Mvcs.getLocaleMessage("zh_CN");
-			// String errMsg = msgs.get("admin.login.lockedAccount").toString();
-			return new ViewWrapper(new ForwardView("/admin/index.rk"), e.getMessage());
+			return new ViewWrapper(new ForwardView("/user/login.rk"), e.getMessage());
 		} catch (AuthenticationException e) {
-			// Map<String, Object> msgs = Mvcs.getLocaleMessage("zh_CN");
-			// String errMsg = msgs.get("login_error").toString();
-			return new ViewWrapper(new ForwardView("/admin/index.rk"), e.getMessage());
+			return new ViewWrapper(new ForwardView("/user/login.rk"), e.getMessage());
 		} catch (Exception e) {
-			return new ViewWrapper(new ForwardView("/admin/index.rk"), e.getMessage());
+			return new ViewWrapper(new ForwardView("/user/login.rk"), e.getMessage());
 		}
 	}
 
