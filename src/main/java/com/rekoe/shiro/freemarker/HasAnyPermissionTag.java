@@ -10,6 +10,9 @@ public class HasAnyPermissionTag extends PermissionTag {
 		if (getSubject() == null || StringUtils.isBlank(p)) {
 			return false;
 		}
+		if (!(getSubject() instanceof com.rekoe.domain.User)) {
+			return false;
+		}
 		String[] permissionStrs = StringUtils.split(p, ROLE_NAMES_DELIMETER);
 		boolean[] haveAnyPermission = getSubject().isPermitted(permissionStrs);
 		for (boolean isRight : haveAnyPermission) {

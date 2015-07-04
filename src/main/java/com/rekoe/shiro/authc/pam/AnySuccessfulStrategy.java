@@ -32,10 +32,12 @@ import org.apache.shiro.realm.Realm;
 import org.apache.shiro.util.CollectionUtils;
 import org.nutz.lang.Lang;
 
+import com.rekoe.exception.IncorrectCaptchaException;
+
 /**
- * @author 科技㊣²º¹³
- * 2014年2月3日 下午4:48:45
- * http://www.rekoe.com
+ * @author 科技㊣²º¹³ 
+ * 2014年2月3日 下午4:48:45 
+ * http://www.rekoe.com 
  * QQ:5382211
  */
 public class AnySuccessfulStrategy extends AbstractAuthenticationStrategy {
@@ -69,7 +71,9 @@ public class AnySuccessfulStrategy extends AbstractAuthenticationStrategy {
 	@Override
 	public AuthenticationInfo afterAttempt(Realm realm, AuthenticationToken token, AuthenticationInfo singleRealmInfo, AuthenticationInfo aggregateInfo, Throwable t) throws AuthenticationException {
 		if (singleRealmInfo == null) {
-			if (t.getClass().isAssignableFrom(LockedAccountException.class)) {
+			if (t.getClass().isAssignableFrom(IncorrectCaptchaException.class)) {
+				throw Lang.makeThrow(IncorrectCaptchaException.class, t.getMessage());
+			} else if (t.getClass().isAssignableFrom(LockedAccountException.class)) {
 				throw Lang.makeThrow(LockedAccountException.class, t.getMessage());
 			} else if (t.getClass().isAssignableFrom(UnknownAccountException.class)) {
 				throw Lang.makeThrow(UnknownAccountException.class, t.getMessage());
