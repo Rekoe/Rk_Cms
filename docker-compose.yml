@@ -1,0 +1,17 @@
+
+
+db:
+  image: mariadb
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_DATABASE: platform
+  volumes:
+    - /var/lib/mysql
+web:
+  image: wendal/rk_cms
+  links:
+    - db
+  ports:
+    - "8080:8080"
+  volumes:
+    - "/dev/urandom:/dev/random"
