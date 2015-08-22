@@ -28,7 +28,7 @@ RUN mkdir /tmp2 && cd /tmp2 \
   && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn \
   && curl -sSL https://github.com/Rekoe/Rk_Cms/archive/master.tar.gz | tar xzf - -C /tmp2 \
   && cd /tmp2 && ls -l  && cd Rk_Cms-master \
-  && mvn clean package \
+  && mvn -f pom_docker.xml clean package \
   && mkdir -p /usr/local/tomcat/webapps/ROOT \
   && cp -r target/rk_cms/* /usr/local/tomcat/webapps/ROOT/ \
   && find /usr/local/tomcat/webapps/ROOT/ \
