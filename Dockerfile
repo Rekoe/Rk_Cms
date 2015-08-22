@@ -39,6 +39,6 @@ WORKDIR $CATALINA_HOME
 
 EXPOSE 8080
 
-RUN cd $CATALINA_HOME/webapps/ROOT/WEB-INF/classes/ && sed -i 's/127.0.0.1/db/g' jdbc.properties
+RUN cd $CATALINA_HOME/webapps/ROOT/WEB-INF/classes/ && sed -i 's/192.168.3.157/db/g' jdbc.properties
 
 CMD ["catalina.sh", "run"]
