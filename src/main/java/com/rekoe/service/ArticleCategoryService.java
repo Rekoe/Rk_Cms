@@ -31,14 +31,17 @@ public class ArticleCategoryService extends IdEntityService<ArticleCategory> {
 		List<ArticleCategory> list = dao().query(ArticleCategory.class, null);
 		return list;
 	}
+
 	public List<ArticleCategory> getTopList() {
 		List<ArticleCategory> list = dao().query(ArticleCategory.class, Cnd.where("grade", "=", 0));
 		return list;
 	}
+
 	public List<ArticleCategory> getChildrenList(String id) {
 		List<ArticleCategory> list = dao().query(ArticleCategory.class, Cnd.where("parentId", "=", id));
 		return list;
 	}
+
 	public StringBuffer loadSelect(String actid) {
 		List<ArticleCategory> list = dao().query(ArticleCategory.class, Cnd.where("grade", "=", 0));
 		for (ArticleCategory actCategory : list) {
@@ -135,5 +138,9 @@ public class ArticleCategoryService extends IdEntityService<ArticleCategory> {
 			// "select articleCategory from ArticleCategory articleCategory order by articleCategory.order asc";
 			return dao().query(getEntityClass(), Cnd.NEW().limit(10).asc("order"));
 		}
+	}
+
+	public void update(ArticleCategory articleCategory) {
+		dao().update(articleCategory);
 	}
 }
