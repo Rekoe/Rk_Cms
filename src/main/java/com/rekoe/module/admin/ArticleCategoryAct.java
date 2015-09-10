@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.nutz.dao.Cnd;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.lang.Lang;
@@ -48,6 +49,34 @@ public class ArticleCategoryAct {
 		req.setAttribute("articleCategoryTree", list());
 		req.setAttribute("children", articleCategoryService.findChildren(articleCategory));
 		return articleCategory;
+	}
+
+	@At
+	@Ok(">>:/admin/article_category/list.rk")
+	public void update(@Param("name") String name, @Param("order") int order, final @Param("::category.") ArticleCategory ac) {
+		ArticleCategory temp = articleCategoryService.fetch(Cnd.where("name", "=", name));
+		if (Lang.isEmpty(temp)) {
+			ParentCallBack callBack = new ParentCallBack() {
+				int i = 0;
+
+				@Override
+				public void invoke() {
+					i++;
+				}
+
+				@Override
+				public int getCount() {
+					return i;
+				}
+			};
+			checkCategoryGread(ac.getParentId(), callBack);
+			ac.setGrade(callBack.getCount());
+			ac.setCreateDate(Times.now());
+			ac.setModifyDate(Times.now());
+			ac.setName(name);
+			ac.setOrder(order);
+			articleCategoryService.update(ac);
+		}
 	}
 
 	@At
@@ -117,4 +146,5 @@ public class ArticleCategoryAct {
 	public List<ArticleCategory> by_channel(@Param("channelId") String id) {
 		return articleCategoryService.getChildrenList(id);
 	}
+
 }
