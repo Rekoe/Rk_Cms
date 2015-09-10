@@ -32,7 +32,7 @@ public class ArticleService extends BaseService<Article> {
 	}
 
 	public List<Article> getIndexNewList(int limit,String desc) {
-		return getListByCnd(Cnd.NEW().limit(1,10).desc(desc));
+		return getListByCnd(Cnd.NEW().limit(1,limit).desc(desc));
 	}
 	public List<Article> getListByCnd(Condition cnd) {
 		return dao().query(getEntityClass(), cnd);
