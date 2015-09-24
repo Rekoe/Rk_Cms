@@ -17,7 +17,6 @@ $().ready(function() {
 		}
 	});
 	$('#submit').click(function() {
-			editor.post();
 			$.ajax({
 				url : "save",
 				type : "POST",
@@ -46,7 +45,7 @@ $().ready(function() {
 	<@p.shiroAuthor label="Article.author" colspan="2" id="art.author" name="art.author" required="true" class="required" maxlength="40"/><@p.tr/>
 	<@p.radio width="50" colspan="2" label="Article.isTop" id="art.top" name="art.top" value="false" list={"false":"否","true":"是"}/><@p.tr/>
 	<@p.radio width="50" colspan="2" label="Article.isPublication" id="art.publication" name="art.publication" value="true" list={"false":"否","true":"是"}/><@p.tr/>	
-	<@p.editor value="" colspan="2" label="Article.content"  name="art.content" required="true" /><@p.tr/>
+	<@p.editor value="" colspan="2" label="Article.content" name="art.content" required="true" /><@p.tr/>
 	<@p.th />
 	<@p.td colspan="" hasColon="false">
 		<@p.submit code="admin.common.submit" id="submit"/> &nbsp; <@p.button code="admin.common.back" id="backButton" class="button"/>

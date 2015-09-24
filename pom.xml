@@ -27,7 +27,7 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
-			<version>1.0.12</version>
+			<version>1.0.15</version>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.jettison</groupId>
@@ -43,7 +43,7 @@
 		<dependency>
 			<groupId>org.nutz</groupId>
 			<artifactId>nutz</artifactId>
-			<version>1.b.52</version>
+			<version>1.b.53</version>
 		</dependency>
 		<dependency>
 			<groupId>org.nutz</groupId>
@@ -53,12 +53,12 @@
 		<dependency>
 			<groupId>com.restfb</groupId>
 			<artifactId>restfb</artifactId>
-			<version>1.6.14</version>
+			<version>1.14.1</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.nutz</groupId>
 		    <artifactId>nutz-plugins-daocache</artifactId>
-		    <version>1.b.52.preview2</version>
+		    <version>1.b.52.r4</version>>
 		</dependency>
 		<dependency>
 			<groupId>org.freemarker</groupId>
@@ -282,7 +282,7 @@
 		<dependency>
 			<groupId>org.nutz</groupId>
 			<artifactId>nutz-integration-shiro</artifactId>
-			<version>1.b.52</version>
+			<version>1.b.52.r3</version>
 		</dependency>
 	</dependencies>
 	<build>

@@ -14,7 +14,6 @@ $().ready(function() {
 		}
 	});
 	$('#update').click(function() {  
-			editor.post();
 			$.dialog({
 				type: "warn",
 				content: '<@s.m "admin.dialog.updateConfirm"/>',

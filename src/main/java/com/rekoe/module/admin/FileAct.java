@@ -45,7 +45,7 @@ public class FileAct {
 	}
 
 	@At
-	@AdaptBy(type = UploadAdaptor.class, args = { "ioc:myPicUpload" })
+	@AdaptBy(type = UploadAdaptor.class, args = { "ioc:upload" })
 	@Ok("json")
 	public Message upload(@Param("fileType") FileInfo.FileType fileType, @Param("file") TempFile tempFile, HttpServletRequest req, AdaptorErrorContext errCtx) throws IOException {
 		if (Lang.isEmpty(tempFile)) {
