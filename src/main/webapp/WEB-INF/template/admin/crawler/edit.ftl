@@ -162,7 +162,7 @@ function ShowTab(theA,Small,main){
 	   <@p.textarea colspan="2" label="rule.planList" name="crawler.planList" rows="2" cols="70" value="${obj.planList!}" help="rule.planList.help" helpPosition="3"/><@p.tr/>
 		<@p.td colspan="2" label="rule.dynamicAddr">
 		<div><input type="text" name="crawler.dynamicAddr" value="${obj.dynamicAddr!}" class="text" style="width:450px" maxlength="255"/> <span class="pn-fhelp"><@s.m "rule.dynamicAddr.help"/></span></div>
-		<div><@s.m "rule.dynamicPage"/> <@s.m "rule.from"/> <input type="text" class="text" name="crawler.dynamicStart" value="${obj.dynamicStart!}" value="2" size="7"/> &nbsp; <@s.m "rule.to"/>: <input type="text" class="text" name="dynamicEnd" value="10" size="7"/></div> 
+		<div><@s.m "rule.dynamicPage"/> <@s.m "rule.from"/> <input type="text" class="text" name="crawler.dynamicStart" value="${obj.dynamicStart!}" size="7"/> &nbsp; <@s.m "rule.to"/>: <input type="text" class="text" name="dynamicEnd" ${obj.dynamicEnd!} size="7"/></div> 
 		</@p.td><@p.tr/>
 		
 		<@p.td colspan="2" label="rule.linkset">
