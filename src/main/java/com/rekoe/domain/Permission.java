@@ -32,7 +32,7 @@ public class Permission implements Serializable{
 	private String description;
 	@ManyMany(target = Role.class, relation = "system_role_permission", from = "permissionid", to = "roleid")
 	private List<Role> roles;
-	@Column("permission_category_id")
+	@Column(hump = true)
 	private String permissionCategoryId;
 	@One(target = PermissionCategory.class, field = "permissionCategoryId")
 	private PermissionCategory permissionCategory;

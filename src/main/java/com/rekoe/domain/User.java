@@ -48,10 +48,10 @@ public class User implements Serializable {
 	@Column
 	@ColDefine(type = ColType.VARCHAR, width = 500)
 	private String description;
-	@Column("create_date")
+	@Column(hump = true)
 	@ColDefine(type = ColType.TIMESTAMP)
 	private Date createDate;
-	@Column("register_ip")
+	@Column(hump = true)
 	@ColDefine(type = ColType.VARCHAR, width = 15)
 	private String registerIp;
 	@ManyMany(target = Role.class, relation = "system_user_role", from = "userid", to = "roleid")

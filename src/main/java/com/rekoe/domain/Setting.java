@@ -16,14 +16,14 @@ import org.nutz.dao.entity.annotation.Table;
 public class Setting {
 	@Id
 	private int id;
-	@Column("site_name")
+	@Column(hump = true)
 	private String siteName;
 	@Column("certtext")
 	@ColDefine(type=ColType.VARCHAR,width=255)
 	private String certtext;
-	@Column("site_enabled")
+	@Column(hump = true)
 	private boolean siteEnabled;
-	@Column("site_close_message")
+	@Column(hump = true)
 	@ColDefine(type=ColType.TEXT)
 	private String siteCloseMessage;
 	public int getId() {

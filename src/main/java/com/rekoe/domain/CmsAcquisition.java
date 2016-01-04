@@ -13,30 +13,30 @@ public class CmsAcquisition {
 	private int id;
 	@Column
 	private String name;
-	@Column
+	@Column(hump = true)
 	private String pageEncoding;
-	@Column
-	@ColDefine(type=ColType.TEXT)
+	@Column(hump = true)
+	@ColDefine(type = ColType.TEXT)
 	private String planUrl;
-	@Column
+	@Column(hump = true)
 	private String linksetStart;
-	@Column
+	@Column(hump = true)
 	private String linksetEnd;
-	@Column
+	@Column(hump = true)
 	private String titleStart;
-	@Column
+	@Column(hump = true)
 	private String titleEnd;
-	@Column
+	@Column(hump = true)
 	private String contentStart;
-	@Column
+	@Column(hump = true)
 	private String contentEnd;
 
-	@Column("article_category_id")
+	@Column(hump = true)
 	private String articleCategoryId;
 
 	@Column
 	private String host;
-	
+
 	public CmsAcquisition() {
 	}
 
@@ -44,7 +44,7 @@ public class CmsAcquisition {
 		this.setId(id);
 	}
 
-	public CmsAcquisition(String name, String pageEncoding,String host) {
+	public CmsAcquisition(String name, String pageEncoding, String host) {
 		this.setName(name);
 		this.setPageEncoding(pageEncoding);
 		this.host = host;

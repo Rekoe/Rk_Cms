@@ -1,5 +1,6 @@
 package com.rekoe;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.shiro.crypto.RandomNumberGenerator;
@@ -12,21 +13,32 @@ import org.nutz.dao.util.Daos;
 import org.nutz.ioc.Ioc;
 import org.nutz.mvc.NutConfig;
 import org.nutz.mvc.Setup;
+import org.nutz.plugins.view.freemarker.FreeMarkerConfigurer;
 
 import com.rekoe.domain.User;
 
+import freemarker.template.Configuration;
+
 /**
- * @author 科技㊣²º¹³
- * 2014年2月3日 下午4:48:45
- * http://www.rekoe.com
- * QQ:5382211
+ * @author 科技㊣²º¹³<br/>
+ *         2014年2月3日 下午4:48:45³<br/>
+ *         http://www.rekoe.com QQ:5382211
  */
 public class MvcSetup implements Setup {
 
+	@SuppressWarnings("serial")
 	@Override
 	public void init(NutConfig config) {
 		Ioc ioc = config.getIoc();
 		Dao dao = ioc.get(Dao.class);
+		// 加载freemarker自定义标签　自定义宏路径
+		ioc.get(Configuration.class).setAutoImports(new HashMap<String, String>(2) {
+			{
+				put("p", "/ftl/pony/index.ftl");
+				put("s", "/ftl/spring.ftl");
+			}
+		});
+		ioc.get(FreeMarkerConfigurer.class, "mapTags");
 		Daos.createTablesInPackage(dao, User.class.getPackage().getName(), false);
 		// 若必要的数据表不存在，则初始化数据库
 		if (0 == dao.count(User.class)) {
@@ -44,7 +56,7 @@ public class MvcSetup implements Setup {
 				dao.update(user);
 			}
 		}
-		
+
 	}
 
 	@Override

@@ -23,12 +23,12 @@ public class CrawlerRule {
 	@Comment("采集名称")
 	private String name;
 
-	@Column("start_time")
+	@Column(hump = true)
 	@Comment("开始时间")
 	@ColDefine(type = ColType.TIMESTAMP)
 	private Date startTime;
 
-	@Column("end_time")
+	@Column(hump = true)
 	@Comment("停止时间")
 	@ColDefine(type = ColType.TIMESTAMP)
 	private Date endTime;
@@ -37,58 +37,58 @@ public class CrawlerRule {
 	@Comment("当前状态(0:静止;1:采集;2:暂停)")
 	private int status;
 
-	@Column("curr_num")
+	@Column(hump = true)
 	@Comment("当前号码")
 	private int currNum;
 
-	@Column("curr_item")
+	@Column(hump = true)
 	@Comment("当前条数")
 	private int currItem;
 
-	@Column("total_item")
+	@Column(hump = true)
 	@Comment("每页总条数")
 	private int totalItem;
 
-	@Column("pause_time")
+	@Column(hump = true)
 	@Comment("暂停时间(毫秒)")
 	private int pauseTime;
 
-	@Column("page_encoding")
+	@Column(hump = true)
 	@Comment("页面编码")
 	@Default("GBK")
 	private String pageEncoding;
 
-	@Column("plan_list")
+	@Column(hump = true)
 	@Comment("采集列表")
 	@ColDefine(type = ColType.TEXT)
 	private String planList;
 
-	@Column("dynamic_addr")
+	@Column(hump = true)
 	@Comment("动态地址")
 	@ColDefine(width = 1024)
 	private String dynamicAddr;
 
-	@Column("dynamic_start")
+	@Column(hump = true)
 	@Comment("页码开始")
 	private int dynamicStart;
 
-	@Column("dynamic_end")
+	@Column(hump = true)
 	@Comment("页码结束")
 	private int dynamicEnd;
 
-	@Column("linkset_start")
+	@Column(hump = true)
 	@Comment("内容链接区开始")
 	private String linksetStart;
 
-	@Column("linkset_end")
+	@Column(hump = true)
 	@Comment("内容链接区结束")
 	private String linksetEnd;
 
-	@Column("link_start")
+	@Column(hump = true)
 	@Comment("内容链接开始")
 	private String linkStart;
 
-	@Column("link_end")
+	@Column(hump = true)
 	@Comment("内容链接结束")
 	private String linkEnd;
 
@@ -102,108 +102,108 @@ public class CrawlerRule {
 	@ColDefine(type = ColType.BOOLEAN)
 	private boolean replaceHtmlLink;
 
-	@Column("keywords_start")
+	@Column(hump = true)
 	@Comment("关键字开始")
 	@ColDefine(width = 1024)
 	private String keywordsStart;
 
-	@Column("keywords_end")
+	@Column(hump = true)
 	@Comment("关键字结束")
 	private String keywordsEnd;
 
-	@Column("description_start")
+	@Column(hump = true)
 	@Comment("描述开始")
 	private String descriptionStart;
 
-	@Column("description_end")
+	@Column(hump = true)
 	@Comment("描述结束")
 	private String descriptionEnd;
 
-	@Column("content_start")
+	@Column(hump = true)
 	@Comment("内容开始")
 	private String contentStart;
 
-	@Column("content_end")
+	@Column(hump = true)
 	@Comment("内容结束")
 	private String contentEnd;
 
-	@Column("pagination_start")
+	@Column(hump = true)
 	@Comment("内容分页开始")
 	private String paginationStart;
 
-	@Column("pagination_end")
+	@Column(hump = true)
 	@Comment("内容分页结束")
 	private String paginationEnd;
 
-	@Column("pagination_repair_url")
+	@Column(hump = true)
 	@Comment("内容分页补全URL")
 	private String paginationRepairUrl;
 
 	@Column
 	private int queue;
 
-	@Column("repeat_check_type")
+	@Column(hump = true)
 	@Comment("重复类型")
 	@ColDefine(type = ColType.BOOLEAN)
 	private boolean repeatCheckType;
 
-	@Column("use_proxy")
+	@Column(hump = true)
 	@Comment("是否使用代理")
 	@ColDefine(type = ColType.BOOLEAN)
 	private boolean useProxy;
 
-	@Column("proxy_address")
+	@Column(hump = true)
 	@Comment("代理地址")
 	private String proxyAddress;
 
-	@Column("proxy_port")
+	@Column(hump = true)
 	@Comment("代理地址端口")
 	private int proxyPort;
 
-	@Column("replace_words")
+	@Column(hump = true)
 	@Comment("替换字符串")
 	private String replaceWords;
 
-	@Column("comment_start")
+	@Column(hump = true)
 	@Comment("评论内容开始标签属性")
 	private String commentStart;
 
-	@Column("comment_index_start")
+	@Column(hump = true)
 	@Comment("内容评论列表页入口连接标签属性")
 	private String commentIndexStart;
 
-	@Column("comment_index_end")
+	@Column(hump = true)
 	@Comment("内容评论列表页入口连接过滤标签属性")
 	private String commentIndexEnd;
 
-	@Column("comment_area_start")
+	@Column(hump = true)
 	@Comment("评论内容列表区域标签属性")
 	private String commentAreaStart;
 
-	@Column("comment_area_end")
+	@Column(hump = true)
 	@Comment("评论内容列表区域过滤标签属性")
 	private String commentAreaEnd;
 
-	@Column("comment_end")
+	@Column(hump = true)
 	@Comment("评论内容过滤标签属性")
 	private String commentEnd;
 
-	@Column("comment_link_start")
+	@Column(hump = true)
 	@Comment("评论连接标签属性")
 	private String commentLinkStart;
 
-	@Column("comment_link_end")
+	@Column(hump = true)
 	@Comment("评论链接过虑标签属性")
 	private String commentLinkEnd;
 
-	@Column("article_category_id")
+	@Column(hump = true)
 	@Comment("分类类型")
 	private String articleCategoryId;
 
 	@One(target = ArticleCategory.class, field = "articleCategoryId")
 	private ArticleCategory articleCategory;// 文章分类
 
-	@Column("gather_num")
+	@Column(hump = true)
 	@Comment("采集数量")
 	@Default("50")
 	private int gatherNum;

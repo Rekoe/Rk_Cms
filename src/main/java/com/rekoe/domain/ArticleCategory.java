@@ -31,11 +31,11 @@ public class ArticleCategory {
 	@Prev(els = { @EL("uuid()") })
 	private String id;
 
-	@Column("create_date")
+	@Column(hump = true)
 	@ColDefine(type = ColType.TIMESTAMP)
 	private Date createDate;
 
-	@Column("modify_date")
+	@Column(hump = true)
 	@ColDefine(type = ColType.TIMESTAMP)
 	private Date modifyDate;
 
@@ -47,11 +47,11 @@ public class ArticleCategory {
 	@Column("order_id")
 	private int order;
 
-	@Column("parent_id")
+	@Column(hump = true)
 	@Default("")
 	private String parentId;
 
-	@Column("tree_path")
+	@Column(hump = true)
 	private String treePath;
 
 	@One(target = ArticleCategory.class, field = "parentId")

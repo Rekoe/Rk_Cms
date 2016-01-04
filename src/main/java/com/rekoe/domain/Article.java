@@ -12,7 +12,9 @@ import org.nutz.dao.entity.annotation.Prev;
 import org.nutz.dao.entity.annotation.Table;
 
 /**
- * @author 科技㊣²º¹³ 2014年2月3日 下午4:48:45 http://www.rekoe.com QQ:5382211
+ * @author 科技㊣²º¹³<br />
+ *         2014年2月3日 下午4:48:45<br />
+ *         http://www.rekoe.com QQ:5382211
  */
 @Table("article")
 public class Article {
@@ -20,10 +22,10 @@ public class Article {
 	@Name
 	@Prev(els = { @EL("uuid()") })
 	private String id;
-	@Column("create_date")
+	@Column(hump = true)
 	@ColDefine(type = ColType.TIMESTAMP)
 	private Date createDate;
-	@Column("modify_date")
+	@Column(hump = true)
 	@ColDefine(type = ColType.TIMESTAMP)
 	private Date modifyDate;
 	@Column
@@ -46,7 +48,7 @@ public class Article {
 	@Column
 	@ColDefine(type = ColType.VARCHAR, width = 255)
 	private String title;
-	@Column("article_category_id")
+	@Column(hump = true)
 	private String articleCategoryId;
 
 	@One(target = ArticleCategory.class, field = "articleCategoryId")

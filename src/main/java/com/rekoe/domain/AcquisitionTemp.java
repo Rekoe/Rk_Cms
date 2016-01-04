@@ -11,7 +11,7 @@ public class AcquisitionTemp {
 
 	@Id
 	private int id;
-	@Column
+	@Column(hump = true)
 	@ColDefine(width = 1024)
 	private String contentUrl;
 	@Column
