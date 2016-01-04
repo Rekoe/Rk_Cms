@@ -1,7 +1,14 @@
 var ioc = {
+	shiroTags : {
+		type : "com.rekoe.shiro.freemarker.ShiroTags",
+		singleton : true
+	},
 	mapTags : {
 		factory : "$freeMarkerConfigurer#addTags",
 		args : [ {
+			'shiro' : {
+				refer : 'shiroTags'
+			},
 			'cms_perm' : {
 				refer : 'permission'
 			},
