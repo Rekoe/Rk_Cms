@@ -13,9 +13,9 @@ import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.lang.Files;
 import org.nutz.lang.random.R;
 import org.nutz.mvc.upload.TempFile;
+import org.nutz.plugins.view.freemarker.FreeMarkerConfigurer;
 
 import com.rekoe.module.admin.FileAct.FileInfo;
-import com.rekoe.web.freemarker.FreeMarkerConfigurer;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
