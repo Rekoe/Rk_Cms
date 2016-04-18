@@ -11,6 +11,13 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<repositories>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
 	</repositories>
 	<dependencies>
 		<dependency>
@@ -43,7 +50,7 @@
 		<dependency>
 			<groupId>org.nutz</groupId>
 			<artifactId>nutz</artifactId>
-			<version>1.r.54.r2</version>
+			<version>1.r.56-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.nutz</groupId>
