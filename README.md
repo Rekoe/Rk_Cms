@@ -12,7 +12,7 @@ nutz version - nutz 1.b.52
 在线演示地址
 ================================================
 
-http://115.28.27.32:9091/rk_cms/
+http://nutz.cn/yvr/t/tdb5l3e7pajv1ptl1f0nveg1bk
 
 如不可用,请报issue.
 
