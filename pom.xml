@@ -12,11 +12,19 @@
 	</properties>
 	<repositories>
 		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<id>nutz</id>
+			<url>https://jfrog.nutz.cn/artifactory/jcenter</url>
+		</repository>
+		<repository>
+			<id>nutz-snapshots</id>
+			<url>https://jfrog.nutz.cn/artifactory/snapshots</url>
 			<snapshots>
 				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
 			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
 		</repository>
 	</repositories>
 	<dependencies>
@@ -29,12 +37,12 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.28</version>
+			<version>5.1.40</version>
 		</dependency>
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
-			<version>1.0.16</version>
+			<version>1.0.25</version>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.jettison</groupId>
@@ -50,12 +58,12 @@
 		<dependency>
 			<groupId>org.nutz</groupId>
 			<artifactId>nutz</artifactId>
-			<version>1.r.56-SNAPSHOT</version>
+			<version>1.r.59</version>
 		</dependency>
 		<dependency>
 			<groupId>org.nutz</groupId>
 			<artifactId>nutz-web</artifactId>
-			<version>1.b.49</version>
+			<version>1.r.59</version>
 		</dependency>
 		<dependency>
 			<groupId>com.restfb</groupId>
@@ -65,12 +73,12 @@
 		<dependency>
 			<groupId>org.nutz</groupId>
 			<artifactId>nutz-plugins-daocache</artifactId>
-			<version>1.b.53</version>
+			<version>1.r.59</version>
 		</dependency>
 		<dependency>
 			<groupId>org.nutz</groupId>
 			<artifactId>nutz-plugins-views</artifactId>
-			<version>1.r.54.r2</version>
+			<version>1.r.59</version>
 		</dependency>
 		<dependency>
 			<groupId>org.freemarker</groupId>
@@ -178,7 +186,7 @@
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
-			<version>3.10-beta2</version>
+			<version>3.10-FINAL</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -294,7 +302,7 @@
 		<dependency>
 			<groupId>org.nutz</groupId>
 			<artifactId>nutz-integration-shiro</artifactId>
-			<version>1.b.52.r3</version>
+			<version>1.r.59</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -323,6 +331,9 @@
 							<excludes>
 								<exclude>src/main/resources/**/*</exclude>
 							</excludes>
+							<includes>
+								<include>src/main/resources/**/*.js</include>
+							</includes>
 						</configuration>
 					</execution>
 				</executions>
