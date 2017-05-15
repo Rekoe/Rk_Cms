@@ -13,7 +13,7 @@ import org.nutz.mvc.ioc.provider.ComboIocProvider;
 import org.nutz.plugins.view.freemarker.FreemarkerViewMaker;
 
 @Modules(scanPackage = true)
-@IocBy(type = ComboIocProvider.class, args = { "*json", "com/rekoe/mvc/view", "/ioc", "*anno", "com.rekoe", "*org.nutz.plugins.view.freemarker.FreemarkerIocLoader" })
+@IocBy(type = ComboIocProvider.class, args = { "*json", "com/rekoe/mvc/view/", "ioc/", "*anno", "com.rekoe", "*org.nutz.plugins.view.freemarker.FreemarkerIocLoader" })
 @SetupBy(MvcSetup.class)
 @Fail(">>:/admin/common/unauthorized.rk")
 @Localization("msg")
